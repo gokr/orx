@@ -54,6 +54,7 @@
 
 #endif /* __APPLE__ */
 
+#ifndef C2NIM
 #ifdef TARGET_OS_ANDROID
 
   #include <android/api-level.h>
@@ -65,7 +66,7 @@
   #include <android/api-level.h>
 
 #endif /* TARGET_OS_ANDROID_NATIVE */
-
+#endif
 #include <stddef.h>
 
 
@@ -158,10 +159,11 @@
 
     #define __orxMSVC__
 
+  #ifndef C2NIM
   #else
 
     #error "Couldn't guess compiler define. Please provide it (__orxLLVM__/__orxGCC__/__orxMSVC__)"
-
+  #endif
   #endif
 
 #endif /* !__orxLLVM__ && !__orxGCC__ && !__orxMSVC__ */
@@ -188,7 +190,7 @@
     #define __orxWINDOWS__
 
   /* iOS? */
-  #elif TARGET_OS_IPHONE
+  #elif defined(TARGET_OS_IPHONE)
 
     #define __orxIOS__
 
@@ -210,14 +212,14 @@
     #pragma GCC diagnostic ignored "-Wunused-function"
 
   /* Mac? */
-  #elif TARGET_OS_MAC
+  #elif defined(TARGET_OS_MAC)
 
     #define __orxMAC__
-
+  #ifndef C2NIM
   #else
 
     #error "Couldn't guess platform define. Please provide it (__orxWINDOWS__/__orxMAC__/__orxLINUX__/__orxIOS__/__orxANDROID__/__orxANDROID_NATIVE__)"
-
+  #endif
   #endif
 
 #endif /* !__orxWINDOWS__ && !__orxMAC__ && !__orxLINUX__ && !__orxIOS__ && !__orxANDROID__ && !__orxANDROID_NATIVE__ */
@@ -238,12 +240,15 @@
 #ifdef __OBJC__
 
   #define __orxOBJC__
-
+#ifndef C2NIM
 #else /* __OBJC__ */
 
   #undef __orxOBJC__
-
+#endif
 #endif /* __OBJC__ */
+
+
+#ifndef C2NIM
 
 
 /* Windows */
@@ -299,11 +304,11 @@
         #define orxFASTCALL
 
       #endif /* !orxFASTCALL */
-
+      #ifndef C2NIM
       #define orxSTDCALL
 
       #define orxCDECL
-
+      #endif
     #else /* __orxARM__ || __orxLLVM__ || __orxPPC__ || __orxPPC64__ || __orxX86_64__ || __orxIOS__ || __orxANDROID__ || __orxANDROID_NATIVE__ || __orxARM64__ */
 
       #ifndef orxFASTCALL
@@ -348,6 +353,7 @@
 
 #endif /* __orxWINDOWS__ */
 
+#endif
 
 /* Plugin include? */
 #if defined(__orxPLUGIN__)

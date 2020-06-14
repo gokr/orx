@@ -45,8 +45,9 @@ extern "C" {
 #ifndef _orx_H_
 #define _orx_H_
 
+#ifndef C2NIM
 #define __orxEXTERN__ /* Not compiling orx library */
-
+#endif
 
 #include "orxInclude.h"
 #include "orxKernel.h"
@@ -124,71 +125,6 @@ static void orxFASTCALL orx_MainSetup()
 }
 
 #ifdef __orxIOS__
-
-  #ifdef __orxOBJC__
-
-#import <UIKit/UIKit.h>
-
-/** Orx application interface
- */
-@interface orxAppDelegate : NSObject <UIAccelerometerDelegate>
-{
-  UIWindow           *poWindow;
-  orxViewController  *poViewController;
-}
-
-@property (nonatomic, retain) UIWindow         *poWindow;
-@property (nonatomic, retain) UIViewController *poViewController;
-
-- (void)  MainLoop;
-
-@end
-
-extern orxSTATUS (orxFASTCALL *spfnRun)();
-
-/** Orx main execution function
- * @param[in]   _u32NbParams                  Main function parameters number (argc)
- * @param[in]   _azParams                     Main function parameter list (argv)
- * @param[in]   _pfnInit                      Main init function (should init all the main stuff and register the main event handler to override the default one)
- * @param[in]   _pfnRun                       Main run function (will be called once per frame, should return orxSTATUS_SUCCESS to continue processing)
- * @param[in]   _pfnExit                      Main exit function (should clean all the main stuff)
- */
-static orxINLINE void orx_Execute(orxU32 _u32NbParams, orxSTRING _azParams[], const orxMODULE_INIT_FUNCTION _pfnInit, const orxMODULE_RUN_FUNCTION _pfnRun, const orxMODULE_EXIT_FUNCTION _pfnExit)
-{
-  /* Inits the Debug System */
-  orxDEBUG_INIT();
-
-  /* Checks */
-  orxASSERT(_u32NbParams > 0);
-  orxASSERT(_azParams != orxNULL);
-  orxASSERT(_pfnRun != orxNULL);
-
-  /* Registers main module */
-  orxModule_Register(orxMODULE_ID_MAIN, "MAIN", orx_MainSetup, _pfnInit, _pfnExit);
-
-  /* Stores run callback */
-  spfnRun = _pfnRun;
-
-  /* Sends the command line arguments to orxParam module */
-  if(orxParam_SetArgs(_u32NbParams, _azParams) != orxSTATUS_FAILURE)
-  {
-    NSAutoreleasePool *poPool;
-
-    /* Allocates memory pool */
-    poPool = [[NSAutoreleasePool alloc] init];
-
-    /* Launches application */
-    UIApplicationMain(_u32NbParams, _azParams, nil, @"orxAppDelegate");
-
-    /* Releases memory pool */
-    [poPool release];
-  }
-
-  /* Done! */
-  return;
-}
-
-  #endif /* __orxOBJC__ */
 
 #else /* __orxIOS__ */
 
