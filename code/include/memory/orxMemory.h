@@ -49,6 +49,10 @@
 #include "orxInclude.h"
 #include "debug/orxDebug.h"
 
+#ifdef C2NIM // ENUM_NONE is in orxType.h
+#include "base/orxType.h"
+#endif
+
 #include <string.h>
 
 /** Memory barrier macros */
@@ -75,12 +79,13 @@
 
 
 /** Memory tracking macros */
+#ifndef C2NIM
 #ifdef __orxPROFILER__
   #define orxMEMORY_TRACK(TYPE, SIZE, ALLOCATE)           orxMemory_Track(orxMEMORY_TYPE_##TYPE, SIZE, ALLOCATE)
 #else /* __orxPROFILER__ */
   #define orxMEMORY_TRACK(TYPE, SIZE, ALLOCATE)
 #endif /* __orxPROFILER__ */
-
+#endif
 
 /** Memory type
  */

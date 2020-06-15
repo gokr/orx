@@ -23,3 +23,4 @@
 # def orxSTRINGIFY(X)          #X
 # def __orxDEBUG__ false
 
+# def STRTO_CAST (int)

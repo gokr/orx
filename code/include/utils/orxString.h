@@ -49,6 +49,10 @@
 #include "memory/orxMemory.h"
 #include "math/orxVector.h"
 
+#ifdef C2NIM // orxU32 is in orxType.h
+#include "base/orxType.h"
+#endif
+
 #ifdef __orxMSVC__
 
   #pragma warning(disable : 4996)
@@ -58,16 +62,20 @@
 
 #endif /* __orxMSVC__ */
 
+#ifndef C2NIM
 #define STRTO_CAST (int)
+#endif
 
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
 
+#ifndef C2NIM
 #ifndef __orxWINDOWS__
   #include <strings.h>
 #endif /* !__orxWINDOWS__ */
+#endif
 
 #include "debug/orxDebug.h"
 
@@ -1320,6 +1328,7 @@ static orxINLINE orxSTRING                                orxString_UpperCase(or
   return _zString;
 }
 
+#ifndef C2NIM
 /** Continues a CRC with a string one
  * @param[in] _zString        String used to continue the given CRC
  * @param[in] _stCRC          Base CRC
@@ -1449,7 +1458,7 @@ static orxINLINE orxSTRINGID                              orxString_ToCRC(const 
   /* Done! */
   return orxString_ContinueCRC(_zString, 0);
 }
-
+#endif
 /** Returns the first occurrence of _zString2 in _zString1
  * @param[in] _zString1 String to analyze
  * @param[in] _zString2 String that must be inside _zString1
@@ -1573,6 +1582,7 @@ static orxINLINE orxS32 orxCDECL                          orxString_NPrint(orxST
   return s32Result;
 }
 
+#ifndef C2NIM
 /** Scans a formated string from a memory buffer
  * @param[in]  _zString  String to scan
  * @param[in]  _zFormat  Format string
@@ -1625,6 +1635,7 @@ static orxINLINE orxS32 orxCDECL                          orxString_Scan(const o
   /* Done! */
   return s32Result;
 }
+#endif
 
 /** Gets the extension from a file name
  * @param[in]  _zFileName     Concerned file name
@@ -1684,13 +1695,13 @@ extern orxDLLAPI const orxSTRING orxFASTCALL              orxString_GetFromID(or
  */
 extern orxDLLAPI const orxSTRING orxFASTCALL              orxString_Store(const orxSTRING _zString);
 
-
+#ifndef C2NIM
 #ifdef __orxMSVC__
 
   #pragma warning(default : 4996)
 
 #endif /* __orxMSVC__ */
-
+#endif
 #endif /* _orxSTRING_H_ */
 
 /** @} */

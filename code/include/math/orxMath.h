@@ -46,12 +46,18 @@
 #include "orxInclude.h"
 #include "debug/orxDebug.h"
 
+#ifdef C2NIM // orxU32 is in orxType.h
+#include "base/orxType.h"
+#endif
+
 /** Maths related includes
  */
 #include <math.h>
+#ifndef C2NIM
 #ifdef __orxMSVC__
   #include <intrin.h>
 #endif /* __orxMSVC__ */
+#endif
 
 
 /** Public macro
@@ -392,9 +398,17 @@ static orxINLINE orxFLOAT             orxMath_SmootherStep(orxFLOAT _fMin, orxFL
 #define orxMATH_KF_PI                 orx2F(3.141592654f)           /**< PI constant */
 #define orxMATH_KF_PI_BY_2            orx2F(1.570796327f)           /**< PI / 2 constant */
 #define orxMATH_KF_PI_BY_4            orx2F(0.785398163f)           /**< PI / 4 constant */
+#ifndef C2NIM
 #define orxMATH_KF_DEG_TO_RAD         orx2F(3.141592654f / 180.0f)  /**< Degree to radian conversion constant */
 #define orxMATH_KF_RAD_TO_DEG         orx2F(180.0f / 3.141592654f)  /**< Radian to degree conversion constant */
-
+#endif
+#ifdef C2NIM
+#@
+const
+  orxMATH_KF_DEG_TO_RAD* = orx2F(3.141592654 / 180.0) ## *< Degree to radian conversion constant
+  orxMATH_KF_RAD_TO_DEG* = orx2F(180.0 / 3.141592654) ## *< Radian to degree conversion constant
+@#
+#endif
 
 /*** Trigonometric function ***/
 

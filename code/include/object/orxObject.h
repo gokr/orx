@@ -59,8 +59,9 @@
 
 
 /** Defines */
+#ifndef C2NIM
 #define orxOBJECT_GET_STRUCTURE(OBJECT, TYPE) orx##TYPE(_orxObject_GetStructure(OBJECT, orxSTRUCTURE_ID_##TYPE))
-
+#endif
 #define orxOBJECT_KZ_DEFAULT_GROUP          "default"
 
 

@@ -47,6 +47,9 @@
 
 #include "orxInclude.h"
 
+#ifdef C2NIM // ENUM_NONE is in orxType.h
+#include "base/orxType.h"
+#endif
 
 /* *** orxDEBUG flags *** */
 
@@ -123,7 +126,7 @@ typedef orxSTATUS (orxFASTCALL *orxDEBUG_CALLBACK_FUNCTION)(orxDEBUG_LEVEL _eLev
 
 
 /* *** Debug Macros *** */
-
+#ifndef C2NIM
 /* Log message, compiler specific */
 #if defined(__orxGCC__) || defined(__orxLLVM__)
 
@@ -216,7 +219,7 @@ typedef orxSTATUS (orxFASTCALL *orxDEBUG_CALLBACK_FUNCTION)(orxDEBUG_LEVEL _eLev
 
   #endif /* __orxMSVC__ */
 #endif /* __orcGCC__ || __orxLLVM__ */
-
+#endif
 #define orxDEBUG_INIT()                                                                                           \
 do                                                                                                                \
 {                                                                                                                 \
@@ -249,6 +252,7 @@ while(orxFALSE)
 
 #ifdef __orxDEBUG__
 
+  #ifndef C2NIM
   /* Debug print, compiler specific */
   #if defined(__orxGCC__) || defined(__orxLLVM__)
     #define orxDEBUG_PRINT(LEVEL, STRING, ...)                                                                    \
@@ -273,7 +277,7 @@ while(orxFALSE)
       } while(orxFALSE)
     #endif /* __orxMSVC__ */
   #endif /* __orcGCC__ || __orxLLVM__ */
-
+  #endif
   /* End platform specific */
 
   #define orxDEBUG_ENABLE_LEVEL(LEVEL, ENABLE)_orxDebug_EnableLevel(LEVEL, ENABLE)
@@ -304,6 +308,7 @@ while(orxFALSE)
     } while(orxFALSE)
 
   /* Assert */
+  #ifndef C2NIM
   #if defined(__orxGCC__) || defined(__orxLLVM__)
     #define orxASSERT(TEST, ...)                                                                                                                                          \
       if(!(TEST))                                                                                                                                                         \
@@ -321,11 +326,12 @@ while(orxFALSE)
         }
     #endif /* __orxMSVC__ */
   #endif /* __orcGCC__ || __orxLLVM__ */
-
+  #endif
 #else /* __orxDEBUG__ */
 
+  #ifndef C2NIM
   #define orxDEBUG_PRINT(LEVEL, STRING, ...)
-
+  #endif
   #define orxDEBUG_ENABLE_LEVEL(LEVEL, ENABLE)_orxDebug_EnableLevel(LEVEL, ENABLE)
   #define orxDEBUG_IS_LEVEL_ENABLED(LEVEL)    _orxDebug_IsLevelEnabled(LEVEL)
 
@@ -350,8 +356,9 @@ while(orxFALSE)
       _orxDebug_SetLogFile(zBuffer);                          \
     } while(orxFALSE)
 
+  #ifndef C2NIM
   #define orxASSERT(TEST, ...)
-
+  #endif
 #endif /* __orxDEBUG__ */
 
 
@@ -362,6 +369,7 @@ while(orxFALSE)
 
 #define orxDEBUG_KS32_BUFFER_OUTPUT_SIZE      2048
 
+#ifndef C2NIM
 #define orxDEBUG_KZ_DATE_FORMAT               orxANSI_KZ_COLOR_FG_CYAN "[%H:%M:%S]" orxANSI_KZ_COLOR_RESET
 #define orxDEBUG_KZ_DATE_FULL_FORMAT          orxANSI_KZ_COLOR_FG_CYAN "[%Y-%m-%d %H:%M:%S]"  orxANSI_KZ_COLOR_RESET
 
@@ -370,7 +378,7 @@ while(orxFALSE)
 #define orxDEBUG_KZ_TYPE_ERROR_FORMAT         orxANSI_KZ_COLOR_FG_RED "[%s]" orxANSI_KZ_COLOR_RESET
 
 #define orxDEBUG_KZ_FILE_FORMAT               orxANSI_KZ_COLOR_FG_MAGENTA "[%s:%s(%u)]" orxANSI_KZ_COLOR_RESET
-
+#endif
 
 /*****************************************************************************/
 

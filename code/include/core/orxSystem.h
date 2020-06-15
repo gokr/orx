@@ -46,6 +46,11 @@
 #include "orxInclude.h"
 #include "math/orxVector.h"
 
+#ifdef C2NIM // orxFLOAT is in orxType.h
+#include "base/orxType.h"
+#include "base/orxVersion.h"
+#endif
+
 /** Event enum
  */
 typedef enum __orxSYSTEM_EVENT_t

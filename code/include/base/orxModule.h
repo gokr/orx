@@ -48,6 +48,10 @@
 
 #include "base/orxVersion.h"
 
+#ifdef C2NIM // ENUM_NONE is in orxType.h
+#include "base/orxType.h"
+#endif
+
 
 /** Module enum */
 typedef enum __orxMODULE_ID_t

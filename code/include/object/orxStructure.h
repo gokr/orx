@@ -54,6 +54,7 @@
 
 /** Structure pointer get helpers
  */
+#ifndef C2NIM
 #define orxSTRUCTURE_GET_POINTER(STRUCTURE, TYPE) ((orx##TYPE *)_orxStructure_GetPointer(STRUCTURE, orxSTRUCTURE_ID_##TYPE))
 
 #define orxSTRUCTURE(STRUCTURE)     ((((STRUCTURE) != orxNULL) && (((((orxSTRUCTURE *)STRUCTURE)->u64GUID & orxSTRUCTURE_GUID_MASK_STRUCTURE_ID) >> orxSTRUCTURE_GUID_SHIFT_STRUCTURE_ID) < orxSTRUCTURE_ID_NUMBER)) ? (orxSTRUCTURE *)(STRUCTURE) : (orxSTRUCTURE *)orxNULL)
@@ -79,16 +80,48 @@
 #define orxTEXTURE(STRUCTURE)       orxSTRUCTURE_GET_POINTER(STRUCTURE, TEXTURE)
 #define orxTIMELINE(STRUCTURE)      orxSTRUCTURE_GET_POINTER(STRUCTURE, TIMELINE)
 #define orxVIEWPORT(STRUCTURE)      orxSTRUCTURE_GET_POINTER(STRUCTURE, VIEWPORT)
+#endif
+#ifdef C2NIM
+#define orxSTRUCTURE_GET_POINTER(STRUCTURE, TYPE, ID) ((TYPE *)_orxStructure_GetPointer(STRUCTURE, ID))
 
+#define orxSTRUCTURE(STRUCTURE)     ((((STRUCTURE) != orxNULL) && (((((orxSTRUCTURE *)STRUCTURE)->u64GUID & orxSTRUCTURE_GUID_MASK_STRUCTURE_ID) >> orxSTRUCTURE_GUID_SHIFT_STRUCTURE_ID) < orxSTRUCTURE_ID_NUMBER)) ? (orxSTRUCTURE *)(STRUCTURE) : (orxSTRUCTURE *)orxNULL)
+
+#define orxANIM(STRUCTURE)          orxSTRUCTURE_GET_POINTER(STRUCTURE, orxANIM, orxSTRUCTURE_ID_ANIM)
+#define orxANIMPOINTER(STRUCTURE)   orxSTRUCTURE_GET_POINTER(STRUCTURE, orxANIMPOINTER, orxSTRUCTURE_ID_ANIMPOINTER)
+#define orxANIMSET(STRUCTURE)       orxSTRUCTURE_GET_POINTER(STRUCTURE, orxANIMSET, orxSTRUCTURE_ID_ANIMSET)
+#define orxBODY(STRUCTURE)          orxSTRUCTURE_GET_POINTER(STRUCTURE, orxBODY, orxSTRUCTURE_ID_BODY)
+#define orxCAMERA(STRUCTURE)        orxSTRUCTURE_GET_POINTER(STRUCTURE, orxCAMERA, orxSTRUCTURE_ID_CAMERA)
+#define orxCLOCK(STRUCTURE)         orxSTRUCTURE_GET_POINTER(STRUCTURE, orxCLOCK, orxSTRUCTURE_ID_CLOCK)
+#define orxFONT(STRUCTURE)          orxSTRUCTURE_GET_POINTER(STRUCTURE, orxFONT, orxSTRUCTURE_ID_FONT)
+#define orxFRAME(STRUCTURE)         orxSTRUCTURE_GET_POINTER(STRUCTURE, orxFRAME, orxSTRUCTURE_ID_FRAME)
+#define orxFX(STRUCTURE)            orxSTRUCTURE_GET_POINTER(STRUCTURE, orxFX, orxSTRUCTURE_ID_FX)
+#define orxFXPOINTER(STRUCTURE)     orxSTRUCTURE_GET_POINTER(STRUCTURE, orxFXPOINTER, orxSTRUCTURE_ID_FXPOINTER)
+#define orxGRAPHIC(STRUCTURE)       orxSTRUCTURE_GET_POINTER(STRUCTURE, orxGRAPHIC, orxSTRUCTURE_ID_GRAPHIC)
+#define orxOBJECT(STRUCTURE)        orxSTRUCTURE_GET_POINTER(STRUCTURE, orxOBJECT, orxSTRUCTURE_ID_OBJECT)
+#define orxSOUND(STRUCTURE)         orxSTRUCTURE_GET_POINTER(STRUCTURE, orxSOUND, orxSTRUCTURE_ID_SOUND)
+#define orxSOUNDPOINTER(STRUCTURE)  orxSTRUCTURE_GET_POINTER(STRUCTURE, orxSOUNDPOINTER, orxSTRUCTURE_ID_SOUNDPOINTER)
+#define orxSHADER(STRUCTURE)        orxSTRUCTURE_GET_POINTER(STRUCTURE, orxSHADER, orxSTRUCTURE_ID_SHADER)
+#define orxSHADERPOINTER(STRUCTURE) orxSTRUCTURE_GET_POINTER(STRUCTURE, orxSHADERPOINTER, orxSTRUCTURE_ID_SHADERPOINTER)
+#define orxSPAWNER(STRUCTURE)       orxSTRUCTURE_GET_POINTER(STRUCTURE, orxSPAWNER, orxSTRUCTURE_ID_SPAWNER)
+#define orxTEXT(STRUCTURE)          orxSTRUCTURE_GET_POINTER(STRUCTURE, orxTEXT, orxSTRUCTURE_ID_TEXT)
+#define orxTEXTURE(STRUCTURE)       orxSTRUCTURE_GET_POINTER(STRUCTURE, orxTEXTURE, orxSTRUCTURE_ID_TEXTURE)
+#define orxTIMELINE(STRUCTURE)      orxSTRUCTURE_GET_POINTER(STRUCTURE, orxTIMELINE, orxSTRUCTURE_ID_TIMELINE)
+#define orxVIEWPORT(STRUCTURE)      orxSTRUCTURE_GET_POINTER(STRUCTURE, orxVIEWPORT, orxSTRUCTURE_ID_VIEWPORT)
+#endif
 /** Structure register macro
  */
+#ifndef C2NIM
 #define orxSTRUCTURE_REGISTER(TYPE, STORAGE_TYPE, MEMORY_TYPE, BANK_SIZE, UPDATE_FUNCTION) \
   orxStructure_Register(orxSTRUCTURE_ID_##TYPE, STORAGE_TYPE, MEMORY_TYPE, sizeof(orx##TYPE), BANK_SIZE, UPDATE_FUNCTION)
 
+#endif
+
 /** Structure assert
  */
+#ifndef C2NIM
 #define orxSTRUCTURE_ASSERT(STRUCTURE)                          \
   orxASSERT((STRUCTURE != orxNULL) && (((((orxSTRUCTURE *)(STRUCTURE))->u64GUID & orxSTRUCTURE_GUID_MASK_STRUCTURE_ID) >> orxSTRUCTURE_GUID_SHIFT_STRUCTURE_ID) < orxSTRUCTURE_ID_NUMBER));
+#endif
 
 /** Structure magic number
  */
@@ -208,6 +241,7 @@ static orxINLINE const orxSTRING orxStructure_GetIDString(orxSTRUCTURE_ID _eID)
 {
   const orxSTRING zResult;
 
+#ifndef C2NIM
 #define orxSTRUCTURE_DECLARE_ID_ENTRY(ID)    case orxSTRUCTURE_ID_##ID: zResult = #ID; break
 
   /* Depending on ID */
@@ -239,6 +273,35 @@ static orxINLINE const orxSTRING orxStructure_GetIDString(orxSTRUCTURE_ID _eID)
   }
 
 #undef orxSTRUCTURE_DECLARE_ID_ENTRY
+#else
+
+  /* Depending on ID */
+  switch(_eID)
+  {
+    case orxSTRUCTURE_ID_ANIMPOINTER: zResult = "ANIMPOINTER"; break;
+    case orxSTRUCTURE_ID_BODY: zResult = "BODY"; break;
+    case orxSTRUCTURE_ID_CLOCK: zResult = "CLOCK"; break;
+    case orxSTRUCTURE_ID_FRAME: zResult = "FRAME"; break;
+    case orxSTRUCTURE_ID_FXPOINTER: zResult = "FXPOINTER"; break;
+    case orxSTRUCTURE_ID_GRAPHIC: zResult = "GRAPHIC"; break;
+    case orxSTRUCTURE_ID_SHADERPOINTER: zResult = "SHADERPOINTER"; break;
+    case orxSTRUCTURE_ID_SOUNDPOINTER: zResult = "SOUNDPOINTER"; break;
+    case orxSTRUCTURE_ID_SPAWNER: zResult = "SPAWNER"; break;
+    case orxSTRUCTURE_ID_TIMELINE: zResult = "TIMELINE"; break;
+    case orxSTRUCTURE_ID_ANIM: zResult = "ANIM"; break;
+    case orxSTRUCTURE_ID_ANIMSET: zResult = "ANIMSET"; break;
+    case orxSTRUCTURE_ID_FONT: zResult = "FONT"; break;
+    case orxSTRUCTURE_ID_FX: zResult = "FX"; break;
+    case orxSTRUCTURE_ID_OBJECT: zResult = "OBJECT"; break;
+    case orxSTRUCTURE_ID_SHADER: zResult = "SHADER"; break;
+    case orxSTRUCTURE_ID_SOUND: zResult = "SOUND"; break;
+    case orxSTRUCTURE_ID_TEXT: zResult = "TEXT"; break;
+    case orxSTRUCTURE_ID_TEXTURE: zResult = "TEXTURE"; break;
+    case orxSTRUCTURE_ID_VIEWPORT: zResult = "VIEWPORT"; break;
+    default: zResult = "INVALID STRUCTURE ID"; break;
+  }
+
+#endif
 
   /* Done! */
   return zResult;
@@ -269,7 +332,6 @@ extern orxDLLAPI void orxFASTCALL                       orxStructure_Exit();
  * @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
  */
 extern orxDLLAPI orxSTATUS orxFASTCALL                  orxStructure_Register(orxSTRUCTURE_ID _eStructureID, orxSTRUCTURE_STORAGE_TYPE _eStorageType, orxMEMORY_TYPE _eMemoryType, orxU32 _u32Size, orxU32 _u32BankSize, const orxSTRUCTURE_UPDATE_FUNCTION _pfnUpdate);
-
 /** Unregisters a given ID
  * @param[in]   _eStructureID   Concerned structure ID
  * @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
