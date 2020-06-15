@@ -1,0 +1,224 @@
+##  Orx - Portable Game Engine
+##
+##  Copyright (c) 2008-2020 Orx-Project
+##
+##  This software is provided 'as-is', without any express or implied
+##  warranty. In no event will the authors be held liable for any damages
+##  arising from the use of this software.
+##
+##  Permission is granted to anyone to use this software for any purpose,
+##  including commercial applications, and to alter it and redistribute it
+##  freely, subject to the following restrictions:
+##
+##     1. The origin of this software must not be misrepresented; you must not
+##     claim that you wrote the original software. If you use this software
+##     in a product, an acknowledgment in the product documentation would be
+##     appreciated but is not required.
+##
+##     2. Altered source versions must be plainly marked as such, and must not be
+##     misrepresented as being the original software.
+##
+##     3. This notice may not be removed or altered from any source
+##     distribution.
+##
+## *
+##  @file orxType.h
+##  @date 12/04/2005
+##  @author iarwain@orx-project.org
+##
+##  @todo
+##
+## *
+##  @addtogroup orxType
+##
+##  Base types
+##
+##  @{
+##
+
+##  *** Uses orx declarations ***
+
+import
+  base/orxDecl
+
+##  *** Platform dependent base types
+##  Windows
+
+when defined(WINDOWS):
+  type
+    orxHANDLE* = pointer
+  when defined(X86_64):
+    type
+      orxU32* = cuint
+      orxU16* = cushort
+      orxU8* = cuchar
+      orxS32* = cint
+      orxS16* = cshort
+      orxS8* = cchar
+      orxBOOL* = cuint
+  else:
+    type
+      orxU32* = culong
+      orxU16* = cushort
+      orxU8* = cuchar
+      orxS32* = clong
+      orxS16* = cshort
+      orxS8* = cchar
+      orxBOOL* = culong
+  type
+    orxFLOAT* = cfloat
+    orxDOUBLE* = cdouble
+    orxCHAR* = char
+  type
+    orxSTRINGID* = orxU32
+    orxENUM* = orxU32
+  template orx2F*(V: untyped): untyped =
+    ((orxFLOAT)(V))
+
+  template orx2D*(V: untyped): untyped =
+    ((orxDOUBLE)(V))
+
+  const
+    orxENUM_NONE* = 0xFFFFFFFF
+  ##  Compiler specific
+  when defined(GCC):
+    type
+      orxU64* = culonglong
+      orxS64* = clonglong
+  when defined(LLVM):
+    type
+      orxU64* = culonglong
+      orxS64* = clonglong
+else:
+  ##  Linux / Mac / iOS / Android
+  when defined(LINUX) or defined(MAC) or defined(IOS) or defined(ANDROID) or
+      defined(ANDROID_NATIVE):
+    type
+      orxHANDLE* = pointer
+    when defined(orx64):
+      type
+        orxU64* = culonglong
+        orxU32* = cuint
+        orxU16* = cushort
+        orxU8* = cuchar
+        orxS64* = clonglong
+        orxS32* = cint
+        orxS16* = cshort
+        orxS8* = cchar
+        orxBOOL* = cuint
+    else:
+      type
+        orxU64* = culonglong
+        orxU32* = culong
+        orxU16* = cushort
+        orxU8* = cuchar
+        orxS64* = clonglong
+        orxS32* = clong
+        orxS16* = cshort
+        orxS8* = cchar
+        orxBOOL* = culong
+    type
+      orxFLOAT* = cfloat
+      orxDOUBLE* = cdouble
+      orxCHAR* = char
+    type
+      orxSTRINGID* = orxU32
+      orxENUM* = orxU32
+    template orx2F*(V: untyped): untyped =
+      ((orxFLOAT)(V))
+
+    template orx2D*(V: untyped): untyped =
+      ((orxDOUBLE)(V))
+
+    const
+      orxENUM_NONE* = 0xFFFFFFFF
+##  *** Misc constants ***
+##  *** Seek offset constants ***
+
+type
+  orxSEEK_OFFSET_WHENCE* {.size: sizeof(cint).} = enum
+    orxSEEK_OFFSET_WHENCE_START = 0, orxSEEK_OFFSET_WHENCE_CURRENT,
+    orxSEEK_OFFSET_WHENCE_END, orxSEEK_OFFSET_WHENCE_NUMBER,
+    orxSEEK_OFFSET_WHENCE_NONE = orxENUM_NONE
+
+
+##  *** Boolean constants ***
+
+const
+  orxFALSE* = ((orxBOOL)(1 != 1))
+  orxTRUE* = ((orxBOOL)(1 == 1))
+
+##  *** Float constants ***
+
+var orxFLOAT_0* {.importcpp: "orxFLOAT_0", dynlib: "liborx.so".}: orxFLOAT
+
+var orxFLOAT_1* {.importcpp: "orxFLOAT_1", dynlib: "liborx.so".}: orxFLOAT
+
+var orxFLOAT_MAX* {.importcpp: "orxFLOAT_MAX", dynlib: "liborx.so".}: orxFLOAT
+
+##  *** Double constants ***
+
+var orxDOUBLE_0* {.importcpp: "orxDOUBLE_0", dynlib: "liborx.so".}: orxDOUBLE
+
+var orxDOUBLE_1* {.importcpp: "orxDOUBLE_1", dynlib: "liborx.so".}: orxDOUBLE
+
+var orxDOUBLE_MAX* {.importcpp: "orxDOUBLE_MAX", dynlib: "liborx.so".}: orxDOUBLE
+
+##  *** Undefined constants ***
+
+var orxU64_UNDEFINED* {.importcpp: "orxU64_UNDEFINED", dynlib: "liborx.so".}: orxU64
+
+var orxU32_UNDEFINED* {.importcpp: "orxU32_UNDEFINED", dynlib: "liborx.so".}: orxU32
+
+var orxU16_UNDEFINED* {.importcpp: "orxU16_UNDEFINED", dynlib: "liborx.so".}: orxU16
+
+var orxU8_UNDEFINED* {.importcpp: "orxU8_UNDEFINED", dynlib: "liborx.so".}: orxU8
+
+var orxHANDLE_UNDEFINED* {.importcpp: "orxHANDLE_UNDEFINED", dynlib: "liborx.so".}: orxHANDLE
+
+var orxSTRINGID_UNDEFINED* {.importcpp: "orxSTRINGID_UNDEFINED", dynlib: "liborx.so".}: orxSTRINGID
+
+##  *** String & character constants ***
+
+var orxSTRING_EMPTY* {.importcpp: "orxSTRING_EMPTY", dynlib: "liborx.so".}: ptr orxCHAR
+
+var orxSTRING_TRUE* {.importcpp: "orxSTRING_TRUE", dynlib: "liborx.so".}: ptr orxCHAR
+
+var orxSTRING_FALSE* {.importcpp: "orxSTRING_FALSE", dynlib: "liborx.so".}: ptr orxCHAR
+
+var orxSTRING_EOL* {.importcpp: "orxSTRING_EOL", dynlib: "liborx.so".}: ptr orxCHAR
+
+const
+  orxCHAR_NULL* = '\x00'
+  orxCHAR_CR* = '\c'
+  orxCHAR_LF* = '\n'
+  orxCHAR_EOL* = '\n'
+  orxCHAR_ASCII_NUMBER* = 128
+
+##  *** Directory separators ***
+
+var orxSTRING_DIRECTORY_SEPARATOR* {.importcpp: "orxSTRING_DIRECTORY_SEPARATOR",
+                                   dynlib: "liborx.so".}: ptr orxCHAR
+
+const
+  orxCHAR_DIRECTORY_SEPARATOR_WINDOWS* = '\b'
+  orxCHAR_DIRECTORY_SEPARATOR_LINUX* = '/'
+
+when defined(WINDOWS):
+  const
+    orxCHAR_DIRECTORY_SEPARATOR* = '\b'
+elif defined(LINUX) or defined(MAC) or defined(IOS) or defined(ANDROID) or
+    defined(ANDROID_NATIVE):
+  const
+    orxCHAR_DIRECTORY_SEPARATOR* = '/'
+##  *** Status defines ***
+
+type
+  orxSTATUS* {.size: sizeof(cint).} = enum
+    orxSTATUS_FAILURE = 0,      ## *< Failure status, the operation has failed
+    orxSTATUS_SUCCESS,        ## *< Success status, the operation has worked has expected
+    orxSTATUS_NUMBER,         ## *< Sentinel : Number of status
+    orxSTATUS_NONE = orxENUM_NONE
+
+
+## * @}

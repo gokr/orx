@@ -12,7 +12,9 @@ proc main(dir: string) =
     of pcDir:
       main(file)
     of pcFile:
-      if file.endswith(".h"): exec("c2nim common.c2nim " & file)
+      var cmd = "c2nim common.c2nim " & file
+      echo cmd
+      if file.endswith(".h"): exec(cmd)
     else: discard
 
 main(getCurrentDir())
