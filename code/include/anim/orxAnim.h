@@ -70,8 +70,14 @@
 
 /** Internal Anim structure
  */
-typedef struct __orxANIM_t                    orxANIM;
-
+#ifndef C2NIM
+typedef struct __orxANIM_t        orxANIM;
+#endif
+#ifdef C2NIM
+#@
+type orxANIM* = object
+@#
+#endif
 
 /** Event enum
  */
