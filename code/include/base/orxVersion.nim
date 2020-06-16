@@ -37,12 +37,12 @@
 ##
 
 import
-  orxType
+  base/orxType
 
 when not defined(ANDROID) and not defined(ANDROID_NATIVE) and not defined(IOS):
   when not defined(VERSION_BUILD):
     import
-      orxBuild
+      base/orxBuild
 
 ## * Version numbers
 ##
@@ -50,12 +50,15 @@ when not defined(ANDROID) and not defined(ANDROID_NATIVE) and not defined(IOS):
 const
   VERSION_MAJOR* = 1
   VERSION_MINOR* = 12
-  VERSION_RELEASE = "dev"
-  VERSION_BUILD = 0
+
+const
+  VERSION_RELEASE* = "dev"
+  VERSION_BUILD* = 0
 
 const
   VERSION_STRING* = $VERSION_MAJOR & "." & $VERSION_MINOR & "-" & $VERSION_RELEASE
   VERSION_FULL_STRING* = $VERSION_MAJOR & "." & $VERSION_MINOR & "." & $VERSION_BUILD & "-" & $VERSION_RELEASE
+const
   VERSION_MASK_MAJOR* = 0xFF000000
   VERSION_SHIFT_MAJOR* = 24
   VERSION_MASK_MINOR* = 0x00FF0000
