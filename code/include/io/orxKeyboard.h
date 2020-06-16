@@ -46,6 +46,9 @@
 #include "orxInclude.h"
 #include "plugin/orxPluginCore.h"
 
+#ifdef C2NIM // ENUM_NONE is in orxType.h
+#include "base/orxType.h"
+#endif
 
 /** Key enum
  */

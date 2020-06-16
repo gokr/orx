@@ -38,14 +38,16 @@
 ##
 
 import
-  orxInclude, object/orxStructure
+  orxInclude
 
+import
+  base/orxType
+
+import "object"/orxStructure
 ## * Internal TimeLine structure
 ##
 
-type
-  orxTIMELINE* = TIMELINE_t
-
+type orxTIMELINE* = object
 ## * Event enum
 ##
 

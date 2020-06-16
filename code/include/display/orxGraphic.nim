@@ -42,7 +42,14 @@
 ##
 
 import
-  orxInclude, object/orxStructure, display/orxDisplay
+  orxInclude
+
+import "object"/orxStructure
+import
+  display/orxDisplay
+
+import
+  base/orxType, math/orxVector
 
 ## * Graphic flags
 ##
@@ -87,9 +94,7 @@ const
 ## * Internal Graphic structure
 ##
 
-type
-  orxGRAPHIC* = GRAPHIC_t
-
+type orxGRAPHIC* = object
 ## * Graphic module setup
 ##
 

@@ -40,6 +40,9 @@
 import
   orxInclude
 
+import
+  base/orxType
+
 ## * Setups FPS module
 
 proc orxFPS_Setup*() {.cdecl, importcpp: "orxFPS_Setup(@)", dynlib: "liborx.so".}

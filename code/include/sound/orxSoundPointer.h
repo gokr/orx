@@ -46,7 +46,15 @@
 
 #include "orxInclude.h"
 #include "sound/orxSound.h"
+#ifndef C2NIM
 #include "object/orxStructure.h"
+#endif
+#ifdef C2NIM
+#include "base/orxType.h"
+#@
+import "object"/orxStructure
+@#
+#endif
 
 
 /** Misc defines
@@ -55,7 +63,14 @@
 
 
 /** Internal SoundPointer structure */
-typedef struct __orxSOUNDPOINTER_t              orxSOUNDPOINTER;
+#ifndef C2NIM
+typedef struct __orxSOUNDPOINTER_t        orxSOUNDPOINTER;
+#endif
+#ifdef C2NIM
+#@
+type orxSOUNDPOINTER* = object
+@#
+#endif
 
 
 /** SoundPointer module setup

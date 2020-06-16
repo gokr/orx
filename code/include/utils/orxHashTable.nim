@@ -40,11 +40,10 @@
 import
   orxInclude, memory/orxMemory
 
-##  Internal hash table structure
+import
+  base/orxType
 
-type
-  orxHASHTABLE* = HASHTABLE_t
-
+type orxHASHTABLE* = object
 ##  Define flags
 
 const

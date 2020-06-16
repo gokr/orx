@@ -48,6 +48,10 @@
 #include "display/orxTexture.h"
 #include "math/orxVector.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#include "display/orxDisplay.h"
+#endif
 
 /** Misc defines
  */
@@ -55,7 +59,14 @@
 
 
 /** Internal font structure */
-typedef struct __orxFONT_t                            orxFONT;
+#ifndef C2NIM
+typedef struct __orxFONT_t        orxFONT;
+#endif
+#ifdef C2NIM
+#@
+type orxFONT* = object
+@#
+#endif
 
 
 /** Setups the font module

@@ -38,6 +38,9 @@
 import
   orxInclude
 
+import
+  base/orxType
+
 ## * Misc
 ##
 

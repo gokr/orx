@@ -42,6 +42,9 @@
 import
   orxInclude, plugin/orxPluginType
 
+import
+  base/orxType
+
 ## ********************************************
 ##  Function prototypes
 ## *******************************************

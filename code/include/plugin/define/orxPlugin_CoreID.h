@@ -42,6 +42,9 @@
 #ifndef _orxPLUGIN_COREID_H_
 #define _orxPLUGIN_COREID_H_
 
+#ifdef C2NIM // ENUM_NONE is in orxType.h
+#include "base/orxType.h"
+#endif
 
 /* *** Core plugin id enum *** */
 typedef enum __orxPLUGIN_CORE_ID_t

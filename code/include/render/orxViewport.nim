@@ -42,6 +42,9 @@ import
   orxInclude, core/orxClock, render/orxCamera, render/orxShaderPointer,
   display/orxDisplay, display/orxTexture
 
+import
+  base/orxType, math/orxAABox
+
 ## * Viewport flags
 ##
 
@@ -61,9 +64,7 @@ const
 
 ## * Internal Viewport structure
 
-type
-  orxVIEWPORT* = VIEWPORT_t
-
+type orxVIEWPORT* = object
 ## * Event enum
 ##
 

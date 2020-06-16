@@ -40,6 +40,9 @@
 import
   orxInclude
 
+import
+  base/orxType
+
 const
   orxFILE_KU32_FLAG_INFO_NORMAL* = 0x00000001
   orxFILE_KU32_FLAG_INFO_READONLY* = 0x00000002
@@ -67,9 +70,7 @@ type
 ## * Internal File structure
 ##
 
-type
-  orxFILE* = FILE_t
-
+type orxFILE* = object
 ## * File module setup
 
 proc orxFile_Setup*() {.cdecl, importcpp: "orxFile_Setup(@)", dynlib: "liborx.so".}

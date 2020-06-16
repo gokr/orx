@@ -38,8 +38,12 @@
 ##
 
 import
-  orxInclude, render/orxShader, object/orxStructure
+  orxInclude, render/orxShader
 
+import
+  base/orxType
+
+import "object"/orxStructure
 ## * Misc defines
 ##
 
@@ -48,9 +52,7 @@ const
 
 ## * Internal ShaderPointer structure
 
-type
-  orxSHADERPOINTER* = SHADERPOINTER_t
-
+type orxSHADERPOINTER* = object
 ## * ShaderPointer module setup
 ##
 

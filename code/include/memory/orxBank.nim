@@ -44,11 +44,10 @@
 import
   orxInclude, memory/orxMemory
 
-##  Internal Bank structure
+import
+  base/orxType
 
-type
-  orxBANK* = BANK_t
-
+type orxBANK* = object
 ##  Define flags
 
 const

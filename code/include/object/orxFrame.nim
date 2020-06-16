@@ -48,6 +48,9 @@
 import
   orxInclude, math/orxVector
 
+import
+  base/orxType
+
 ## * Frame flags
 ##
 
@@ -91,9 +94,7 @@ type
 ## * Internal Frame structure
 ##
 
-type
-  orxFRAME* = FRAME_t
-
+type orxFRAME* = object
 ## * Get ignore flag values
 ##  @param[in]   _zFlags         Literal ignore flags
 ##  @return Ignore flags

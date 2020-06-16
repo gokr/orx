@@ -46,8 +46,17 @@
 #include "orxInclude.h"
 #include "memory/orxMemory.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#@
+type orxHASHTABLE* = object
+@#
+#endif
+
+#ifndef C2NIM
 /* Internal hash table structure */
 typedef struct __orxHASHTABLE_t orxHASHTABLE;
+#endif
 
 /* Define flags */
 #define orxHASHTABLE_KU32_FLAG_NONE             0x00000000  /**< No flags (default behaviour) */

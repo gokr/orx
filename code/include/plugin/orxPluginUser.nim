@@ -22,8 +22,8 @@
 ##     distribution.
 ##
 ## *
-##  @file orxPlugin_Mouse.h
-##  @date 22/11/2003
+##  @file orxPluginUser.h
+##  @date 23/04/2003
 ##  @author iarwain@orx-project.org
 ##
 ##  @todo
@@ -31,29 +31,18 @@
 ## *
 ##  @addtogroup orxPlugin
 ##
-##  Header that defines all IDs of the mouse plugin
+##  Plugin user header
+##  This header is used to define structures & functions for plugin registration.
 ##
 ##  @{
 ##
 
 import
-  plugin/define/orxPlugin_CoreID
+  orxInclude, plugin/orxPluginType, plugin/define/orxPlugin_CoreDefine,
+  memory/orxMemory, utils/orxString
 
-import
-  base/orxType
-
-type
-  orxPLUGIN_FUNCTION_BASE_ID_MOUSE* {.size: sizeof(cint).} = enum
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_INIT = 0,
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_EXIT,
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_SET_POSITION,
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_GET_POSITION,
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_IS_BUTTON_PRESSED,
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_GET_MOVE_DELTA,
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_GET_WHEEL_DELTA,
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_SHOW_CURSOR,
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_NUMBER,
-    orxPLUGIN_FUNCTION_BASE_ID_MOUSE_NONE = orxENUM_NONE
-
+## ********************************************
+##  Constants
+## *******************************************
 
 ## * @}

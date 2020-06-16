@@ -42,7 +42,7 @@
 ##
 
 import
-  orxInclude
+  orxInclude, base/orxType
 
 import "object"/orxStructure
 ## * Anim flags
@@ -65,7 +65,7 @@ const
 ##
 
 type
-  orxANIM* = ANIM_t
+  orxANIM* = object
 
 ## * Event enum
 ##

@@ -40,6 +40,9 @@
 import
   orxInclude, math/orxVector
 
+import
+  base/orxType
+
 ## * Defines
 ##
 

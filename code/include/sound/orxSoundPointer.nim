@@ -38,8 +38,12 @@
 ##
 
 import
-  orxInclude, sound/orxSound, object/orxStructure
+  orxInclude, sound/orxSound
 
+import
+  base/orxType
+
+import "object"/orxStructure
 ## * Misc defines
 ##
 
@@ -48,9 +52,7 @@ const
 
 ## * Internal SoundPointer structure
 
-type
-  orxSOUNDPOINTER* = SOUNDPOINTER_t
-
+type orxSOUNDPOINTER* = object
 ## * SoundPointer module setup
 ##
 

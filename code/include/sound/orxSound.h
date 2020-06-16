@@ -48,6 +48,9 @@
 #include "sound/orxSoundSystem.h"
 #include "math/orxVector.h"
 
+#ifdef C2NIM // ENUM_NONE is in orxType.h
+#include "base/orxType.h"
+#endif
 
 /** Misc defines
  */
@@ -73,8 +76,14 @@ typedef enum __orxSOUND_STATUS_t
 
 /** Internal Sound structure
  */
-typedef struct __orxSOUND_t                   orxSOUND;
-
+#ifndef C2NIM
+typedef struct __orxSOUND_t        orxSOUND;
+#endif
+#ifdef C2NIM
+#@
+type orxSOUND* = object
+@#
+#endif
 
 /** Event enum
  */

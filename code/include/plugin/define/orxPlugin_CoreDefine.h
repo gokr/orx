@@ -42,6 +42,7 @@
 #ifndef _orxPLUGIN_COREDEFINE_H_
 #define _orxPLUGIN_COREDEFINE_H_
 
+#ifndef C2NIM
 /*
  * Macros for core plugin register function declaration
  */
@@ -49,6 +50,7 @@
 
 #define orxPLUGIN_DECLARE_CORE_REGISTER_FUNCTION(PLUGIN_SUFFIX) extern orxDLLAPI void orxPLUGIN_CORE_REGISTER_FUNCTION_NAME(PLUGIN_SUFFIX)()
 
+#endif
 
 /*
  * Includes all core plugin headers
@@ -65,26 +67,26 @@
 /*
  * Defines all core plugin register function
  */
-orxPLUGIN_DECLARE_CORE_REGISTER_FUNCTION(DISPLAY);
-orxPLUGIN_DECLARE_CORE_REGISTER_FUNCTION(JOYSTICK);
-orxPLUGIN_DECLARE_CORE_REGISTER_FUNCTION(KEYBOARD);
-orxPLUGIN_DECLARE_CORE_REGISTER_FUNCTION(MOUSE);
-orxPLUGIN_DECLARE_CORE_REGISTER_FUNCTION(PHYSICS);
-orxPLUGIN_DECLARE_CORE_REGISTER_FUNCTION(RENDER);
-orxPLUGIN_DECLARE_CORE_REGISTER_FUNCTION(SOUNDSYSTEM);
+extern orxDLLAPI void _registerFunction_DISPLAY(); 
+extern orxDLLAPI void _registerFunction_JOYSTICK();
+extern orxDLLAPI void _registerFunction_KEYBOARD();
+extern orxDLLAPI void _registerFunction_MOUSE();
+extern orxDLLAPI void _registerFunction_PHYSICS();
+extern orxDLLAPI void _registerFunction_RENDER();
+extern orxDLLAPI void _registerFunction_SOUNDSYSTEM();
 
 /*
  * Inline core plugin registration function
  */
 static orxINLINE void orxPlugin_RegisterCorePlugins()
 {
-  orxPLUGIN_CORE_REGISTER_FUNCTION_NAME(DISPLAY)();
-  orxPLUGIN_CORE_REGISTER_FUNCTION_NAME(JOYSTICK)();
-  orxPLUGIN_CORE_REGISTER_FUNCTION_NAME(KEYBOARD)();
-  orxPLUGIN_CORE_REGISTER_FUNCTION_NAME(MOUSE)();
-  orxPLUGIN_CORE_REGISTER_FUNCTION_NAME(PHYSICS)();
-  orxPLUGIN_CORE_REGISTER_FUNCTION_NAME(RENDER)();
-  orxPLUGIN_CORE_REGISTER_FUNCTION_NAME(SOUNDSYSTEM)();
+  _registerFunction_DISPLAY();
+  _registerFunction_JOYSTICK();
+  _registerFunction_KEYBOARD();
+  _registerFunction_MOUSE();
+  _registerFunction_PHYSICS();
+  _registerFunction_RENDER();
+  _registerFunction_SOUNDSYSTEM();
 }
 
 #endif /*_orxPLUGIN_COREDEFINE_H_*/

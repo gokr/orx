@@ -47,8 +47,18 @@
 
 #include "orxInclude.h"
 
+#ifndef C2NIM
 #include "object/orxStructure.h"
 #include "object/orxFrame.h"
+#endif
+#ifdef C2NIM
+#include "base/orxType.h"
+#include "math/orxVector.h"
+#@
+import "object"/orxStructure
+import "object"/orxFrame
+@#
+#endif
 
 
 /** Spawner flags
@@ -89,7 +99,14 @@ typedef enum __orxSPAWNER_EVENT_t
 
 
 /** Internal spawner structure */
-typedef struct __orxSPAWNER_t               orxSPAWNER;
+#ifndef C2NIM
+typedef struct __orxSPAWNER_t        orxSPAWNER;
+#endif
+#ifdef C2NIM
+#@
+type orxSPAWNER* = object
+@#
+#endif
 
 
 /** Spawner module setup

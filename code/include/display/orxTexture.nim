@@ -40,6 +40,9 @@
 import
   orxInclude, display/orxDisplay, math/orxMath
 
+import
+  base/orxType
+
 ## * Defines
 ##
 
@@ -59,9 +62,7 @@ type
 
 ## * Internal texture structure
 
-type
-  orxTEXTURE* = TEXTURE_t
-
+type orxTEXTURE* = object
 ## * Setups the texture module
 ##
 

@@ -38,8 +38,13 @@
 ##
 
 import
-  orxInclude, object/orxFX, object/orxStructure
+  orxInclude
 
+import
+  base/orxType
+
+import "object"/orxStructure
+import "object"/orxFX
 ## * Misc defines
 ##
 
@@ -48,9 +53,7 @@ const
 
 ## * Internal FXPointer structure
 
-type
-  orxFXPOINTER* = FXPOINTER_t
-
+type orxFXPOINTER* = object
 ## * FXPointer module setup
 ##
 

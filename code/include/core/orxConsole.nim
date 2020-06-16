@@ -38,6 +38,9 @@
 import
   orxInclude, display/orxFont, io/orxInput
 
+import
+  base/orxType
+
 ## * Inputs
 ##
 

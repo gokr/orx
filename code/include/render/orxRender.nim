@@ -38,8 +38,15 @@
 ##
 
 import
-  orxInclude, plugin/orxPluginCore, display/orxDisplay, object/orxFrame,
-  object/orxObject, render/orxViewport
+  orxInclude, plugin/orxPluginCore, display/orxDisplay
+
+import
+  base/orxType, math/orxVector
+
+import "object"/orxObject
+import "object"/orxFrame
+import
+  render/orxViewport
 
 ## * Misc defines
 ##
@@ -99,11 +106,11 @@ type
 ##
 
 type
-  INNER_C_STRUCT_orxRender_119* {.bycopy.} = object
+  INNER_C_STRUCT_orxRender_129* {.bycopy.} = object
     pstTransform*: ptr orxDISPLAY_TRANSFORM ## *< Object display transform : 4 / 8
 
   orxRENDER_EVENT_PAYLOAD* {.bycopy.} = object
-    stObject*: INNER_C_STRUCT_orxRender_119
+    stObject*: INNER_C_STRUCT_orxRender_129
 
 
 ## **************************************************************************

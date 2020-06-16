@@ -47,9 +47,19 @@
 
 #include "display/orxFont.h"
 
+#ifdef C2NIM // ENUM_NONE is in orxType.h
+#include "base/orxType.h"
+#endif
 
 /** Internal text structure */
-typedef struct __orxTEXT_t                orxTEXT;
+#ifndef C2NIM
+typedef struct __orxTEXT_t        orxTEXT;
+#endif
+#ifdef C2NIM
+#@
+type orxTEXT* = object
+@#
+#endif
 
 
 /** Setups the text module

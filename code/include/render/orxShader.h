@@ -47,7 +47,17 @@
 #include "orxInclude.h"
 #include "math/orxVector.h"
 #include "display/orxTexture.h"
+#ifndef C2NIM
 #include "object/orxObject.h"
+#include "object/orxStructure.h"
+#endif
+#ifdef C2NIM
+#include "base/orxType.h"
+#@
+import "object"/orxObject
+import "object"/orxStructure
+@#
+#endif
 #include "utils/orxLinkList.h"
 
 
@@ -81,7 +91,14 @@ typedef struct __orxSHADER_PARAM_t
 
 /** Internal shader structure
  */
-typedef struct __orxSHADER_t                    orxSHADER;
+#ifndef C2NIM
+typedef struct __orxSHADER_t        orxSHADER;
+#endif
+#ifdef C2NIM
+#@
+type orxSHADER* = object
+@#
+#endif
 
 
 /** Event enum

@@ -53,6 +53,9 @@
 #include "utils/orxString.h"
 #include "utils/orxLinkList.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#endif
 
 /** Misc defines
  */
@@ -79,8 +82,14 @@ typedef struct __orxRGBA_t
 #define orxCOLOR_NORMALIZER         (orx2F(1.0f / 255.0f))
 #define orxCOLOR_DENORMALIZER       (orx2F(255.0f))
 
+#ifndef C2NIM
 typedef struct __orxBITMAP_t        orxBITMAP;
-
+#endif
+#ifdef C2NIM
+#@
+type orxBITMAP* = object
+@#
+#endif
 
 /** Vertex info structure
  */

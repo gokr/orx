@@ -39,7 +39,7 @@
 ##
 
 import
-  orxInclude, core/orxClock, memory/orxMemory, utils/orxLinkList, utils/orxTree
+  orxInclude, core/orxClock, memory/orxMemory, utils/orxLinkList, utils/orxTree, base/orxType
 
 ## * Structure pointer get helpers
 ##
@@ -47,7 +47,7 @@ import
 template orxSTRUCTURE_GET_POINTER*(STRUCTURE, TYPE, ID: untyped): untyped =
   (cast[ptr TYPE](orxStructure_GetPointer(STRUCTURE, ID)))
 
-template orxSTRUCTURE*(STRUCTURE: untyped): untyped =
+template orxSTRUCTURE_MACRO*(STRUCTURE: untyped): untyped =
   (if (((STRUCTURE) != orxNULL) and
       ((((cast[ptr orxSTRUCTURE](STRUCTURE)).u64GUID and
       orxSTRUCTURE_GUID_MASK_STRUCTURE_ID) shr

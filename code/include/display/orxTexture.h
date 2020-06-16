@@ -48,6 +48,9 @@
 #include "display/orxDisplay.h"
 #include "math/orxMath.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#endif
 
 /** Defines
  */
@@ -73,8 +76,14 @@ typedef enum __orxTEXTURE_EVENT_t
 
 
 /** Internal texture structure */
-typedef struct __orxTEXTURE_t             orxTEXTURE;
-
+#ifndef C2NIM
+typedef struct __orxTEXTURE_t        orxTEXTURE;
+#endif
+#ifdef C2NIM
+#@
+type orxTEXTURE* = object
+@#
+#endif
 
 /** Setups the texture module
  */

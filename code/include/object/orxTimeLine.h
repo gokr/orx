@@ -45,12 +45,27 @@
 
 
 #include "orxInclude.h"
+#ifndef C2NIM
 #include "object/orxStructure.h"
+#endif
+#ifdef C2NIM
+#include "base/orxType.h"
+#@
+import "object"/orxStructure
+@#
+#endif
 
 
 /** Internal TimeLine structure
  */
-typedef struct __orxTIMELINE_t                  orxTIMELINE;
+#ifndef C2NIM
+typedef struct __orxTIMELINE_t        orxTIMELINE;
+#endif
+#ifdef C2NIM
+#@
+type orxTIMELINE* = object
+@#
+#endif
 
 
 /** Event enum

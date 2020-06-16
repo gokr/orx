@@ -38,7 +38,14 @@
 ##
 
 import
-  orxInclude, math/orxVector, display/orxTexture, object/orxObject,
+  orxInclude, math/orxVector, display/orxTexture
+
+import
+  base/orxType
+
+import "object"/orxObject
+import "object"/orxStructure
+import
   utils/orxLinkList
 
 ## * Shader parameter type
@@ -65,9 +72,7 @@ type
 ## * Internal shader structure
 ##
 
-type
-  orxSHADER* = SHADER_t
-
+type orxSHADER* = object
 ## * Event enum
 ##
 
@@ -81,7 +86,7 @@ type
 ##
 
 type
-  INNER_C_UNION_orxShader_112* {.bycopy.} = object {.union.}
+  INNER_C_UNION_orxShader_129* {.bycopy.} = object {.union.}
     fValue*: orxFLOAT          ## *< Float value : 24
     pstValue*: ptr orxTEXTURE   ## *< Texture value : 24
     vValue*: orxVECTOR         ## *< Vector value : 32
@@ -92,7 +97,7 @@ type
     zParamName*: ptr orxCHAR    ## *< Parameter name : 12
     eParamType*: orxSHADER_PARAM_TYPE ## *< Parameter type : 16
     s32ParamIndex*: orxS32     ## *< Parameter index : 20
-    ano_orxShader_115*: INNER_C_UNION_orxShader_112
+    ano_orxShader_132*: INNER_C_UNION_orxShader_129
 
 
 ## * Shader module setup

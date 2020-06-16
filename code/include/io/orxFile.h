@@ -45,6 +45,9 @@
 
 #include "orxInclude.h"
 
+#ifdef C2NIM // ENUM_NONE is in orxType.h
+#include "base/orxType.h"
+#endif
 
 #define orxFILE_KU32_FLAG_INFO_NORMAL       0x00000001  /**< normal file */
 #define orxFILE_KU32_FLAG_INFO_READONLY     0x00000002  /**< read-only file */
@@ -74,7 +77,14 @@ typedef struct __orxFILE_INFO_t
 
 /** Internal File structure
  */
-typedef struct __orxFILE_t                  orxFILE;
+#ifndef C2NIM
+typedef struct __orxFILE_t        orxFILE;
+#endif
+#ifdef C2NIM
+#@
+type orxFILE* = object
+@#
+#endif
 
 
 /** File module setup */

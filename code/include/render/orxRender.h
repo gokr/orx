@@ -48,8 +48,18 @@
 #include "plugin/orxPluginCore.h"
 
 #include "display/orxDisplay.h"
-#include "object/orxFrame.h"
+#ifndef C2NIM
 #include "object/orxObject.h"
+#include "object/orxFrame.h"
+#endif
+#ifdef C2NIM
+#include "base/orxType.h"
+#include "math/orxVector.h"
+#@
+import "object"/orxObject
+import "object"/orxFrame
+@#
+#endif
 #include "render/orxViewport.h"
 
 

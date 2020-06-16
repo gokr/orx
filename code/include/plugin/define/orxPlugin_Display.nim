@@ -39,6 +39,9 @@
 import
   plugin/define/orxPlugin_CoreID
 
+import
+  base/orxType
+
 type
   orxPLUGIN_FUNCTION_BASE_ID_DISPLAY* {.size: sizeof(cint).} = enum
     orxPLUGIN_FUNCTION_BASE_ID_DISPLAY_INIT = 0,

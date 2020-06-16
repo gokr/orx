@@ -40,11 +40,9 @@
 import
   orxInclude
 
-when defined(WINDOWS):
-  import
-    memory/orxMemory
+import
+  base/orxType
 
-else:
 const
   orxTHREAD_KU32_MAIN_THREAD_ID* = 0
   orxTHREAD_KU32_MAX_THREAD_NUMBER* = 16
@@ -57,9 +55,7 @@ template orxTHREAD_GET_FLAG_FROM_ID*(ID: untyped): untyped =
 
 ## * Semaphore structure
 
-type
-  orxTHREAD_SEMAPHORE* = THREAD_SEMAPHORE_t
-
+type orxTHREAD_SEMAPHORE* = object
 ## * Thread run function type
 
 type

@@ -39,6 +39,9 @@
 import
   plugin/define/orxPlugin_CoreID
 
+import
+  base/orxType
+
 type
   orxPLUGIN_FUNCTION_BASE_ID_JOYSTICK* {.size: sizeof(cint).} = enum
     orxPLUGIN_FUNCTION_BASE_ID_JOYSTICK_INIT = 0,

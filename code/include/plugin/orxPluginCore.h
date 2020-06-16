@@ -53,6 +53,11 @@
 #include "plugin/orxPluginType.h"
 #include "plugin/define/orxPlugin_CoreDefine.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#include "base/orxModule.h"
+#include "plugin/define/orxPlugin_CoreID.h"
+#endif
 
 /*********************************************
  Structures
@@ -112,7 +117,7 @@ extern orxDLLAPI void orxFASTCALL     orxPlugin_BindCoreInfo(orxPLUGIN_CORE_ID _
  */
 extern orxDLLAPI void *orxFASTCALL    orxPlugin_DefaultCoreFunction(const orxSTRING _zFunctionName, const orxSTRING _zFileName, orxU32 _u32Line);
 
-
+#ifndef C2NIM
 /***************************************************************************
  ***************************************************************************
  ******                 CORE FUNCTION NAME HANDLING                   ******
@@ -143,6 +148,7 @@ extern orxDLLAPI void *orxFASTCALL    orxPlugin_DefaultCoreFunction(const orxSTR
 #ifdef __orxMSVC__
 #pragma warning(disable : 4113)
 #endif /* __orxMSVC__ */
+
 
 #define orxPLUGIN_DEFINE_CORE_FUNCTION(FUNCTION_NAME, RETURN, ...)          \
   orxPLUGIN_DEFAULT_CORE_FUNCTION_DEFINE(FUNCTION_NAME)                     \
@@ -200,3 +206,4 @@ extern orxDLLAPI void *orxFASTCALL    orxPlugin_DefaultCoreFunction(const orxSTR
 #endif /* _orxPLUGIN_CORE_H_ */
 
 /** @} */
+#endif

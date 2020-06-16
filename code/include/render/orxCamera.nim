@@ -40,7 +40,15 @@
 ##
 
 import
-  orxInclude, object/orxFrame, object/orxStructure, math/orxAABox
+  orxInclude
+
+import
+  base/orxType, math/orxVector
+
+import "object"/orxStructure
+import "object"/orxFrame
+import
+  math/orxAABox
 
 ## * Anim flags
 ##
@@ -59,9 +67,7 @@ const
 ## * Internal camera structure
 ##
 
-type
-  orxCAMERA* = CAMERA_t
-
+type orxCAMERA* = object
 ## * Camera module setup
 ##
 

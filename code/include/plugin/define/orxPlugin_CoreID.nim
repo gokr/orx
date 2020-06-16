@@ -36,6 +36,9 @@
 ##  @{
 ##
 
+import
+  base/orxType
+
 ##  *** Core plugin id enum ***
 
 type

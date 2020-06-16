@@ -39,6 +39,9 @@
 import
   plugin/define/orxPlugin_CoreID
 
+import
+  base/orxType
+
 type
   orxPLUGIN_FUNCTION_BASE_ID_KEYBOARD* {.size: sizeof(cint).} = enum
     orxPLUGIN_FUNCTION_BASE_ID_KEYBOARD_INIT = 0,

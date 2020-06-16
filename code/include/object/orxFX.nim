@@ -38,8 +38,12 @@
 ##
 
 import
-  orxInclude, math/orxVector, object/orxObject
+  orxInclude, math/orxVector
 
+import
+  base/orxType
+
+import "object"/orxObject
 ## * Slot flags
 ##
 
@@ -61,9 +65,7 @@ type
 ## * Internal FX structure
 ##
 
-type
-  orxFX* = FX_t
-
+type orxFX* = object
 ## * Event enum
 ##
 

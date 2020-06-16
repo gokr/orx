@@ -40,6 +40,9 @@
 import
   orxInclude, display/orxTexture, math/orxVector
 
+import
+  base/orxType, display/orxDisplay
+
 ## * Misc defines
 ##
 
@@ -48,9 +51,7 @@ const
 
 ## * Internal font structure
 
-type
-  orxFONT* = FONT_t
-
+type orxFONT* = object
 ## * Setups the font module
 ##
 

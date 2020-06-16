@@ -39,6 +39,9 @@
 import
   orxInclude
 
+import
+  base/orxType
+
 ## * Helper defines
 ##
 

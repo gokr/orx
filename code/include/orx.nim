@@ -37,7 +37,7 @@
 ##
 
 import
-  orxInclude, orxKernel, orxUtils
+  orxInclude, orxKernel, orxUtils, base/[orxType, orxModule], core/orxEvent
 
 when not defined(PLUGIN):
   ## **************************************************************************
@@ -62,6 +62,7 @@ when not defined(PLUGIN):
     discard
 
   when defined(IOS):
+    discard
   else:
     when defined(ANDROID) or defined(ANDROID_NATIVE):
       import

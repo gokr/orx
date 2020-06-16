@@ -40,6 +40,9 @@
 import
   orxInclude, io/orxJoystick, io/orxKeyboard, io/orxMouse
 
+import
+  base/orxType
+
 ## * Misc defines
 ##
 

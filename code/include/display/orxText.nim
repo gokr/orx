@@ -40,11 +40,12 @@
 import
   orxInclude, display/orxFont
 
+import
+  base/orxType
+
 ## * Internal text structure
 
-type
-  orxTEXT* = TEXT_t
-
+type orxTEXT* = object
 ## * Setups the text module
 ##
 

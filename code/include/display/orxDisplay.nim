@@ -41,22 +41,25 @@ import
   orxInclude, plugin/orxPluginCore, math/orxVector, math/orxOBox, memory/orxBank,
   utils/orxHashTable, utils/orxString, utils/orxLinkList
 
+import
+  base/orxType
+
 ## * Misc defines
 ##
 
 type
-  INNER_C_STRUCT_orxDisplay_65* {.bycopy.} = object
+  INNER_C_STRUCT_orxDisplay_68* {.bycopy.} = object
     u8R*: orxU8
     u8G*: orxU8
     u8B*: orxU8
     u8A*: orxU8
 
-  INNER_C_UNION_orxDisplay_63* {.bycopy.} = object {.union.}
-    ano_orxDisplay_66*: INNER_C_STRUCT_orxDisplay_65
+  INNER_C_UNION_orxDisplay_66* {.bycopy.} = object {.union.}
+    ano_orxDisplay_69*: INNER_C_STRUCT_orxDisplay_68
     u32RGBA*: orxU32
 
   orxRGBA* {.bycopy.} = object
-    ano_orxDisplay_69*: INNER_C_UNION_orxDisplay_63
+    ano_orxDisplay_72*: INNER_C_UNION_orxDisplay_66
 
 
 template orx2RGBA*(R, G, B, A: untyped): untyped =
@@ -75,12 +78,10 @@ template orxRGBA_A*(RGBA: untyped): untyped =
   RGBA.u8A
 
 const
-  orxCOLOR_NORMALIZER* = (orx2F(1.0 div 255.0))
+  orxCOLOR_NORMALIZER* = (orx2F(1.0 / 255.0))
   orxCOLOR_DENORMALIZER* = (orx2F(255.0))
 
-type
-  orxBITMAP* = BITMAP_t
-
+type orxBITMAP* = object
 ## * Vertex info structure
 ##
 
@@ -189,13 +190,13 @@ type
 ##
 
 type
-  INNER_C_UNION_orxDisplay_200* {.bycopy.} = object {.union.}
+  INNER_C_UNION_orxDisplay_209* {.bycopy.} = object {.union.}
     vRGB*: orxVECTOR           ## *< RGB components: 12
     vHSL*: orxVECTOR           ## *< HSL components: 12
     vHSV*: orxVECTOR           ## *< HSV components: 12
 
   orxCOLOR* {.bycopy.} = object
-    ano_orxDisplay_203*: INNER_C_UNION_orxDisplay_200
+    ano_orxDisplay_212*: INNER_C_UNION_orxDisplay_209
     fAlpha*: orxFLOAT          ## *< Alpha component: 16
 
 
@@ -254,7 +255,7 @@ type
 ##
 
 type
-  INNER_C_STRUCT_orxDisplay_269* {.bycopy.} = object
+  INNER_C_STRUCT_orxDisplay_278* {.bycopy.} = object
     u32Width*: orxU32          ## *< Screen width : 4
     u32Height*: orxU32         ## *< Screen height : 8
     u32Depth*: orxU32          ## *< Screen depth : 12
@@ -265,17 +266,17 @@ type
     u32PreviousRefreshRate*: orxU32 ## *< Previous refresh rate : 32
     bFullScreen*: orxBOOL      ## *< FullScreen? : 36
 
-  INNER_C_STRUCT_orxDisplay_283* {.bycopy.} = object
+  INNER_C_STRUCT_orxDisplay_292* {.bycopy.} = object
     zLocation*: ptr orxCHAR     ## *< File location : 40
     stFilenameID*: orxSTRINGID ## *< File name ID : 44
     u32ID*: orxU32             ## *< Bitmap (hardware texture) ID : 48
 
-  INNER_C_UNION_orxDisplay_267* {.bycopy.} = object {.union.}
-    stVideoMode*: INNER_C_STRUCT_orxDisplay_269
-    stBitmap*: INNER_C_STRUCT_orxDisplay_283
+  INNER_C_UNION_orxDisplay_276* {.bycopy.} = object {.union.}
+    stVideoMode*: INNER_C_STRUCT_orxDisplay_278
+    stBitmap*: INNER_C_STRUCT_orxDisplay_292
 
   orxDISPLAY_EVENT_PAYLOAD* {.bycopy.} = object
-    ano_orxDisplay_288*: INNER_C_UNION_orxDisplay_267
+    ano_orxDisplay_297*: INNER_C_UNION_orxDisplay_276
 
 
 ## **************************************************************************

@@ -40,6 +40,9 @@
 import
   orxInclude, plugin/orxPluginCore
 
+import
+  base/orxType
+
 ## * Key enum
 ##
 

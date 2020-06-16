@@ -40,16 +40,17 @@
 import
   orxInclude, math/orxVector, plugin/orxPluginCore
 
+import
+  base/orxType
+
 ## **************************************************************************
 ##  Structure declaration                                                   *
 ## *************************************************************************
 ## * Abstract sound structures
 ##
 
-type
-  orxSOUNDSYSTEM_SOUND* = SOUNDSYSTEM_SOUND_t
-  orxSOUNDSYSTEM_SAMPLE* = SOUNDSYSTEM_SAMPLE_t
-
+type orxSOUNDSYSTEM_SOUND* = object
+type orxSOUNDSYSTEM_SAMPLE* = object
 ## * Sound system status enum
 ##
 

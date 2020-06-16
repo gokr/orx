@@ -48,21 +48,52 @@
 
 #include "orxInclude.h"
 
+#ifndef C2NIM
 #include "object/orxStructure.h"
+#endif
+#ifdef C2NIM
+#include "base/orxType.h"
+#include "math/orxVector.h"
+#include "math/orxAABox.h"
+#@
+import "object"/orxStructure
+@#
+#endif
 #include "physics/orxPhysics.h"
 
 
 /** Internal Body structure
  */
-typedef struct __orxBODY_t                    orxBODY;
+#ifndef C2NIM
+typedef struct __orxBODY_t        orxBODY;
+#endif
+#ifdef C2NIM
+#@
+type orxBODY* = object
+@#
+#endif
 
 /** Internal Body part structure
  */
-typedef struct __orxBODY_PART_t               orxBODY_PART;
+#ifndef C2NIM
+typedef struct __orxBODY_PART_t        orxBODY_PART;
+#endif
+#ifdef C2NIM
+#@
+type orxBODY_PART* = object
+@#
+#endif
 
 /** Internal Body joint structure
  */
-typedef struct __orxBODY_JOINT_t              orxBODY_JOINT;
+#ifndef C2NIM
+typedef struct __orxBODY_JOINT_t        orxBODY_JOINT;
+#endif
+#ifdef C2NIM
+#@
+type orxBODY_JOINT* = object
+@#
+#endif
 
 
 /** Body module setup

@@ -39,6 +39,9 @@
 import
   plugin/define/orxPlugin_CoreID
 
+import
+  base/orxType
+
 type
   orxPLUGIN_FUNCTION_BASE_ID_PHYSICS* {.size: sizeof(cint).} = enum
     orxPLUGIN_FUNCTION_BASE_ID_PHYSICS_INIT = 0,

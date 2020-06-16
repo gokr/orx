@@ -46,7 +46,15 @@
 
 #include "orxInclude.h"
 #include "render/orxShader.h"
+#ifndef C2NIM
 #include "object/orxStructure.h"
+#endif
+#ifdef C2NIM
+#include "base/orxType.h"
+#@
+import "object"/orxStructure
+@#
+#endif
 
 
 /** Misc defines
@@ -55,8 +63,14 @@
 
 
 /** Internal ShaderPointer structure */
-typedef struct __orxSHADERPOINTER_t             orxSHADERPOINTER;
-
+#ifndef C2NIM
+typedef struct __orxSHADERPOINTER_t        orxSHADERPOINTER;
+#endif
+#ifdef C2NIM
+#@
+type orxSHADERPOINTER* = object
+@#
+#endif
 
 /** ShaderPointer module setup
  */

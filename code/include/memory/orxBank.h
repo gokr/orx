@@ -51,9 +51,17 @@
 #include "orxInclude.h"
 #include "memory/orxMemory.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#@
+type orxBANK* = object
+@#
+#endif
 
+#ifndef C2NIM
 /* Internal Bank structure */
 typedef struct __orxBANK_t orxBANK;
+#endif
 
 /* Define flags */
 #define orxBANK_KU32_FLAG_NONE              0x00000000  /**< No flags (default behaviour) */

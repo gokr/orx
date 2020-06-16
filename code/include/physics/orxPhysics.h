@@ -48,6 +48,10 @@
 #include "plugin/orxPluginCore.h"
 #include "math/orxAABox.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#include "math/orxVector.h"
+#endif
 
 /** Body definition flags
  */
@@ -301,15 +305,36 @@ typedef struct __orxPHYSICS_EVENT_PAYLOAD_t
 
 /** Internal physics body structure
  */
-typedef struct __orxPHYSICS_BODY_t                    orxPHYSICS_BODY;
+#ifndef C2NIM
+typedef struct __orxPHYSICS_BODY_t        orxPHYSICS_BODY;
+#endif
+#ifdef C2NIM
+#@
+type orxPHYSICS_BODY* = object
+@#
+#endif
 
 /** Internal physics part structure
  */
-typedef struct __orxPHYSICS_BODY_PART_t               orxPHYSICS_BODY_PART;
+#ifndef C2NIM
+typedef struct __orxPHYSICS_BODY_PART_t        orxPHYSICS_BODY_PART;
+#endif
+#ifdef C2NIM
+#@
+type orxPHYSICS_BODY_PART* = object
+@#
+#endif
 
 /** Internal physics joint structure
  */
-typedef struct __orxPHYSICS_BODY_JOINT_t              orxPHYSICS_BODY_JOINT;
+#ifndef C2NIM
+typedef struct __orxPHYSICS_BODY_JOINT_t        orxPHYSICS_BODY_JOINT;
+#endif
+#ifdef C2NIM
+#@
+type orxPHYSICS_BODY_JOINT* = object
+@#
+#endif
 
 
 /** Config defines

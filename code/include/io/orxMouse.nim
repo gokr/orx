@@ -40,6 +40,9 @@
 import
   orxInclude, plugin/orxPluginCore, math/orxVector, utils/orxString
 
+import
+  base/orxType
+
 ## * Button enum
 ##
 

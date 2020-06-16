@@ -54,9 +54,20 @@
 #include "display/orxTexture.h"
 #include "math/orxOBox.h"
 #include "memory/orxBank.h"
+#ifndef C2NIM
 #include "object/orxStructure.h"
+#endif
+#ifdef C2NIM
+#@
+import "object"/orxStructure
+@#
+#endif
 #include "sound/orxSound.h"
 
+#ifdef C2NIM // ENUM_NONE is in orxType.h
+#include "base/orxType.h"
+#include "math/orxVector.h"
+#endif
 
 /** Defines */
 #ifndef C2NIM
@@ -85,7 +96,14 @@ typedef enum __orxOBJECT_EVENT_t
 
 
 /** Internal object structure */
-typedef struct __orxOBJECT_t                orxOBJECT;
+#ifndef C2NIM
+typedef struct __orxOBJECT_t        orxOBJECT;
+#endif
+#ifdef C2NIM
+#@
+type orxOBJECT* = object
+@#
+#endif
 
 
 /** @name Internal module function

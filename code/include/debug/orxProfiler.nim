@@ -40,6 +40,9 @@
 import
   orxInclude, core/orxThread
 
+import
+  base/orxType
+
 ##  *** Uncomment the line below to enable orx profiling in non debug builds ***
 ## #define __orxPROFILER__
 ## * Profiler macros

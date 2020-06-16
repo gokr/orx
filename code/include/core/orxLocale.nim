@@ -40,6 +40,9 @@
 import
   orxInclude
 
+import
+  base/orxType
+
 ## * Event enum
 ##
 

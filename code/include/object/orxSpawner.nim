@@ -39,8 +39,13 @@
 ##
 
 import
-  orxInclude, object/orxStructure, object/orxFrame
+  orxInclude
 
+import
+  base/orxType, math/orxVector
+
+import "object"/orxStructure
+import "object"/orxFrame
 ## * Spawner flags
 ##
 
@@ -71,9 +76,7 @@ type
 
 ## * Internal spawner structure
 
-type
-  orxSPAWNER* = SPAWNER_t
-
+type orxSPAWNER* = object
 ## * Spawner module setup
 ##
 

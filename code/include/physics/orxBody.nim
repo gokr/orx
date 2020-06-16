@@ -41,26 +41,27 @@
 ##
 
 import
-  orxInclude, object/orxStructure, physics/orxPhysics
+  orxInclude
+
+import
+  base/orxType, math/orxVector, math/orxAABox
+
+import "object"/orxStructure
+import
+  physics/orxPhysics
 
 ## * Internal Body structure
 ##
 
-type
-  orxBODY* = BODY_t
-
+type orxBODY* = object
 ## * Internal Body part structure
 ##
 
-type
-  orxBODY_PART* = BODY_PART_t
-
+type orxBODY_PART* = object
 ## * Internal Body joint structure
 ##
 
-type
-  orxBODY_JOINT* = BODY_JOINT_t
-
+type orxBODY_JOINT* = object
 ## * Body module setup
 ##
 

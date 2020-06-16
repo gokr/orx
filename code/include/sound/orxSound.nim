@@ -40,6 +40,9 @@
 import
   orxInclude, sound/orxSoundSystem, math/orxVector
 
+import
+  base/orxType
+
 ## * Misc defines
 ##
 
@@ -59,9 +62,7 @@ type
 ## * Internal Sound structure
 ##
 
-type
-  orxSOUND* = SOUND_t
-
+type orxSOUND* = object
 ## * Event enum
 ##
 
@@ -104,17 +105,17 @@ type
 ##
 
 type
-  INNER_C_STRUCT_orxSound_130* {.bycopy.} = object
+  INNER_C_STRUCT_orxSound_139* {.bycopy.} = object
     zSoundName*: ptr orxCHAR    ## *< Sound name : 4
     stInfo*: orxSOUND_STREAM_INFO ## *< Sound record info : 12
     stPacket*: orxSOUND_STREAM_PACKET ## *< Sound record packet : 32
 
-  INNER_C_UNION_orxSound_126* {.bycopy.} = object {.union.}
+  INNER_C_UNION_orxSound_135* {.bycopy.} = object {.union.}
     pstSound*: ptr orxSOUND     ## *< Sound reference : 4
-    stStream*: INNER_C_STRUCT_orxSound_130
+    stStream*: INNER_C_STRUCT_orxSound_139
 
   orxSOUND_EVENT_PAYLOAD* {.bycopy.} = object
-    ano_orxSound_134*: INNER_C_UNION_orxSound_126
+    ano_orxSound_143*: INNER_C_UNION_orxSound_135
 
 
 ## * Sound module setup
