@@ -45,7 +45,7 @@ import
   orxInclude, anim/orxAnimSet
 
 import
-  base/orxType
+  base/orxType, obj/orxStructure
 
 ## * Internal AnimPointer structure
 ##

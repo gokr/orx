@@ -44,6 +44,9 @@
 import
   orxInclude, obj/orxStructure
 
+import
+  base/orxType
+
 ## * Anim flags
 ##
 
@@ -82,27 +85,27 @@ type
 ##
 
 type
-  INNER_C_STRUCT_orxAnim_111* {.bycopy.} = object
+  INNER_C_STRUCT_orxAnim_115* {.bycopy.} = object
     u32Count*: orxU32          ## *< Loop count : 12
 
-  INNER_C_STRUCT_orxAnim_117* {.bycopy.} = object
+  INNER_C_STRUCT_orxAnim_121* {.bycopy.} = object
     fTime*: orxFLOAT           ## *< Anim time when cut: 12
 
-  INNER_C_STRUCT_orxAnim_123* {.bycopy.} = object
+  INNER_C_STRUCT_orxAnim_127* {.bycopy.} = object
     zName*: ptr orxCHAR         ## *< Custom event name : 12
     fValue*: orxFLOAT          ## *< Custom event value : 16
     fTime*: orxFLOAT           ## *< Custom event time : 20
 
-  INNER_C_UNION_orxAnim_109* {.bycopy.} = object {.union.}
-    stLoop*: INNER_C_STRUCT_orxAnim_111 ##  Loop event
+  INNER_C_UNION_orxAnim_113* {.bycopy.} = object {.union.}
+    stLoop*: INNER_C_STRUCT_orxAnim_115 ##  Loop event
     ##  Cut event
-    stCut*: INNER_C_STRUCT_orxAnim_117 ##  Custom event
-    stCustom*: INNER_C_STRUCT_orxAnim_123
+    stCut*: INNER_C_STRUCT_orxAnim_121 ##  Custom event
+    stCustom*: INNER_C_STRUCT_orxAnim_127
 
   orxANIM_EVENT_PAYLOAD* {.bycopy.} = object
     pstAnim*: ptr orxANIM       ## *< Animation reference : 4
     zAnimName*: ptr orxCHAR     ## *< Animation name : 8
-    ano_orxAnim_127*: INNER_C_UNION_orxAnim_109
+    ano_orxAnim_131*: INNER_C_UNION_orxAnim_113
 
 
 ## * Anim custom event

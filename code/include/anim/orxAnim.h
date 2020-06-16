@@ -52,6 +52,10 @@
 
 #include "obj/orxStructure.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#endif
+
 /** Anim flags
  */
 #define orxANIM_KU32_FLAG_NONE                0x00000000  /**< No flags */

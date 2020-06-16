@@ -54,6 +54,7 @@
 
 #ifdef C2NIM
 #include "base/orxType.h"
+#include "obj/orxStructure.h"
 #endif
 
 /** Internal AnimPointer structure
