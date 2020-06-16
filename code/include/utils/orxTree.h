@@ -52,9 +52,9 @@
 #include "base/orxType.h"
 #endif
 
+#ifndef C2NIM
 /** Tree node structure
  */
-#ifndef C2NIM
 typedef struct __orxTREE_NODE_t
 {
   struct __orxTREE_NODE_t *pstParent;           /**< Parent node pointer : 4/8 */
@@ -64,6 +64,15 @@ typedef struct __orxTREE_NODE_t
   struct __orxTREE_t      *pstTree;             /**< Associated tree pointer : 20/40 */
 
 } orxTREE_NODE;
+
+/** Tree structure
+ */
+typedef struct __orxTREE_t
+{
+  orxTREE_NODE *pstRoot;                        /**< Root node pointer : 4/8 */
+  orxU32        u32Count;                       /**< Node count : 8/12 */
+
+} orxTREE;
 #else
 #@
 type
@@ -73,16 +82,11 @@ type
     pstSibling*: ptr orxTREE_NODE ## *< Next sibling node pointer : 12/24
     pstPrevious*: ptr orxTREE_NODE ## *< Previous sibling node pointer : 16/32
     pstTree*: ptr orxTREE        ## *< Associated tree pointer : 20/40
+  orxTREE* {.bycopy.} = object
+    pstRoot*: ptr orxTREE_NODE  ## *< Root node pointer : 4/8
+    u32Count*: orxU32          ## *< Node count : 8/12
 @#
 #endif
-/** Tree structure
- */
-typedef struct __orxTREE_t
-{
-  orxTREE_NODE *pstRoot;                        /**< Root node pointer : 4/8 */
-  orxU32        u32Count;                       /**< Node count : 8/12 */
-
-} orxTREE;
 
 
 /** Cleans a tree

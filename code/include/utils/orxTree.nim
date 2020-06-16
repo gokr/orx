@@ -43,9 +43,6 @@ import
 import
   base/orxType
 
-## * Tree node structure
-##
-
 type
   orxTREE_NODE* {.bycopy.} = object
     pstParent*: ptr orxTREE_NODE ## *< Parent node pointer : 4/8
@@ -53,15 +50,9 @@ type
     pstSibling*: ptr orxTREE_NODE ## *< Next sibling node pointer : 12/24
     pstPrevious*: ptr orxTREE_NODE ## *< Previous sibling node pointer : 16/32
     pstTree*: ptr orxTREE        ## *< Associated tree pointer : 20/40
-## * Tree structure
-##
-
-type
   orxTREE* {.bycopy.} = object
     pstRoot*: ptr orxTREE_NODE  ## *< Root node pointer : 4/8
     u32Count*: orxU32          ## *< Node count : 8/12
-
-
 ## * Cleans a tree
 ##  @param[in]   _pstTree                        Concerned tree
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
