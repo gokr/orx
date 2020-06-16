@@ -1,5 +1,7 @@
 import os, strutils
 
+# Run with "nim c -r convert" and it will populate the include tree with .nim files
+
 proc exec(cmd: string) =
   if os.execShellCmd(cmd) != 0:
     echo "FAILURE ", cmd
