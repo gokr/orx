@@ -52,6 +52,9 @@
 
 #include "anim/orxAnim.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#endif
 
 /** AnimSet flags
  */
@@ -76,11 +79,25 @@
 
 /** Internal AnimSet structure
  */
-typedef struct __orxANIMSET_t                       orxANIMSET;
+#ifndef C2NIM
+typedef struct __orxANIMSET_t        orxANIMSET;
+#endif
+#ifdef C2NIM
+#@
+type orxANIMSET* = object
+@#
+#endif
 
 /** Internal Link Table structure
  */
-typedef struct __orxANIMSET_LINK_TABLE_t            orxANIMSET_LINK_TABLE;
+#ifndef C2NIM
+typedef struct __orxANIMSET_LINK_TABLE_t        orxANIMSET_LINK_TABLE;
+#endif
+#ifdef C2NIM
+#@
+type orxANIMSET_LINK_TABLE* = object
+@#
+#endif
 
 
 /** AnimSet module setup

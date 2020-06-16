@@ -52,11 +52,20 @@
 
 #include "anim/orxAnimSet.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#endif
 
 /** Internal AnimPointer structure
  */
-typedef struct __orxANIMPOINTER_t             orxANIMPOINTER;
-
+#ifndef C2NIM
+typedef struct __orxANIMPOINTER_t        orxANIMPOINTER;
+#endif
+#ifdef C2NIM
+#@
+type orxANIMPOINTER* = object
+@#
+#endif
 
 /** AnimPointer module setup
  */

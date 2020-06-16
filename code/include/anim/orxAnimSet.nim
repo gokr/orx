@@ -42,7 +42,10 @@
 ##
 
 import
-  orxInclude, anim/orxAnim, base/orxType
+  orxInclude, anim/orxAnim
+
+import
+  base/orxType
 
 ## * AnimSet flags
 ##
@@ -71,15 +74,11 @@ const
 ## * Internal AnimSet structure
 ##
 
-type
-  orxANIMSET* = object
-
+type orxANIMSET* = object
 ## * Internal Link Table structure
 ##
 
-type
-  orxANIMSET_LINK_TABLE* = object
-
+type orxANIMSET_LINK_TABLE* = object
 ## * AnimSet module setup
 ##
 

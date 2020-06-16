@@ -42,14 +42,15 @@
 ##
 
 import
-  orxInclude, anim/orxAnimSet, base/orxType, "object"/orxStructure
+  orxInclude, anim/orxAnimSet
+
+import
+  base/orxType
 
 ## * Internal AnimPointer structure
 ##
 
-type
-  orxANIMPOINTER* = object
-
+type orxANIMPOINTER* = object
 ## * AnimPointer module setup
 ##
 
