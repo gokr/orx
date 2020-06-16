@@ -77,8 +77,8 @@ template orxRGBA_B*(RGBA: untyped): untyped =
 template orxRGBA_A*(RGBA: untyped): untyped =
   RGBA.u8A
 
+const orxCOLOR_NORMALIZER* = (orx2F(1.0 / 255.0))
 const
-  orxCOLOR_NORMALIZER* = (orx2F(1.0 / 255.0))
   orxCOLOR_DENORMALIZER* = (orx2F(255.0))
 
 type orxBITMAP* = object
@@ -190,13 +190,13 @@ type
 ##
 
 type
-  INNER_C_UNION_orxDisplay_209* {.bycopy.} = object {.union.}
+  INNER_C_UNION_orxDisplay_215* {.bycopy.} = object {.union.}
     vRGB*: orxVECTOR           ## *< RGB components: 12
     vHSL*: orxVECTOR           ## *< HSL components: 12
     vHSV*: orxVECTOR           ## *< HSV components: 12
 
   orxCOLOR* {.bycopy.} = object
-    ano_orxDisplay_212*: INNER_C_UNION_orxDisplay_209
+    ano_orxDisplay_218*: INNER_C_UNION_orxDisplay_215
     fAlpha*: orxFLOAT          ## *< Alpha component: 16
 
 
@@ -255,7 +255,7 @@ type
 ##
 
 type
-  INNER_C_STRUCT_orxDisplay_278* {.bycopy.} = object
+  INNER_C_STRUCT_orxDisplay_284* {.bycopy.} = object
     u32Width*: orxU32          ## *< Screen width : 4
     u32Height*: orxU32         ## *< Screen height : 8
     u32Depth*: orxU32          ## *< Screen depth : 12
@@ -266,17 +266,17 @@ type
     u32PreviousRefreshRate*: orxU32 ## *< Previous refresh rate : 32
     bFullScreen*: orxBOOL      ## *< FullScreen? : 36
 
-  INNER_C_STRUCT_orxDisplay_292* {.bycopy.} = object
+  INNER_C_STRUCT_orxDisplay_298* {.bycopy.} = object
     zLocation*: ptr orxCHAR     ## *< File location : 40
     stFilenameID*: orxSTRINGID ## *< File name ID : 44
     u32ID*: orxU32             ## *< Bitmap (hardware texture) ID : 48
 
-  INNER_C_UNION_orxDisplay_276* {.bycopy.} = object {.union.}
-    stVideoMode*: INNER_C_STRUCT_orxDisplay_278
-    stBitmap*: INNER_C_STRUCT_orxDisplay_292
+  INNER_C_UNION_orxDisplay_282* {.bycopy.} = object {.union.}
+    stVideoMode*: INNER_C_STRUCT_orxDisplay_284
+    stBitmap*: INNER_C_STRUCT_orxDisplay_298
 
   orxDISPLAY_EVENT_PAYLOAD* {.bycopy.} = object
-    ano_orxDisplay_297*: INNER_C_UNION_orxDisplay_276
+    ano_orxDisplay_303*: INNER_C_UNION_orxDisplay_282
 
 
 ## **************************************************************************

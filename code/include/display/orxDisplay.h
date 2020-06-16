@@ -79,7 +79,13 @@ typedef struct __orxRGBA_t
 #define orxRGBA_B(RGBA)             RGBA.u8B
 #define orxRGBA_A(RGBA)             RGBA.u8A
 
+#ifndef C2NIM
 #define orxCOLOR_NORMALIZER         (orx2F(1.0f / 255.0f))
+#else
+#@
+const orxCOLOR_NORMALIZER* = (orx2F(1.0 / 255.0))
+@#
+#endif
 #define orxCOLOR_DENORMALIZER       (orx2F(255.0f))
 
 #ifndef C2NIM
