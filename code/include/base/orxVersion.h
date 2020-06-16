@@ -67,9 +67,21 @@
   #define __orxVERSION_BUILD__      0
 #endif /* __orxVERSION_BUILD__ */
 
+#ifdef C2NIM
+  #define __orxVERSION_RELEASE__    dev
+  #define __orxVERSION_BUILD__      0
+#endif
+  
+#ifndef C2NIM
 #define __orxVERSION_STRING__       orxSTRINGIFY(__orxVERSION_MAJOR__) "." orxSTRINGIFY(__orxVERSION_MINOR__) "-" orxSTRINGIFY(__orxVERSION_RELEASE__)
 #define __orxVERSION_FULL_STRING__  orxSTRINGIFY(__orxVERSION_MAJOR__) "." orxSTRINGIFY(__orxVERSION_MINOR__) "." orxSTRINGIFY(__orxVERSION_BUILD__) "-" orxSTRINGIFY(__orxVERSION_RELEASE__)
-
+#else
+#@
+const
+  VERSION_STRING* = $VERSION_MAJOR & "." & $VERSION_MINOR & "-" & $VERSION_RELEASE
+  VERSION_FULL_STRING* = $VERSION_MAJOR & "." & $VERSION_MINOR & "." & $VERSION_BUILD & "-" & $VERSION_RELEASE
+@#
+#endif
 #define __orxVERSION_MASK_MAJOR__   0xFF000000
 #define __orxVERSION_SHIFT_MAJOR__  24
 #define __orxVERSION_MASK_MINOR__   0x00FF0000
