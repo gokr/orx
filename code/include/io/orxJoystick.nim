@@ -140,9 +140,8 @@ const
 
 const
   orxJOYSTICK_KU32_MIN_ID* = 1
-  orxJOYSTICK_KU32_MAX_ID* = (
-    ord(orxJOYSTICK_BUTTON_NUMBER) / ord(orxJOYSTICK_BUTTON_SINGLE_NUMBER))
 
+const orxJOYSTICK_KU32_MAX_ID* = (ord(orxJOYSTICK_BUTTON_NUMBER) / ord(orxJOYSTICK_BUTTON_SINGLE_NUMBER))
 ## **************************************************************************
 ##  Functions directly implemented by orx core
 ## *************************************************************************

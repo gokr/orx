@@ -254,8 +254,13 @@ typedef enum __orxJOYSTICK_AXIS_t
 #undef orxJOYSTICK_DECLARE_AXIS_ENUM
 
 #define orxJOYSTICK_KU32_MIN_ID               1
+#ifndef C2NIM
 #define orxJOYSTICK_KU32_MAX_ID               (orxJOYSTICK_BUTTON_NUMBER / orxJOYSTICK_BUTTON_SINGLE_NUMBER)
-
+#else
+#@
+const orxJOYSTICK_KU32_MAX_ID* = (ord(orxJOYSTICK_BUTTON_NUMBER) / ord(orxJOYSTICK_BUTTON_SINGLE_NUMBER))
+@#
+#endif
 
 /***************************************************************************
  * Functions directly implemented by orx core
