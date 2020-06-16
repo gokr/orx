@@ -39,7 +39,10 @@
 ##
 
 import
-  orxInclude, core/orxClock, memory/orxMemory, utils/orxLinkList, utils/orxTree, base/orxType
+  orxInclude, core/orxClock, memory/orxMemory, utils/orxLinkList, utils/orxTree
+
+import
+  base/orxType
 
 ## * Structure pointer get helpers
 ##
@@ -176,14 +179,14 @@ type
 ##
 
 type
-  INNER_C_UNION_orxStructure_206* {.bycopy.} = object {.union.}
+  INNER_C_UNION_orxStructure_209* {.bycopy.} = object {.union.}
     stLinkListNode*: orxLINKLIST_NODE ## *< Linklist node : 28/40
     stTreeNode*: orxTREE_NODE  ## *< Tree node : 36/56
 
   orxSTRUCTURE* {.bycopy.} = object
     u64GUID*: orxU64           ## *< Structure GUID : 8
     u64OwnerGUID*: orxU64      ## *< Owner's GUID : 16
-    stStorage*: INNER_C_UNION_orxStructure_206 ## *< Storage node union : 36/56
+    stStorage*: INNER_C_UNION_orxStructure_209 ## *< Storage node union : 36/56
     u32Flags*: orxU32          ## *< Flags : 40/64
 
 

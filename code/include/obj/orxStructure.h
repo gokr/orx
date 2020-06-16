@@ -51,6 +51,9 @@
 #include "utils/orxLinkList.h"
 #include "utils/orxTree.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#endif
 
 /** Structure pointer get helpers
  */
