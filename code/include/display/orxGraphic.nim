@@ -42,11 +42,7 @@
 ##
 
 import
-  orxInclude
-
-import "object"/orxStructure
-import
-  display/orxDisplay
+  orxInclude, obj/orxStructure, display/orxDisplay
 
 import
   base/orxType, math/orxVector

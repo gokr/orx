@@ -38,12 +38,11 @@
 ##
 
 import
-  orxInclude
+  orxInclude, obj/orxStructure
 
 import
   base/orxType
 
-import "object"/orxStructure
 ## * Internal TimeLine structure
 ##
 

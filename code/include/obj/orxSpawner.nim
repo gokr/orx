@@ -39,13 +39,11 @@
 ##
 
 import
-  orxInclude
+  orxInclude, obj/orxStructure, obj/orxFrame
 
 import
   base/orxType, math/orxVector
 
-import "object"/orxStructure
-import "object"/orxFrame
 ## * Spawner flags
 ##
 

@@ -40,11 +40,8 @@
 
 import
   orxInclude, anim/orxAnimSet, core/orxClock, display/orxDisplay,
-  display/orxGraphic, display/orxTexture, math/orxOBox, memory/orxBank
-
-import "object"/orxStructure
-import
-  sound/orxSound
+  display/orxGraphic, display/orxTexture, math/orxOBox, memory/orxBank,
+  obj/orxStructure, sound/orxSound
 
 import
   base/orxType, math/orxVector

@@ -38,12 +38,11 @@
 ##
 
 import
-  orxInclude, math/orxVector
+  orxInclude, math/orxVector, obj/orxObject
 
 import
   base/orxType
 
-import "object"/orxObject
 ## * Slot flags
 ##
 

@@ -38,13 +38,11 @@
 ##
 
 import
-  orxInclude
+  orxInclude, obj/orxStructure, obj/orxFX
 
 import
   base/orxType
 
-import "object"/orxStructure
-import "object"/orxFX
 ## * Misc defines
 ##
 

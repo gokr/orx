@@ -40,15 +40,10 @@
 ##
 
 import
-  orxInclude
+  orxInclude, obj/orxStructure, obj/orxFrame, math/orxAABox
 
 import
   base/orxType, math/orxVector
-
-import "object"/orxStructure
-import "object"/orxFrame
-import
-  math/orxAABox
 
 ## * Anim flags
 ##

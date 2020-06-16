@@ -41,14 +41,10 @@
 ##
 
 import
-  orxInclude
+  orxInclude, obj/orxStructure, physics/orxPhysics
 
 import
   base/orxType, math/orxVector, math/orxAABox
-
-import "object"/orxStructure
-import
-  physics/orxPhysics
 
 ## * Internal Body structure
 ##

@@ -38,12 +38,11 @@
 ##
 
 import
-  orxInclude, sound/orxSound
+  orxInclude, sound/orxSound, obj/orxStructure
 
 import
   base/orxType
 
-import "object"/orxStructure
 ## * Misc defines
 ##
 
