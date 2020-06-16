@@ -47,18 +47,13 @@
 #include "orxInclude.h"
 #include "math/orxVector.h"
 #include "display/orxTexture.h"
-#ifndef C2NIM
-#include "object/orxObject.h"
-#include "object/orxStructure.h"
-#endif
+#include "obj/orxObject.h"
+#include "obj/orxStructure.h"
+#include "utils/orxLinkList.h"
+
 #ifdef C2NIM
 #include "base/orxType.h"
-#@
-import "object"/orxObject
-import "object"/orxStructure
-@#
 #endif
-#include "utils/orxLinkList.h"
 
 
 /** Shader parameter type

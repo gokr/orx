@@ -47,19 +47,14 @@
 
 
 #include "orxInclude.h"
-#ifndef C2NIM
-#include "object/orxStructure.h"
-#include "object/orxFrame.h"
-#endif
+#include "obj/orxStructure.h"
+#include "obj/orxFrame.h"
+#include "math/orxAABox.h"
+
 #ifdef C2NIM
 #include "base/orxType.h"
 #include "math/orxVector.h"
-#@
-import "object"/orxStructure
-import "object"/orxFrame
-@#
 #endif
-#include "math/orxAABox.h"
 
 
 /** Anim flags

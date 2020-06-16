@@ -45,14 +45,10 @@
 
 
 #include "orxInclude.h"
-#ifndef C2NIM
-#include "object/orxStructure.h"
-#endif
+#include "obj/orxStructure.h"
+
 #ifdef C2NIM
 #include "base/orxType.h"
-#@
-import "object"/orxStructure
-@#
 #endif
 
 

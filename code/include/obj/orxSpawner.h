@@ -46,18 +46,12 @@
 
 
 #include "orxInclude.h"
+#include "obj/orxStructure.h"
+#include "obj/orxFrame.h"
 
-#ifndef C2NIM
-#include "object/orxStructure.h"
-#include "object/orxFrame.h"
-#endif
 #ifdef C2NIM
 #include "base/orxType.h"
 #include "math/orxVector.h"
-#@
-import "object"/orxStructure
-import "object"/orxFrame
-@#
 #endif
 
 

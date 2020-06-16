@@ -48,18 +48,14 @@
 
 #include "orxInclude.h"
 
-#ifndef C2NIM
-#include "object/orxStructure.h"
-#endif
+#include "obj/orxStructure.h"
+#include "physics/orxPhysics.h"
+
 #ifdef C2NIM
 #include "base/orxType.h"
 #include "math/orxVector.h"
 #include "math/orxAABox.h"
-#@
-import "object"/orxStructure
-@#
 #endif
-#include "physics/orxPhysics.h"
 
 
 /** Internal Body structure
