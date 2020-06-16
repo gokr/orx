@@ -356,9 +356,22 @@ while(orxFALSE)
       _orxDebug_SetLogFile(zBuffer);                          \
     } while(orxFALSE)
 
+
   #ifndef C2NIM
   #define orxASSERT(TEST, ...)
+  #else
+  #@
+template orxASSERT*(TEST: untyped): void =
+    discard
+
+  template orxASSERT*(TEST, A: untyped): void =
+    discard
+
+  template orxASSERT*(TEST, A, B: untyped): void =
+    discard
+  @#
   #endif
+
 #endif /* __orxDEBUG__ */
 
 

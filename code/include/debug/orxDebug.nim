@@ -222,6 +222,14 @@ else:
       if not orxFALSE:
         break
 
+  template orxASSERT*(TEST: untyped): void =
+    discard
+
+  template orxASSERT*(TEST, A: untyped): void =
+    discard
+
+  template orxASSERT*(TEST, A, B: untyped): void =
+    discard
 ## ***************************************************************************
 ##  *** Debug defines. ***
 
