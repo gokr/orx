@@ -55,47 +55,46 @@ type orxSHADERPOINTER* = object
 ## * ShaderPointer module setup
 ##
 
-proc orxShaderPointer_Setup*() {.cdecl, importcpp: "orxShaderPointer_Setup(@)",
+proc orxShaderPointer_Setup*() {.cdecl, importc: "orxShaderPointer_Setup",
                                dynlib: "liborx.so".}
 ## * Inits the ShaderPointer module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxShaderPointer_Init*(): orxSTATUS {.cdecl,
-                                        importcpp: "orxShaderPointer_Init(@)",
+proc orxShaderPointer_Init*(): orxSTATUS {.cdecl, importc: "orxShaderPointer_Init",
                                         dynlib: "liborx.so".}
 ## * Exits from the ShaderPointer module
 ##
 
-proc orxShaderPointer_Exit*() {.cdecl, importcpp: "orxShaderPointer_Exit(@)",
+proc orxShaderPointer_Exit*() {.cdecl, importc: "orxShaderPointer_Exit",
                               dynlib: "liborx.so".}
 ## * Creates an empty ShaderPointer
 ##  @return orxSHADERPOINTER / orxNULL
 ##
 
 proc orxShaderPointer_Create*(): ptr orxSHADERPOINTER {.cdecl,
-    importcpp: "orxShaderPointer_Create(@)", dynlib: "liborx.so".}
+    importc: "orxShaderPointer_Create", dynlib: "liborx.so".}
 ## * Deletes an ShaderPointer
 ##  @param[in] _pstShaderPointer     Concerned ShaderPointer
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxShaderPointer_Delete*(pstShaderPointer: ptr orxSHADERPOINTER): orxSTATUS {.
-    cdecl, importcpp: "orxShaderPointer_Delete(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxShaderPointer_Delete", dynlib: "liborx.so".}
 ## * Starts a ShaderPointer
 ##  @param[in] _pstShaderPointer     Concerned ShaderPointer
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxShaderPointer_Start*(pstShaderPointer: ptr orxSHADERPOINTER): orxSTATUS {.
-    cdecl, importcpp: "orxShaderPointer_Start(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxShaderPointer_Start", dynlib: "liborx.so".}
 ## * Stops a ShaderPointer
 ##  @param[in] _pstShaderPointer     Concerned ShaderPointer
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxShaderPointer_Stop*(pstShaderPointer: ptr orxSHADERPOINTER): orxSTATUS {.
-    cdecl, importcpp: "orxShaderPointer_Stop(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxShaderPointer_Stop", dynlib: "liborx.so".}
 ## * Enables/disables an ShaderPointer
 ##  @param[in]   _pstShaderPointer   Concerned ShaderPointer
 ##  @param[in]   _bEnable        Enable / disable
@@ -103,14 +102,14 @@ proc orxShaderPointer_Stop*(pstShaderPointer: ptr orxSHADERPOINTER): orxSTATUS {
 
 proc orxShaderPointer_Enable*(pstShaderPointer: ptr orxSHADERPOINTER;
                              bEnable: orxBOOL) {.cdecl,
-    importcpp: "orxShaderPointer_Enable(@)", dynlib: "liborx.so".}
+    importc: "orxShaderPointer_Enable", dynlib: "liborx.so".}
 ## * Is ShaderPointer enabled?
 ##  @param[in]   _pstShaderPointer   Concerned ShaderPointer
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxShaderPointer_IsEnabled*(pstShaderPointer: ptr orxSHADERPOINTER): orxBOOL {.
-    cdecl, importcpp: "orxShaderPointer_IsEnabled(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxShaderPointer_IsEnabled", dynlib: "liborx.so".}
 ## * Adds a shader
 ##  @param[in]   _pstShaderPointer Concerned ShaderPointer
 ##  @param[in]   _pstShader        Shader to add
@@ -119,7 +118,7 @@ proc orxShaderPointer_IsEnabled*(pstShaderPointer: ptr orxSHADERPOINTER): orxBOO
 
 proc orxShaderPointer_AddShader*(pstShaderPointer: ptr orxSHADERPOINTER;
                                 pstShader: ptr orxSHADER): orxSTATUS {.cdecl,
-    importcpp: "orxShaderPointer_AddShader(@)", dynlib: "liborx.so".}
+    importc: "orxShaderPointer_AddShader", dynlib: "liborx.so".}
 ## * Removes a shader
 ##  @param[in]   _pstShaderPointer Concerned ShaderPointer
 ##  @param[in]   _pstShader        Shader to remove
@@ -128,7 +127,7 @@ proc orxShaderPointer_AddShader*(pstShaderPointer: ptr orxSHADERPOINTER;
 
 proc orxShaderPointer_RemoveShader*(pstShaderPointer: ptr orxSHADERPOINTER;
                                    pstShader: ptr orxSHADER): orxSTATUS {.cdecl,
-    importcpp: "orxShaderPointer_RemoveShader(@)", dynlib: "liborx.so".}
+    importc: "orxShaderPointer_RemoveShader", dynlib: "liborx.so".}
 ## * Gets a shader
 ##  @param[in]   _pstShaderPointer Concerned ShaderPointer
 ##  @param[in]   _u32Index         Index of shader to get
@@ -137,7 +136,7 @@ proc orxShaderPointer_RemoveShader*(pstShaderPointer: ptr orxSHADERPOINTER;
 
 proc orxShaderPointer_GetShader*(pstShaderPointer: ptr orxSHADERPOINTER;
                                 u32Index: orxU32): ptr orxSHADER {.cdecl,
-    importcpp: "orxShaderPointer_GetShader(@)", dynlib: "liborx.so".}
+    importc: "orxShaderPointer_GetShader", dynlib: "liborx.so".}
 ## * Adds a shader using its config ID
 ##  @param[in]   _pstShaderPointer Concerned ShaderPointer
 ##  @param[in]   _zShaderConfigID  Config ID of the shader to add
@@ -146,8 +145,7 @@ proc orxShaderPointer_GetShader*(pstShaderPointer: ptr orxSHADERPOINTER;
 
 proc orxShaderPointer_AddShaderFromConfig*(
     pstShaderPointer: ptr orxSHADERPOINTER; zShaderConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxShaderPointer_AddShaderFromConfig(@)",
-    dynlib: "liborx.so".}
+    cdecl, importc: "orxShaderPointer_AddShaderFromConfig", dynlib: "liborx.so".}
 ## * Removes a shader using its config ID
 ##  @param[in]   _pstShaderPointer Concerned ShaderPointer
 ##  @param[in]   _zShaderConfigID  Config ID of the shader to remove
@@ -156,6 +154,5 @@ proc orxShaderPointer_AddShaderFromConfig*(
 
 proc orxShaderPointer_RemoveShaderFromConfig*(
     pstShaderPointer: ptr orxSHADERPOINTER; zShaderConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxShaderPointer_RemoveShaderFromConfig(@)",
-    dynlib: "liborx.so".}
+    cdecl, importc: "orxShaderPointer_RemoveShaderFromConfig", dynlib: "liborx.so".}
 ## * @}

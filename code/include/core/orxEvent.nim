@@ -110,17 +110,17 @@ type
 ## * Event module setup
 ##
 
-proc orxEvent_Setup*() {.cdecl, importcpp: "orxEvent_Setup(@)", dynlib: "liborx.so".}
+proc orxEvent_Setup*() {.cdecl, importc: "orxEvent_Setup", dynlib: "liborx.so".}
 ## * Initializes the event Module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxEvent_Init*(): orxSTATUS {.cdecl, importcpp: "orxEvent_Init(@)",
+proc orxEvent_Init*(): orxSTATUS {.cdecl, importc: "orxEvent_Init",
                                 dynlib: "liborx.so".}
 ## * Exits from the event Module
 ##
 
-proc orxEvent_Exit*() {.cdecl, importcpp: "orxEvent_Exit(@)", dynlib: "liborx.so".}
+proc orxEvent_Exit*() {.cdecl, importc: "orxEvent_Exit", dynlib: "liborx.so".}
 ## * Adds an event handler
 ##  @param[in] _eEventType           Concerned type of event
 ##  @param[in] _pfnEventHandler      Event handler to add
@@ -129,7 +129,7 @@ proc orxEvent_Exit*() {.cdecl, importcpp: "orxEvent_Exit(@)", dynlib: "liborx.so
 
 proc orxEvent_AddHandler*(eEventType: orxEVENT_TYPE;
                          pfnEventHandler: orxEVENT_HANDLER): orxSTATUS {.cdecl,
-    importcpp: "orxEvent_AddHandler(@)", dynlib: "liborx.so".}
+    importc: "orxEvent_AddHandler", dynlib: "liborx.so".}
 ## * Adds an event handler with user-defined context
 ##  @param[in] _eEventType           Concerned type of event
 ##  @param[in] _pfnEventHandler      Event handler to add
@@ -140,7 +140,7 @@ proc orxEvent_AddHandler*(eEventType: orxEVENT_TYPE;
 proc orxEvent_AddHandlerWithContext*(eEventType: orxEVENT_TYPE;
                                     pfnEventHandler: orxEVENT_HANDLER;
                                     pContext: pointer): orxSTATUS {.cdecl,
-    importcpp: "orxEvent_AddHandlerWithContext(@)", dynlib: "liborx.so".}
+    importc: "orxEvent_AddHandlerWithContext", dynlib: "liborx.so".}
 ## * Removes an event handler
 ##  @param[in] _eEventType           Concerned type of event
 ##  @param[in] _pfnEventHandler      Event handler to remove
@@ -149,7 +149,7 @@ proc orxEvent_AddHandlerWithContext*(eEventType: orxEVENT_TYPE;
 
 proc orxEvent_RemoveHandler*(eEventType: orxEVENT_TYPE;
                             pfnEventHandler: orxEVENT_HANDLER): orxSTATUS {.cdecl,
-    importcpp: "orxEvent_RemoveHandler(@)", dynlib: "liborx.so".}
+    importc: "orxEvent_RemoveHandler", dynlib: "liborx.so".}
 ## * Removes an event handler which matches given context
 ##  @param[in] _eEventType           Concerned type of event
 ##  @param[in] _pfnEventHandler      Event handler to remove
@@ -160,7 +160,7 @@ proc orxEvent_RemoveHandler*(eEventType: orxEVENT_TYPE;
 proc orxEvent_RemoveHandlerWithContext*(eEventType: orxEVENT_TYPE;
                                        pfnEventHandler: orxEVENT_HANDLER;
                                        pContext: pointer): orxSTATUS {.cdecl,
-    importcpp: "orxEvent_RemoveHandlerWithContext(@)", dynlib: "liborx.so".}
+    importc: "orxEvent_RemoveHandlerWithContext", dynlib: "liborx.so".}
 ## * Sets an event handler's ID flags (use orxEVENT_GET_FLAG(ID) in order to get the flag that matches an ID)
 ##  @param[in] _pfnEventHandler      Concerned event handler, must have been previously added for the given type
 ##  @param[in] _eEventType           Concerned type of event
@@ -173,14 +173,14 @@ proc orxEvent_RemoveHandlerWithContext*(eEventType: orxEVENT_TYPE;
 proc orxEvent_SetHandlerIDFlags*(pfnEventHandler: orxEVENT_HANDLER;
                                 eEventType: orxEVENT_TYPE; pContext: pointer;
                                 u32AddIDFlags: orxU32; u32RemoveIDFlags: orxU32): orxSTATUS {.
-    cdecl, importcpp: "orxEvent_SetHandlerIDFlags(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxEvent_SetHandlerIDFlags", dynlib: "liborx.so".}
 ## * Sends an event
 ##  @param[in] _pstEvent             Event to send
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxEvent_Send*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl,
-    importcpp: "orxEvent_Send(@)", dynlib: "liborx.so".}
+    importc: "orxEvent_Send", dynlib: "liborx.so".}
 ## * Sends a simple event
 ##  @param[in] _eEventType           Event type
 ##  @param[in] _eEventID             Event ID
@@ -188,11 +188,11 @@ proc orxEvent_Send*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl,
 ##
 
 proc orxEvent_SendShort*(eEventType: orxEVENT_TYPE; eEventID: orxENUM): orxSTATUS {.
-    cdecl, importcpp: "orxEvent_SendShort(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxEvent_SendShort", dynlib: "liborx.so".}
 ## * Is currently sending an event?
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxEvent_IsSending*(): orxBOOL {.cdecl, importcpp: "orxEvent_IsSending(@)",
+proc orxEvent_IsSending*(): orxBOOL {.cdecl, importc: "orxEvent_IsSending",
                                    dynlib: "liborx.so".}
 ## * @}

@@ -116,22 +116,22 @@ type
 ## * Clock module setup
 ##
 
-proc orxClock_Setup*() {.cdecl, importcpp: "orxClock_Setup(@)", dynlib: "liborx.so".}
+proc orxClock_Setup*() {.cdecl, importc: "orxClock_Setup", dynlib: "liborx.so".}
 ## * Inits the clock module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxClock_Init*(): orxSTATUS {.cdecl, importcpp: "orxClock_Init(@)",
+proc orxClock_Init*(): orxSTATUS {.cdecl, importc: "orxClock_Init",
                                 dynlib: "liborx.so".}
 ## * Exits from the clock module
 ##
 
-proc orxClock_Exit*() {.cdecl, importcpp: "orxClock_Exit(@)", dynlib: "liborx.so".}
+proc orxClock_Exit*() {.cdecl, importc: "orxClock_Exit", dynlib: "liborx.so".}
 ## * Updates the clock system
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxClock_Update*(): orxSTATUS {.cdecl, importcpp: "orxClock_Update(@)",
+proc orxClock_Update*(): orxSTATUS {.cdecl, importc: "orxClock_Update",
                                   dynlib: "liborx.so".}
 ## * Creates a clock
 ##  @param[in]   _fTickSize                            Tick size for the clock (in seconds)
@@ -140,32 +140,32 @@ proc orxClock_Update*(): orxSTATUS {.cdecl, importcpp: "orxClock_Update(@)",
 ##
 
 proc orxClock_Create*(fTickSize: orxFLOAT; eType: orxCLOCK_TYPE): ptr orxCLOCK {.cdecl,
-    importcpp: "orxClock_Create(@)", dynlib: "liborx.so".}
+    importc: "orxClock_Create", dynlib: "liborx.so".}
 ## * Creates a clock from config
 ##  @param[in]   _zConfigID    Config ID
 ##  @ return orxCLOCK / orxNULL
 ##
 
 proc orxClock_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxCLOCK {.cdecl,
-    importcpp: "orxClock_CreateFromConfig(@)", dynlib: "liborx.so".}
+    importc: "orxClock_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a clock
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxClock_Delete*(pstClock: ptr orxCLOCK): orxSTATUS {.cdecl,
-    importcpp: "orxClock_Delete(@)", dynlib: "liborx.so".}
+    importc: "orxClock_Delete", dynlib: "liborx.so".}
 ## * Resyncs a clock (accumulated DT => 0)
 ##  @param[in]   _pstClock                             Concerned clock
 ##
 
 proc orxClock_Resync*(pstClock: ptr orxCLOCK): orxSTATUS {.cdecl,
-    importcpp: "orxClock_Resync(@)", dynlib: "liborx.so".}
+    importc: "orxClock_Resync", dynlib: "liborx.so".}
 ## * Resyncs all clocks (accumulated DT => 0)
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxClock_ResyncAll*(): orxSTATUS {.cdecl, importcpp: "orxClock_ResyncAll(@)",
+proc orxClock_ResyncAll*(): orxSTATUS {.cdecl, importc: "orxClock_ResyncAll",
                                      dynlib: "liborx.so".}
 ## * Restarts a clock
 ##  @param[in]   _pstClock                             Concerned clock
@@ -173,42 +173,42 @@ proc orxClock_ResyncAll*(): orxSTATUS {.cdecl, importcpp: "orxClock_ResyncAll(@)
 ##
 
 proc orxClock_Restart*(pstClock: ptr orxCLOCK): orxSTATUS {.cdecl,
-    importcpp: "orxClock_Restart(@)", dynlib: "liborx.so".}
+    importc: "orxClock_Restart", dynlib: "liborx.so".}
 ## * Pauses a clock
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxClock_Pause*(pstClock: ptr orxCLOCK): orxSTATUS {.cdecl,
-    importcpp: "orxClock_Pause(@)", dynlib: "liborx.so".}
+    importc: "orxClock_Pause", dynlib: "liborx.so".}
 ## * Unpauses a clock
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxClock_Unpause*(pstClock: ptr orxCLOCK): orxSTATUS {.cdecl,
-    importcpp: "orxClock_Unpause(@)", dynlib: "liborx.so".}
+    importc: "orxClock_Unpause", dynlib: "liborx.so".}
 ## * Is a clock paused?
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @return      orxTRUE if paused, orxFALSE otherwise
 ##
 
 proc orxClock_IsPaused*(pstClock: ptr orxCLOCK): orxBOOL {.cdecl,
-    importcpp: "orxClock_IsPaused(@)", dynlib: "liborx.so".}
+    importc: "orxClock_IsPaused", dynlib: "liborx.so".}
 ## * Gets clock info
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @return      orxCLOCK_INFO / orxNULL
 ##
 
 proc orxClock_GetInfo*(pstClock: ptr orxCLOCK): ptr orxCLOCK_INFO {.cdecl,
-    importcpp: "orxClock_GetInfo(@)", dynlib: "liborx.so".}
+    importc: "orxClock_GetInfo", dynlib: "liborx.so".}
 ## * Gets clock from its info
 ##  @param[in]   _pstClockInfo                         Concerned clock info
 ##  @return      orxCLOCK / orxNULL
 ##
 
 proc orxClock_GetFromInfo*(pstClockInfo: ptr orxCLOCK_INFO): ptr orxCLOCK {.cdecl,
-    importcpp: "orxClock_GetFromInfo(@)", dynlib: "liborx.so".}
+    importc: "orxClock_GetFromInfo", dynlib: "liborx.so".}
 ## * Sets a clock modifier
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @param[in]   _eModType                             Modifier type
@@ -218,7 +218,7 @@ proc orxClock_GetFromInfo*(pstClockInfo: ptr orxCLOCK_INFO): ptr orxCLOCK {.cdec
 
 proc orxClock_SetModifier*(pstClock: ptr orxCLOCK; eModType: orxCLOCK_MOD_TYPE;
                           fModValue: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxClock_SetModifier(@)", dynlib: "liborx.so".}
+    importc: "orxClock_SetModifier", dynlib: "liborx.so".}
 ## * Sets a clock tick size
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @param[in]   _fTickSize                            Tick size
@@ -226,7 +226,7 @@ proc orxClock_SetModifier*(pstClock: ptr orxCLOCK; eModType: orxCLOCK_MOD_TYPE;
 ##
 
 proc orxClock_SetTickSize*(pstClock: ptr orxCLOCK; fTickSize: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxClock_SetTickSize(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxClock_SetTickSize", dynlib: "liborx.so".}
 ## * Registers a callback function to a clock
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @param[in]   _pfnCallback                          Callback to register
@@ -239,7 +239,7 @@ proc orxClock_SetTickSize*(pstClock: ptr orxCLOCK; fTickSize: orxFLOAT): orxSTAT
 proc orxClock_Register*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION;
                        pContext: pointer; eModuleID: orxMODULE_ID;
                        ePriority: orxCLOCK_PRIORITY): orxSTATUS {.cdecl,
-    importcpp: "orxClock_Register(@)", dynlib: "liborx.so".}
+    importc: "orxClock_Register", dynlib: "liborx.so".}
 ## * Unregisters a callback function from a clock
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @param[in]   _pfnCallback                          Callback to remove
@@ -247,7 +247,7 @@ proc orxClock_Register*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION;
 ##
 
 proc orxClock_Unregister*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION): orxSTATUS {.
-    cdecl, importcpp: "orxClock_Unregister(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxClock_Unregister", dynlib: "liborx.so".}
 ## * Gets a callback function context
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @param[in]   _pfnCallback                          Concerned callback
@@ -255,7 +255,7 @@ proc orxClock_Unregister*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION
 ##
 
 proc orxClock_GetContext*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION): pointer {.
-    cdecl, importcpp: "orxClock_GetContext(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxClock_GetContext", dynlib: "liborx.so".}
 ## * Sets a callback function context
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @param[in]   _pfnCallback                          Concerned callback
@@ -265,7 +265,7 @@ proc orxClock_GetContext*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION
 
 proc orxClock_SetContext*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION;
                          pContext: pointer): orxSTATUS {.cdecl,
-    importcpp: "orxClock_SetContext(@)", dynlib: "liborx.so".}
+    importc: "orxClock_SetContext", dynlib: "liborx.so".}
 ## * Finds a clock given its tick size and its type
 ##  @param[in]   _fTickSize                            Tick size of the desired clock (in seconds)
 ##  @param[in]   _eType                                Type of the desired clock
@@ -273,35 +273,35 @@ proc orxClock_SetContext*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION
 ##
 
 proc orxClock_FindFirst*(fTickSize: orxFLOAT; eType: orxCLOCK_TYPE): ptr orxCLOCK {.
-    cdecl, importcpp: "orxClock_FindFirst(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxClock_FindFirst", dynlib: "liborx.so".}
 ## * Finds next clock of same type/tick size
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @return      orxCLOCK / orxNULL
 ##
 
 proc orxClock_FindNext*(pstClock: ptr orxCLOCK): ptr orxCLOCK {.cdecl,
-    importcpp: "orxClock_FindNext(@)", dynlib: "liborx.so".}
+    importc: "orxClock_FindNext", dynlib: "liborx.so".}
 ## * Gets next existing clock in list (can be used to parse all existing clocks)
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @return      orxCLOCK / orxNULL
 ##
 
 proc orxClock_GetNext*(pstClock: ptr orxCLOCK): ptr orxCLOCK {.cdecl,
-    importcpp: "orxClock_GetNext(@)", dynlib: "liborx.so".}
+    importc: "orxClock_GetNext", dynlib: "liborx.so".}
 ## * Gets clock given its name
 ##  @param[in]   _zName          Clock name
 ##  @return      orxCLOCK / orxNULL
 ##
 
-proc orxClock_Get*(zName: ptr orxCHAR): ptr orxCLOCK {.cdecl,
-    importcpp: "orxClock_Get(@)", dynlib: "liborx.so".}
+proc orxClock_Get*(zName: ptr orxCHAR): ptr orxCLOCK {.cdecl, importc: "orxClock_Get",
+    dynlib: "liborx.so".}
 ## * Gets clock config name
 ##  @param[in]   _pstClock       Concerned clock
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxClock_GetName*(pstClock: ptr orxCLOCK): ptr orxCHAR {.cdecl,
-    importcpp: "orxClock_GetName(@)", dynlib: "liborx.so".}
+    importc: "orxClock_GetName", dynlib: "liborx.so".}
 ## * Adds a timer function to a clock
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @param[in]   _pfnCallback                          Concerned timer callback
@@ -313,7 +313,7 @@ proc orxClock_GetName*(pstClock: ptr orxCLOCK): ptr orxCHAR {.cdecl,
 
 proc orxClock_AddTimer*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION;
                        fDelay: orxFLOAT; s32Repetition: orxS32; pContext: pointer): orxSTATUS {.
-    cdecl, importcpp: "orxClock_AddTimer(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxClock_AddTimer", dynlib: "liborx.so".}
 ## * Removes a timer function from a clock
 ##  @param[in]   _pstClock                             Concerned clock
 ##  @param[in]   _pfnCallback                          Concerned timer callback to remove, orxNULL to remove all occurrences regardless of their callback
@@ -324,7 +324,7 @@ proc orxClock_AddTimer*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION;
 
 proc orxClock_RemoveTimer*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTION;
                           fDelay: orxFLOAT; pContext: pointer): orxSTATUS {.cdecl,
-    importcpp: "orxClock_RemoveTimer(@)", dynlib: "liborx.so".}
+    importc: "orxClock_RemoveTimer", dynlib: "liborx.so".}
 ## * Adds a global timer function (ie. using the main core clock)
 ##  @param[in]   _pfnCallback                          Concerned timer callback
 ##  @param[in]   _fDelay                               Timer's delay between 2 calls, must be strictly positive
@@ -335,7 +335,7 @@ proc orxClock_RemoveTimer*(pstClock: ptr orxCLOCK; pfnCallback: orxCLOCK_FUNCTIO
 
 proc orxClock_AddGlobalTimer*(pfnCallback: orxCLOCK_FUNCTION; fDelay: orxFLOAT;
                              s32Repetition: orxS32; pContext: pointer): orxSTATUS {.
-    cdecl, importcpp: "orxClock_AddGlobalTimer(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxClock_AddGlobalTimer", dynlib: "liborx.so".}
 ## * Removes a global timer function (ie. from the main core clock)
 ##  @param[in]   _pfnCallback                          Concerned timer callback to remove, orxNULL to remove all occurrences regardless of their callback
 ##  @param[in]   _fDelay                               Delay between 2 calls of the timer to remove, -1.0f to remove all occurrences regardless of their respective delay
@@ -345,5 +345,5 @@ proc orxClock_AddGlobalTimer*(pfnCallback: orxCLOCK_FUNCTION; fDelay: orxFLOAT;
 
 proc orxClock_RemoveGlobalTimer*(pfnCallback: orxCLOCK_FUNCTION; fDelay: orxFLOAT;
                                 pContext: pointer): orxSTATUS {.cdecl,
-    importcpp: "orxClock_RemoveGlobalTimer(@)", dynlib: "liborx.so".}
+    importc: "orxClock_RemoveGlobalTimer", dynlib: "liborx.so".}
 ## * @}

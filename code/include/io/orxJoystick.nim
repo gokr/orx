@@ -148,8 +148,7 @@ const orxJOYSTICK_KU32_MAX_ID* = (ord(orxJOYSTICK_BUTTON_NUMBER) / ord(orxJOYSTI
 ## * JOYSTICK module setup
 ##
 
-proc orxJoystick_Setup*() {.cdecl, importcpp: "orxJoystick_Setup(@)",
-                          dynlib: "liborx.so".}
+proc orxJoystick_Setup*() {.cdecl, importc: "orxJoystick_Setup", dynlib: "liborx.so".}
 ## **************************************************************************
 ##  Functions extended by plugins
 ## *************************************************************************
@@ -157,46 +156,45 @@ proc orxJoystick_Setup*() {.cdecl, importcpp: "orxJoystick_Setup(@)",
 ##  @return Returns the status of the operation
 ##
 
-proc orxJoystick_Init*(): orxSTATUS {.cdecl, importcpp: "orxJoystick_Init(@)",
+proc orxJoystick_Init*(): orxSTATUS {.cdecl, importc: "orxJoystick_Init",
                                    dynlib: "liborx.so".}
 ## * Exits from the joystick module
 ##
 
-proc orxJoystick_Exit*() {.cdecl, importcpp: "orxJoystick_Exit(@)",
-                         dynlib: "liborx.so".}
+proc orxJoystick_Exit*() {.cdecl, importc: "orxJoystick_Exit", dynlib: "liborx.so".}
 ## * Gets joystick axis value
 ##  @param[in] _eAxis        Joystick axis to check
 ##  @return Value of the axis
 ##
 
 proc orxJoystick_GetAxisValue*(eAxis: orxJOYSTICK_AXIS): orxFLOAT {.cdecl,
-    importcpp: "orxJoystick_GetAxisValue(@)", dynlib: "liborx.so".}
+    importc: "orxJoystick_GetAxisValue", dynlib: "liborx.so".}
 ## * Is joystick button pressed?
 ##  @param[in] _eButton      Joystick button to check
 ##  @return orxTRUE if pressed / orxFALSE otherwise
 ##
 
 proc orxJoystick_IsButtonPressed*(eButton: orxJOYSTICK_BUTTON): orxBOOL {.cdecl,
-    importcpp: "orxJoystick_IsButtonPressed(@)", dynlib: "liborx.so".}
+    importc: "orxJoystick_IsButtonPressed", dynlib: "liborx.so".}
 ## * Gets button literal name
 ##  @param[in] _eButton      Concerned button
 ##  @return Button's name
 ##
 
 proc orxJoystick_GetButtonName*(eButton: orxJOYSTICK_BUTTON): ptr orxCHAR {.cdecl,
-    importcpp: "orxJoystick_GetButtonName(@)", dynlib: "liborx.so".}
+    importc: "orxJoystick_GetButtonName", dynlib: "liborx.so".}
 ## * Gets axis literal name
 ##  @param[in] _eAxis        Concerned axis
 ##  @return Axis's name
 ##
 
 proc orxJoystick_GetAxisName*(eAxis: orxJOYSTICK_AXIS): ptr orxCHAR {.cdecl,
-    importcpp: "orxJoystick_GetAxisName(@)", dynlib: "liborx.so".}
+    importc: "orxJoystick_GetAxisName", dynlib: "liborx.so".}
 ## * Is joystick connected?
 ##  @param[in] _u32ID        ID of the joystick, 1-based index
 ##  @return orxTRUE if connected / orxFALSE otherwise
 ##
 
 proc orxJoystick_IsConnected*(u32ID: orxU32): orxBOOL {.cdecl,
-    importcpp: "orxJoystick_IsConnected(@)", dynlib: "liborx.so".}
+    importc: "orxJoystick_IsConnected", dynlib: "liborx.so".}
 ## * @}

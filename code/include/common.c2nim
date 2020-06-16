@@ -1,4 +1,4 @@
-#cpp
+#c
 
 #mangle __orx64__ orx64
 #mangle __orx32__ orx32

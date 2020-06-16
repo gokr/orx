@@ -48,7 +48,7 @@ when not defined(PLUGIN):
   ## *************************************************************************
   ## * Should stop execution by default event handling?
   ##
-  var sbStopByEvent* {.importcpp: "sbStopByEvent", dynlib: "liborx.so".}: orxBOOL
+  var sbStopByEvent* {.importc: "sbStopByEvent", dynlib: "liborx.so".}: orxBOOL
   ## **************************************************************************
   ##  Public functions                                                        *
   ## *************************************************************************
@@ -57,12 +57,38 @@ when not defined(PLUGIN):
   ##  @return      orxSTATUS_SUCCESS if handled / orxSTATUS_FAILURE otherwise
   ##
   proc orx_DefaultEventHandler*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl.} =
-    discard
+    var eResult: orxSTATUS
+    ##  Checks
+    orxASSERT(pstEvent.eType == orxEVENT_TYPE_SYSTEM)
+    ##  Depending on event ID
+    case pstEvent.eID          ##  Close event
+    of orxSYSTEM_EVENT_CLOSE:
+      ##  Updates status
+      sbStopByEvent = orxTRUE
+      break
+    else:
+      break
+    ##  Done!
+    return eResult
 
   ## * Default main setup (module dependencies)
   ##
   proc orx_MainSetup*() {.cdecl.} =
-    discard
+    ##  Adds module dependencies
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_PARAM)
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_CLOCK)
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_CONFIG)
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_INPUT)
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_EVENT)
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_FILE)
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_LOCALE)
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_PLUGIN)
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_OBJECT)
+    orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_RENDER)
+    orxModule_AddOptionalDependency(orxMODULE_ID_MAIN, orxMODULE_ID_CONSOLE)
+    orxModule_AddOptionalDependency(orxMODULE_ID_MAIN, orxMODULE_ID_PROFILER)
+    orxModule_AddOptionalDependency(orxMODULE_ID_MAIN, orxMODULE_ID_SCREENSHOT)
+    return
 
   when defined(IOS):
       discard
@@ -81,8 +107,54 @@ when not defined(PLUGIN):
       proc orx_Execute*(u32NbParams: orxU32; azParams: ptr ptr orxCHAR;
                        pfnInit: orxMODULE_INIT_FUNCTION;
                        pfnRun: orxMODULE_RUN_FUNCTION;
-                       pfnExit: orxMODULE_EXIT_FUNCTION) {.cdecl.} =
-        discard
+                       pfnExit: orxMODULE_EXIT_FUNCTION) {.inline, cdecl.} =
+        ##  Inits the Debug System
+        orxDEBUG_INIT()
+        ##  Checks
+        orxASSERT(pfnRun != orxNULL)
+        ##  Registers main module
+        orxModule_Register(orxMODULE_ID_MAIN, "MAIN", orx_MainSetup, pfnInit,
+                           pfnExit)
+        ##  Sends the command line arguments to orxParam module
+        if orxParam_SetArgs(u32NbParams, azParams) != orxSTATUS_FAILURE:
+          ##  Sets thread callbacks
+          orxThread_SetCallbacks(orxAndroid_JNI_SetupThread, orxNULL, orxNULL)
+          ##  Inits the engine
+          if orxModule_Init(orxMODULE_ID_MAIN) != orxSTATUS_FAILURE:
+            var stPayload: orxSYSTEM_EVENT_PAYLOAD
+            var
+              eClockStatus: orxSTATUS
+              eMainStatus: orxSTATUS
+            var bStop: orxBOOL
+            ##  Registers default event handler
+            orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
+            ##  Clears payload
+            orxMemory_Zero(addr(stPayload), sizeof((orxSYSTEM_EVENT_PAYLOAD)))
+            ##  Main loop
+            bStop = orxFALSE
+            sbStopByEvent = orxFALSE
+            while bStop == orxFALSE:
+              orxAndroid_PumpEvents()
+              ##  Sends frame start event
+              orxEVENT_SEND(orxEVENT_TYPE_SYSTEM,
+                            orxSYSTEM_EVENT_GAME_LOOP_START, orxNULL, orxNULL,
+                            addr(stPayload))
+              ##  Runs the engine
+              eMainStatus = pfnRun()
+              ##  Updates clock system
+              eClockStatus = orxClock_Update()
+              ##  Sends frame stop event
+              orxEVENT_SEND(orxEVENT_TYPE_SYSTEM, orxSYSTEM_EVENT_GAME_LOOP_STOP,
+                            orxNULL, orxNULL, addr(stPayload))
+              ##  Updates frame count
+              inc(stPayload.u32FrameCount)
+              bStop = if ((sbStopByEvent != orxFALSE) or
+                  (eMainStatus == orxSTATUS_FAILURE) or
+                  (eClockStatus == orxSTATUS_FAILURE)): orxTRUE else: orxFALSE
+          orxEvent_RemoveHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
+          ##  Exits from engine
+          orxModule_Exit(orxMODULE_ID_MAIN)
+        orxDEBUG_EXIT()
 
     else:
       ## * Orx main execution function
@@ -95,7 +167,52 @@ when not defined(PLUGIN):
       proc orx_Execute*(u32NbParams: orxU32; azParams: ptr ptr orxCHAR;
                        pfnInit: orxMODULE_INIT_FUNCTION;
                        pfnRun: orxMODULE_RUN_FUNCTION;
-                       pfnExit: orxMODULE_EXIT_FUNCTION) {.cdecl.} =
-        discard
+                       pfnExit: orxMODULE_EXIT_FUNCTION) {.inline, cdecl.} =
+        ##  Inits the Debug System
+        orxDEBUG_INIT()
+        ##  Checks
+        orxASSERT(u32NbParams > 0)
+        orxASSERT(azParams != orxNULL)
+        orxASSERT(pfnRun != orxNULL)
+        ##  Registers main module
+        orxModule_Register(orxMODULE_ID_MAIN, "MAIN", orx_MainSetup, pfnInit,
+                           pfnExit)
+        ##  Sends the command line arguments to orxParam module
+        if orxParam_SetArgs(u32NbParams, azParams) != orxSTATUS_FAILURE:
+          ##  Inits the engine
+          if orxModule_Init(orxMODULE_ID_MAIN) != orxSTATUS_FAILURE:
+            var stPayload: orxSYSTEM_EVENT_PAYLOAD
+            var
+              eClockStatus: orxSTATUS
+              eMainStatus: orxSTATUS
+            var bStop: orxBOOL
+            ##  Registers default event handler
+            orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
+            ##  Clears payload
+            orxMemory_Zero(addr(stPayload), sizeof((orxSYSTEM_EVENT_PAYLOAD)))
+            ##  Main loop
+            bStop = orxFALSE
+            sbStopByEvent = orxFALSE
+            while bStop == orxFALSE:
+              ##  Sends frame start event
+              orxEVENT_SEND(orxEVENT_TYPE_SYSTEM,
+                            orxSYSTEM_EVENT_GAME_LOOP_START, orxNULL, orxNULL,
+                            addr(stPayload))
+              ##  Runs the engine
+              eMainStatus = pfnRun()
+              ##  Updates clock system
+              eClockStatus = orxClock_Update()
+              ##  Sends frame stop event
+              orxEVENT_SEND(orxEVENT_TYPE_SYSTEM, orxSYSTEM_EVENT_GAME_LOOP_STOP,
+                            orxNULL, orxNULL, addr(stPayload))
+              ##  Updates frame count
+              inc(stPayload.u32FrameCount)
+              bStop = if ((sbStopByEvent != orxFALSE) or
+                  (eMainStatus == orxSTATUS_FAILURE) or
+                  (eClockStatus == orxSTATUS_FAILURE)): orxTRUE else: orxFALSE
+          orxEvent_RemoveHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
+          ##  Exits from engine
+          orxModule_Exit(orxMODULE_ID_MAIN)
+        orxDEBUG_EXIT()
 
 ## * @}

@@ -66,37 +66,37 @@ type orxCAMERA* = object
 ## * Camera module setup
 ##
 
-proc orxCamera_Setup*() {.cdecl, importcpp: "orxCamera_Setup(@)", dynlib: "liborx.so".}
+proc orxCamera_Setup*() {.cdecl, importc: "orxCamera_Setup", dynlib: "liborx.so".}
 ## * Inits the Camera module
 ##
 
-proc orxCamera_Init*(): orxSTATUS {.cdecl, importcpp: "orxCamera_Init(@)",
+proc orxCamera_Init*(): orxSTATUS {.cdecl, importc: "orxCamera_Init",
                                  dynlib: "liborx.so".}
 ## * Exits from the Camera module
 ##
 
-proc orxCamera_Exit*() {.cdecl, importcpp: "orxCamera_Exit(@)", dynlib: "liborx.so".}
+proc orxCamera_Exit*() {.cdecl, importc: "orxCamera_Exit", dynlib: "liborx.so".}
 ## * Creates a camera
 ##  @param[in]   _u32Flags       Camera flags (2D / ...)
 ##  @return      Created orxCAMERA / orxNULL
 ##
 
 proc orxCamera_Create*(u32Flags: orxU32): ptr orxCAMERA {.cdecl,
-    importcpp: "orxCamera_Create(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_Create", dynlib: "liborx.so".}
 ## * Creates a camera from config
 ##  @param[in]   _zConfigID      Config ID
 ##  @ return orxCAMERA / orxNULL
 ##
 
 proc orxCamera_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxCAMERA {.cdecl,
-    importcpp: "orxCamera_CreateFromConfig(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a camera
 ##  @param[in]   _pstCamera      Camera to delete
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxCamera_Delete*(pstCamera: ptr orxCAMERA): orxSTATUS {.cdecl,
-    importcpp: "orxCamera_Delete(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_Delete", dynlib: "liborx.so".}
 ## * Adds a group ID to a camera
 ##  @param[in] _pstCamera        Concerned camera
 ##  @param[in] _stGroupID        ID of the group to add
@@ -106,7 +106,7 @@ proc orxCamera_Delete*(pstCamera: ptr orxCAMERA): orxSTATUS {.cdecl,
 
 proc orxCamera_AddGroupID*(pstCamera: ptr orxCAMERA; stGroupID: orxSTRINGID;
                           bAddFirst: orxBOOL): orxSTATUS {.cdecl,
-    importcpp: "orxCamera_AddGroupID(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_AddGroupID", dynlib: "liborx.so".}
 ## * Removes a group ID from a camera
 ##  @param[in] _pstCamera        Concerned camera
 ##  @param[in] _stGroupID        ID of the group to remove
@@ -114,14 +114,14 @@ proc orxCamera_AddGroupID*(pstCamera: ptr orxCAMERA; stGroupID: orxSTRINGID;
 ##
 
 proc orxCamera_RemoveGroupID*(pstCamera: ptr orxCAMERA; stGroupID: orxSTRINGID): orxSTATUS {.
-    cdecl, importcpp: "orxCamera_RemoveGroupID(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxCamera_RemoveGroupID", dynlib: "liborx.so".}
 ## * Gets number of group IDs of camera
 ##  @param[in] _pstCamera        Concerned camera
 ##  @return Number of group IDs of this camera
 ##
 
 proc orxCamera_GetGroupIDCount*(pstCamera: ptr orxCAMERA): orxU32 {.cdecl,
-    importcpp: "orxCamera_GetGroupIDCount(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_GetGroupIDCount", dynlib: "liborx.so".}
 ## * Gets the group ID of a camera at the given index
 ##  @param[in] _pstCamera        Concerned camera
 ##  @param[in] _u32Index         Index of group ID
@@ -129,7 +129,7 @@ proc orxCamera_GetGroupIDCount*(pstCamera: ptr orxCAMERA): orxU32 {.cdecl,
 ##
 
 proc orxCamera_GetGroupID*(pstCamera: ptr orxCAMERA; u32Index: orxU32): orxSTRINGID {.
-    cdecl, importcpp: "orxCamera_GetGroupID(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxCamera_GetGroupID", dynlib: "liborx.so".}
 ## * Sets camera frustum
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @param[in]   _fWidth         Width of frustum
@@ -141,7 +141,7 @@ proc orxCamera_GetGroupID*(pstCamera: ptr orxCAMERA; u32Index: orxU32): orxSTRIN
 
 proc orxCamera_SetFrustum*(pstCamera: ptr orxCAMERA; fWidth: orxFLOAT;
                           fHeight: orxFLOAT; fNear: orxFLOAT; fFar: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxCamera_SetFrustum(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxCamera_SetFrustum", dynlib: "liborx.so".}
 ## * Sets camera position
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @param[in]   _pvPosition     Camera position
@@ -149,7 +149,7 @@ proc orxCamera_SetFrustum*(pstCamera: ptr orxCAMERA; fWidth: orxFLOAT;
 ##
 
 proc orxCamera_SetPosition*(pstCamera: ptr orxCAMERA; pvPosition: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxCamera_SetPosition(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxCamera_SetPosition", dynlib: "liborx.so".}
 ## * Sets camera rotation
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @param[in]   _fRotation      Camera rotation (radians)
@@ -157,7 +157,7 @@ proc orxCamera_SetPosition*(pstCamera: ptr orxCAMERA; pvPosition: ptr orxVECTOR)
 ##
 
 proc orxCamera_SetRotation*(pstCamera: ptr orxCAMERA; fRotation: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxCamera_SetRotation(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxCamera_SetRotation", dynlib: "liborx.so".}
 ## * Sets camera zoom
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @param[in]   _fZoom          Camera zoom
@@ -165,7 +165,7 @@ proc orxCamera_SetRotation*(pstCamera: ptr orxCAMERA; fRotation: orxFLOAT): orxS
 ##
 
 proc orxCamera_SetZoom*(pstCamera: ptr orxCAMERA; fZoom: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxCamera_SetZoom(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_SetZoom", dynlib: "liborx.so".}
 ## * Gets camera frustum (3D box for 2D camera)
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @param[out]  _pstFrustum    Frustum box
@@ -173,7 +173,7 @@ proc orxCamera_SetZoom*(pstCamera: ptr orxCAMERA; fZoom: orxFLOAT): orxSTATUS {.
 ##
 
 proc orxCamera_GetFrustum*(pstCamera: ptr orxCAMERA; pstFrustum: ptr orxAABOX): ptr orxAABOX {.
-    cdecl, importcpp: "orxCamera_GetFrustum(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxCamera_GetFrustum", dynlib: "liborx.so".}
 ## * Get camera position
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @param[out]  _pvPosition     Camera position
@@ -181,42 +181,42 @@ proc orxCamera_GetFrustum*(pstCamera: ptr orxCAMERA; pstFrustum: ptr orxAABOX): 
 ##
 
 proc orxCamera_GetPosition*(pstCamera: ptr orxCAMERA; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxCamera_GetPosition(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxCamera_GetPosition", dynlib: "liborx.so".}
 ## * Get camera rotation
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @return      Rotation value (radians)
 ##
 
 proc orxCamera_GetRotation*(pstCamera: ptr orxCAMERA): orxFLOAT {.cdecl,
-    importcpp: "orxCamera_GetRotation(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_GetRotation", dynlib: "liborx.so".}
 ## * Get camera zoom
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @return      Zoom value
 ##
 
 proc orxCamera_GetZoom*(pstCamera: ptr orxCAMERA): orxFLOAT {.cdecl,
-    importcpp: "orxCamera_GetZoom(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_GetZoom", dynlib: "liborx.so".}
 ## * Gets camera config name
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxCamera_GetName*(pstCamera: ptr orxCAMERA): ptr orxCHAR {.cdecl,
-    importcpp: "orxCamera_GetName(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_GetName", dynlib: "liborx.so".}
 ## * Gets camera given its name
 ##  @param[in]   _zName          Camera name
 ##  @return      orxCAMERA / orxNULL
 ##
 
 proc orxCamera_Get*(zName: ptr orxCHAR): ptr orxCAMERA {.cdecl,
-    importcpp: "orxCamera_Get(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_Get", dynlib: "liborx.so".}
 ## * Gets camera frame
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @return      orxFRAME
 ##
 
 proc orxCamera_GetFrame*(pstCamera: ptr orxCAMERA): ptr orxFRAME {.cdecl,
-    importcpp: "orxCamera_GetFrame(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_GetFrame", dynlib: "liborx.so".}
 ## * Sets camera parent
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @param[in]   _pParent        Parent structure to set (object, spawner, camera or frame) / orxNULL
@@ -224,12 +224,12 @@ proc orxCamera_GetFrame*(pstCamera: ptr orxCAMERA): ptr orxFRAME {.cdecl,
 ##
 
 proc orxCamera_SetParent*(pstCamera: ptr orxCAMERA; pParent: pointer): orxSTATUS {.
-    cdecl, importcpp: "orxCamera_SetParent(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxCamera_SetParent", dynlib: "liborx.so".}
 ## * Gets camera parent
 ##  @param[in]   _pstCamera      Concerned camera
 ##  @return      Parent (object, spawner, camera or frame) / orxNULL
 ##
 
 proc orxCamera_GetParent*(pstCamera: ptr orxCAMERA): ptr orxSTRUCTURE {.cdecl,
-    importcpp: "orxCamera_GetParent(@)", dynlib: "liborx.so".}
+    importc: "orxCamera_GetParent", dynlib: "liborx.so".}
 ## * @}

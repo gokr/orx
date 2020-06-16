@@ -92,17 +92,17 @@ type
 ## * Setups the memory module
 ##
 
-proc orxMemory_Setup*() {.cdecl, importcpp: "orxMemory_Setup(@)", dynlib: "liborx.so".}
+proc orxMemory_Setup*() {.cdecl, importc: "orxMemory_Setup", dynlib: "liborx.so".}
 ## * Inits the memory module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxMemory_Init*(): orxSTATUS {.cdecl, importcpp: "orxMemory_Init(@)",
+proc orxMemory_Init*(): orxSTATUS {.cdecl, importc: "orxMemory_Init",
                                  dynlib: "liborx.so".}
 ## * Exits from the memory module
 ##
 
-proc orxMemory_Exit*() {.cdecl, importcpp: "orxMemory_Exit(@)", dynlib: "liborx.so".}
+proc orxMemory_Exit*() {.cdecl, importc: "orxMemory_Exit", dynlib: "liborx.so".}
 ## * Allocates some memory in the system and returns a pointer to it
 ##  @param[in]  _u32Size  Size of the memory to allocate
 ##  @param[in]  _eMemType Memory zone where data will be allocated
@@ -110,7 +110,7 @@ proc orxMemory_Exit*() {.cdecl, importcpp: "orxMemory_Exit(@)", dynlib: "liborx.
 ##
 
 proc orxMemory_Allocate*(u32Size: orxU32; eMemType: orxMEMORY_TYPE): pointer {.cdecl,
-    importcpp: "orxMemory_Allocate(@)", dynlib: "liborx.so".}
+    importc: "orxMemory_Allocate", dynlib: "liborx.so".}
 ## * Reallocates a previously allocated memory block, with the given new size and returns a pointer to it
 ##  If possible, it'll keep the current pointer and extend the memory block, if not it'll allocate a new block,
 ##  copy the data over and deallocates the original block
@@ -120,12 +120,12 @@ proc orxMemory_Allocate*(u32Size: orxU32; eMemType: orxMEMORY_TYPE): pointer {.c
 ##
 
 proc orxMemory_Reallocate*(pMem: pointer; u32Size: orxU32): pointer {.cdecl,
-    importcpp: "orxMemory_Reallocate(@)", dynlib: "liborx.so".}
+    importc: "orxMemory_Reallocate", dynlib: "liborx.so".}
 ## * Frees some memory allocated with orxMemory_Allocate
 ##  @param[in]  _pMem     Pointer to the memory allocated by orx
 ##
 
-proc orxMemory_Free*(pMem: pointer) {.cdecl, importcpp: "orxMemory_Free(@)",
+proc orxMemory_Free*(pMem: pointer) {.cdecl, importc: "orxMemory_Free",
                                    dynlib: "liborx.so".}
 ## * Copies a part of memory into another one
 ##  @param[out] _pDest    Destination pointer
@@ -135,8 +135,13 @@ proc orxMemory_Free*(pMem: pointer) {.cdecl, importcpp: "orxMemory_Free(@)",
 ##  @note if _pSrc and _pDest overlap, use orxMemory_Move instead
 ##
 
-proc orxMemory_Copy*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.cdecl.} =
-  discard
+proc orxMemory_Copy*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pDest != orxNULL)
+  orxASSERT(pSrc != orxNULL)
+  ##  Done!
+  return cast[pointer](memcpy(pDest, pSrc, cast[csize](u32Size)))
 
 ## * Moves a part of memory into another one
 ##  @param[out] _pDest   Destination pointer
@@ -145,8 +150,13 @@ proc orxMemory_Copy*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.
 ##  @return returns a pointer to _pDest
 ##
 
-proc orxMemory_Move*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.cdecl.} =
-  discard
+proc orxMemory_Move*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pDest != orxNULL)
+  orxASSERT(pSrc != orxNULL)
+  ##  Done!
+  return cast[pointer](memmove(pDest, pSrc, cast[csize](u32Size)))
 
 ## * Compares two parts of memory
 ##  @param[in]  _pMem1   First part to test
@@ -155,8 +165,13 @@ proc orxMemory_Move*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.
 ##  @return returns a value less than, equal to or greater than 0 if the content of _pMem1 is respectively smaller, equal or greater than _pMem2's
 ##
 
-proc orxMemory_Compare*(pMem1: pointer; pMem2: pointer; u32Size: orxU32): orxU32 {.cdecl.} =
-  discard
+proc orxMemory_Compare*(pMem1: pointer; pMem2: pointer; u32Size: orxU32): orxU32 {.
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pMem1 != orxNULL)
+  orxASSERT(pMem2 != orxNULL)
+  ##  Done!
+  return cast[orxU32](memcmp(pMem1, pMem2, cast[csize](u32Size)))
 
 ## * Fills a part of memory with _u32Data
 ##  @param[out] _pDest   Destination pointer
@@ -165,8 +180,12 @@ proc orxMemory_Compare*(pMem1: pointer; pMem2: pointer; u32Size: orxU32): orxU32
 ##  @return returns a pointer to _pDest
 ##
 
-proc orxMemory_Set*(pDest: pointer; u8Data: orxU8; u32Size: orxU32): pointer {.cdecl.} =
-  discard
+proc orxMemory_Set*(pDest: pointer; u8Data: orxU8; u32Size: orxU32): pointer {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pDest != orxNULL)
+  ##  Done!
+  return cast[pointer](memset(pDest, u8Data, cast[csize](u32Size)))
 
 ## * Fills a part of memory with zeroes
 ##  @param[out] _pDest   Destination pointer
@@ -174,8 +193,11 @@ proc orxMemory_Set*(pDest: pointer; u8Data: orxU8; u32Size: orxU32): pointer {.c
 ##  @return returns a pointer to _pDest
 ##
 
-proc orxMemory_Zero*(pDest: pointer; u32Size: orxU32): pointer {.cdecl.} =
-  discard
+proc orxMemory_Zero*(pDest: pointer; u32Size: orxU32): pointer {.inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pDest != orxNULL)
+  ##  Done!
+  return cast[pointer](memset(pDest, 0, cast[csize](u32Size)))
 
 ## * Gets memory type literal name
 ##  @param[in] _eMemType               Concerned memory type
@@ -183,13 +205,13 @@ proc orxMemory_Zero*(pDest: pointer; u32Size: orxU32): pointer {.cdecl.} =
 ##
 
 proc orxMemory_GetTypeName*(eMemType: orxMEMORY_TYPE): ptr orxCHAR {.cdecl,
-    importcpp: "orxMemory_GetTypeName(@)", dynlib: "liborx.so".}
+    importc: "orxMemory_GetTypeName", dynlib: "liborx.so".}
 ## * Gets L1 data cache line size
 ##  @return Cache line size
 ##
 
 proc orxMemory_GetCacheLineSize*(): orxU32 {.cdecl,
-    importcpp: "orxMemory_GetCacheLineSize(@)", dynlib: "liborx.so".}
+    importc: "orxMemory_GetCacheLineSize", dynlib: "liborx.so".}
 when defined(PROFILER):
   ## * Gets memory usage for a given type
   ##  @param[in] _eMemType               Concerned memory type
@@ -203,7 +225,7 @@ when defined(PROFILER):
   proc orxMemory_GetUsage*(eMemType: orxMEMORY_TYPE; pu32Count: ptr orxU32;
                           pu32PeakCount: ptr orxU32; pu32Size: ptr orxU32;
                           pu32PeakSize: ptr orxU32; pu32OperationCount: ptr orxU32): orxSTATUS {.
-      cdecl, importcpp: "orxMemory_GetUsage(@)", dynlib: "liborx.so".}
+      cdecl, importc: "orxMemory_GetUsage", dynlib: "liborx.so".}
   ## * Tracks (external) memory allocation
   ##  @param[in] _eMemType               Concerned memory type
   ##  @param[in] _u32Size                Size to track, in bytes
@@ -211,5 +233,5 @@ when defined(PROFILER):
   ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
   ##
   proc orxMemory_Track*(eMemType: orxMEMORY_TYPE; u32Size: orxU32; bAllocate: orxBOOL): orxSTATUS {.
-      cdecl, importcpp: "orxMemory_Track(@)", dynlib: "liborx.so".}
+      cdecl, importc: "orxMemory_Track", dynlib: "liborx.so".}
 ## * @}

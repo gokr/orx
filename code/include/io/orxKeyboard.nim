@@ -96,51 +96,49 @@ type
 ## * Keyboard module setup
 ##
 
-proc orxKeyboard_Setup*() {.cdecl, importcpp: "orxKeyboard_Setup(@)",
-                          dynlib: "liborx.so".}
+proc orxKeyboard_Setup*() {.cdecl, importc: "orxKeyboard_Setup", dynlib: "liborx.so".}
 ## **************************************************************************
 ##  Functions extended by plugins
 ## *************************************************************************
 ## * Inits the keyboard module
 ##
 
-proc orxKeyboard_Init*(): orxSTATUS {.cdecl, importcpp: "orxKeyboard_Init(@)",
+proc orxKeyboard_Init*(): orxSTATUS {.cdecl, importc: "orxKeyboard_Init",
                                    dynlib: "liborx.so".}
 ## * Exits from the keyboard module
 ##
 
-proc orxKeyboard_Exit*() {.cdecl, importcpp: "orxKeyboard_Exit(@)",
-                         dynlib: "liborx.so".}
+proc orxKeyboard_Exit*() {.cdecl, importc: "orxKeyboard_Exit", dynlib: "liborx.so".}
 ## * Is key pressed?
 ##  @param[in] _eKey       Key to check
 ##  @return orxTRUE if pressed / orxFALSE otherwise
 ##
 
 proc orxKeyboard_IsKeyPressed*(eKey: orxKEYBOARD_KEY): orxBOOL {.cdecl,
-    importcpp: "orxKeyboard_IsKeyPressed(@)", dynlib: "liborx.so".}
+    importc: "orxKeyboard_IsKeyPressed", dynlib: "liborx.so".}
 ## * Gets key display name, layout-dependent
 ##  @param[in] _eKey       Concerned key
 ##  @return UTF-8 encoded key's name if valid, orxSTRING_EMPTY otherwise
 ##
 
 proc orxKeyboard_GetKeyDisplayName*(eKey: orxKEYBOARD_KEY): ptr orxCHAR {.cdecl,
-    importcpp: "orxKeyboard_GetKeyDisplayName(@)", dynlib: "liborx.so".}
+    importc: "orxKeyboard_GetKeyDisplayName", dynlib: "liborx.so".}
 ## * Gets the next key from the keyboard buffer and removes it from there
 ##  @return orxKEYBOARD_KEY, orxKEYBOARD_KEY_NONE if the buffer is empty
 ##
 
 proc orxKeyboard_ReadKey*(): orxKEYBOARD_KEY {.cdecl,
-    importcpp: "orxKeyboard_ReadKey(@)", dynlib: "liborx.so".}
+    importc: "orxKeyboard_ReadKey", dynlib: "liborx.so".}
 ## * Gets the next UTF-8 encoded string from the keyboard buffer and removes it from there
 ##  @return UTF-8 encoded string
 ##
 
 proc orxKeyboard_ReadString*(): ptr orxCHAR {.cdecl,
-    importcpp: "orxKeyboard_ReadString(@)", dynlib: "liborx.so".}
+    importc: "orxKeyboard_ReadString", dynlib: "liborx.so".}
 ## * Empties the keyboard buffer (both keys and chars)
 ##
 
-proc orxKeyboard_ClearBuffer*() {.cdecl, importcpp: "orxKeyboard_ClearBuffer(@)",
+proc orxKeyboard_ClearBuffer*() {.cdecl, importc: "orxKeyboard_ClearBuffer",
                                 dynlib: "liborx.so".}
 ## * Gets key literal name
 ##  @param[in] _eKey       Concerned key
@@ -148,12 +146,12 @@ proc orxKeyboard_ClearBuffer*() {.cdecl, importcpp: "orxKeyboard_ClearBuffer(@)"
 ##
 
 proc orxKeyboard_GetKeyName*(eKey: orxKEYBOARD_KEY): ptr orxCHAR {.cdecl,
-    importcpp: "orxKeyboard_GetKeyName(@)", dynlib: "liborx.so".}
+    importc: "orxKeyboard_GetKeyName", dynlib: "liborx.so".}
 ## * Show/Hide the virtual keyboard
 ##  @param[in]   _bShow          Show/hide virtual keyboard
 ##  @return orxSTATUS_SUCCESS if supported by platform, orxSTATUS_FAILURE otherwise
 ##
 
 proc orxKeyboard_Show*(bShow: orxBOOL): orxSTATUS {.cdecl,
-    importcpp: "orxKeyboard_Show(@)", dynlib: "liborx.so".}
+    importc: "orxKeyboard_Show", dynlib: "liborx.so".}
 ## * @}

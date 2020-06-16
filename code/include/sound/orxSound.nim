@@ -121,22 +121,22 @@ type
 ## * Sound module setup
 ##
 
-proc orxSound_Setup*() {.cdecl, importcpp: "orxSound_Setup(@)", dynlib: "liborx.so".}
+proc orxSound_Setup*() {.cdecl, importc: "orxSound_Setup", dynlib: "liborx.so".}
 ## * Initializes the sound module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSound_Init*(): orxSTATUS {.cdecl, importcpp: "orxSound_Init(@)",
+proc orxSound_Init*(): orxSTATUS {.cdecl, importc: "orxSound_Init",
                                 dynlib: "liborx.so".}
 ## * Exits from the sound module
 ##
 
-proc orxSound_Exit*() {.cdecl, importcpp: "orxSound_Exit(@)", dynlib: "liborx.so".}
+proc orxSound_Exit*() {.cdecl, importc: "orxSound_Exit", dynlib: "liborx.so".}
 ## * Creates an empty sound
 ##  @return      Created orxSOUND / orxNULL
 ##
 
-proc orxSound_Create*(): ptr orxSOUND {.cdecl, importcpp: "orxSound_Create(@)",
+proc orxSound_Create*(): ptr orxSOUND {.cdecl, importc: "orxSound_Create",
                                     dynlib: "liborx.so".}
 ## * Creates sound from config
 ##  @param[in]   _zConfigID    Config ID
@@ -144,7 +144,7 @@ proc orxSound_Create*(): ptr orxSOUND {.cdecl, importcpp: "orxSound_Create(@)",
 ##
 
 proc orxSound_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSOUND {.cdecl,
-    importcpp: "orxSound_CreateFromConfig(@)", dynlib: "liborx.so".}
+    importc: "orxSound_CreateFromConfig", dynlib: "liborx.so".}
 ## * Creates a sound with an empty stream (ie. you'll need to provide actual sound data for each packet sent to the sound card using the event system)
 ##  @param[in] _u32ChannelNumber Number of channels of the stream
 ##  @param[in] _u32SampleRate    Sampling rate of the stream (ie. number of frames per second)
@@ -154,19 +154,19 @@ proc orxSound_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSOUND {.cdecl,
 
 proc orxSound_CreateWithEmptyStream*(u32ChannelNumber: orxU32;
                                     u32SampleRate: orxU32; zName: ptr orxCHAR): ptr orxSOUND {.
-    cdecl, importcpp: "orxSound_CreateWithEmptyStream(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_CreateWithEmptyStream", dynlib: "liborx.so".}
 ## * Deletes sound
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSound_Delete*(pstSound: ptr orxSOUND): orxSTATUS {.cdecl,
-    importcpp: "orxSound_Delete(@)", dynlib: "liborx.so".}
+    importc: "orxSound_Delete", dynlib: "liborx.so".}
 ## * Clears cache (if any sound sample is still in active use, it'll remain in memory until not referenced anymore)
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSound_ClearCache*(): orxSTATUS {.cdecl, importcpp: "orxSound_ClearCache(@)",
+proc orxSound_ClearCache*(): orxSTATUS {.cdecl, importc: "orxSound_ClearCache",
                                       dynlib: "liborx.so".}
 ## * Creates a sample
 ##  @param[in] _u32ChannelNumber Number of channels of the sample
@@ -178,21 +178,21 @@ proc orxSound_ClearCache*(): orxSTATUS {.cdecl, importcpp: "orxSound_ClearCache(
 
 proc orxSound_CreateSample*(u32ChannelNumber: orxU32; u32FrameNumber: orxU32;
                            u32SampleRate: orxU32; zName: ptr orxCHAR): ptr orxSOUNDSYSTEM_SAMPLE {.
-    cdecl, importcpp: "orxSound_CreateSample(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_CreateSample", dynlib: "liborx.so".}
 ## * Gets a sample
 ##  @param[in] _zName            Sample's name
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSound_GetSample*(zName: ptr orxCHAR): ptr orxSOUNDSYSTEM_SAMPLE {.cdecl,
-    importcpp: "orxSound_GetSample(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetSample", dynlib: "liborx.so".}
 ## * Deletes a sample
 ##  @param[in] _zName            Sample's name
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSound_DeleteSample*(zName: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxSound_DeleteSample(@)", dynlib: "liborx.so".}
+    importc: "orxSound_DeleteSample", dynlib: "liborx.so".}
 ## * Links a sample
 ##  @param[in]   _pstSound     Concerned sound
 ##  @param[in]   _zSampleName  Name of the sample to link (must already be loaded/created)
@@ -200,42 +200,42 @@ proc orxSound_DeleteSample*(zName: ptr orxCHAR): orxSTATUS {.cdecl,
 ##
 
 proc orxSound_LinkSample*(pstSound: ptr orxSOUND; zSampleName: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxSound_LinkSample(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_LinkSample", dynlib: "liborx.so".}
 ## * Unlinks (and deletes if not used anymore) a sample
 ##  @param[in]   _pstSound     Concerned sound
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSound_UnlinkSample*(pstSound: ptr orxSOUND): orxSTATUS {.cdecl,
-    importcpp: "orxSound_UnlinkSample(@)", dynlib: "liborx.so".}
+    importc: "orxSound_UnlinkSample", dynlib: "liborx.so".}
 ## * Is a stream (ie. music)?
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxSound_IsStream*(pstSound: ptr orxSOUND): orxBOOL {.cdecl,
-    importcpp: "orxSound_IsStream(@)", dynlib: "liborx.so".}
+    importc: "orxSound_IsStream", dynlib: "liborx.so".}
 ## * Plays sound
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSound_Play*(pstSound: ptr orxSOUND): orxSTATUS {.cdecl,
-    importcpp: "orxSound_Play(@)", dynlib: "liborx.so".}
+    importc: "orxSound_Play", dynlib: "liborx.so".}
 ## * Pauses sound
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSound_Pause*(pstSound: ptr orxSOUND): orxSTATUS {.cdecl,
-    importcpp: "orxSound_Pause(@)", dynlib: "liborx.so".}
+    importc: "orxSound_Pause", dynlib: "liborx.so".}
 ## * Stops sound
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSound_Stop*(pstSound: ptr orxSOUND): orxSTATUS {.cdecl,
-    importcpp: "orxSound_Stop(@)", dynlib: "liborx.so".}
+    importc: "orxSound_Stop", dynlib: "liborx.so".}
 ## * Starts recording
 ##  @param[in] _zName             Name for the recorded sound/file
 ##  @param[in] _bWriteToFile      Should write to file?
@@ -246,19 +246,19 @@ proc orxSound_Stop*(pstSound: ptr orxSOUND): orxSTATUS {.cdecl,
 
 proc orxSound_StartRecording*(zName: ptr orxCHAR; bWriteToFile: orxBOOL;
                              u32SampleRate: orxU32; u32ChannelNumber: orxU32): orxSTATUS {.
-    cdecl, importcpp: "orxSound_StartRecording(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_StartRecording", dynlib: "liborx.so".}
 ## * Stops recording
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSound_StopRecording*(): orxSTATUS {.cdecl,
-    importcpp: "orxSound_StopRecording(@)", dynlib: "liborx.so".}
+    importc: "orxSound_StopRecording", dynlib: "liborx.so".}
 ## * Is recording possible on the current system?
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxSound_HasRecordingSupport*(): orxBOOL {.cdecl,
-    importcpp: "orxSound_HasRecordingSupport(@)", dynlib: "liborx.so".}
+    importc: "orxSound_HasRecordingSupport", dynlib: "liborx.so".}
 ## * Sets sound volume
 ##  @param[in] _pstSound       Concerned Sound
 ##  @param[in] _fVolume        Desired volume (0.0 - 1.0)
@@ -266,7 +266,7 @@ proc orxSound_HasRecordingSupport*(): orxBOOL {.cdecl,
 ##
 
 proc orxSound_SetVolume*(pstSound: ptr orxSOUND; fVolume: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxSound_SetVolume(@)", dynlib: "liborx.so".}
+    importc: "orxSound_SetVolume", dynlib: "liborx.so".}
 ## * Sets sound pitch
 ##  @param[in] _pstSound       Concerned Sound
 ##  @param[in] _fPitch         Desired pitch
@@ -274,7 +274,7 @@ proc orxSound_SetVolume*(pstSound: ptr orxSOUND; fVolume: orxFLOAT): orxSTATUS {
 ##
 
 proc orxSound_SetPitch*(pstSound: ptr orxSOUND; fPitch: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxSound_SetPitch(@)", dynlib: "liborx.so".}
+    importc: "orxSound_SetPitch", dynlib: "liborx.so".}
 ## * Sets a sound time (ie. cursor/play position from beginning)
 ##  @param[in]   _pstSound                             Concerned sound
 ##  @param[in]   _fTime                                Time, in seconds
@@ -282,7 +282,7 @@ proc orxSound_SetPitch*(pstSound: ptr orxSOUND; fPitch: orxFLOAT): orxSTATUS {.c
 ##
 
 proc orxSound_SetTime*(pstSound: ptr orxSOUND; fTime: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxSound_SetTime(@)", dynlib: "liborx.so".}
+    importc: "orxSound_SetTime", dynlib: "liborx.so".}
 ## * Sets sound position
 ##  @param[in] _pstSound       Concerned Sound
 ##  @param[in] _pvPosition     Desired position
@@ -290,7 +290,7 @@ proc orxSound_SetTime*(pstSound: ptr orxSOUND; fTime: orxFLOAT): orxSTATUS {.cde
 ##
 
 proc orxSound_SetPosition*(pstSound: ptr orxSOUND; pvPosition: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxSound_SetPosition(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_SetPosition", dynlib: "liborx.so".}
 ## * Sets sound attenuation
 ##  @param[in] _pstSound       Concerned Sound
 ##  @param[in] _fAttenuation   Desired attenuation
@@ -298,7 +298,7 @@ proc orxSound_SetPosition*(pstSound: ptr orxSOUND; pvPosition: ptr orxVECTOR): o
 ##
 
 proc orxSound_SetAttenuation*(pstSound: ptr orxSOUND; fAttenuation: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxSound_SetAttenuation(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_SetAttenuation", dynlib: "liborx.so".}
 ## * Sets sound reference distance
 ##  @param[in] _pstSound       Concerned Sound
 ##  @param[in] _fDistance      Within this distance, sound is perceived at its maximum volume
@@ -306,7 +306,7 @@ proc orxSound_SetAttenuation*(pstSound: ptr orxSOUND; fAttenuation: orxFLOAT): o
 ##
 
 proc orxSound_SetReferenceDistance*(pstSound: ptr orxSOUND; fDistance: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxSound_SetReferenceDistance(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_SetReferenceDistance", dynlib: "liborx.so".}
 ## * Loops sound
 ##  @param[in] _pstSound       Concerned Sound
 ##  @param[in] _bLoop          orxTRUE / orxFALSE
@@ -314,28 +314,28 @@ proc orxSound_SetReferenceDistance*(pstSound: ptr orxSOUND; fDistance: orxFLOAT)
 ##
 
 proc orxSound_Loop*(pstSound: ptr orxSOUND; bLoop: orxBOOL): orxSTATUS {.cdecl,
-    importcpp: "orxSound_Loop(@)", dynlib: "liborx.so".}
+    importc: "orxSound_Loop", dynlib: "liborx.so".}
 ## * Gets sound volume
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxFLOAT
 ##
 
 proc orxSound_GetVolume*(pstSound: ptr orxSOUND): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetVolume(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetVolume", dynlib: "liborx.so".}
 ## * Gets sound pitch
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxFLOAT
 ##
 
 proc orxSound_GetPitch*(pstSound: ptr orxSOUND): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetPitch(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetPitch", dynlib: "liborx.so".}
 ## * Gets a sound's time (ie. cursor/play position from beginning)
 ##  @param[in]   _pstSound                             Concerned sound
 ##  @return Sound's time (cursor/play position), in seconds
 ##
 
 proc orxSound_GetTime*(pstSound: ptr orxSOUND): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetTime(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetTime", dynlib: "liborx.so".}
 ## * Gets sound position
 ##  @param[in]  _pstSound      Concerned Sound
 ##  @param[out] _pvPosition    Sound's position
@@ -343,62 +343,62 @@ proc orxSound_GetTime*(pstSound: ptr orxSOUND): orxFLOAT {.cdecl,
 ##
 
 proc orxSound_GetPosition*(pstSound: ptr orxSOUND; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxSound_GetPosition(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_GetPosition", dynlib: "liborx.so".}
 ## * Gets sound attenuation
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxFLOAT
 ##
 
 proc orxSound_GetAttenuation*(pstSound: ptr orxSOUND): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetAttenuation(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetAttenuation", dynlib: "liborx.so".}
 ## * Gets sound reference distance
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxFLOAT
 ##
 
 proc orxSound_GetReferenceDistance*(pstSound: ptr orxSOUND): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetReferenceDistance(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetReferenceDistance", dynlib: "liborx.so".}
 ## * Is sound looping?
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxSound_IsLooping*(pstSound: ptr orxSOUND): orxBOOL {.cdecl,
-    importcpp: "orxSound_IsLooping(@)", dynlib: "liborx.so".}
+    importc: "orxSound_IsLooping", dynlib: "liborx.so".}
 ## * Gets sound duration
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxFLOAT
 ##
 
 proc orxSound_GetDuration*(pstSound: ptr orxSOUND): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetDuration(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetDuration", dynlib: "liborx.so".}
 ## * Gets sound status
 ##  @param[in] _pstSound       Concerned Sound
 ##  @return orxSOUND_STATUS
 ##
 
 proc orxSound_GetStatus*(pstSound: ptr orxSOUND): orxSOUND_STATUS {.cdecl,
-    importcpp: "orxSound_GetStatus(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetStatus", dynlib: "liborx.so".}
 ## * Gets sound config name
 ##  @param[in]   _pstSound     Concerned sound
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxSound_GetName*(pstSound: ptr orxSOUND): ptr orxCHAR {.cdecl,
-    importcpp: "orxSound_GetName(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetName", dynlib: "liborx.so".}
 ## * Gets master bus ID
 ##  @return      Master bus ID
 ##
 
 proc orxSound_GetMasterBusID*(): orxSTRINGID {.cdecl,
-    importcpp: "orxSound_GetMasterBusID(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetMasterBusID", dynlib: "liborx.so".}
 ## * Gets sound's bus ID
 ##  @param[in]   _pstSound     Concerned sound
 ##  @return      Sound's bus ID
 ##
 
 proc orxSound_GetBusID*(pstSound: ptr orxSOUND): orxSTRINGID {.cdecl,
-    importcpp: "orxSound_GetBusID(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetBusID", dynlib: "liborx.so".}
 ## * Sets sound's bus ID
 ##  @param[in]   _pstSound     Concerned sound
 ##  @param[in]   _stBusID      Bus ID to set
@@ -406,7 +406,7 @@ proc orxSound_GetBusID*(pstSound: ptr orxSOUND): orxSTRINGID {.cdecl,
 ##
 
 proc orxSound_SetBusID*(pstSound: ptr orxSOUND; stBusID: orxSTRINGID): orxSTATUS {.
-    cdecl, importcpp: "orxSound_SetBusID(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_SetBusID", dynlib: "liborx.so".}
 ## * Gets next sound in bus
 ##  @param[in]   _pstSound     Concerned sound, orxNULL to get the first one
 ##  @param[in]   _stBusID      Bus ID to consider, orxSTRINGID_UNDEFINED for all
@@ -414,28 +414,28 @@ proc orxSound_SetBusID*(pstSound: ptr orxSOUND; stBusID: orxSTRINGID): orxSTATUS
 ##
 
 proc orxSound_GetNext*(pstSound: ptr orxSOUND; stBusID: orxSTRINGID): ptr orxSOUND {.
-    cdecl, importcpp: "orxSound_GetNext(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_GetNext", dynlib: "liborx.so".}
 ## * Gets bus parent
 ##  @param[in]   _stBusID      Concerned bus ID
 ##  @return      Parent bus ID / orxSTRINGID_UNDEFINED
 ##
 
 proc orxSound_GetBusParent*(stBusID: orxSTRINGID): orxSTRINGID {.cdecl,
-    importcpp: "orxSound_GetBusParent(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetBusParent", dynlib: "liborx.so".}
 ## * Gets bus child
 ##  @param[in]   _stBusID      Concerned bus ID
 ##  @return      Child bus ID / orxSTRINGID_UNDEFINED
 ##
 
 proc orxSound_GetBusChild*(stBusID: orxSTRINGID): orxSTRINGID {.cdecl,
-    importcpp: "orxSound_GetBusChild(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetBusChild", dynlib: "liborx.so".}
 ## * Gets bus sibling
 ##  @param[in]   _stBusID      Concerned bus ID
 ##  @return      Sibling bus ID / orxSTRINGID_UNDEFINED
 ##
 
 proc orxSound_GetBusSibling*(stBusID: orxSTRINGID): orxSTRINGID {.cdecl,
-    importcpp: "orxSound_GetBusSibling(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetBusSibling", dynlib: "liborx.so".}
 ## * Sets a bus parent
 ##  @param[in]   _stBusID      Concerned bus ID, will create it if not already existing
 ##  @param[in]   _stParentBusID  ID of the bus to use as parent, will create it if not already existing
@@ -443,21 +443,21 @@ proc orxSound_GetBusSibling*(stBusID: orxSTRINGID): orxSTRINGID {.cdecl,
 ##
 
 proc orxSound_SetBusParent*(stBusID: orxSTRINGID; stParentBusID: orxSTRINGID): orxSTATUS {.
-    cdecl, importcpp: "orxSound_SetBusParent(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_SetBusParent", dynlib: "liborx.so".}
 ## * Gets bus volume (local, ie. unaffected by the whole bus hierarchy)
 ##  @param[in]   _stBusID      Concerned bus ID
 ##  @return      orxFLOAT
 ##
 
 proc orxSound_GetBusVolume*(stBusID: orxSTRINGID): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetBusVolume(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetBusVolume", dynlib: "liborx.so".}
 ## * Gets bus pitch (local, ie. unaffected by the whole bus hierarchy)
 ##  @param[in]   _stBusID      Concerned bus ID
 ##  @return      orxFLOAT
 ##
 
 proc orxSound_GetBusPitch*(stBusID: orxSTRINGID): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetBusPitch(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetBusPitch", dynlib: "liborx.so".}
 ## * Sets bus volume
 ##  @param[in]   _stBusID      Concerned bus ID, will create it if not already existing
 ##  @param[in]   _fVolume      Desired volume (0.0 - 1.0)
@@ -465,7 +465,7 @@ proc orxSound_GetBusPitch*(stBusID: orxSTRINGID): orxFLOAT {.cdecl,
 ##
 
 proc orxSound_SetBusVolume*(stBusID: orxSTRINGID; fVolume: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxSound_SetBusVolume(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSound_SetBusVolume", dynlib: "liborx.so".}
 ## * Sets bus pitch
 ##  @param[in]   _stBusID      Concerned bus ID, will create it if not already existing
 ##  @param[in]   _fPitch       Desired pitch
@@ -473,19 +473,19 @@ proc orxSound_SetBusVolume*(stBusID: orxSTRINGID; fVolume: orxFLOAT): orxSTATUS 
 ##
 
 proc orxSound_SetBusPitch*(stBusID: orxSTRINGID; fPitch: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxSound_SetBusPitch(@)", dynlib: "liborx.so".}
+    importc: "orxSound_SetBusPitch", dynlib: "liborx.so".}
 ## * Gets bus global volume, ie. taking into account the whole bus hierarchy
 ##  @param[in]   _stBusID      Concerned bus ID
 ##  @return      orxFLOAT
 ##
 
 proc orxSound_GetBusGlobalVolume*(stBusID: orxSTRINGID): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetBusGlobalVolume(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetBusGlobalVolume", dynlib: "liborx.so".}
 ## * Gets bus global pitch, ie. taking into account the whole bus hierarchy
 ##  @param[in]   _stBusID      Concerned bus ID
 ##  @return      orxFLOAT
 ##
 
 proc orxSound_GetBusGlobalPitch*(stBusID: orxSTRINGID): orxFLOAT {.cdecl,
-    importcpp: "orxSound_GetBusGlobalPitch(@)", dynlib: "liborx.so".}
+    importc: "orxSound_GetBusGlobalPitch", dynlib: "liborx.so".}
 ## * @}

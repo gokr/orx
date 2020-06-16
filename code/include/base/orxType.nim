@@ -150,43 +150,43 @@ const
 
 ##  *** Float constants ***
 
-var orxFLOAT_0* {.importcpp: "orxFLOAT_0", dynlib: "liborx.so".}: orxFLOAT
+var orxFLOAT_0* {.importc: "orxFLOAT_0", dynlib: "liborx.so".}: orxFLOAT
 
-var orxFLOAT_1* {.importcpp: "orxFLOAT_1", dynlib: "liborx.so".}: orxFLOAT
+var orxFLOAT_1* {.importc: "orxFLOAT_1", dynlib: "liborx.so".}: orxFLOAT
 
-var orxFLOAT_MAX* {.importcpp: "orxFLOAT_MAX", dynlib: "liborx.so".}: orxFLOAT
+var orxFLOAT_MAX* {.importc: "orxFLOAT_MAX", dynlib: "liborx.so".}: orxFLOAT
 
 ##  *** Double constants ***
 
-var orxDOUBLE_0* {.importcpp: "orxDOUBLE_0", dynlib: "liborx.so".}: orxDOUBLE
+var orxDOUBLE_0* {.importc: "orxDOUBLE_0", dynlib: "liborx.so".}: orxDOUBLE
 
-var orxDOUBLE_1* {.importcpp: "orxDOUBLE_1", dynlib: "liborx.so".}: orxDOUBLE
+var orxDOUBLE_1* {.importc: "orxDOUBLE_1", dynlib: "liborx.so".}: orxDOUBLE
 
-var orxDOUBLE_MAX* {.importcpp: "orxDOUBLE_MAX", dynlib: "liborx.so".}: orxDOUBLE
+var orxDOUBLE_MAX* {.importc: "orxDOUBLE_MAX", dynlib: "liborx.so".}: orxDOUBLE
 
 ##  *** Undefined constants ***
 
-var orxU64_UNDEFINED* {.importcpp: "orxU64_UNDEFINED", dynlib: "liborx.so".}: orxU64
+var orxU64_UNDEFINED* {.importc: "orxU64_UNDEFINED", dynlib: "liborx.so".}: orxU64
 
-var orxU32_UNDEFINED* {.importcpp: "orxU32_UNDEFINED", dynlib: "liborx.so".}: orxU32
+var orxU32_UNDEFINED* {.importc: "orxU32_UNDEFINED", dynlib: "liborx.so".}: orxU32
 
-var orxU16_UNDEFINED* {.importcpp: "orxU16_UNDEFINED", dynlib: "liborx.so".}: orxU16
+var orxU16_UNDEFINED* {.importc: "orxU16_UNDEFINED", dynlib: "liborx.so".}: orxU16
 
-var orxU8_UNDEFINED* {.importcpp: "orxU8_UNDEFINED", dynlib: "liborx.so".}: orxU8
+var orxU8_UNDEFINED* {.importc: "orxU8_UNDEFINED", dynlib: "liborx.so".}: orxU8
 
-var orxHANDLE_UNDEFINED* {.importcpp: "orxHANDLE_UNDEFINED", dynlib: "liborx.so".}: orxHANDLE
+var orxHANDLE_UNDEFINED* {.importc: "orxHANDLE_UNDEFINED", dynlib: "liborx.so".}: orxHANDLE
 
-var orxSTRINGID_UNDEFINED* {.importcpp: "orxSTRINGID_UNDEFINED", dynlib: "liborx.so".}: orxSTRINGID
+var orxSTRINGID_UNDEFINED* {.importc: "orxSTRINGID_UNDEFINED", dynlib: "liborx.so".}: orxSTRINGID
 
 ##  *** String & character constants ***
 
-var orxSTRING_EMPTY* {.importcpp: "orxSTRING_EMPTY", dynlib: "liborx.so".}: ptr orxCHAR
+var orxSTRING_EMPTY* {.importc: "orxSTRING_EMPTY", dynlib: "liborx.so".}: ptr orxCHAR
 
-var orxSTRING_TRUE* {.importcpp: "orxSTRING_TRUE", dynlib: "liborx.so".}: ptr orxCHAR
+var orxSTRING_TRUE* {.importc: "orxSTRING_TRUE", dynlib: "liborx.so".}: ptr orxCHAR
 
-var orxSTRING_FALSE* {.importcpp: "orxSTRING_FALSE", dynlib: "liborx.so".}: ptr orxCHAR
+var orxSTRING_FALSE* {.importc: "orxSTRING_FALSE", dynlib: "liborx.so".}: ptr orxCHAR
 
-var orxSTRING_EOL* {.importcpp: "orxSTRING_EOL", dynlib: "liborx.so".}: ptr orxCHAR
+var orxSTRING_EOL* {.importc: "orxSTRING_EOL", dynlib: "liborx.so".}: ptr orxCHAR
 
 const
   orxCHAR_NULL* = '\x00'
@@ -197,7 +197,7 @@ const
 
 ##  *** Directory separators ***
 
-var orxSTRING_DIRECTORY_SEPARATOR* {.importcpp: "orxSTRING_DIRECTORY_SEPARATOR",
+var orxSTRING_DIRECTORY_SEPARATOR* {.importc: "orxSTRING_DIRECTORY_SEPARATOR",
                                    dynlib: "liborx.so".}: ptr orxCHAR
 
 const

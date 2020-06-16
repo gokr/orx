@@ -57,17 +57,16 @@ const
 ## * Setups the bank module
 ##
 
-proc orxBank_Setup*() {.cdecl, importcpp: "orxBank_Setup(@)", dynlib: "liborx.so".}
+proc orxBank_Setup*() {.cdecl, importc: "orxBank_Setup", dynlib: "liborx.so".}
 ## * Inits the bank Module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxBank_Init*(): orxSTATUS {.cdecl, importcpp: "orxBank_Init(@)",
-                               dynlib: "liborx.so".}
+proc orxBank_Init*(): orxSTATUS {.cdecl, importc: "orxBank_Init", dynlib: "liborx.so".}
 ## * Exits from the bank module
 ##
 
-proc orxBank_Exit*() {.cdecl, importcpp: "orxBank_Exit(@)", dynlib: "liborx.so".}
+proc orxBank_Exit*() {.cdecl, importc: "orxBank_Exit", dynlib: "liborx.so".}
 ## * Creates a new bank in memory and returns a pointer to it
 ##  @param[in] _u16NbElem  Number of elements per segments
 ##  @param[in] _u32Size    Size of an element
@@ -78,12 +77,12 @@ proc orxBank_Exit*() {.cdecl, importcpp: "orxBank_Exit(@)", dynlib: "liborx.so".
 
 proc orxBank_Create*(u16NbElem: orxU16; u32Size: orxU32; u32Flags: orxU32;
                     eMemType: orxMEMORY_TYPE): ptr orxBANK {.cdecl,
-    importcpp: "orxBank_Create(@)", dynlib: "liborx.so".}
+    importc: "orxBank_Create", dynlib: "liborx.so".}
 ## * Frees some memory allocated with orxMemory_Allocate
 ##  @param[in] _pstBank    Pointer to the memory bank allocated by orx
 ##
 
-proc orxBank_Delete*(pstBank: ptr orxBANK) {.cdecl, importcpp: "orxBank_Delete(@)",
+proc orxBank_Delete*(pstBank: ptr orxBANK) {.cdecl, importc: "orxBank_Delete",
     dynlib: "liborx.so".}
 ## * Allocates a new cell from the bank
 ##  @param[in] _pstBank    Pointer to the memory bank to use
@@ -91,7 +90,7 @@ proc orxBank_Delete*(pstBank: ptr orxBANK) {.cdecl, importcpp: "orxBank_Delete(@
 ##
 
 proc orxBank_Allocate*(pstBank: ptr orxBANK): pointer {.cdecl,
-    importcpp: "orxBank_Allocate(@)", dynlib: "liborx.so".}
+    importc: "orxBank_Allocate", dynlib: "liborx.so".}
 ## * Allocates a new cell from the bank and returns its index
 ##  @param[in] _pstBank        Pointer to the memory bank to use
 ##  @param[out] _pu32ItemIndex Will be set with the allocated item index
@@ -101,30 +100,30 @@ proc orxBank_Allocate*(pstBank: ptr orxBANK): pointer {.cdecl,
 
 proc orxBank_AllocateIndexed*(pstBank: ptr orxBANK; pu32ItemIndex: ptr orxU32;
                              ppPrevious: ptr pointer): pointer {.cdecl,
-    importcpp: "orxBank_AllocateIndexed(@)", dynlib: "liborx.so".}
+    importc: "orxBank_AllocateIndexed", dynlib: "liborx.so".}
 ## * Frees an allocated cell
 ##  @param[in] _pstBank    Bank of memory from where _pCell has been allocated
 ##  @param[in] _pCell      Pointer to the cell to free
 ##
 
 proc orxBank_Free*(pstBank: ptr orxBANK; pCell: pointer) {.cdecl,
-    importcpp: "orxBank_Free(@)", dynlib: "liborx.so".}
+    importc: "orxBank_Free", dynlib: "liborx.so".}
 ## * Frees all allocated cell from a bank
 ##  @param[in] _pstBank    Bank of memory to clear
 ##
 
-proc orxBank_Clear*(pstBank: ptr orxBANK) {.cdecl, importcpp: "orxBank_Clear(@)",
+proc orxBank_Clear*(pstBank: ptr orxBANK) {.cdecl, importc: "orxBank_Clear",
                                         dynlib: "liborx.so".}
 ## * Compacts a bank by removing all its unused segments
 ##  @param[in] _pstBank    Bank of memory to compact
 ##
 
-proc orxBank_Compact*(pstBank: ptr orxBANK) {.cdecl, importcpp: "orxBank_Compact(@)",
+proc orxBank_Compact*(pstBank: ptr orxBANK) {.cdecl, importc: "orxBank_Compact",
     dynlib: "liborx.so".}
 ## * Compacts all banks by removing all their unused segments
 ##
 
-proc orxBank_CompactAll*() {.cdecl, importcpp: "orxBank_CompactAll(@)",
+proc orxBank_CompactAll*() {.cdecl, importc: "orxBank_CompactAll",
                            dynlib: "liborx.so".}
 ## * Gets the next cell
 ##  @param[in] _pstBank    Bank of memory from where _pCell has been allocated
@@ -133,7 +132,7 @@ proc orxBank_CompactAll*() {.cdecl, importcpp: "orxBank_CompactAll(@)",
 ##
 
 proc orxBank_GetNext*(pstBank: ptr orxBANK; pCell: pointer): pointer {.cdecl,
-    importcpp: "orxBank_GetNext(@)", dynlib: "liborx.so".}
+    importc: "orxBank_GetNext", dynlib: "liborx.so".}
 ## * Gets the cell's index
 ##  @param[in] _pstBank    Concerned memory bank
 ##  @param[in] _pCell      Cell of which we want the index
@@ -141,7 +140,7 @@ proc orxBank_GetNext*(pstBank: ptr orxBANK; pCell: pointer): pointer {.cdecl,
 ##
 
 proc orxBank_GetIndex*(pstBank: ptr orxBANK; pCell: pointer): orxU32 {.cdecl,
-    importcpp: "orxBank_GetIndex(@)", dynlib: "liborx.so".}
+    importc: "orxBank_GetIndex", dynlib: "liborx.so".}
 ## * Gets the cell at given index, orxNULL is the cell isn't allocated
 ##  @param[in] _pstBank    Concerned memory bank
 ##  @param[in] _u32Index   Index of the cell to retrieve
@@ -149,14 +148,14 @@ proc orxBank_GetIndex*(pstBank: ptr orxBANK; pCell: pointer): orxU32 {.cdecl,
 ##
 
 proc orxBank_GetAtIndex*(pstBank: ptr orxBANK; u32Index: orxU32): pointer {.cdecl,
-    importcpp: "orxBank_GetAtIndex(@)", dynlib: "liborx.so".}
+    importc: "orxBank_GetAtIndex", dynlib: "liborx.so".}
 ## * Gets the bank allocated cell count
 ##  @param[in] _pstBank    Concerned bank
 ##  @return Number of allocated cells
 ##
 
 proc orxBank_GetCount*(pstBank: ptr orxBANK): orxU32 {.cdecl,
-    importcpp: "orxBank_GetCount(@)", dynlib: "liborx.so".}
+    importc: "orxBank_GetCount", dynlib: "liborx.so".}
 ## ******************************************************************************
 ##  DEBUG FUNCTION
 ## ****************************************************************************
@@ -166,5 +165,5 @@ when defined(DEBUG):
   ##  @param[in] _pstBank    Bank's pointer
   ##
   proc orxBank_DebugPrint*(pstBank: ptr orxBANK) {.cdecl,
-      importcpp: "orxBank_DebugPrint(@)", dynlib: "liborx.so".}
+      importc: "orxBank_DebugPrint", dynlib: "liborx.so".}
 ## * @}

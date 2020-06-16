@@ -70,17 +70,17 @@ type orxOBJECT* = object
 ## * Object module setup
 ##
 
-proc orxObject_Setup*() {.cdecl, importcpp: "orxObject_Setup(@)", dynlib: "liborx.so".}
+proc orxObject_Setup*() {.cdecl, importc: "orxObject_Setup", dynlib: "liborx.so".}
 ## * Inits the object module.
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_Init*(): orxSTATUS {.cdecl, importcpp: "orxObject_Init(@)",
+proc orxObject_Init*(): orxSTATUS {.cdecl, importc: "orxObject_Init",
                                  dynlib: "liborx.so".}
 ## * Exits from the object module.
 ##
 
-proc orxObject_Exit*() {.cdecl, importcpp: "orxObject_Exit(@)", dynlib: "liborx.so".}
+proc orxObject_Exit*() {.cdecl, importc: "orxObject_Exit", dynlib: "liborx.so".}
 ## * @}
 ## * @name Basic handling
 ##  @{
@@ -88,7 +88,7 @@ proc orxObject_Exit*() {.cdecl, importcpp: "orxObject_Exit(@)", dynlib: "liborx.
 ##  @return orxOBJECT / orxNULL
 ##
 
-proc orxObject_Create*(): ptr orxOBJECT {.cdecl, importcpp: "orxObject_Create(@)",
+proc orxObject_Create*(): ptr orxOBJECT {.cdecl, importc: "orxObject_Create",
                                       dynlib: "liborx.so".}
 ## * Creates an object from config.
 ##  @param[in]   _zConfigID    Config ID
@@ -96,14 +96,14 @@ proc orxObject_Create*(): ptr orxOBJECT {.cdecl, importcpp: "orxObject_Create(@)
 ##
 
 proc orxObject_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxOBJECT {.cdecl,
-    importcpp: "orxObject_CreateFromConfig(@)", dynlib: "liborx.so".}
+    importc: "orxObject_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes an object, *unsafe* when called from an event handler: call orxObject_SetLifeTime(orxFLOAT_0) instead
 ##  @param[in] _pstObject        Concerned object
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxObject_Delete*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
-    importcpp: "orxObject_Delete(@)", dynlib: "liborx.so".}
+    importc: "orxObject_Delete", dynlib: "liborx.so".}
 ## * Updates an object.
 ##  @param[in] _pstObject        Concerned object
 ##  @param[in] _pstClockInfo     Clock information used to compute new object's state
@@ -111,49 +111,49 @@ proc orxObject_Delete*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
 ##
 
 proc orxObject_Update*(pstObject: ptr orxOBJECT; pstClockInfo: ptr orxCLOCK_INFO): orxSTATUS {.
-    cdecl, importcpp: "orxObject_Update(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_Update", dynlib: "liborx.so".}
 ## * Enables/disables an object. Note that enabling/disabling an object is not recursive, so its children will not be affected, see orxObject_EnableRecursive().
 ##  @param[in]   _pstObject    Concerned object
 ##  @param[in]   _bEnable      Enable / disable
 ##
 
 proc orxObject_Enable*(pstObject: ptr orxOBJECT; bEnable: orxBOOL) {.cdecl,
-    importcpp: "orxObject_Enable(@)", dynlib: "liborx.so".}
+    importc: "orxObject_Enable", dynlib: "liborx.so".}
 ## * Enables/disables an object and all its children.
 ##  @param[in]   _pstObject    Concerned object
 ##  @param[in]   _bEnable      Enable / disable
 ##
 
 proc orxObject_EnableRecursive*(pstObject: ptr orxOBJECT; bEnable: orxBOOL) {.cdecl,
-    importcpp: "orxObject_EnableRecursive(@)", dynlib: "liborx.so".}
+    importc: "orxObject_EnableRecursive", dynlib: "liborx.so".}
 ## * Is object enabled?
 ##  @param[in]   _pstObject    Concerned object
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxObject_IsEnabled*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
-    importcpp: "orxObject_IsEnabled(@)", dynlib: "liborx.so".}
+    importc: "orxObject_IsEnabled", dynlib: "liborx.so".}
 ## * Pauses/unpauses an object. Note that pausing an object is not recursive, so its children will not be affected, see orxObject_PauseRecursive().
 ##  @param[in]   _pstObject    Concerned object
 ##  @param[in]   _bPause       Pause / unpause
 ##
 
 proc orxObject_Pause*(pstObject: ptr orxOBJECT; bPause: orxBOOL) {.cdecl,
-    importcpp: "orxObject_Pause(@)", dynlib: "liborx.so".}
+    importc: "orxObject_Pause", dynlib: "liborx.so".}
 ## * Pauses/unpauses an object and its children.
 ##  @param[in]   _pstObject    Concerned object
 ##  @param[in]   _bPause       Pause / unpause
 ##
 
 proc orxObject_PauseRecursive*(pstObject: ptr orxOBJECT; bPause: orxBOOL) {.cdecl,
-    importcpp: "orxObject_PauseRecursive(@)", dynlib: "liborx.so".}
+    importc: "orxObject_PauseRecursive", dynlib: "liborx.so".}
 ## * Is object paused?
 ##  @param[in]   _pstObject    Concerned object
 ##  @return      orxTRUE if paused, orxFALSE otherwise
 ##
 
 proc orxObject_IsPaused*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
-    importcpp: "orxObject_IsPaused(@)", dynlib: "liborx.so".}
+    importc: "orxObject_IsPaused", dynlib: "liborx.so".}
 ## * @}
 ## * @name User data
 ##  @{
@@ -164,14 +164,14 @@ proc orxObject_IsPaused*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
 ##
 
 proc orxObject_SetUserData*(pstObject: ptr orxOBJECT; pUserData: pointer) {.cdecl,
-    importcpp: "orxObject_SetUserData(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetUserData", dynlib: "liborx.so".}
 ## * Gets object's user data.
 ##  @param[in]   _pstObject    Concerned object
 ##  @return      Stored user data / orxNULL
 ##
 
 proc orxObject_GetUserData*(pstObject: ptr orxOBJECT): pointer {.cdecl,
-    importcpp: "orxObject_GetUserData(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetUserData", dynlib: "liborx.so".}
 ## * @}
 ## * @name Ownership
 ##  @{
@@ -187,14 +187,14 @@ proc orxObject_GetUserData*(pstObject: ptr orxOBJECT): pointer {.cdecl,
 ##
 
 proc orxObject_SetOwner*(pstObject: ptr orxOBJECT; pOwner: pointer) {.cdecl,
-    importcpp: "orxObject_SetOwner(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetOwner", dynlib: "liborx.so".}
 ## * Gets object's owner. See orxObject_SetOwner().
 ##  @param[in]   _pstObject    Concerned object
 ##  @return      Owner / orxNULL
 ##
 
 proc orxObject_GetOwner*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
-    importcpp: "orxObject_GetOwner(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetOwner", dynlib: "liborx.so".}
 ## * Gets object's first owned child (only if created with a config ChildList / has an owner set with orxObject_SetOwner)
 ##  see orxObject_SetOwner() and orxObject_SetParent() for a comparison of ownership and parenthood in Orx.
 ##
@@ -211,7 +211,7 @@ proc orxObject_GetOwner*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
 ##
 
 proc orxObject_GetOwnedChild*(pstObject: ptr orxOBJECT): ptr orxOBJECT {.cdecl,
-    importcpp: "orxObject_GetOwnedChild(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetOwnedChild", dynlib: "liborx.so".}
 ## * Gets object's next owned sibling (only if created with a config ChildList / has an owner set with orxObject_SetOwner)
 ##  This function is typically used to iterate over the owned children of an object, see orxObject_GetOwnedChild() for an example.
 ##  @param[in]   _pstObject    Concerned object
@@ -219,7 +219,7 @@ proc orxObject_GetOwnedChild*(pstObject: ptr orxOBJECT): ptr orxOBJECT {.cdecl,
 ##
 
 proc orxObject_GetOwnedSibling*(pstObject: ptr orxOBJECT): ptr orxOBJECT {.cdecl,
-    importcpp: "orxObject_GetOwnedSibling(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetOwnedSibling", dynlib: "liborx.so".}
 ## * @}
 ## * @name Clock
 ##  @{
@@ -230,14 +230,14 @@ proc orxObject_GetOwnedSibling*(pstObject: ptr orxOBJECT): ptr orxOBJECT {.cdecl
 ##
 
 proc orxObject_SetClock*(pstObject: ptr orxOBJECT; pstClock: ptr orxCLOCK): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetClock(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetClock", dynlib: "liborx.so".}
 ## * Gets object's clock.
 ##  @param[in]   _pstObject    Concerned object
 ##  @return      Associated clock / orxNULL
 ##
 
 proc orxObject_GetClock*(pstObject: ptr orxOBJECT): ptr orxCLOCK {.cdecl,
-    importcpp: "orxObject_GetClock(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetClock", dynlib: "liborx.so".}
 ## * @}
 ## * @name Linked structures
 ##  @{
@@ -249,7 +249,7 @@ proc orxObject_GetClock*(pstObject: ptr orxOBJECT): ptr orxCLOCK {.cdecl,
 
 proc orxObject_LinkStructure*(pstObject: ptr orxOBJECT;
                              pstStructure: ptr orxSTRUCTURE): orxSTATUS {.cdecl,
-    importcpp: "orxObject_LinkStructure(@)", dynlib: "liborx.so".}
+    importc: "orxObject_LinkStructure", dynlib: "liborx.so".}
 ## * Unlinks structure from an object, given its structure ID.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _eStructureID   ID of structure to unlink
@@ -257,7 +257,7 @@ proc orxObject_LinkStructure*(pstObject: ptr orxOBJECT;
 
 proc orxObject_UnlinkStructure*(pstObject: ptr orxOBJECT;
                                eStructureID: orxSTRUCTURE_ID) {.cdecl,
-    importcpp: "orxObject_UnlinkStructure(@)", dynlib: "liborx.so".}
+    importc: "orxObject_UnlinkStructure", dynlib: "liborx.so".}
 ## * Structure used by an object get accessor, given its structure ID. Structure must then be cast correctly. (see helper macro
 ##  #orxOBJECT_GET_STRUCTURE())
 ##  @param[in]   _pstObject      Concerned object
@@ -266,7 +266,7 @@ proc orxObject_UnlinkStructure*(pstObject: ptr orxOBJECT;
 ##
 
 proc orxObject_GetStructure*(pstObject: ptr orxOBJECT; eStructureID: orxSTRUCTURE_ID): ptr orxSTRUCTURE {.
-    cdecl, importcpp: "_orxObject_GetStructure(@)", dynlib: "liborx.so".}
+    cdecl, importc: "_orxObject_GetStructure", dynlib: "liborx.so".}
 ## * @}
 ## * @name Flip
 ##  @{
@@ -278,7 +278,7 @@ proc orxObject_GetStructure*(pstObject: ptr orxOBJECT; eStructureID: orxSTRUCTUR
 ##
 
 proc orxObject_SetFlip*(pstObject: ptr orxOBJECT; bFlipX: orxBOOL; bFlipY: orxBOOL): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetFlip(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetFlip", dynlib: "liborx.so".}
 ## * Gets object flipping.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pbFlipX        X axis flipping
@@ -288,7 +288,7 @@ proc orxObject_SetFlip*(pstObject: ptr orxOBJECT; bFlipX: orxBOOL; bFlipY: orxBO
 
 proc orxObject_GetFlip*(pstObject: ptr orxOBJECT; pbFlipX: ptr orxBOOL;
                        pbFlipY: ptr orxBOOL): orxSTATUS {.cdecl,
-    importcpp: "orxObject_GetFlip(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetFlip", dynlib: "liborx.so".}
 ## * @}
 ## * @name Graphic
 ##  @{
@@ -300,7 +300,7 @@ proc orxObject_GetFlip*(pstObject: ptr orxOBJECT; pbFlipX: ptr orxBOOL;
 ##
 
 proc orxObject_SetPivot*(pstObject: ptr orxOBJECT; pvPivot: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetPivot(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetPivot", dynlib: "liborx.so".}
 ## * Sets object origin. This is a convenience wrapper around orxGraphic_SetOrigin(). The "origin" of a graphic is
 ##  essentially what is indicated by the "TextureOrigin" field of a config graphic section. The "origin" together with
 ##  "size" (see orxObject_SetSize()) defines the sprite of an object.
@@ -310,7 +310,7 @@ proc orxObject_SetPivot*(pstObject: ptr orxOBJECT; pvPivot: ptr orxVECTOR): orxS
 ##
 
 proc orxObject_SetOrigin*(pstObject: ptr orxOBJECT; pvOrigin: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetOrigin(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetOrigin", dynlib: "liborx.so".}
 ## * Sets object size. For objects that have a graphic attached it's simply a convenience wrapper for orxGraphic_SetSize(),
 ##  but an object can also have a size without a graphic.
 ##
@@ -325,7 +325,7 @@ proc orxObject_SetOrigin*(pstObject: ptr orxOBJECT; pvOrigin: ptr orxVECTOR): or
 ##
 
 proc orxObject_SetSize*(pstObject: ptr orxOBJECT; pvSize: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetSize(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetSize", dynlib: "liborx.so".}
 ## * Get object pivot. See orxObject_SetPivot() for a more detailed explanation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvPivot        Object pivot
@@ -333,7 +333,7 @@ proc orxObject_SetSize*(pstObject: ptr orxOBJECT; pvSize: ptr orxVECTOR): orxSTA
 ##
 
 proc orxObject_GetPivot*(pstObject: ptr orxOBJECT; pvPivot: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetPivot(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetPivot", dynlib: "liborx.so".}
 ## * Get object origin. See orxObject_SetOrigin() for a more detailed explanation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvOrigin       Object origin
@@ -341,7 +341,7 @@ proc orxObject_GetPivot*(pstObject: ptr orxOBJECT; pvPivot: ptr orxVECTOR): ptr 
 ##
 
 proc orxObject_GetOrigin*(pstObject: ptr orxOBJECT; pvOrigin: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetOrigin(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetOrigin", dynlib: "liborx.so".}
 ## * Gets object size. See orxObject_SetSize() for a more detailed explanation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvSize         Object's size
@@ -349,7 +349,7 @@ proc orxObject_GetOrigin*(pstObject: ptr orxOBJECT; pvOrigin: ptr orxVECTOR): pt
 ##
 
 proc orxObject_GetSize*(pstObject: ptr orxOBJECT; pvSize: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetSize(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetSize", dynlib: "liborx.so".}
 ## * @}
 ## * @name Frame
 ##  @{
@@ -361,7 +361,7 @@ proc orxObject_GetSize*(pstObject: ptr orxOBJECT; pvSize: ptr orxVECTOR): ptr or
 ##
 
 proc orxObject_SetPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetPosition(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetPosition", dynlib: "liborx.so".}
 ## * Sets object position in the global reference frame. See orxObject_SetPosition() for setting an object's position
 ##  in its parent's reference frame.
 ##  @param[in]   _pstObject      Concerned object
@@ -370,7 +370,7 @@ proc orxObject_SetPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVECTOR)
 ##
 
 proc orxObject_SetWorldPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetWorldPosition(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetWorldPosition", dynlib: "liborx.so".}
 ## * Sets object rotation in its parent's reference frame. See orxObject_SetWorldRotation() for setting an object's
 ##  rotation in the global reference frame.
 ##  @param[in]   _pstObject      Concerned object
@@ -379,7 +379,7 @@ proc orxObject_SetWorldPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVE
 ##
 
 proc orxObject_SetRotation*(pstObject: ptr orxOBJECT; fRotation: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetRotation(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetRotation", dynlib: "liborx.so".}
 ## * Sets object rotation in the global reference frame. See orxObject_SetRotation() for setting an object's rotation
 ##  in its parent's reference frame.
 ##  @param[in]   _pstObject      Concerned object
@@ -388,7 +388,7 @@ proc orxObject_SetRotation*(pstObject: ptr orxOBJECT; fRotation: orxFLOAT): orxS
 ##
 
 proc orxObject_SetWorldRotation*(pstObject: ptr orxOBJECT; fRotation: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetWorldRotation(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetWorldRotation", dynlib: "liborx.so".}
 ## * Sets object scale in its parent's reference frame. See orxObject_SetWorldScale() for setting an object's scale
 ##  in the global reference frame.
 ##  See orxObject_SetSize() for a deeper explanation of the "size" of an object.
@@ -398,7 +398,7 @@ proc orxObject_SetWorldRotation*(pstObject: ptr orxOBJECT; fRotation: orxFLOAT):
 ##
 
 proc orxObject_SetScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetScale(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetScale", dynlib: "liborx.so".}
 ## * Sets object scale in the global reference frame. See orxObject_SetScale() for setting an object's scale in its
 ##  parent's reference frame.
 ##  @param[in]   _pstObject      Concerned object
@@ -407,7 +407,7 @@ proc orxObject_SetScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR): orxS
 ##
 
 proc orxObject_SetWorldScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetWorldScale(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetWorldScale", dynlib: "liborx.so".}
 ## * Get object position. See orxObject_SetPosition().
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvPosition     Object position
@@ -415,7 +415,7 @@ proc orxObject_SetWorldScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR):
 ##
 
 proc orxObject_GetPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetPosition(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetPosition", dynlib: "liborx.so".}
 ## * Get object world position. See orxObject_SetWorldPosition().
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvPosition     Object world position
@@ -423,21 +423,21 @@ proc orxObject_GetPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVECTOR)
 ##
 
 proc orxObject_GetWorldPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetWorldPosition(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetWorldPosition", dynlib: "liborx.so".}
 ## * Get object rotation. See orxObject_SetRotation().
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxFLOAT (radians)
 ##
 
 proc orxObject_GetRotation*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
-    importcpp: "orxObject_GetRotation(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetRotation", dynlib: "liborx.so".}
 ## * Get object world rotation. See orxObject_SetWorldRotation().
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxFLOAT (radians)
 ##
 
 proc orxObject_GetWorldRotation*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
-    importcpp: "orxObject_GetWorldRotation(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetWorldRotation", dynlib: "liborx.so".}
 ## * Get object scale. See orxObject_SetScale().
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvScale        Object scale vector
@@ -445,7 +445,7 @@ proc orxObject_GetWorldRotation*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 ##
 
 proc orxObject_GetScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetScale(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetScale", dynlib: "liborx.so".}
 ## * Gets object world scale. See orxObject_SetWorldScale().
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvScale        Object world scale
@@ -453,7 +453,7 @@ proc orxObject_GetScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR): ptr 
 ##
 
 proc orxObject_GetWorldScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetWorldScale(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetWorldScale", dynlib: "liborx.so".}
 ## * @}
 ## * @name Parent
 ##  @{
@@ -471,14 +471,14 @@ proc orxObject_GetWorldScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR):
 ##
 
 proc orxObject_SetParent*(pstObject: ptr orxOBJECT; pParent: pointer): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetParent(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetParent", dynlib: "liborx.so".}
 ## * Gets object's parent. See orxObject_SetParent() for a more detailed explanation.
 ##  @param[in]   _pstObject    Concerned object
 ##  @return      Parent (object, spawner, camera or frame) / orxNULL
 ##
 
 proc orxObject_GetParent*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
-    importcpp: "orxObject_GetParent(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetParent", dynlib: "liborx.so".}
 ## * Gets object's first child. See orxObject_SetOwner() and orxObject_SetParent() for a comparison of
 ##  ownership and parenthood in Orx.
 ##
@@ -496,7 +496,7 @@ proc orxObject_GetParent*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
 ##
 
 proc orxObject_GetChild*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
-    importcpp: "orxObject_GetChild(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetChild", dynlib: "liborx.so".}
 ## * Gets object's next sibling. This function is typically used for iterating over the children of an object,
 ##  see orxObject_GetChild() for an iteration example.
 ##  @param[in]   _pstObject    Concerned object
@@ -504,7 +504,7 @@ proc orxObject_GetChild*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
 ##
 
 proc orxObject_GetSibling*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
-    importcpp: "orxObject_GetSibling(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetSibling", dynlib: "liborx.so".}
 ## * Attaches an object to a parent while maintaining the object's world position.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pParent        Parent structure to attach to (object, spawner, camera or frame)
@@ -512,21 +512,21 @@ proc orxObject_GetSibling*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
 ##
 
 proc orxObject_Attach*(pstObject: ptr orxOBJECT; pParent: pointer): orxSTATUS {.cdecl,
-    importcpp: "orxObject_Attach(@)", dynlib: "liborx.so".}
+    importc: "orxObject_Attach", dynlib: "liborx.so".}
 ## * Detaches an object from a parent while maintaining the object's world position.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orsSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxObject_Detach*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
-    importcpp: "orxObject_Detach(@)", dynlib: "liborx.so".}
+    importc: "orxObject_Detach", dynlib: "liborx.so".}
 ## * Logs all parents of an object, including their frame data.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxObject_LogParents*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
-    importcpp: "orxObject_LogParents(@)", dynlib: "liborx.so".}
+    importc: "orxObject_LogParents", dynlib: "liborx.so".}
 ## * @}
 ## * @name Animation
 ##  @{
@@ -537,7 +537,7 @@ proc orxObject_LogParents*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
 ##
 
 proc orxObject_SetAnimSet*(pstObject: ptr orxOBJECT; pstAnimSet: ptr orxANIMSET): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetAnimSet(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetAnimSet", dynlib: "liborx.so".}
 ## * Sets an object's relative animation frequency.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _fFrequency     Frequency to set: < 1.0 for slower than initial, > 1.0 for faster than initial
@@ -545,7 +545,7 @@ proc orxObject_SetAnimSet*(pstObject: ptr orxOBJECT; pstAnimSet: ptr orxANIMSET)
 ##
 
 proc orxObject_SetAnimFrequency*(pstObject: ptr orxOBJECT; fFrequency: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetAnimFrequency(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetAnimFrequency", dynlib: "liborx.so".}
 ## * Sets the relative animation frequency for an object and its children.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _fFrequency     Frequency to set: < 1.0 for slower than initial, > 1.0 for faster than initial
@@ -553,8 +553,7 @@ proc orxObject_SetAnimFrequency*(pstObject: ptr orxOBJECT; fFrequency: orxFLOAT)
 ##
 
 proc orxObject_SetAnimFrequencyRecursive*(pstObject: ptr orxOBJECT;
-    fFrequency: orxFLOAT) {.cdecl,
-                          importcpp: "orxObject_SetAnimFrequencyRecursive(@)",
+    fFrequency: orxFLOAT) {.cdecl, importc: "orxObject_SetAnimFrequencyRecursive",
                           dynlib: "liborx.so".}
 ## * Gets an object's relative animation frequency.
 ##  @param[in]   _pstObject      Concerned object
@@ -562,7 +561,7 @@ proc orxObject_SetAnimFrequencyRecursive*(pstObject: ptr orxOBJECT;
 ##
 
 proc orxObject_GetAnimFrequency*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
-    importcpp: "orxObject_GetAnimFrequency(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetAnimFrequency", dynlib: "liborx.so".}
 ## * Sets current animation for an object. This function switches the currently displayed animation of the object
 ##  immediately. Compare this with orxObject_SetTargetAnim().
 ##  @param[in]   _pstObject      Concerned object
@@ -571,7 +570,7 @@ proc orxObject_GetAnimFrequency*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 ##
 
 proc orxObject_SetCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetCurrentAnim(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetCurrentAnim", dynlib: "liborx.so".}
 ## * Sets current animation for an object and its children.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zAnimName      Animation name (config's one) to set / orxNULL
@@ -580,7 +579,7 @@ proc orxObject_SetCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR)
 
 proc orxObject_SetCurrentAnimRecursive*(pstObject: ptr orxOBJECT;
                                        zAnimName: ptr orxCHAR) {.cdecl,
-    importcpp: "orxObject_SetCurrentAnimRecursive(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetCurrentAnimRecursive", dynlib: "liborx.so".}
 ## * Sets target animation for an object. The animations are sequenced on an object according to the animation link graph
 ##  defined by its AnimationSet. The sequence follows the graph and tries to reach the target animation. Use
 ##  orxObject_SetCurrentAnim() to switch the animation without using the link graph.
@@ -590,7 +589,7 @@ proc orxObject_SetCurrentAnimRecursive*(pstObject: ptr orxOBJECT;
 ##
 
 proc orxObject_SetTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetTargetAnim(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetTargetAnim", dynlib: "liborx.so".}
 ## * Sets target animation for an object and its children.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zAnimName      Animation name (config's one) to set / orxNULL
@@ -599,21 +598,21 @@ proc orxObject_SetTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR):
 
 proc orxObject_SetTargetAnimRecursive*(pstObject: ptr orxOBJECT;
                                       zAnimName: ptr orxCHAR) {.cdecl,
-    importcpp: "orxObject_SetTargetAnimRecursive(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetTargetAnimRecursive", dynlib: "liborx.so".}
 ## * Gets current animation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      Current animation / orxSTRING_EMPTY
 ##
 
 proc orxObject_GetCurrentAnim*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
-    importcpp: "orxObject_GetCurrentAnim(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetCurrentAnim", dynlib: "liborx.so".}
 ## * Gets target animation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      Target animation / orxSTRING_EMPTY
 ##
 
 proc orxObject_GetTargetAnim*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
-    importcpp: "orxObject_GetTargetAnim(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetTargetAnim", dynlib: "liborx.so".}
 ## * Is current animation test.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zAnimName      Animation name (config's one) to test
@@ -621,7 +620,7 @@ proc orxObject_GetTargetAnim*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
 ##
 
 proc orxObject_IsCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR): orxBOOL {.
-    cdecl, importcpp: "orxObject_IsCurrentAnim(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_IsCurrentAnim", dynlib: "liborx.so".}
 ## * Is target animation test.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zAnimName      Animation name (config's one) to test
@@ -629,7 +628,7 @@ proc orxObject_IsCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR):
 ##
 
 proc orxObject_IsTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR): orxBOOL {.
-    cdecl, importcpp: "orxObject_IsTargetAnim(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_IsTargetAnim", dynlib: "liborx.so".}
 ## * @}
 ## * @name Physics / dynamics
 ##  @{
@@ -640,7 +639,7 @@ proc orxObject_IsTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR): 
 ##
 
 proc orxObject_SetSpeed*(pstObject: ptr orxOBJECT; pvSpeed: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetSpeed(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetSpeed", dynlib: "liborx.so".}
 ## * Sets an object speed relative to its rotation/scale.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pvRelativeSpeed Relative speed to set
@@ -649,7 +648,7 @@ proc orxObject_SetSpeed*(pstObject: ptr orxOBJECT; pvSpeed: ptr orxVECTOR): orxS
 
 proc orxObject_SetRelativeSpeed*(pstObject: ptr orxOBJECT;
                                 pvRelativeSpeed: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importcpp: "orxObject_SetRelativeSpeed(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetRelativeSpeed", dynlib: "liborx.so".}
 ## * Sets an object angular velocity.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _fVelocity      Angular velocity to set (radians/seconds)
@@ -657,7 +656,7 @@ proc orxObject_SetRelativeSpeed*(pstObject: ptr orxOBJECT;
 ##
 
 proc orxObject_SetAngularVelocity*(pstObject: ptr orxOBJECT; fVelocity: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetAngularVelocity(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetAngularVelocity", dynlib: "liborx.so".}
 ## * Sets an object custom gravity.
 ##  @param[in]   _pstObject        Concerned object
 ##  @param[in]   _pvCustomGravity  Custom gravity to set / orxNULL to remove it
@@ -666,7 +665,7 @@ proc orxObject_SetAngularVelocity*(pstObject: ptr orxOBJECT; fVelocity: orxFLOAT
 
 proc orxObject_SetCustomGravity*(pstObject: ptr orxOBJECT;
                                 pvCustomGravity: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importcpp: "orxObject_SetCustomGravity(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetCustomGravity", dynlib: "liborx.so".}
 ## * Gets an object speed.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]   _pvSpeed       Speed to get
@@ -674,7 +673,7 @@ proc orxObject_SetCustomGravity*(pstObject: ptr orxOBJECT;
 ##
 
 proc orxObject_GetSpeed*(pstObject: ptr orxOBJECT; pvSpeed: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetSpeed(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetSpeed", dynlib: "liborx.so".}
 ## * Gets an object relative speed.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvRelativeSpeed Relative speed to get
@@ -683,14 +682,14 @@ proc orxObject_GetSpeed*(pstObject: ptr orxOBJECT; pvSpeed: ptr orxVECTOR): ptr 
 
 proc orxObject_GetRelativeSpeed*(pstObject: ptr orxOBJECT;
                                 pvRelativeSpeed: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetRelativeSpeed(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetRelativeSpeed", dynlib: "liborx.so".}
 ## * Gets an object angular velocity.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      Object angular velocity (radians/seconds)
 ##
 
 proc orxObject_GetAngularVelocity*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
-    importcpp: "orxObject_GetAngularVelocity(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetAngularVelocity", dynlib: "liborx.so".}
 ## * Gets an object custom gravity.
 ##  @param[in]   _pstObject        Concerned object
 ##  @param[out]  _pvCustomGravity  Custom gravity to get
@@ -699,14 +698,14 @@ proc orxObject_GetAngularVelocity*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 
 proc orxObject_GetCustomGravity*(pstObject: ptr orxOBJECT;
                                 pvCustomGravity: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetCustomGravity(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetCustomGravity", dynlib: "liborx.so".}
 ## * Gets an object mass.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      Object mass
 ##
 
 proc orxObject_GetMass*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
-    importcpp: "orxObject_GetMass(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetMass", dynlib: "liborx.so".}
 ## * Gets an object center of mass (object space).
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvMassCenter   Mass center to get
@@ -714,7 +713,7 @@ proc orxObject_GetMass*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 ##
 
 proc orxObject_GetMassCenter*(pstObject: ptr orxOBJECT; pvMassCenter: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importcpp: "orxObject_GetMassCenter(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetMassCenter", dynlib: "liborx.so".}
 ## * Applies a torque.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _fTorque        Torque to apply
@@ -722,7 +721,7 @@ proc orxObject_GetMassCenter*(pstObject: ptr orxOBJECT; pvMassCenter: ptr orxVEC
 ##
 
 proc orxObject_ApplyTorque*(pstObject: ptr orxOBJECT; fTorque: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_ApplyTorque(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_ApplyTorque", dynlib: "liborx.so".}
 ## * Applies a force.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pvForce        Force to apply
@@ -732,7 +731,7 @@ proc orxObject_ApplyTorque*(pstObject: ptr orxOBJECT; fTorque: orxFLOAT): orxSTA
 
 proc orxObject_ApplyForce*(pstObject: ptr orxOBJECT; pvForce: ptr orxVECTOR;
                           pvPoint: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importcpp: "orxObject_ApplyForce(@)", dynlib: "liborx.so".}
+    importc: "orxObject_ApplyForce", dynlib: "liborx.so".}
 ## * Applies an impulse.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pvImpulse      Impulse to apply
@@ -742,7 +741,7 @@ proc orxObject_ApplyForce*(pstObject: ptr orxOBJECT; pvForce: ptr orxVECTOR;
 
 proc orxObject_ApplyImpulse*(pstObject: ptr orxOBJECT; pvImpulse: ptr orxVECTOR;
                             pvPoint: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importcpp: "orxObject_ApplyImpulse(@)", dynlib: "liborx.so".}
+    importc: "orxObject_ApplyImpulse", dynlib: "liborx.so".}
 ## * Issues a raycast to test for potential objects in the way.
 ##  @param[in]   _pvBegin        Beginning of raycast
 ##  @param[in]   _pvEnd          End of raycast
@@ -758,7 +757,7 @@ proc orxObject_Raycast*(pvBegin: ptr orxVECTOR; pvEnd: ptr orxVECTOR;
                        u16SelfFlags: orxU16; u16CheckMask: orxU16;
                        bEarlyExit: orxBOOL; pvContact: ptr orxVECTOR;
                        pvNormal: ptr orxVECTOR): ptr orxOBJECT {.cdecl,
-    importcpp: "orxObject_Raycast(@)", dynlib: "liborx.so".}
+    importc: "orxObject_Raycast", dynlib: "liborx.so".}
 ## * @}
 ## * @name Text
 ##  @{
@@ -769,14 +768,14 @@ proc orxObject_Raycast*(pvBegin: ptr orxVECTOR; pvEnd: ptr orxVECTOR;
 ##
 
 proc orxObject_SetTextString*(pstObject: ptr orxOBJECT; zString: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetTextString(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetTextString", dynlib: "liborx.so".}
 ## * Gets object text string, if object is associated to a text.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxObject_GetTextString*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
-    importcpp: "orxObject_GetTextString(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetTextString", dynlib: "liborx.so".}
 ## * @}
 ## * @name Bounding box
 ##  @{
@@ -787,7 +786,7 @@ proc orxObject_GetTextString*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
 ##
 
 proc orxObject_GetBoundingBox*(pstObject: ptr orxOBJECT; pstBoundingBox: ptr orxOBOX): ptr orxOBOX {.
-    cdecl, importcpp: "orxObject_GetBoundingBox(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetBoundingBox", dynlib: "liborx.so".}
 ## * @}
 ## * @name FX
 ##  @{
@@ -798,7 +797,7 @@ proc orxObject_GetBoundingBox*(pstObject: ptr orxOBJECT; pstBoundingBox: ptr orx
 ##
 
 proc orxObject_AddFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_AddFX(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_AddFX", dynlib: "liborx.so".}
 ## * Adds a unique FX using its config ID. Refer to orxObject_AddUniqueDelayedFX() for details, since this
 ##  function is the same as it with the delay argument set to 0.
 ##  @param[in]   _pstObject      Concerned object
@@ -807,7 +806,7 @@ proc orxObject_AddFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR): orxST
 ##
 
 proc orxObject_AddUniqueFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_AddUniqueFX(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_AddUniqueFX", dynlib: "liborx.so".}
 ## * Adds a delayed FX using its config ID.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zFXConfigID    Config ID of the FX to add
@@ -817,7 +816,7 @@ proc orxObject_AddUniqueFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR):
 
 proc orxObject_AddDelayedFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR;
                             fDelay: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxObject_AddDelayedFX(@)", dynlib: "liborx.so".}
+    importc: "orxObject_AddDelayedFX", dynlib: "liborx.so".}
 ## * Adds a unique delayed FX using its config ID. The difference between this function and orxObject_AddDelayedFX()
 ##  is that this one does not add the specified FX, if the object already has an FX with the same config ID attached.
 ##  note that the "uniqueness" is determined immediately at the time of this function call, not at the time of the
@@ -830,7 +829,7 @@ proc orxObject_AddDelayedFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR;
 
 proc orxObject_AddUniqueDelayedFX*(pstObject: ptr orxOBJECT;
                                   zFXConfigID: ptr orxCHAR; fDelay: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_AddUniqueDelayedFX(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_AddUniqueDelayedFX", dynlib: "liborx.so".}
 ## * Removes an FX using its config ID.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zFXConfigID    Config ID of the FX to remove
@@ -838,7 +837,7 @@ proc orxObject_AddUniqueDelayedFX*(pstObject: ptr orxOBJECT;
 ##
 
 proc orxObject_RemoveFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_RemoveFX(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_RemoveFX", dynlib: "liborx.so".}
 ## * Synchronizes FXs with another object's ones (if FXs are not matching on both objects the behavior is undefined).
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pstModel       Model object on which to synchronize FXs
@@ -846,7 +845,7 @@ proc orxObject_RemoveFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR): or
 ##
 
 proc orxObject_SynchronizeFX*(pstObject: ptr orxOBJECT; pstModel: ptr orxOBJECT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SynchronizeFX(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SynchronizeFX", dynlib: "liborx.so".}
 ## * @}
 ## * @name Sound
 ##  @{
@@ -857,7 +856,7 @@ proc orxObject_SynchronizeFX*(pstObject: ptr orxOBJECT; pstModel: ptr orxOBJECT)
 ##
 
 proc orxObject_AddSound*(pstObject: ptr orxOBJECT; zSoundConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_AddSound(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_AddSound", dynlib: "liborx.so".}
 ## * Removes a sound using its config ID.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zSoundConfigID Config ID of the sound to remove
@@ -865,14 +864,14 @@ proc orxObject_AddSound*(pstObject: ptr orxOBJECT; zSoundConfigID: ptr orxCHAR):
 ##
 
 proc orxObject_RemoveSound*(pstObject: ptr orxOBJECT; zSoundConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_RemoveSound(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_RemoveSound", dynlib: "liborx.so".}
 ## * Gets last added sound (Do *NOT* destroy it directly before removing it!!!).
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxSOUND / orxNULL
 ##
 
 proc orxObject_GetLastAddedSound*(pstObject: ptr orxOBJECT): ptr orxSOUND {.cdecl,
-    importcpp: "orxObject_GetLastAddedSound(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetLastAddedSound", dynlib: "liborx.so".}
 ## * Sets volume for all sounds of an object.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _fVolume        Desired volume (0.0 - 1.0)
@@ -880,7 +879,7 @@ proc orxObject_GetLastAddedSound*(pstObject: ptr orxOBJECT): ptr orxSOUND {.cdec
 ##
 
 proc orxObject_SetVolume*(pstObject: ptr orxOBJECT; fVolume: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetVolume(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetVolume", dynlib: "liborx.so".}
 ## * Sets pitch for all sounds of an object.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _fPitch         Desired pitch (0.0 - 1.0)
@@ -888,21 +887,21 @@ proc orxObject_SetVolume*(pstObject: ptr orxOBJECT; fVolume: orxFLOAT): orxSTATU
 ##
 
 proc orxObject_SetPitch*(pstObject: ptr orxOBJECT; fPitch: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetPitch(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetPitch", dynlib: "liborx.so".}
 ## * Plays all the sounds of an object.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxObject_Play*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
-    importcpp: "orxObject_Play(@)", dynlib: "liborx.so".}
+    importc: "orxObject_Play", dynlib: "liborx.so".}
 ## * Stops all the sounds of an object.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxObject_Stop*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
-    importcpp: "orxObject_Stop(@)", dynlib: "liborx.so".}
+    importc: "orxObject_Stop", dynlib: "liborx.so".}
 ## * @}
 ## * @name Shader
 ##  @{
@@ -913,7 +912,7 @@ proc orxObject_Stop*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
 ##
 
 proc orxObject_AddShader*(pstObject: ptr orxOBJECT; zShaderConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_AddShader(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_AddShader", dynlib: "liborx.so".}
 ## * Removes a shader using its config ID.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zShaderConfigID Config ID of the shader to remove
@@ -921,21 +920,21 @@ proc orxObject_AddShader*(pstObject: ptr orxOBJECT; zShaderConfigID: ptr orxCHAR
 ##
 
 proc orxObject_RemoveShader*(pstObject: ptr orxOBJECT; zShaderConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_RemoveShader(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_RemoveShader", dynlib: "liborx.so".}
 ## * Enables an object's shader.
 ##  @param[in]   _pstObject        Concerned object
 ##  @param[in]   _bEnable          Enable / disable
 ##
 
 proc orxObject_EnableShader*(pstObject: ptr orxOBJECT; bEnable: orxBOOL) {.cdecl,
-    importcpp: "orxObject_EnableShader(@)", dynlib: "liborx.so".}
+    importc: "orxObject_EnableShader", dynlib: "liborx.so".}
 ## * Is an object's shader enabled?
 ##  @param[in]   _pstObject        Concerned object
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxObject_IsShaderEnabled*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
-    importcpp: "orxObject_IsShaderEnabled(@)", dynlib: "liborx.so".}
+    importc: "orxObject_IsShaderEnabled", dynlib: "liborx.so".}
 ## * @}
 ## * @name TimeLine
 ##  @{
@@ -947,7 +946,7 @@ proc orxObject_IsShaderEnabled*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
 
 proc orxObject_AddTimeLineTrack*(pstObject: ptr orxOBJECT;
                                 zTrackConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxObject_AddTimeLineTrack(@)", dynlib: "liborx.so".}
+    importc: "orxObject_AddTimeLineTrack", dynlib: "liborx.so".}
 ## * Removes a timeline track using its config ID
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zTrackConfigID Config ID of the timeline track to remove
@@ -956,21 +955,21 @@ proc orxObject_AddTimeLineTrack*(pstObject: ptr orxOBJECT;
 
 proc orxObject_RemoveTimeLineTrack*(pstObject: ptr orxOBJECT;
                                    zTrackConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxObject_RemoveTimeLineTrack(@)", dynlib: "liborx.so".}
+    importc: "orxObject_RemoveTimeLineTrack", dynlib: "liborx.so".}
 ## * Enables an object's timeline.
 ##  @param[in]   _pstObject        Concerned object
 ##  @param[in]   _bEnable          Enable / disable
 ##
 
 proc orxObject_EnableTimeLine*(pstObject: ptr orxOBJECT; bEnable: orxBOOL) {.cdecl,
-    importcpp: "orxObject_EnableTimeLine(@)", dynlib: "liborx.so".}
+    importc: "orxObject_EnableTimeLine", dynlib: "liborx.so".}
 ## * Is an object's timeline enabled?
 ##  @param[in]   _pstObject        Concerned object
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxObject_IsTimeLineEnabled*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
-    importcpp: "orxObject_IsTimeLineEnabled(@)", dynlib: "liborx.so".}
+    importc: "orxObject_IsTimeLineEnabled", dynlib: "liborx.so".}
 ## * @}
 ## * @name Name
 ##  @{
@@ -980,7 +979,7 @@ proc orxObject_IsTimeLineEnabled*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
 ##
 
 proc orxObject_GetName*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
-    importcpp: "orxObject_GetName(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetName", dynlib: "liborx.so".}
 ## * @}
 ## * @name Neighboring
 ##  @{
@@ -1013,13 +1012,13 @@ proc orxObject_GetName*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
 ##
 
 proc orxObject_CreateNeighborList*(pstCheckBox: ptr orxOBOX; stGroupID: orxSTRINGID): ptr orxBANK {.
-    cdecl, importcpp: "orxObject_CreateNeighborList(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_CreateNeighborList", dynlib: "liborx.so".}
 ## * Deletes an object list created with orxObject_CreateNeighborList().
 ##  @param[in]   _pstObjectList  Concerned object list
 ##
 
 proc orxObject_DeleteNeighborList*(pstObjectList: ptr orxBANK) {.cdecl,
-    importcpp: "orxObject_DeleteNeighborList(@)", dynlib: "liborx.so".}
+    importc: "orxObject_DeleteNeighborList", dynlib: "liborx.so".}
 ## * @}
 ## * @name Smoothing
 ##  @{
@@ -1031,7 +1030,7 @@ proc orxObject_DeleteNeighborList*(pstObjectList: ptr orxBANK) {.cdecl,
 
 proc orxObject_SetSmoothing*(pstObject: ptr orxOBJECT;
                             eSmoothing: orxDISPLAY_SMOOTHING): orxSTATUS {.cdecl,
-    importcpp: "orxObject_SetSmoothing(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetSmoothing", dynlib: "liborx.so".}
 ## * Sets smoothing for an object and its children.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _eSmoothing     Smoothing type (enabled, default or none)
@@ -1040,14 +1039,14 @@ proc orxObject_SetSmoothing*(pstObject: ptr orxOBJECT;
 
 proc orxObject_SetSmoothingRecursive*(pstObject: ptr orxOBJECT;
                                      eSmoothing: orxDISPLAY_SMOOTHING) {.cdecl,
-    importcpp: "orxObject_SetSmoothingRecursive(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetSmoothingRecursive", dynlib: "liborx.so".}
 ## * Gets object smoothing.
 ##  @param[in]   _pstObject     Concerned object
 ##  @return Smoothing type (enabled, default or none)
 ##
 
 proc orxObject_GetSmoothing*(pstObject: ptr orxOBJECT): orxDISPLAY_SMOOTHING {.cdecl,
-    importcpp: "orxObject_GetSmoothing(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetSmoothing", dynlib: "liborx.so".}
 ## * @}
 ## * @name texture
 ##  @{
@@ -1057,7 +1056,7 @@ proc orxObject_GetSmoothing*(pstObject: ptr orxOBJECT): orxDISPLAY_SMOOTHING {.c
 ##
 
 proc orxObject_GetWorkingTexture*(pstObject: ptr orxOBJECT): ptr orxTEXTURE {.cdecl,
-    importcpp: "orxObject_GetWorkingTexture(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetWorkingTexture", dynlib: "liborx.so".}
 ## * @}
 ## * @name graphic
 ##  @{
@@ -1067,7 +1066,7 @@ proc orxObject_GetWorkingTexture*(pstObject: ptr orxOBJECT): ptr orxTEXTURE {.cd
 ##
 
 proc orxObject_GetWorkingGraphic*(pstObject: ptr orxOBJECT): ptr orxGRAPHIC {.cdecl,
-    importcpp: "orxObject_GetWorkingGraphic(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetWorkingGraphic", dynlib: "liborx.so".}
 ## * Sets object color.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pstColor       Color to set, orxNULL to remove any specific color
@@ -1075,21 +1074,21 @@ proc orxObject_GetWorkingGraphic*(pstObject: ptr orxOBJECT): ptr orxGRAPHIC {.cd
 ##
 
 proc orxObject_SetColor*(pstObject: ptr orxOBJECT; pstColor: ptr orxCOLOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetColor(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetColor", dynlib: "liborx.so".}
 ## * Sets color of an object and all its children.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pstColor       Color to set, orxNULL to remove any specific color
 ##
 
 proc orxObject_SetColorRecursive*(pstObject: ptr orxOBJECT; pstColor: ptr orxCOLOR) {.
-    cdecl, importcpp: "orxObject_SetColorRecursive(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetColorRecursive", dynlib: "liborx.so".}
 ## * Object has color accessor?
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxObject_HasColor*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
-    importcpp: "orxObject_HasColor(@)", dynlib: "liborx.so".}
+    importc: "orxObject_HasColor", dynlib: "liborx.so".}
 ## * Gets object color.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pstColor       Object's color
@@ -1097,7 +1096,7 @@ proc orxObject_HasColor*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
 ##
 
 proc orxObject_GetColor*(pstObject: ptr orxOBJECT; pstColor: ptr orxCOLOR): ptr orxCOLOR {.
-    cdecl, importcpp: "orxObject_GetColor(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetColor", dynlib: "liborx.so".}
 ## * Sets object RGB values.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pvRGB          RGB values to set
@@ -1105,14 +1104,14 @@ proc orxObject_GetColor*(pstObject: ptr orxOBJECT; pstColor: ptr orxCOLOR): ptr 
 ##
 
 proc orxObject_SetRGB*(pstObject: ptr orxOBJECT; pvRGB: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetRGB(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetRGB", dynlib: "liborx.so".}
 ## * Sets color of an object and all its children.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pvRGB          RGB values to set
 ##
 
 proc orxObject_SetRGBRecursive*(pstObject: ptr orxOBJECT; pvRGB: ptr orxVECTOR) {.
-    cdecl, importcpp: "orxObject_SetRGBRecursive(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetRGBRecursive", dynlib: "liborx.so".}
 ## * Sets object alpha.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _fAlpha         Alpha value to set
@@ -1120,14 +1119,14 @@ proc orxObject_SetRGBRecursive*(pstObject: ptr orxOBJECT; pvRGB: ptr orxVECTOR) 
 ##
 
 proc orxObject_SetAlpha*(pstObject: ptr orxOBJECT; fAlpha: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetAlpha(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetAlpha", dynlib: "liborx.so".}
 ## * Sets alpha of an object and all its children.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _fAlpha         Alpha value to set
 ##
 
 proc orxObject_SetAlphaRecursive*(pstObject: ptr orxOBJECT; fAlpha: orxFLOAT) {.cdecl,
-    importcpp: "orxObject_SetAlphaRecursive(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetAlphaRecursive", dynlib: "liborx.so".}
 ## * Sets object repeat (wrap) values.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _fRepeatX       X-axis repeat value
@@ -1137,7 +1136,7 @@ proc orxObject_SetAlphaRecursive*(pstObject: ptr orxOBJECT; fAlpha: orxFLOAT) {.
 
 proc orxObject_SetRepeat*(pstObject: ptr orxOBJECT; fRepeatX: orxFLOAT;
                          fRepeatY: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxObject_SetRepeat(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetRepeat", dynlib: "liborx.so".}
 ## * Gets object repeat (wrap) values.
 ##  @param[in]   _pstObject     Concerned object
 ##  @param[out]  _pfRepeatX      X-axis repeat value
@@ -1147,7 +1146,7 @@ proc orxObject_SetRepeat*(pstObject: ptr orxOBJECT; fRepeatX: orxFLOAT;
 
 proc orxObject_GetRepeat*(pstObject: ptr orxOBJECT; pfRepeatX: ptr orxFLOAT;
                          pfRepeatY: ptr orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxObject_GetRepeat(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetRepeat", dynlib: "liborx.so".}
 ## * Sets object blend mode.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _eBlendMode     Blend mode (alpha, multiply, add or none)
@@ -1156,7 +1155,7 @@ proc orxObject_GetRepeat*(pstObject: ptr orxOBJECT; pfRepeatX: ptr orxFLOAT;
 
 proc orxObject_SetBlendMode*(pstObject: ptr orxOBJECT;
                             eBlendMode: orxDISPLAY_BLEND_MODE): orxSTATUS {.cdecl,
-    importcpp: "orxObject_SetBlendMode(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetBlendMode", dynlib: "liborx.so".}
 ## * Sets blend mode of an object and its children.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _eBlendMode     Blend mode (alpha, multiply, add or none)
@@ -1165,21 +1164,21 @@ proc orxObject_SetBlendMode*(pstObject: ptr orxOBJECT;
 
 proc orxObject_SetBlendModeRecursive*(pstObject: ptr orxOBJECT;
                                      eBlendMode: orxDISPLAY_BLEND_MODE) {.cdecl,
-    importcpp: "orxObject_SetBlendModeRecursive(@)", dynlib: "liborx.so".}
+    importc: "orxObject_SetBlendModeRecursive", dynlib: "liborx.so".}
 ## * Object has blend mode accessor?
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxObject_HasBlendMode*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
-    importcpp: "orxObject_HasBlendMode(@)", dynlib: "liborx.so".}
+    importc: "orxObject_HasBlendMode", dynlib: "liborx.so".}
 ## * Gets object blend mode.
 ##  @param[in]   _pstObject     Concerned object
 ##  @return Blend mode (alpha, multiply, add or none)
 ##
 
 proc orxObject_GetBlendMode*(pstObject: ptr orxOBJECT): orxDISPLAY_BLEND_MODE {.
-    cdecl, importcpp: "orxObject_GetBlendMode(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetBlendMode", dynlib: "liborx.so".}
 ## * @}
 ## * @name Life time / active time
 ##  @{
@@ -1190,14 +1189,14 @@ proc orxObject_GetBlendMode*(pstObject: ptr orxOBJECT): orxDISPLAY_BLEND_MODE {.
 ##
 
 proc orxObject_SetLifeTime*(pstObject: ptr orxOBJECT; fLifeTime: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetLifeTime(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetLifeTime", dynlib: "liborx.so".}
 ## * Gets object lifetime.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      Lifetime / negative value if none
 ##
 
 proc orxObject_GetLifeTime*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
-    importcpp: "orxObject_GetLifeTime(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetLifeTime", dynlib: "liborx.so".}
 ## * Gets object active time, i.e. the amount of time that the object has been alive taking into account
 ##  the object's clock multiplier and object's periods of pause.
 ##  @param[in]   _pstObject      Concerned object
@@ -1205,7 +1204,7 @@ proc orxObject_GetLifeTime*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 ##
 
 proc orxObject_GetActiveTime*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
-    importcpp: "orxObject_GetActiveTime(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetActiveTime", dynlib: "liborx.so".}
 ## * @}
 ## * @name Group
 ##  @{
@@ -1214,14 +1213,14 @@ proc orxObject_GetActiveTime*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 ##
 
 proc orxObject_GetDefaultGroupID*(): orxSTRINGID {.cdecl,
-    importcpp: "orxObject_GetDefaultGroupID(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetDefaultGroupID", dynlib: "liborx.so".}
 ## * Gets object's group ID.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      Object's group ID. This is the string ID (see orxString_GetFromID()) of the object's group name.
 ##
 
 proc orxObject_GetGroupID*(pstObject: ptr orxOBJECT): orxSTRINGID {.cdecl,
-    importcpp: "orxObject_GetGroupID(@)", dynlib: "liborx.so".}
+    importc: "orxObject_GetGroupID", dynlib: "liborx.so".}
 ## * Sets object's group ID.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _stGroupID      Group ID to set. This is the string ID (see orxString_GetID()) of the object's group name.
@@ -1229,14 +1228,14 @@ proc orxObject_GetGroupID*(pstObject: ptr orxOBJECT): orxSTRINGID {.cdecl,
 ##
 
 proc orxObject_SetGroupID*(pstObject: ptr orxOBJECT; stGroupID: orxSTRINGID): orxSTATUS {.
-    cdecl, importcpp: "orxObject_SetGroupID(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetGroupID", dynlib: "liborx.so".}
 ## * Sets group ID of an object and all its children.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _stGroupID      Group ID to set. This is the string ID (see orxString_GetID()) of the object's group name.
 ##
 
 proc orxObject_SetGroupIDRecursive*(pstObject: ptr orxOBJECT; stGroupID: orxSTRINGID) {.
-    cdecl, importcpp: "orxObject_SetGroupIDRecursive(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_SetGroupIDRecursive", dynlib: "liborx.so".}
 ## * Gets next object in group.
 ##  @param[in]   _pstObject      Concerned object, orxNULL to get the first one
 ##  @param[in]   _stGroupID      Group ID to consider, orxSTRINGID_UNDEFINED for all
@@ -1244,7 +1243,7 @@ proc orxObject_SetGroupIDRecursive*(pstObject: ptr orxOBJECT; stGroupID: orxSTRI
 ##
 
 proc orxObject_GetNext*(pstObject: ptr orxOBJECT; stGroupID: orxSTRINGID): ptr orxOBJECT {.
-    cdecl, importcpp: "orxObject_GetNext(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_GetNext", dynlib: "liborx.so".}
 ## * @}
 ## * @name Picking
 ##  @{
@@ -1257,7 +1256,7 @@ proc orxObject_GetNext*(pstObject: ptr orxOBJECT; stGroupID: orxSTRINGID): ptr o
 ##
 
 proc orxObject_Pick*(pvPosition: ptr orxVECTOR; stGroupID: orxSTRINGID): ptr orxOBJECT {.
-    cdecl, importcpp: "orxObject_Pick(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_Pick", dynlib: "liborx.so".}
 ## * Picks the first active object with size in contact with the given box, withing a given group. Use
 ##  orxObject_CreateNeighborList() to get all the objects in the box.
 ##  @param[in]   _pstBox         Box to use for picking
@@ -1266,7 +1265,7 @@ proc orxObject_Pick*(pvPosition: ptr orxVECTOR; stGroupID: orxSTRINGID): ptr orx
 ##
 
 proc orxObject_BoxPick*(pstBox: ptr orxOBOX; stGroupID: orxSTRINGID): ptr orxOBJECT {.
-    cdecl, importcpp: "orxObject_BoxPick(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxObject_BoxPick", dynlib: "liborx.so".}
 ## * @}
 
 ## * @}

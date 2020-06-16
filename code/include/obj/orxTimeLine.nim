@@ -75,52 +75,50 @@ type
 ## * TimeLine module setup
 ##
 
-proc orxTimeLine_Setup*() {.cdecl, importcpp: "orxTimeLine_Setup(@)",
-                          dynlib: "liborx.so".}
+proc orxTimeLine_Setup*() {.cdecl, importc: "orxTimeLine_Setup", dynlib: "liborx.so".}
 ## * Inits the TimeLine module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxTimeLine_Init*(): orxSTATUS {.cdecl, importcpp: "orxTimeLine_Init(@)",
+proc orxTimeLine_Init*(): orxSTATUS {.cdecl, importc: "orxTimeLine_Init",
                                    dynlib: "liborx.so".}
 ## * Exits from the TimeLine module
 ##
 
-proc orxTimeLine_Exit*() {.cdecl, importcpp: "orxTimeLine_Exit(@)",
-                         dynlib: "liborx.so".}
+proc orxTimeLine_Exit*() {.cdecl, importc: "orxTimeLine_Exit", dynlib: "liborx.so".}
 ## * Creates an empty TimeLine
 ##  @return orxTIMELINE / orxNULL
 ##
 
-proc orxTimeLine_Create*(): ptr orxTIMELINE {.cdecl,
-    importcpp: "orxTimeLine_Create(@)", dynlib: "liborx.so".}
+proc orxTimeLine_Create*(): ptr orxTIMELINE {.cdecl, importc: "orxTimeLine_Create",
+    dynlib: "liborx.so".}
 ## * Deletes a TimeLine
 ##  @param[in] _pstTimeLine            Concerned TimeLine
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxTimeLine_Delete*(pstTimeLine: ptr orxTIMELINE): orxSTATUS {.cdecl,
-    importcpp: "orxTimeLine_Delete(@)", dynlib: "liborx.so".}
+    importc: "orxTimeLine_Delete", dynlib: "liborx.so".}
 ## * Clears cache (if any TimeLine track is still in active use, it'll remain in memory until not referenced anymore)
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxTimeLine_ClearCache*(): orxSTATUS {.cdecl,
-    importcpp: "orxTimeLine_ClearCache(@)", dynlib: "liborx.so".}
+    importc: "orxTimeLine_ClearCache", dynlib: "liborx.so".}
 ## * Enables/disables a TimeLine
 ##  @param[in]   _pstTimeLine          Concerned TimeLine
 ##  @param[in]   _bEnable              Enable / disable
 ##
 
 proc orxTimeLine_Enable*(pstTimeLine: ptr orxTIMELINE; bEnable: orxBOOL) {.cdecl,
-    importcpp: "orxTimeLine_Enable(@)", dynlib: "liborx.so".}
+    importc: "orxTimeLine_Enable", dynlib: "liborx.so".}
 ## * Is TimeLine enabled?
 ##  @param[in]   _pstTimeLine          Concerned TimeLine
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxTimeLine_IsEnabled*(pstTimeLine: ptr orxTIMELINE): orxBOOL {.cdecl,
-    importcpp: "orxTimeLine_IsEnabled(@)", dynlib: "liborx.so".}
+    importc: "orxTimeLine_IsEnabled", dynlib: "liborx.so".}
 ## * Adds a track to a TimeLine from config
 ##  @param[in]   _pstTimeLine          Concerned TimeLine
 ##  @param[in]   _zTrackID             Config ID
@@ -129,7 +127,7 @@ proc orxTimeLine_IsEnabled*(pstTimeLine: ptr orxTIMELINE): orxBOOL {.cdecl,
 
 proc orxTimeLine_AddTrackFromConfig*(pstTimeLine: ptr orxTIMELINE;
                                     zTrackID: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxTimeLine_AddTrackFromConfig(@)", dynlib: "liborx.so".}
+    importc: "orxTimeLine_AddTrackFromConfig", dynlib: "liborx.so".}
 ## * Removes a track using its config ID
 ##  @param[in]   _pstTimeLine          Concerned TimeLine
 ##  @param[in]   _zTrackID             Config ID of the track to remove
@@ -138,19 +136,19 @@ proc orxTimeLine_AddTrackFromConfig*(pstTimeLine: ptr orxTIMELINE;
 
 proc orxTimeLine_RemoveTrackFromConfig*(pstTimeLine: ptr orxTIMELINE;
                                        zTrackID: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxTimeLine_RemoveTrackFromConfig(@)", dynlib: "liborx.so".}
+    importc: "orxTimeLine_RemoveTrackFromConfig", dynlib: "liborx.so".}
 ## * Gets how many tracks are currently in use
 ##  @param[in]   _pstTimeLine          Concerned TimeLine
 ##  @return      orxU32
 ##
 
 proc orxTimeLine_GetCount*(pstTimeLine: ptr orxTIMELINE): orxU32 {.cdecl,
-    importcpp: "orxTimeLine_GetCount(@)", dynlib: "liborx.so".}
+    importc: "orxTimeLine_GetCount", dynlib: "liborx.so".}
 ## * Gets a track duration using its config ID
 ##  @param[in]   _zTrackID             Config ID of the concerned track
 ##  @return      Duration if found, -orxFLOAT_1 otherwise
 ##
 
 proc orxTimeLine_GetTrackDuration*(zTrackID: ptr orxCHAR): orxFLOAT {.cdecl,
-    importcpp: "orxTimeLine_GetTrackDuration(@)", dynlib: "liborx.so".}
+    importc: "orxTimeLine_GetTrackDuration", dynlib: "liborx.so".}
 ## * @}

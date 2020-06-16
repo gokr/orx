@@ -65,35 +65,35 @@ const
 ## * Console module setup
 ##
 
-proc orxConsole_Setup*() {.cdecl, importcpp: "orxConsole_Setup(@)",
-                         dynlib: "liborx.so".}
+proc orxConsole_Setup*() {.cdecl, importc: "orxConsole_Setup", dynlib: "liborx.so".}
 ## * Inits the console module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConsole_Init*(): orxSTATUS {.cdecl, importcpp: "orxConsole_Init(@)",
+proc orxConsole_Init*(): orxSTATUS {.cdecl, importc: "orxConsole_Init",
                                   dynlib: "liborx.so".}
 ## * Exits from the console module
 ##
 
-proc orxConsole_Exit*() {.cdecl, importcpp: "orxConsole_Exit(@)", dynlib: "liborx.so".}
+proc orxConsole_Exit*() {.cdecl, importc: "orxConsole_Exit", dynlib: "liborx.so".}
 ## * Enables/disables the console
 ##  @param[in]   _bEnable      Enable / disable
 ##
 
-proc orxConsole_Enable*(bEnable: orxBOOL) {.cdecl,
-    importcpp: "orxConsole_Enable(@)", dynlib: "liborx.so".}
+proc orxConsole_Enable*(bEnable: orxBOOL) {.cdecl, importc: "orxConsole_Enable",
+    dynlib: "liborx.so".}
 ## * Is the console enabled?
 ##  @return orxTRUE if enabled, orxFALSE otherwise
 ##
 
-proc orxConsole_IsEnabled*(): orxBOOL {.cdecl, importcpp: "orxConsole_IsEnabled(@)",
+proc orxConsole_IsEnabled*(): orxBOOL {.cdecl, importc: "orxConsole_IsEnabled",
                                      dynlib: "liborx.so".}
 ## * Is the console input in insert mode?
 ##  @return orxTRUE if insert mode, orxFALSE otherwise (overwrite mode)
 ##
 
-proc orxConsole_IsInsertMode*(): orxBOOL {.cdecl, importcpp: "orxConsole_IsInsertMode(@)",
+proc orxConsole_IsInsertMode*(): orxBOOL {.cdecl,
+                                        importc: "orxConsole_IsInsertMode",
                                         dynlib: "liborx.so".}
 ## * Sets the console toggle
 ##  @param[in] _eInputType      Type of input peripheral
@@ -104,26 +104,26 @@ proc orxConsole_IsInsertMode*(): orxBOOL {.cdecl, importcpp: "orxConsole_IsInser
 
 proc orxConsole_SetToggle*(eInputType: orxINPUT_TYPE; eInputID: orxENUM;
                           eInputMode: orxINPUT_MODE): orxSTATUS {.cdecl,
-    importcpp: "orxConsole_SetToggle(@)", dynlib: "liborx.so".}
+    importc: "orxConsole_SetToggle", dynlib: "liborx.so".}
 ## * Logs to the console
 ##  @param[in]   _zText        Text to log
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxConsole_Log*(zText: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxConsole_Log(@)", dynlib: "liborx.so".}
+    importc: "orxConsole_Log", dynlib: "liborx.so".}
 ## * Sets the console font
 ##  @param[in]   _pstFont      Font to use
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxConsole_SetFont*(pstFont: ptr orxFONT): orxSTATUS {.cdecl,
-    importcpp: "orxConsole_SetFont(@)", dynlib: "liborx.so".}
+    importc: "orxConsole_SetFont", dynlib: "liborx.so".}
 ## * Gets the console font
 ##  @return Current in-use font, orxNULL
 ##
 
-proc orxConsole_GetFont*(): ptr orxFONT {.cdecl, importcpp: "orxConsole_GetFont(@)",
+proc orxConsole_GetFont*(): ptr orxFONT {.cdecl, importc: "orxConsole_GetFont",
                                       dynlib: "liborx.so".}
 ## * Sets the console log line length
 ##  @param[in]   _u32LineLength Line length to use
@@ -131,20 +131,20 @@ proc orxConsole_GetFont*(): ptr orxFONT {.cdecl, importcpp: "orxConsole_GetFont(
 ##
 
 proc orxConsole_SetLogLineLength*(u32LineLength: orxU32): orxSTATUS {.cdecl,
-    importcpp: "orxConsole_SetLogLineLength(@)", dynlib: "liborx.so".}
+    importc: "orxConsole_SetLogLineLength", dynlib: "liborx.so".}
 ## * Gets the console log line length
 ##  @return Console log line length
 ##
 
 proc orxConsole_GetLogLineLength*(): orxU32 {.cdecl,
-    importcpp: "orxConsole_GetLogLineLength(@)", dynlib: "liborx.so".}
+    importc: "orxConsole_GetLogLineLength", dynlib: "liborx.so".}
 ## * Gets current completions count
 ##  @param[out]  _pu32MaxLength Max completion length, orxNULL to ignore
 ##  @return Current completions count
 ##
 
 proc orxConsole_GetCompletionCount*(pu32MaxLength: ptr orxU32): orxU32 {.cdecl,
-    importcpp: "orxConsole_GetCompletionCount(@)", dynlib: "liborx.so".}
+    importc: "orxConsole_GetCompletionCount", dynlib: "liborx.so".}
 ## * Gets completion
 ##  @param[in]   _u32Index     Index of the active completion
 ##  @param[out]  _pbActive     Is completion active, orxNULL to ignore
@@ -152,25 +152,25 @@ proc orxConsole_GetCompletionCount*(pu32MaxLength: ptr orxU32): orxU32 {.cdecl,
 ##
 
 proc orxConsole_GetCompletion*(u32Index: orxU32; pbActive: ptr orxBOOL): ptr orxCHAR {.
-    cdecl, importcpp: "orxConsole_GetCompletion(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxConsole_GetCompletion", dynlib: "liborx.so".}
 ## * Gets log line from the end (trail), using internal offset
 ##  @param[in]   _u32TrailLineIndex Index of the line starting from end
 ##  @return orxTRING / orxSTRING_EMPTY
 ##
 
 proc orxConsole_GetTrailLogLine*(u32TrailLineIndex: orxU32): ptr orxCHAR {.cdecl,
-    importcpp: "orxConsole_GetTrailLogLine(@)", dynlib: "liborx.so".}
+    importc: "orxConsole_GetTrailLogLine", dynlib: "liborx.so".}
 ## * Gets log line offset from the end
 ##  @return Log line offset from the end
 ##
 
 proc orxConsole_GetTrailLogLineOffset*(): orxU32 {.cdecl,
-    importcpp: "orxConsole_GetTrailLogLineOffset(@)", dynlib: "liborx.so".}
+    importc: "orxConsole_GetTrailLogLineOffset", dynlib: "liborx.so".}
 ## * Gets input text
 ##  @param[out]  _pu32CursorIndex Index (ie. character position) of the cursor (any character past it has not been validated)
 ##  @return orxTRING / orxSTRING_EMPTY
 ##
 
 proc orxConsole_GetInput*(pu32CursorIndex: ptr orxU32): ptr orxCHAR {.cdecl,
-    importcpp: "orxConsole_GetInput(@)", dynlib: "liborx.so".}
+    importc: "orxConsole_GetInput", dynlib: "liborx.so".}
 ## * @}

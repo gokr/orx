@@ -49,22 +49,21 @@ type orxTEXT* = object
 ## * Setups the text module
 ##
 
-proc orxText_Setup*() {.cdecl, importcpp: "orxText_Setup(@)", dynlib: "liborx.so".}
+proc orxText_Setup*() {.cdecl, importc: "orxText_Setup", dynlib: "liborx.so".}
 ## * Inits the text module
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxText_Init*(): orxSTATUS {.cdecl, importcpp: "orxText_Init(@)",
-                               dynlib: "liborx.so".}
+proc orxText_Init*(): orxSTATUS {.cdecl, importc: "orxText_Init", dynlib: "liborx.so".}
 ## * Exits from the text module
 ##
 
-proc orxText_Exit*() {.cdecl, importcpp: "orxText_Exit(@)", dynlib: "liborx.so".}
+proc orxText_Exit*() {.cdecl, importc: "orxText_Exit", dynlib: "liborx.so".}
 ## * Creates an empty text
 ##  @return      orxTEXT / orxNULL
 ##
 
-proc orxText_Create*(): ptr orxTEXT {.cdecl, importcpp: "orxText_Create(@)",
+proc orxText_Create*(): ptr orxTEXT {.cdecl, importc: "orxText_Create",
                                   dynlib: "liborx.so".}
 ## * Creates a text from config
 ##  @param[in]   _zConfigID    Config ID
@@ -72,28 +71,28 @@ proc orxText_Create*(): ptr orxTEXT {.cdecl, importcpp: "orxText_Create(@)",
 ##
 
 proc orxText_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxTEXT {.cdecl,
-    importcpp: "orxText_CreateFromConfig(@)", dynlib: "liborx.so".}
+    importc: "orxText_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a text
 ##  @param[in]   _pstText      Concerned text
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxText_Delete*(pstText: ptr orxTEXT): orxSTATUS {.cdecl,
-    importcpp: "orxText_Delete(@)", dynlib: "liborx.so".}
+    importc: "orxText_Delete", dynlib: "liborx.so".}
 ## * Gets text name
 ##  @param[in]   _pstText      Concerned text
 ##  @return      Text name / orxNULL
 ##
 
 proc orxText_GetName*(pstText: ptr orxTEXT): ptr orxCHAR {.cdecl,
-    importcpp: "orxText_GetName(@)", dynlib: "liborx.so".}
+    importc: "orxText_GetName", dynlib: "liborx.so".}
 ## * Gets text's line count
 ##  @param[in]   _pstText      Concerned text
 ##  @return      orxU32
 ##
 
 proc orxText_GetLineCount*(pstText: ptr orxTEXT): orxU32 {.cdecl,
-    importcpp: "orxText_GetLineCount(@)", dynlib: "liborx.so".}
+    importc: "orxText_GetLineCount", dynlib: "liborx.so".}
 ## * Gets text's line size
 ##  @param[in]   _pstText      Concerned text
 ##  @param[out]  _u32Line      Line index
@@ -104,14 +103,14 @@ proc orxText_GetLineCount*(pstText: ptr orxTEXT): orxU32 {.cdecl,
 
 proc orxText_GetLineSize*(pstText: ptr orxTEXT; u32Line: orxU32;
                          pfWidth: ptr orxFLOAT; pfHeight: ptr orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxText_GetLineSize(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxText_GetLineSize", dynlib: "liborx.so".}
 ## * Is text's size fixed? (ie. manually constrained with orxText_SetSize())
 ##  @param[in]   _pstText      Concerned text
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxText_IsFixedSize*(pstText: ptr orxTEXT): orxBOOL {.cdecl,
-    importcpp: "orxText_IsFixedSize(@)", dynlib: "liborx.so".}
+    importc: "orxText_IsFixedSize", dynlib: "liborx.so".}
 ## * Gets text size
 ##  @param[in]   _pstText      Concerned text
 ##  @param[out]  _pfWidth      Text's width
@@ -121,21 +120,21 @@ proc orxText_IsFixedSize*(pstText: ptr orxTEXT): orxBOOL {.cdecl,
 
 proc orxText_GetSize*(pstText: ptr orxTEXT; pfWidth: ptr orxFLOAT;
                      pfHeight: ptr orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxText_GetSize(@)", dynlib: "liborx.so".}
+    importc: "orxText_GetSize", dynlib: "liborx.so".}
 ## * Gets text string
 ##  @param[in]   _pstText      Concerned text
 ##  @return      Text string / orxSTRING_EMPTY
 ##
 
 proc orxText_GetString*(pstText: ptr orxTEXT): ptr orxCHAR {.cdecl,
-    importcpp: "orxText_GetString(@)", dynlib: "liborx.so".}
+    importc: "orxText_GetString", dynlib: "liborx.so".}
 ## * Gets text font
 ##  @param[in]   _pstText      Concerned text
 ##  @return      Text font / orxNULL
 ##
 
 proc orxText_GetFont*(pstText: ptr orxTEXT): ptr orxFONT {.cdecl,
-    importcpp: "orxText_GetFont(@)", dynlib: "liborx.so".}
+    importc: "orxText_GetFont", dynlib: "liborx.so".}
 ## * Sets text's size, will lead to reformatting if text doesn't fit (pass width = -1.0f to restore text's original size, ie. unconstrained)
 ##  @param[in]   _pstText      Concerned text
 ##  @param[in]   _fWidth       Max width for the text, remove any size constraint if negative
@@ -146,7 +145,7 @@ proc orxText_GetFont*(pstText: ptr orxTEXT): ptr orxFONT {.cdecl,
 
 proc orxText_SetSize*(pstText: ptr orxTEXT; fWidth: orxFLOAT; fHeight: orxFLOAT;
                      pzExtra: ptr ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxText_SetSize(@)", dynlib: "liborx.so".}
+    importc: "orxText_SetSize", dynlib: "liborx.so".}
 ## * Sets text string
 ##  @param[in]   _pstText      Concerned text
 ##  @param[in]   _zString      String to contain
@@ -154,7 +153,7 @@ proc orxText_SetSize*(pstText: ptr orxTEXT; fWidth: orxFLOAT; fHeight: orxFLOAT;
 ##
 
 proc orxText_SetString*(pstText: ptr orxTEXT; zString: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxText_SetString(@)", dynlib: "liborx.so".}
+    importc: "orxText_SetString", dynlib: "liborx.so".}
 ## * Sets text font
 ##  @param[in]   _pstText      Concerned text
 ##  @param[in]   _pstFont      Font / orxNULL to use default
@@ -162,5 +161,5 @@ proc orxText_SetString*(pstText: ptr orxTEXT; zString: ptr orxCHAR): orxSTATUS {
 ##
 
 proc orxText_SetFont*(pstText: ptr orxTEXT; pstFont: ptr orxFONT): orxSTATUS {.cdecl,
-    importcpp: "orxText_SetFont(@)", dynlib: "liborx.so".}
+    importc: "orxText_SetFont", dynlib: "liborx.so".}
 ## * @}

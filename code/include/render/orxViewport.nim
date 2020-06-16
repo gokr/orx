@@ -77,38 +77,36 @@ type
 ## * Viewport module setup
 ##
 
-proc orxViewport_Setup*() {.cdecl, importcpp: "orxViewport_Setup(@)",
-                          dynlib: "liborx.so".}
+proc orxViewport_Setup*() {.cdecl, importc: "orxViewport_Setup", dynlib: "liborx.so".}
 ## * Inits the viewport module
 ##
 
-proc orxViewport_Init*(): orxSTATUS {.cdecl, importcpp: "orxViewport_Init(@)",
+proc orxViewport_Init*(): orxSTATUS {.cdecl, importc: "orxViewport_Init",
                                    dynlib: "liborx.so".}
 ## * Exits from the viewport module
 ##
 
-proc orxViewport_Exit*() {.cdecl, importcpp: "orxViewport_Exit(@)",
-                         dynlib: "liborx.so".}
+proc orxViewport_Exit*() {.cdecl, importc: "orxViewport_Exit", dynlib: "liborx.so".}
 ## * Creates a viewport
 ##  @return      Created orxVIEWPORT / orxNULL
 ##
 
-proc orxViewport_Create*(): ptr orxVIEWPORT {.cdecl,
-    importcpp: "orxViewport_Create(@)", dynlib: "liborx.so".}
+proc orxViewport_Create*(): ptr orxVIEWPORT {.cdecl, importc: "orxViewport_Create",
+    dynlib: "liborx.so".}
 ## * Creates a viewport from config
 ##  @param[in]   _zConfigID    Config ID
 ##  @ return orxVIEWPORT / orxNULL
 ##
 
 proc orxViewport_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxVIEWPORT {.cdecl,
-    importcpp: "orxViewport_CreateFromConfig(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a viewport
 ##  @param[in]   _pstViewport    Viewport to delete
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxViewport_Delete*(pstViewport: ptr orxVIEWPORT): orxSTATUS {.cdecl,
-    importcpp: "orxViewport_Delete(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_Delete", dynlib: "liborx.so".}
 ## * Sets a viewport texture list
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _u32TextureNumber Number of textures to associate with the viewport
@@ -118,7 +116,7 @@ proc orxViewport_Delete*(pstViewport: ptr orxVIEWPORT): orxSTATUS {.cdecl,
 proc orxViewport_SetTextureList*(pstViewport: ptr orxVIEWPORT;
                                 u32TextureNumber: orxU32;
                                 apstTextureList: ptr ptr orxTEXTURE) {.cdecl,
-    importcpp: "orxViewport_SetTextureList(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_SetTextureList", dynlib: "liborx.so".}
 ## * Gets a viewport texture list
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _u32TextureNumber Number of textures to be retrieved
@@ -129,14 +127,14 @@ proc orxViewport_SetTextureList*(pstViewport: ptr orxVIEWPORT;
 proc orxViewport_GetTextureList*(pstViewport: ptr orxVIEWPORT;
                                 u32TextureNumber: orxU32;
                                 apstTextureList: ptr ptr orxTEXTURE): orxSTATUS {.
-    cdecl, importcpp: "orxViewport_GetTextureList(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_GetTextureList", dynlib: "liborx.so".}
 ## * Gets a viewport texture count
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @return      Number of textures associated with the viewport
 ##
 
 proc orxViewport_GetTextureCount*(pstViewport: ptr orxVIEWPORT): orxU32 {.cdecl,
-    importcpp: "orxViewport_GetTextureCount(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_GetTextureCount", dynlib: "liborx.so".}
 ## * Sets a viewport background color
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _pstColor        Color to use for background
@@ -145,21 +143,21 @@ proc orxViewport_GetTextureCount*(pstViewport: ptr orxVIEWPORT): orxU32 {.cdecl,
 
 proc orxViewport_SetBackgroundColor*(pstViewport: ptr orxVIEWPORT;
                                     pstColor: ptr orxCOLOR): orxSTATUS {.cdecl,
-    importcpp: "orxViewport_SetBackgroundColor(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_SetBackgroundColor", dynlib: "liborx.so".}
 ## * Clears viewport background color
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxViewport_ClearBackgroundColor*(pstViewport: ptr orxVIEWPORT): orxSTATUS {.
-    cdecl, importcpp: "orxViewport_ClearBackgroundColor(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_ClearBackgroundColor", dynlib: "liborx.so".}
 ## * Viewport has background color accessor
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxViewport_HasBackgroundColor*(pstViewport: ptr orxVIEWPORT): orxBOOL {.cdecl,
-    importcpp: "orxViewport_HasBackgroundColor(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_HasBackgroundColor", dynlib: "liborx.so".}
 ## * Gets a viewport background color
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[out]  _pstColor       Viewport's color
@@ -168,35 +166,35 @@ proc orxViewport_HasBackgroundColor*(pstViewport: ptr orxVIEWPORT): orxBOOL {.cd
 
 proc orxViewport_GetBackgroundColor*(pstViewport: ptr orxVIEWPORT;
                                     pstColor: ptr orxCOLOR): ptr orxCOLOR {.cdecl,
-    importcpp: "orxViewport_GetBackgroundColor(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_GetBackgroundColor", dynlib: "liborx.so".}
 ## * Enables / disables a viewport
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _bEnable        Enable / disable
 ##
 
 proc orxViewport_Enable*(pstViewport: ptr orxVIEWPORT; bEnable: orxBOOL) {.cdecl,
-    importcpp: "orxViewport_Enable(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_Enable", dynlib: "liborx.so".}
 ## * Is a viewport enabled?
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxViewport_IsEnabled*(pstViewport: ptr orxVIEWPORT): orxBOOL {.cdecl,
-    importcpp: "orxViewport_IsEnabled(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_IsEnabled", dynlib: "liborx.so".}
 ## * Sets a viewport camera
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _pstCamera      Associated camera
 ##
 
 proc orxViewport_SetCamera*(pstViewport: ptr orxVIEWPORT; pstCamera: ptr orxCAMERA) {.
-    cdecl, importcpp: "orxViewport_SetCamera(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_SetCamera", dynlib: "liborx.so".}
 ## * Gets a viewport camera
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @return      Associated camera / orxNULL
 ##
 
 proc orxViewport_GetCamera*(pstViewport: ptr orxVIEWPORT): ptr orxCAMERA {.cdecl,
-    importcpp: "orxViewport_GetCamera(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_GetCamera", dynlib: "liborx.so".}
 ## * Adds a shader to a viewport using its config ID
 ##  @param[in]   _pstViewport      Concerned viewport
 ##  @param[in]   _zShaderConfigID  Config ID of the shader to add
@@ -205,7 +203,7 @@ proc orxViewport_GetCamera*(pstViewport: ptr orxVIEWPORT): ptr orxCAMERA {.cdecl
 
 proc orxViewport_AddShader*(pstViewport: ptr orxVIEWPORT;
                            zShaderConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxViewport_AddShader(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_AddShader", dynlib: "liborx.so".}
 ## * Removes a shader using its config ID
 ##  @param[in]   _pstViewport      Concerned viewport
 ##  @param[in]   _zShaderConfigID Config ID of the shader to remove
@@ -214,28 +212,28 @@ proc orxViewport_AddShader*(pstViewport: ptr orxVIEWPORT;
 
 proc orxViewport_RemoveShader*(pstViewport: ptr orxVIEWPORT;
                               zShaderConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxViewport_RemoveShader(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_RemoveShader", dynlib: "liborx.so".}
 ## * Enables a viewport's shader
 ##  @param[in]   _pstViewport      Concerned viewport
 ##  @param[in]   _bEnable          Enable / disable
 ##
 
 proc orxViewport_EnableShader*(pstViewport: ptr orxVIEWPORT; bEnable: orxBOOL) {.
-    cdecl, importcpp: "orxViewport_EnableShader(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_EnableShader", dynlib: "liborx.so".}
 ## * Is a viewport's shader enabled?
 ##  @param[in]   _pstViewport      Concerned viewport
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxViewport_IsShaderEnabled*(pstViewport: ptr orxVIEWPORT): orxBOOL {.cdecl,
-    importcpp: "orxViewport_IsShaderEnabled(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_IsShaderEnabled", dynlib: "liborx.so".}
 ## * Gets a viewport's shader pointer
 ##  @param[in]   _pstViewport      Concerned viewport
 ##  @return      orxSHADERPOINTER / orxNULL
 ##
 
 proc orxViewport_GetShaderPointer*(pstViewport: ptr orxVIEWPORT): ptr orxSHADERPOINTER {.
-    cdecl, importcpp: "orxViewport_GetShaderPointer(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_GetShaderPointer", dynlib: "liborx.so".}
 ## * Sets a viewport blend mode (only used when has active shaders attached)
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _eBlendMode     Blend mode to set
@@ -243,14 +241,14 @@ proc orxViewport_GetShaderPointer*(pstViewport: ptr orxVIEWPORT): ptr orxSHADERP
 
 proc orxViewport_SetBlendMode*(pstViewport: ptr orxVIEWPORT;
                               eBlendMode: orxDISPLAY_BLEND_MODE): orxSTATUS {.
-    cdecl, importcpp: "orxViewport_SetBlendMode(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_SetBlendMode", dynlib: "liborx.so".}
 ## * Gets a viewport blend mode
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @return orxDISPLAY_BLEND_MODE
 ##
 
 proc orxViewport_GetBlendMode*(pstViewport: ptr orxVIEWPORT): orxDISPLAY_BLEND_MODE {.
-    cdecl, importcpp: "orxViewport_GetBlendMode(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_GetBlendMode", dynlib: "liborx.so".}
 ## * Sets a viewport position
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _fX             X axis position (top left corner)
@@ -258,7 +256,7 @@ proc orxViewport_GetBlendMode*(pstViewport: ptr orxVIEWPORT): orxDISPLAY_BLEND_M
 ##
 
 proc orxViewport_SetPosition*(pstViewport: ptr orxVIEWPORT; fX: orxFLOAT; fY: orxFLOAT) {.
-    cdecl, importcpp: "orxViewport_SetPosition(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_SetPosition", dynlib: "liborx.so".}
 ## * Sets a viewport relative position
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _u32AlignFlags  Alignment flags
@@ -267,7 +265,7 @@ proc orxViewport_SetPosition*(pstViewport: ptr orxVIEWPORT; fX: orxFLOAT; fY: or
 
 proc orxViewport_SetRelativePosition*(pstViewport: ptr orxVIEWPORT;
                                      u32AlignFlags: orxU32): orxSTATUS {.cdecl,
-    importcpp: "orxViewport_SetRelativePosition(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_SetRelativePosition", dynlib: "liborx.so".}
 ## * Gets a viewport position
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[out]  _pfX            X axis position (top left corner)
@@ -276,7 +274,7 @@ proc orxViewport_SetRelativePosition*(pstViewport: ptr orxVIEWPORT;
 
 proc orxViewport_GetPosition*(pstViewport: ptr orxVIEWPORT; pfX: ptr orxFLOAT;
                              pfY: ptr orxFLOAT) {.cdecl,
-    importcpp: "orxViewport_GetPosition(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_GetPosition", dynlib: "liborx.so".}
 ## * Sets a viewport size
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _fWidth         Width
@@ -285,7 +283,7 @@ proc orxViewport_GetPosition*(pstViewport: ptr orxVIEWPORT; pfX: ptr orxFLOAT;
 
 proc orxViewport_SetSize*(pstViewport: ptr orxVIEWPORT; fWidth: orxFLOAT;
                          fHeight: orxFLOAT) {.cdecl,
-    importcpp: "orxViewport_SetSize(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_SetSize", dynlib: "liborx.so".}
 ## * Sets a viewport relative size
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _fWidth         Relative width (0.0f - 1.0f)
@@ -295,7 +293,7 @@ proc orxViewport_SetSize*(pstViewport: ptr orxVIEWPORT; fWidth: orxFLOAT;
 
 proc orxViewport_SetRelativeSize*(pstViewport: ptr orxVIEWPORT; fWidth: orxFLOAT;
                                  fHeight: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxViewport_SetRelativeSize(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_SetRelativeSize", dynlib: "liborx.so".}
 ## * Gets a viewport size
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[out]  _pfWidth        Width
@@ -304,7 +302,7 @@ proc orxViewport_SetRelativeSize*(pstViewport: ptr orxVIEWPORT; fWidth: orxFLOAT
 
 proc orxViewport_GetSize*(pstViewport: ptr orxVIEWPORT; pfWidth: ptr orxFLOAT;
                          pfHeight: ptr orxFLOAT) {.cdecl,
-    importcpp: "orxViewport_GetSize(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_GetSize", dynlib: "liborx.so".}
 ## * Gets a viewport relative size
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[out]  _pfWidth        Relative width
@@ -313,7 +311,7 @@ proc orxViewport_GetSize*(pstViewport: ptr orxVIEWPORT; pfWidth: ptr orxFLOAT;
 
 proc orxViewport_GetRelativeSize*(pstViewport: ptr orxVIEWPORT;
                                  pfWidth: ptr orxFLOAT; pfHeight: ptr orxFLOAT) {.
-    cdecl, importcpp: "orxViewport_GetRelativeSize(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_GetRelativeSize", dynlib: "liborx.so".}
 ## * Gets an axis aligned box of viewport
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[out]  _pstBox         Output box
@@ -321,26 +319,26 @@ proc orxViewport_GetRelativeSize*(pstViewport: ptr orxVIEWPORT;
 ##
 
 proc orxViewport_GetBox*(pstViewport: ptr orxVIEWPORT; pstBox: ptr orxAABOX): ptr orxAABOX {.
-    cdecl, importcpp: "orxViewport_GetBox(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxViewport_GetBox", dynlib: "liborx.so".}
 ## * Get viewport correction ratio
 ##  @param[in]   _pstViewport  Concerned viewport
 ##  @return      Correction ratio value
 ##
 
 proc orxViewport_GetCorrectionRatio*(pstViewport: ptr orxVIEWPORT): orxFLOAT {.cdecl,
-    importcpp: "orxViewport_GetCorrectionRatio(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_GetCorrectionRatio", dynlib: "liborx.so".}
 ## * Gets viewport config name
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxViewport_GetName*(pstViewport: ptr orxVIEWPORT): ptr orxCHAR {.cdecl,
-    importcpp: "orxViewport_GetName(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_GetName", dynlib: "liborx.so".}
 ## * Gets viewport given its name
 ##  @param[in]   _zName          Camera name
 ##  @return      orxVIEWPORT / orxNULL
 ##
 
 proc orxViewport_Get*(zName: ptr orxCHAR): ptr orxVIEWPORT {.cdecl,
-    importcpp: "orxViewport_Get(@)", dynlib: "liborx.so".}
+    importc: "orxViewport_Get", dynlib: "liborx.so".}
 ## * @}

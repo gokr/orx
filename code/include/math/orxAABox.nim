@@ -58,8 +58,30 @@ type
 ##  @return      Reordered AABox
 ##
 
-proc orxAABox_Reorder*(pstBox: ptr orxAABOX): ptr orxAABOX {.cdecl.} =
-  discard
+proc orxAABox_Reorder*(pstBox: ptr orxAABOX): ptr orxAABOX {.inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pstBox != orxNULL)
+  ##  Reorders coordinates so as to have upper left & bottom right box corners
+  ##  X coord
+  if pstBox.vTL.fX > pstBox.vBR.fX:
+    var fTemp: orxFLOAT
+    ##  Swaps
+    fTemp = pstBox.vTL.fX
+    pstBox.vTL.fX = pstBox.vBR.fX
+    pstBox.vBR.fX = fTemp
+  if pstBox.vTL.fY > pstBox.vBR.fY:
+    var fTemp: orxFLOAT
+    ##  Swaps
+    fTemp = pstBox.vTL.fY
+    pstBox.vTL.fY = pstBox.vBR.fY
+    pstBox.vBR.fY = fTemp
+  if pstBox.vTL.fZ > pstBox.vBR.fZ:
+    var fTemp: orxFLOAT
+    ##  Swaps
+    fTemp = pstBox.vTL.fZ
+    pstBox.vTL.fZ = pstBox.vBR.fZ
+    pstBox.vBR.fZ = fTemp
+  return pstBox
 
 ## * Sets axis aligned box values
 ##  @param[out]  _pstRes                       AABox to set
@@ -69,8 +91,18 @@ proc orxAABox_Reorder*(pstBox: ptr orxAABOX): ptr orxAABOX {.cdecl.} =
 ##
 
 proc orxAABox_Set*(pstRes: ptr orxAABOX; pvTL: ptr orxVECTOR; pvBR: ptr orxVECTOR): ptr orxAABOX {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pstRes != orxNULL)
+  orxASSERT(pvTL != orxNULL)
+  orxASSERT(pvBR != orxNULL)
+  ##  Sets values
+  orxVector_Copy(addr((pstRes.vTL)), pvTL)
+  orxVector_Copy(addr((pstRes.vBR)), pvBR)
+  ##  Reorders corners
+  orxAABox_Reorder(pstRes)
+  ##  Done!
+  return pstRes
 
 ## * Is position inside axis aligned box test
 ##  @param[in]   _pstBox                       Box to test against position
@@ -79,8 +111,20 @@ proc orxAABox_Set*(pstRes: ptr orxAABOX; pvTL: ptr orxVECTOR; pvBR: ptr orxVECTO
 ##
 
 proc orxAABox_IsInside*(pstBox: ptr orxAABOX; pvPosition: ptr orxVECTOR): orxBOOL {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var bResult: orxBOOL
+  ##  Checks
+  orxASSERT(pstBox != orxNULL)
+  orxASSERT(pvPosition != orxNULL)
+  ##  Z intersected?
+  if (pvPosition.fZ >= pstBox.vTL.fZ) and (pvPosition.fZ <= pstBox.vBR.fZ):
+    ##  X intersected?
+    if (pvPosition.fX >= pstBox.vTL.fX) and (pvPosition.fX <= pstBox.vBR.fX):
+      ##  Y intersected?
+      if (pvPosition.fY >= pstBox.vTL.fY) and (pvPosition.fY <= pstBox.vBR.fY):
+        ##  Intersects
+        bResult = orxTRUE
+  return bResult
 
 ## * Tests axis aligned box intersection
 ##  @param[in]   _pstBox1                      First box operand
@@ -89,8 +133,21 @@ proc orxAABox_IsInside*(pstBox: ptr orxAABOX; pvPosition: ptr orxVECTOR): orxBOO
 ##
 
 proc orxAABox_TestIntersection*(pstBox1: ptr orxAABOX; pstBox2: ptr orxAABOX): orxBOOL {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var bResult: orxBOOL
+  ##  Checks
+  orxASSERT(pstBox1 != orxNULL)
+  orxASSERT(pstBox2 != orxNULL)
+  ##  Z intersected?
+  if (pstBox2.vBR.fZ >= pstBox1.vTL.fZ) and (pstBox2.vTL.fZ <= pstBox1.vBR.fZ):
+    ##  X intersected?
+    if (pstBox2.vBR.fX >= pstBox1.vTL.fX) and (pstBox2.vTL.fX <= pstBox1.vBR.fX):
+      ##  Y intersected?
+      if (pstBox2.vBR.fY >= pstBox1.vTL.fY) and
+          (pstBox2.vTL.fY <= pstBox1.vBR.fY):
+        ##  Intersects
+        bResult = orxTRUE
+  return bResult
 
 ## * Tests axis aligned box 2D intersection (no Z-axis test)
 ##  @param[in]   _pstBox1                      First box operand
@@ -99,8 +156,18 @@ proc orxAABox_TestIntersection*(pstBox1: ptr orxAABOX; pstBox2: ptr orxAABOX): o
 ##
 
 proc orxAABox_Test2DIntersection*(pstBox1: ptr orxAABOX; pstBox2: ptr orxAABOX): orxBOOL {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var bResult: orxBOOL
+  ##  Checks
+  orxASSERT(pstBox1 != orxNULL)
+  orxASSERT(pstBox2 != orxNULL)
+  ##  X intersected?
+  if (pstBox2.vBR.fX >= pstBox1.vTL.fX) and (pstBox2.vTL.fX <= pstBox1.vBR.fX):
+    ##  Y intersected?
+    if (pstBox2.vBR.fY >= pstBox1.vTL.fY) and (pstBox2.vTL.fY <= pstBox1.vBR.fY):
+      ##  Intersects
+      bResult = orxTRUE
+  return bResult
 
 ## * Copies an AABox onto another one
 ##  @param[out]   _pstDst                      AABox to copy to (destination)
@@ -108,8 +175,15 @@ proc orxAABox_Test2DIntersection*(pstBox1: ptr orxAABOX; pstBox2: ptr orxAABOX):
 ##  @return      Destination AABox
 ##
 
-proc orxAABox_Copy*(pstDst: ptr orxAABOX; pstSrc: ptr orxAABOX): ptr orxAABOX {.cdecl.} =
-  discard
+proc orxAABox_Copy*(pstDst: ptr orxAABOX; pstSrc: ptr orxAABOX): ptr orxAABOX {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pstDst != orxNULL)
+  orxASSERT(pstSrc != orxNULL)
+  ##  Copies it
+  orxMemory_Copy(pstDst, pstSrc, sizeof((orxAABOX)))
+  ##  Done!
+  return pstDst
 
 ## * Moves an AABox
 ##  @param[out]  _pstRes                       AABox where to store result
@@ -119,8 +193,16 @@ proc orxAABox_Copy*(pstDst: ptr orxAABOX; pstSrc: ptr orxAABOX): ptr orxAABOX {.
 ##
 
 proc orxAABox_Move*(pstRes: ptr orxAABOX; pstOp: ptr orxAABOX; pvMove: ptr orxVECTOR): ptr orxAABOX {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pstRes != orxNULL)
+  orxASSERT(pstOp != orxNULL)
+  orxASSERT(pvMove != orxNULL)
+  ##  Updates result
+  orxVector_Add(addr((pstRes.vTL)), addr((pstOp.vTL)), pvMove)
+  orxVector_Add(addr((pstRes.vBR)), addr((pstOp.vBR)), pvMove)
+  ##  Done!
+  return pstRes
 
 ## * Gets AABox center position
 ##  @param[in]   _pstOp                        Concerned AABox
@@ -129,7 +211,14 @@ proc orxAABox_Move*(pstRes: ptr orxAABOX; pstOp: ptr orxAABOX; pvMove: ptr orxVE
 ##
 
 proc orxAABox_GetCenter*(pstOp: ptr orxAABOX; pvRes: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pstOp != orxNULL)
+  orxASSERT(pvRes != orxNULL)
+  ##  Gets box center
+  orxVector_Add(pvRes, addr((pstOp.vTL)), addr((pstOp.vBR)))
+  orxVector_Mulf(pvRes, pvRes, orx2F(0.5))
+  ##  Done!
+  return pvRes
 
 ## * @}

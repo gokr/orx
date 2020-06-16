@@ -78,30 +78,29 @@ type
 ## * Setups param module
 ##
 
-proc orxParam_Setup*() {.cdecl, importcpp: "orxParam_Setup(@)", dynlib: "liborx.so".}
+proc orxParam_Setup*() {.cdecl, importc: "orxParam_Setup", dynlib: "liborx.so".}
 ## * Inits the param Module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxParam_Init*(): orxSTATUS {.cdecl, importcpp: "orxParam_Init(@)",
+proc orxParam_Init*(): orxSTATUS {.cdecl, importc: "orxParam_Init",
                                 dynlib: "liborx.so".}
 ## * Exits from the param module
 ##
 
-proc orxParam_Exit*() {.cdecl, importcpp: "orxParam_Exit(@)", dynlib: "liborx.so".}
+proc orxParam_Exit*() {.cdecl, importc: "orxParam_Exit", dynlib: "liborx.so".}
 ## * Registers a new parameter
 ##  @param[in] _pstParam Information about the option to register
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxParam_Register*(pstParam: ptr orxPARAM): orxSTATUS {.cdecl,
-    importcpp: "orxParam_Register(@)", dynlib: "liborx.so".}
+    importc: "orxParam_Register", dynlib: "liborx.so".}
 ## * Displays help if requested
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxParam_DisplayHelp*(): orxSTATUS {.cdecl,
-                                       importcpp: "orxParam_DisplayHelp(@)",
+proc orxParam_DisplayHelp*(): orxSTATUS {.cdecl, importc: "orxParam_DisplayHelp",
                                        dynlib: "liborx.so".}
 ## * Sets the command line arguments
 ##  @param[in] _u32NbParams  Number of read parameters
@@ -110,5 +109,5 @@ proc orxParam_DisplayHelp*(): orxSTATUS {.cdecl,
 ##
 
 proc orxParam_SetArgs*(u32NbParams: orxU32; azParams: ptr ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxParam_SetArgs(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxParam_SetArgs", dynlib: "liborx.so".}
 ## * @}

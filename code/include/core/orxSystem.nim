@@ -94,41 +94,40 @@ type
 ## * System module setup
 ##
 
-proc orxSystem_Setup*() {.cdecl, importcpp: "orxSystem_Setup(@)", dynlib: "liborx.so".}
+proc orxSystem_Setup*() {.cdecl, importc: "orxSystem_Setup", dynlib: "liborx.so".}
 ## * Inits the system module
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSystem_Init*(): orxSTATUS {.cdecl, importcpp: "orxSystem_Init(@)",
+proc orxSystem_Init*(): orxSTATUS {.cdecl, importc: "orxSystem_Init",
                                  dynlib: "liborx.so".}
 ## * Exits from the system module
 ##
 
-proc orxSystem_Exit*() {.cdecl, importcpp: "orxSystem_Exit(@)", dynlib: "liborx.so".}
+proc orxSystem_Exit*() {.cdecl, importc: "orxSystem_Exit", dynlib: "liborx.so".}
 ## * Gets current time (elapsed from the beginning of the application, in seconds)
 ##  @return Current time
 ##
 
-proc orxSystem_GetTime*(): orxDOUBLE {.cdecl, importcpp: "orxSystem_GetTime(@)",
+proc orxSystem_GetTime*(): orxDOUBLE {.cdecl, importc: "orxSystem_GetTime",
                                     dynlib: "liborx.so".}
 ## * Gets real time (in seconds)
 ##  @return Returns the amount of seconds elapsed since reference time (epoch)
 ##
 
-proc orxSystem_GetRealTime*(): orxU64 {.cdecl,
-                                     importcpp: "orxSystem_GetRealTime(@)",
+proc orxSystem_GetRealTime*(): orxU64 {.cdecl, importc: "orxSystem_GetRealTime",
                                      dynlib: "liborx.so".}
 ## * Gets current internal system time (in seconds)
 ##  @return Current internal system time
 ##
 
 proc orxSystem_GetSystemTime*(): orxDOUBLE {.cdecl,
-    importcpp: "orxSystem_GetSystemTime(@)", dynlib: "liborx.so".}
+    importc: "orxSystem_GetSystemTime", dynlib: "liborx.so".}
 ## * Delay the program for given number of seconds
 ##  @param[in] _fSeconds             Number of seconds to wait
 ##
 
-proc orxSystem_Delay*(fSeconds: orxFLOAT) {.cdecl, importcpp: "orxSystem_Delay(@)",
+proc orxSystem_Delay*(fSeconds: orxFLOAT) {.cdecl, importc: "orxSystem_Delay",
     dynlib: "liborx.so".}
 ## * Gets orx version (compiled)
 ##  @param[out] _pstVersion          Structure to fill with current version
@@ -136,36 +135,36 @@ proc orxSystem_Delay*(fSeconds: orxFLOAT) {.cdecl, importcpp: "orxSystem_Delay(@
 ##
 
 proc orxSystem_GetVersion*(pstVersion: ptr orxVERSION): ptr orxVERSION {.cdecl,
-    importcpp: "orxSystem_GetVersion(@)", dynlib: "liborx.so".}
+    importc: "orxSystem_GetVersion", dynlib: "liborx.so".}
 ## * Gets orx version literal (compiled), excluding build number
 ##  @return Compiled version literal
 ##
 
 proc orxSystem_GetVersionString*(): ptr orxCHAR {.cdecl,
-    importcpp: "orxSystem_GetVersionString(@)", dynlib: "liborx.so".}
+    importc: "orxSystem_GetVersionString", dynlib: "liborx.so".}
 ## * Gets orx version literal (compiled), including build number
 ##  @return Compiled version literal
 ##
 
 proc orxSystem_GetVersionFullString*(): ptr orxCHAR {.cdecl,
-    importcpp: "orxSystem_GetVersionFullString(@)", dynlib: "liborx.so".}
+    importc: "orxSystem_GetVersionFullString", dynlib: "liborx.so".}
 ## * Gets orx version absolute numeric value (compiled)
 ##  @return Absolute numeric value of compiled version
 ##
 
 proc orxSystem_GetVersionNumeric*(): orxU32 {.cdecl,
-    importcpp: "orxSystem_GetVersionNumeric(@)", dynlib: "liborx.so".}
+    importc: "orxSystem_GetVersionNumeric", dynlib: "liborx.so".}
 ## * Gets clipboard's content
 ##  @return Clipboard's content / orxNULL, valid until next call to orxSystem_GetClipboard/orxSystem_SetClipboard
 ##
 
 proc orxSystem_GetClipboard*(): ptr orxCHAR {.cdecl,
-    importcpp: "orxSystem_GetClipboard(@)", dynlib: "liborx.so".}
+    importc: "orxSystem_GetClipboard", dynlib: "liborx.so".}
 ## * Sets clipboard's content
 ##  @param[in] _zValue               Value to set in the clipboard, orxNULL to clear
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSystem_SetClipboard*(zValue: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxSystem_SetClipboard(@)", dynlib: "liborx.so".}
+    importc: "orxSystem_SetClipboard", dynlib: "liborx.so".}
 ## * @}

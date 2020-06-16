@@ -51,17 +51,17 @@ import
 ## * Plugin module setup
 ##
 
-proc orxPlugin_Setup*() {.cdecl, importcpp: "orxPlugin_Setup(@)", dynlib: "liborx.so".}
+proc orxPlugin_Setup*() {.cdecl, importc: "orxPlugin_Setup", dynlib: "liborx.so".}
 ## * Inits the plugin module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxPlugin_Init*(): orxSTATUS {.cdecl, importcpp: "orxPlugin_Init(@)",
+proc orxPlugin_Init*(): orxSTATUS {.cdecl, importc: "orxPlugin_Init",
                                  dynlib: "liborx.so".}
 ## * Exits from the plugin module
 ##
 
-proc orxPlugin_Exit*() {.cdecl, importcpp: "orxPlugin_Exit(@)", dynlib: "liborx.so".}
+proc orxPlugin_Exit*() {.cdecl, importc: "orxPlugin_Exit", dynlib: "liborx.so".}
 ## * Loads a plugin (using its exact complete)
 ##  @param[in] _zPluginFileName  The complete path of the plugin file, including its extension
 ##  @param[in] _zPluginName      The name that the plugin will be given in the plugin list
@@ -69,7 +69,7 @@ proc orxPlugin_Exit*() {.cdecl, importcpp: "orxPlugin_Exit(@)", dynlib: "liborx.
 ##
 
 proc orxPlugin_Load*(zPluginFileName: ptr orxCHAR; zPluginName: ptr orxCHAR): orxHANDLE {.
-    cdecl, importcpp: "orxPlugin_Load(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxPlugin_Load", dynlib: "liborx.so".}
 ## * Loads a plugin using OS common library extension + release/debug suffixes
 ##  @param[in] _zPluginFileName  The complete path of the plugin file, without its library extension
 ##  @param[in] _zPluginName      The name that the plugin will be given in the plugin list
@@ -77,14 +77,14 @@ proc orxPlugin_Load*(zPluginFileName: ptr orxCHAR; zPluginName: ptr orxCHAR): or
 ##
 
 proc orxPlugin_LoadUsingExt*(zPluginFileName: ptr orxCHAR; zPluginName: ptr orxCHAR): orxHANDLE {.
-    cdecl, importcpp: "orxPlugin_LoadUsingExt(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxPlugin_LoadUsingExt", dynlib: "liborx.so".}
 ## * Unloads a plugin
 ##  @param[in] _hPluginHandle The handle of the plugin to unload
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxPlugin_Unload*(hPluginHandle: orxHANDLE): orxSTATUS {.cdecl,
-    importcpp: "orxPlugin_Unload(@)", dynlib: "liborx.so".}
+    importc: "orxPlugin_Unload", dynlib: "liborx.so".}
 ## * Gets a function from a plugin
 ##  @param[in] _hPluginHandle The plugin handle
 ##  @param[in] _zFunctionName The name of the function to find
@@ -92,19 +92,19 @@ proc orxPlugin_Unload*(hPluginHandle: orxHANDLE): orxSTATUS {.cdecl,
 ##
 
 proc orxPlugin_GetFunction*(hPluginHandle: orxHANDLE; zFunctionName: ptr orxCHAR): orxPLUGIN_FUNCTION {.
-    cdecl, importcpp: "orxPlugin_GetFunction(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxPlugin_GetFunction", dynlib: "liborx.so".}
 ## * Gets the handle of a plugin given its name
 ##  @param[in] _zPluginName The plugin name
 ##  @return Its orxHANDLE / orxHANDLE_UNDEFINED
 ##
 
 proc orxPlugin_GetHandle*(zPluginName: ptr orxCHAR): orxHANDLE {.cdecl,
-    importcpp: "orxPlugin_GetHandle(@)", dynlib: "liborx.so".}
+    importc: "orxPlugin_GetHandle", dynlib: "liborx.so".}
 ## * Gets the name of a plugin given its handle
 ##  @param[in] _hPluginHandle The plugin handle
 ##  @return The plugin name / orxSTRING_EMPTY
 ##
 
 proc orxPlugin_GetName*(hPluginHandle: orxHANDLE): ptr orxCHAR {.cdecl,
-    importcpp: "orxPlugin_GetName(@)", dynlib: "liborx.so".}
+    importc: "orxPlugin_GetName", dynlib: "liborx.so".}
 ## * @}

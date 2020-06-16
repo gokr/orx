@@ -55,47 +55,46 @@ type orxSOUNDPOINTER* = object
 ## * SoundPointer module setup
 ##
 
-proc orxSoundPointer_Setup*() {.cdecl, importcpp: "orxSoundPointer_Setup(@)",
+proc orxSoundPointer_Setup*() {.cdecl, importc: "orxSoundPointer_Setup",
                               dynlib: "liborx.so".}
 ## * Inits the SoundPointer module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSoundPointer_Init*(): orxSTATUS {.cdecl,
-                                       importcpp: "orxSoundPointer_Init(@)",
+proc orxSoundPointer_Init*(): orxSTATUS {.cdecl, importc: "orxSoundPointer_Init",
                                        dynlib: "liborx.so".}
 ## * Exits from the SoundPointer module
 ##
 
-proc orxSoundPointer_Exit*() {.cdecl, importcpp: "orxSoundPointer_Exit(@)",
+proc orxSoundPointer_Exit*() {.cdecl, importc: "orxSoundPointer_Exit",
                              dynlib: "liborx.so".}
 ## * Creates an empty SoundPointer
 ##  @return orxSOUNDPOINTER / orxNULL
 ##
 
 proc orxSoundPointer_Create*(): ptr orxSOUNDPOINTER {.cdecl,
-    importcpp: "orxSoundPointer_Create(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_Create", dynlib: "liborx.so".}
 ## * Deletes a SoundPointer
 ##  @param[in] _pstSoundPointer      Concerned SoundPointer
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSoundPointer_Delete*(pstSoundPointer: ptr orxSOUNDPOINTER): orxSTATUS {.
-    cdecl, importcpp: "orxSoundPointer_Delete(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSoundPointer_Delete", dynlib: "liborx.so".}
 ## * Enables/disables a SoundPointer
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
 ##  @param[in]   _bEnable        Enable / disable
 ##
 
 proc orxSoundPointer_Enable*(pstSoundPointer: ptr orxSOUNDPOINTER; bEnable: orxBOOL) {.
-    cdecl, importcpp: "orxSoundPointer_Enable(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSoundPointer_Enable", dynlib: "liborx.so".}
 ## * Is SoundPointer enabled?
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxSoundPointer_IsEnabled*(pstSoundPointer: ptr orxSOUNDPOINTER): orxBOOL {.
-    cdecl, importcpp: "orxSoundPointer_IsEnabled(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSoundPointer_IsEnabled", dynlib: "liborx.so".}
 ## * Sets volume of all related sounds
 ##  @param[in] _pstSoundPointer      Concerned SoundPointer
 ##  @param[in] _fVolume        Desired volume (0.0 - 1.0)
@@ -104,7 +103,7 @@ proc orxSoundPointer_IsEnabled*(pstSoundPointer: ptr orxSOUNDPOINTER): orxBOOL {
 
 proc orxSoundPointer_SetVolume*(pstSoundPointer: ptr orxSOUNDPOINTER;
                                fVolume: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxSoundPointer_SetVolume(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_SetVolume", dynlib: "liborx.so".}
 ## * Sets pitch of all related sounds
 ##  @param[in] _pstSoundPointer      Concerned SoundPointer
 ##  @param[in] _fPitch         Desired pitch
@@ -113,28 +112,28 @@ proc orxSoundPointer_SetVolume*(pstSoundPointer: ptr orxSOUNDPOINTER;
 
 proc orxSoundPointer_SetPitch*(pstSoundPointer: ptr orxSOUNDPOINTER;
                               fPitch: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxSoundPointer_SetPitch(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_SetPitch", dynlib: "liborx.so".}
 ## * Plays all related sounds
 ##  @param[in] _pstSoundPointer      Concerned SoundPointer
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSoundPointer_Play*(pstSoundPointer: ptr orxSOUNDPOINTER): orxSTATUS {.cdecl,
-    importcpp: "orxSoundPointer_Play(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_Play", dynlib: "liborx.so".}
 ## * Pauses all related sounds
 ##  @param[in] _pstSoundPointer      Concerned SoundPointer
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSoundPointer_Pause*(pstSoundPointer: ptr orxSOUNDPOINTER): orxSTATUS {.cdecl,
-    importcpp: "orxSoundPointer_Pause(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_Pause", dynlib: "liborx.so".}
 ## * Stops all related sounds
 ##  @param[in] _pstSoundPointer      Concerned SoundPointer
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSoundPointer_Stop*(pstSoundPointer: ptr orxSOUNDPOINTER): orxSTATUS {.cdecl,
-    importcpp: "orxSoundPointer_Stop(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_Stop", dynlib: "liborx.so".}
 ## * Adds a sound
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
 ##  @param[in]   _pstSound           Sound to add
@@ -143,7 +142,7 @@ proc orxSoundPointer_Stop*(pstSoundPointer: ptr orxSOUNDPOINTER): orxSTATUS {.cd
 
 proc orxSoundPointer_AddSound*(pstSoundPointer: ptr orxSOUNDPOINTER;
                               pstSound: ptr orxSOUND): orxSTATUS {.cdecl,
-    importcpp: "orxSoundPointer_AddSound(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_AddSound", dynlib: "liborx.so".}
 ## * Removes a sound
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
 ##  @param[in]   _pstSound           Sound to remove
@@ -152,14 +151,14 @@ proc orxSoundPointer_AddSound*(pstSoundPointer: ptr orxSOUNDPOINTER;
 
 proc orxSoundPointer_RemoveSound*(pstSoundPointer: ptr orxSOUNDPOINTER;
                                  pstSound: ptr orxSOUND): orxSTATUS {.cdecl,
-    importcpp: "orxSoundPointer_RemoveSound(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_RemoveSound", dynlib: "liborx.so".}
 ## * Removes all sounds
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSoundPointer_RemoveAllSounds*(pstSoundPointer: ptr orxSOUNDPOINTER): orxSTATUS {.
-    cdecl, importcpp: "orxSoundPointer_RemoveAllSounds(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSoundPointer_RemoveAllSounds", dynlib: "liborx.so".}
 ## * Adds a sound using its config ID
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
 ##  @param[in]   _zSoundConfigID     Config ID of the sound to add
@@ -168,7 +167,7 @@ proc orxSoundPointer_RemoveAllSounds*(pstSoundPointer: ptr orxSOUNDPOINTER): orx
 
 proc orxSoundPointer_AddSoundFromConfig*(pstSoundPointer: ptr orxSOUNDPOINTER;
                                         zSoundConfigID: ptr orxCHAR): orxSTATUS {.
-    cdecl, importcpp: "orxSoundPointer_AddSoundFromConfig(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSoundPointer_AddSoundFromConfig", dynlib: "liborx.so".}
 ## * Removes a sound using its config ID
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
 ##  @param[in]   _zSoundConfigID     Config ID of the sound to remove
@@ -177,19 +176,19 @@ proc orxSoundPointer_AddSoundFromConfig*(pstSoundPointer: ptr orxSOUNDPOINTER;
 
 proc orxSoundPointer_RemoveSoundFromConfig*(pstSoundPointer: ptr orxSOUNDPOINTER;
     zSoundConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxSoundPointer_RemoveSoundFromConfig(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_RemoveSoundFromConfig", dynlib: "liborx.so".}
 ## * Gets last added sound (Do *NOT* destroy it directly before removing it!!!)
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
 ##  @return      orxSOUND / orxNULL
 ##
 
 proc orxSoundPointer_GetLastAddedSound*(pstSoundPointer: ptr orxSOUNDPOINTER): ptr orxSOUND {.
-    cdecl, importcpp: "orxSoundPointer_GetLastAddedSound(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxSoundPointer_GetLastAddedSound", dynlib: "liborx.so".}
 ## * Gets how many sounds are currently in use
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
 ##  @return      orxU32
 ##
 
 proc orxSoundPointer_GetCount*(pstSoundPointer: ptr orxSOUNDPOINTER): orxU32 {.cdecl,
-    importcpp: "orxSoundPointer_GetCount(@)", dynlib: "liborx.so".}
+    importc: "orxSoundPointer_GetCount", dynlib: "liborx.so".}
 ## * @}

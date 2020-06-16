@@ -54,18 +54,18 @@ type orxANIMPOINTER* = object
 ## * AnimPointer module setup
 ##
 
-proc orxAnimPointer_Setup*() {.cdecl, importcpp: "orxAnimPointer_Setup(@)",
+proc orxAnimPointer_Setup*() {.cdecl, importc: "orxAnimPointer_Setup",
                              dynlib: "liborx.so".}
 ## * Inits the AnimPointer module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxAnimPointer_Init*(): orxSTATUS {.cdecl, importcpp: "orxAnimPointer_Init(@)",
+proc orxAnimPointer_Init*(): orxSTATUS {.cdecl, importc: "orxAnimPointer_Init",
                                       dynlib: "liborx.so".}
 ## * Exits from the AnimPointer module
 ##
 
-proc orxAnimPointer_Exit*() {.cdecl, importcpp: "orxAnimPointer_Exit(@)",
+proc orxAnimPointer_Exit*() {.cdecl, importc: "orxAnimPointer_Exit",
                             dynlib: "liborx.so".}
 ## * Creates an empty AnimPointer
 ##  @param[in]   _pstAnimSet                   AnimSet reference
@@ -73,77 +73,77 @@ proc orxAnimPointer_Exit*() {.cdecl, importcpp: "orxAnimPointer_Exit(@)",
 ##
 
 proc orxAnimPointer_Create*(pstAnimSet: ptr orxANIMSET): ptr orxANIMPOINTER {.cdecl,
-    importcpp: "orxAnimPointer_Create(@)", dynlib: "liborx.so".}
+    importc: "orxAnimPointer_Create", dynlib: "liborx.so".}
 ## * Creates an animation pointer from config
 ##  @param[in]   _zConfigID                    Config ID
 ##  @return      orxANIMPOINTER / orxNULL
 ##
 
 proc orxAnimPointer_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxANIMPOINTER {.
-    cdecl, importcpp: "orxAnimPointer_CreateFromConfig(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes an AnimPointer
 ##  @param[in]   _pstAnimPointer               AnimPointer to delete
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxAnimPointer_Delete*(pstAnimPointer: ptr orxANIMPOINTER): orxSTATUS {.cdecl,
-    importcpp: "orxAnimPointer_Delete(@)", dynlib: "liborx.so".}
+    importc: "orxAnimPointer_Delete", dynlib: "liborx.so".}
 ## * Gets the referenced AnimSet
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @return      Referenced orxANIMSET
 ##
 
 proc orxAnimPointer_GetAnimSet*(pstAnimPointer: ptr orxANIMPOINTER): ptr orxANIMSET {.
-    cdecl, importcpp: "orxAnimPointer_GetAnimSet(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_GetAnimSet", dynlib: "liborx.so".}
 ## * AnimPointer current Animation get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @return      Current Animation ID
 ##
 
 proc orxAnimPointer_GetCurrentAnim*(pstAnimPointer: ptr orxANIMPOINTER): orxU32 {.
-    cdecl, importcpp: "orxAnimPointer_GetCurrentAnim(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_GetCurrentAnim", dynlib: "liborx.so".}
 ## * AnimPointer target Animation get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @return      Target Animation ID
 ##
 
 proc orxAnimPointer_GetTargetAnim*(pstAnimPointer: ptr orxANIMPOINTER): orxU32 {.
-    cdecl, importcpp: "orxAnimPointer_GetTargetAnim(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_GetTargetAnim", dynlib: "liborx.so".}
 ## * AnimPointer current Animation name get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @return      Current Animation name / orxSTRING_EMPTY
 ##
 
 proc orxAnimPointer_GetCurrentAnimName*(pstAnimPointer: ptr orxANIMPOINTER): ptr orxCHAR {.
-    cdecl, importcpp: "orxAnimPointer_GetCurrentAnimName(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_GetCurrentAnimName", dynlib: "liborx.so".}
 ## * AnimPointer target Animation ID get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @return      Target Animation name / orxSTRING_EMPTY
 ##
 
 proc orxAnimPointer_GetTargetAnimName*(pstAnimPointer: ptr orxANIMPOINTER): ptr orxCHAR {.
-    cdecl, importcpp: "orxAnimPointer_GetTargetAnimName(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_GetTargetAnimName", dynlib: "liborx.so".}
 ## * AnimPointer current anim data get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @return      Current anim data / orxNULL
 ##
 
 proc orxAnimPointer_GetCurrentAnimData*(pstAnimPointer: ptr orxANIMPOINTER): ptr orxSTRUCTURE {.
-    cdecl, importcpp: "orxAnimPointer_GetCurrentAnimData(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_GetCurrentAnimData", dynlib: "liborx.so".}
 ## * AnimPointer time get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @return      Current time
 ##
 
 proc orxAnimPointer_GetTime*(pstAnimPointer: ptr orxANIMPOINTER): orxFLOAT {.cdecl,
-    importcpp: "orxAnimPointer_GetTime(@)", dynlib: "liborx.so".}
+    importc: "orxAnimPointer_GetTime", dynlib: "liborx.so".}
 ## * AnimPointer frequency get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @return      AnimPointer frequency
 ##
 
 proc orxAnimPointer_GetFrequency*(pstAnimPointer: ptr orxANIMPOINTER): orxFLOAT {.
-    cdecl, importcpp: "orxAnimPointer_GetFrequency(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_GetFrequency", dynlib: "liborx.so".}
 ## * AnimPointer current Animation set accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @param[in]   _u32AnimID                    Animation ID to set
@@ -152,7 +152,7 @@ proc orxAnimPointer_GetFrequency*(pstAnimPointer: ptr orxANIMPOINTER): orxFLOAT 
 
 proc orxAnimPointer_SetCurrentAnim*(pstAnimPointer: ptr orxANIMPOINTER;
                                    u32AnimID: orxU32): orxSTATUS {.cdecl,
-    importcpp: "orxAnimPointer_SetCurrentAnim(@)", dynlib: "liborx.so".}
+    importc: "orxAnimPointer_SetCurrentAnim", dynlib: "liborx.so".}
 ## * AnimPointer target Animation set accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @param[in]   _u32AnimID                    Animation ID to set / orxU32_UNDEFINED
@@ -161,7 +161,7 @@ proc orxAnimPointer_SetCurrentAnim*(pstAnimPointer: ptr orxANIMPOINTER;
 
 proc orxAnimPointer_SetTargetAnim*(pstAnimPointer: ptr orxANIMPOINTER;
                                   u32AnimID: orxU32): orxSTATUS {.cdecl,
-    importcpp: "orxAnimPointer_SetTargetAnim(@)", dynlib: "liborx.so".}
+    importc: "orxAnimPointer_SetTargetAnim", dynlib: "liborx.so".}
 ## * AnimPointer current Animation set accessor using name
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @param[in]   _zAnimName                    Animation name (config's name) to set
@@ -169,7 +169,7 @@ proc orxAnimPointer_SetTargetAnim*(pstAnimPointer: ptr orxANIMPOINTER;
 ##
 
 proc orxAnimPointer_SetCurrentAnimFromName*(pstAnimPointer: ptr orxANIMPOINTER;
-    zAnimName: ptr orxCHAR): orxSTATUS {.cdecl, importcpp: "orxAnimPointer_SetCurrentAnimFromName(@)",
+    zAnimName: ptr orxCHAR): orxSTATUS {.cdecl, importc: "orxAnimPointer_SetCurrentAnimFromName",
                                      dynlib: "liborx.so".}
 ## * AnimPointer target Animation set accessor using name
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
@@ -178,7 +178,7 @@ proc orxAnimPointer_SetCurrentAnimFromName*(pstAnimPointer: ptr orxANIMPOINTER;
 ##
 
 proc orxAnimPointer_SetTargetAnimFromName*(pstAnimPointer: ptr orxANIMPOINTER;
-    zAnimName: ptr orxCHAR): orxSTATUS {.cdecl, importcpp: "orxAnimPointer_SetTargetAnimFromName(@)",
+    zAnimName: ptr orxCHAR): orxSTATUS {.cdecl, importc: "orxAnimPointer_SetTargetAnimFromName",
                                      dynlib: "liborx.so".}
 ## * AnimPointer current time set accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
@@ -187,7 +187,7 @@ proc orxAnimPointer_SetTargetAnimFromName*(pstAnimPointer: ptr orxANIMPOINTER;
 ##
 
 proc orxAnimPointer_SetTime*(pstAnimPointer: ptr orxANIMPOINTER; fTime: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxAnimPointer_SetTime(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_SetTime", dynlib: "liborx.so".}
 ## * AnimPointer frequency set accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @param[in]   _fFrequency                   Frequency to set
@@ -196,7 +196,7 @@ proc orxAnimPointer_SetTime*(pstAnimPointer: ptr orxANIMPOINTER; fTime: orxFLOAT
 
 proc orxAnimPointer_SetFrequency*(pstAnimPointer: ptr orxANIMPOINTER;
                                  fFrequency: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxAnimPointer_SetFrequency(@)", dynlib: "liborx.so".}
+    importc: "orxAnimPointer_SetFrequency", dynlib: "liborx.so".}
 ## * AnimPointer pause accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @param[in]   _bPause                       Pause / Unpause
@@ -204,5 +204,5 @@ proc orxAnimPointer_SetFrequency*(pstAnimPointer: ptr orxANIMPOINTER;
 ##
 
 proc orxAnimPointer_Pause*(pstAnimPointer: ptr orxANIMPOINTER; bPause: orxBOOL): orxSTATUS {.
-    cdecl, importcpp: "orxAnimPointer_Pause(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnimPointer_Pause", dynlib: "liborx.so".}
 ## * @}

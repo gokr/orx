@@ -123,8 +123,8 @@ template orxS2F*(V: untyped): untyped =
 ##  @param[in]   _u32Seed                        Value to use as seed for random number generation
 ##
 
-proc orxMath_InitRandom*(u32Seed: orxU32) {.cdecl,
-    importcpp: "orxMath_InitRandom(@)", dynlib: "liborx.so".}
+proc orxMath_InitRandom*(u32Seed: orxU32) {.cdecl, importc: "orxMath_InitRandom",
+    dynlib: "liborx.so".}
 ## * Gets a random orxFLOAT value
 ##  @param[in]   _fMin                           Minimum boundary (inclusive)
 ##  @param[in]   _fMax                           Maximum boundary (exclusive)
@@ -132,7 +132,7 @@ proc orxMath_InitRandom*(u32Seed: orxU32) {.cdecl,
 ##
 
 proc orxMath_GetRandomFloat*(fMin: orxFLOAT; fMax: orxFLOAT): orxFLOAT {.cdecl,
-    importcpp: "orxMath_GetRandomFloat(@)", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomFloat", dynlib: "liborx.so".}
 ## * Gets a random orxFLOAT value using step increments
 ##  @param[in]   _fMin                           Minimum boundary (inclusive)
 ##  @param[in]   _fMax                           Maximum boundary (exclusive)
@@ -141,7 +141,7 @@ proc orxMath_GetRandomFloat*(fMin: orxFLOAT; fMax: orxFLOAT): orxFLOAT {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomFloat*(fMin: orxFLOAT; fMax: orxFLOAT; fStep: orxFLOAT): orxFLOAT {.
-    cdecl, importcpp: "orxMath_GetSteppedRandomFloat(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomFloat", dynlib: "liborx.so".}
 ## * Gets a random orxU32 value
 ##  @param[in]   _u32Min                         Minimum boundary (inclusive)
 ##  @param[in]   _u32Max                         Maximum boundary (inclusive)
@@ -149,7 +149,7 @@ proc orxMath_GetSteppedRandomFloat*(fMin: orxFLOAT; fMax: orxFLOAT; fStep: orxFL
 ##
 
 proc orxMath_GetRandomU32*(u32Min: orxU32; u32Max: orxU32): orxU32 {.cdecl,
-    importcpp: "orxMath_GetRandomU32(@)", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomU32", dynlib: "liborx.so".}
 ## * Gets a random U32 value using step increments
 ##  @param[in]   _u32Min                         Minimum boundary (inclusive)
 ##  @param[in]   _u32Max                         Maximum boundary (inclusive)
@@ -158,7 +158,7 @@ proc orxMath_GetRandomU32*(u32Min: orxU32; u32Max: orxU32): orxU32 {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomU32*(u32Min: orxU32; u32Max: orxU32; u32Step: orxU32): orxU32 {.
-    cdecl, importcpp: "orxMath_GetSteppedRandomU32(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomU32", dynlib: "liborx.so".}
 ## * Gets a random orxS32 value
 ##  @param[in]   _s32Min                         Minimum boundary (inclusive)
 ##  @param[in]   _s32Max                         Maximum boundary (inclusive)
@@ -166,7 +166,7 @@ proc orxMath_GetSteppedRandomU32*(u32Min: orxU32; u32Max: orxU32; u32Step: orxU3
 ##
 
 proc orxMath_GetRandomS32*(s32Min: orxS32; s32Max: orxS32): orxS32 {.cdecl,
-    importcpp: "orxMath_GetRandomS32(@)", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomS32", dynlib: "liborx.so".}
 ## * Gets a random S32 value using step increments
 ##  @param[in]   _s32Min                         Minimum boundary (inclusive)
 ##  @param[in]   _s32Max                         Maximum boundary (inclusive)
@@ -175,7 +175,7 @@ proc orxMath_GetRandomS32*(s32Min: orxS32; s32Max: orxS32): orxS32 {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomS32*(s32Min: orxS32; s32Max: orxS32; s32Step: orxS32): orxS32 {.
-    cdecl, importcpp: "orxMath_GetSteppedRandomS32(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomS32", dynlib: "liborx.so".}
 ## * Gets a random orxU64 value
 ##  @param[in]   _u64Min                         Minimum boundary (inclusive)
 ##  @param[in]   _u64Max                         Maximum boundary (inclusive)
@@ -183,7 +183,7 @@ proc orxMath_GetSteppedRandomS32*(s32Min: orxS32; s32Max: orxS32; s32Step: orxS3
 ##
 
 proc orxMath_GetRandomU64*(u64Min: orxU64; u64Max: orxU64): orxU64 {.cdecl,
-    importcpp: "orxMath_GetRandomU64(@)", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomU64", dynlib: "liborx.so".}
 ## * Gets a random U64 value using step increments
 ##  @param[in]   _u64Min                         Minimum boundary (inclusive)
 ##  @param[in]   _u64Max                         Maximum boundary (inclusive)
@@ -192,7 +192,7 @@ proc orxMath_GetRandomU64*(u64Min: orxU64; u64Max: orxU64): orxU64 {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomU64*(u64Min: orxU64; u64Max: orxU64; u64Step: orxU64): orxU64 {.
-    cdecl, importcpp: "orxMath_GetSteppedRandomU64(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomU64", dynlib: "liborx.so".}
 ## * Gets a random orxS64 value
 ##  @param[in]   _s64Min                         Minimum boundary (inclusive)
 ##  @param[in]   _s64Max                         Maximum boundary (inclusive)
@@ -200,7 +200,7 @@ proc orxMath_GetSteppedRandomU64*(u64Min: orxU64; u64Max: orxU64; u64Step: orxU6
 ##
 
 proc orxMath_GetRandomS64*(s64Min: orxS64; s64Max: orxS64): orxS64 {.cdecl,
-    importcpp: "orxMath_GetRandomS64(@)", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomS64", dynlib: "liborx.so".}
 ## * Gets a random S64 value using step increments
 ##  @param[in]   _s64Min                         Minimum boundary (inclusive)
 ##  @param[in]   _s64Max                         Maximum boundary (inclusive)
@@ -209,59 +209,112 @@ proc orxMath_GetRandomS64*(s64Min: orxS64; s64Max: orxS64): orxS64 {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomS64*(s64Min: orxS64; s64Max: orxS64; s64Step: orxS64): orxS64 {.
-    cdecl, importcpp: "orxMath_GetSteppedRandomS64(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomS64", dynlib: "liborx.so".}
 ## * Gets the current random seeds
 ##  @param[out]  _au32Seeds                      Current seeds
 ##
 
 proc orxMath_GetRandomSeeds*(au32Seeds: array[4, orxU32]) {.cdecl,
-    importcpp: "orxMath_GetRandomSeeds(@)", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomSeeds", dynlib: "liborx.so".}
 ## * Sets (replaces) the current random seeds
 ##  @param[in]   _au32Seeds                      Seeds to set
 ##
 
 proc orxMath_SetRandomSeeds*(au32Seeds: array[4, orxU32]) {.cdecl,
-    importcpp: "orxMath_SetRandomSeeds(@)", dynlib: "liborx.so".}
+    importc: "orxMath_SetRandomSeeds", dynlib: "liborx.so".}
 ## ** Inlined functions ***
 ## * Gets the count of bit in an orxU32
 ##  @param[in]   _u32Value                       Value to process
 ##  @return      Number of bits that are set in the value
 ##
 
-proc orxMath_GetBitCount*(u32Value: orxU32): orxU32 {.cdecl.} =
-  discard
+proc orxMath_GetBitCount*(u32Value: orxU32): orxU32 {.inline, cdecl.} =
+  var u32Result: orxU32
+  when defined(MSVC):
+    ##  Uses intrinsic
+    u32Result = popcnt(u32Value)
+  else:
+    ##  Uses intrinsic
+    u32Result = cast[orxU32](builtin_popcount(u32Value))
+  ##  Done!
+  return u32Result
 
 ## * Gets the count of trailing zeros in an orxU32
 ##  @param[in]   _u32Value                       Value to process
 ##  @return      Number of trailing zeros
 ##
 
-proc orxMath_GetTrailingZeroCount*(u32Value: orxU32): orxU32 {.cdecl.} =
-  discard
+proc orxMath_GetTrailingZeroCount*(u32Value: orxU32): orxU32 {.inline, cdecl.} =
+  var u32Result: orxU32
+  ##  Checks
+  orxASSERT(u32Value != 0)
+  when defined(MSVC):
+    ##  Uses intrinsic
+    BitScanForward(cast[ptr culong](addr(u32Result)), u32Value)
+  else:
+    ##  Uses intrinsic
+    u32Result = cast[orxU32](builtin_ctz(u32Value))
+  ##  Done!
+  return u32Result
 
 ## * Gets the count of trailing zeros in an orxU64
 ##  @param[in]   _u64Value                       Value to process
 ##  @return      Number of trailing zeros
 ##
 
-proc orxMath_GetTrailingZeroCount64*(u64Value: orxU64): orxU32 {.cdecl.} =
-  discard
+proc orxMath_GetTrailingZeroCount64*(u64Value: orxU64): orxU32 {.inline, cdecl.} =
+  var u32Result: orxU32
+  ##  Checks
+  orxASSERT(u64Value != 0)
+  when defined(MSVC):
+    when defined(orx64):
+      ##  Uses intrinsic
+      BitScanForward64(cast[ptr culong](addr(u32Result)), u64Value)
+    else:
+      ##  Updates result
+      u32Result = if ((u64Value and 0xFFFFFFFF) == 0): orxMath_GetTrailingZeroCount(
+          (orxU32)(u64Value shr 32)) + 32 else: orxMath_GetTrailingZeroCount(
+          cast[orxU32](u64Value))
+  else:
+    ##  Uses intrinsic
+    u32Result = cast[orxU32](builtin_ctzll(u64Value))
+  ##  Done!
+  return u32Result
 
 ## * Is value a power of two?
 ##  @param[in]   _u32Value                       Value to test
 ##  @return      orxTRUE / orxFALSE
 ##
 
-proc orxMath_IsPowerOfTwo*(u32Value: orxU32): orxBOOL {.cdecl.} =
-  discard
+proc orxMath_IsPowerOfTwo*(u32Value: orxU32): orxBOOL {.inline, cdecl.} =
+  var bResult: orxBOOL
+  ##  Updates result
+  bResult = if ((u32Value and (u32Value - 1)) == 0): orxTRUE else: orxFALSE
+  ##  Done!
+  return bResult
 
 ## * Gets next power of two of an orxU32
 ##  @param[in]   _u32Value                       Value to process
 ##  @return      If _u32Value is already a power of two, returns it, otherwise the next power of two
 ##
 
-proc orxMath_GetNextPowerOfTwo*(u32Value: orxU32): orxU32 {.cdecl.} =
-  discard
+proc orxMath_GetNextPowerOfTwo*(u32Value: orxU32): orxU32 {.inline, cdecl.} =
+  var u32Result: orxU32
+  ##  Non-zero?
+  if u32Value != 0:
+    ##  Updates result
+    u32Result = u32Value - 1
+    u32Result = u32Result or (u32Result shr 1)
+    u32Result = u32Result or (u32Result shr 2)
+    u32Result = u32Result or (u32Result shr 4)
+    u32Result = u32Result or (u32Result shr 8)
+    u32Result = u32Result or (u32Result shr 16)
+    inc(u32Result)
+  else:
+    ##  Updates result
+    u32Result = 1
+  ##  Done!
+  return u32Result
 
 ## * Gets smooth stepped value between two extrema
 ##  @param[in]   _fMin                           Minimum value
@@ -271,8 +324,17 @@ proc orxMath_GetNextPowerOfTwo*(u32Value: orxU32): orxU32 {.cdecl.} =
 ##
 
 proc orxMath_SmoothStep*(fMin: orxFLOAT; fMax: orxFLOAT; fValue: orxFLOAT): orxFLOAT {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var
+    fTemp: orxFLOAT
+    fResult: orxFLOAT
+  ##  Gets normalized and clamped value
+  fTemp = (fValue - fMin) div (fMax - fMin)
+  fTemp = orxCLAMP(fTemp, orxFLOAT_0, orxFLOAT_1)
+  ##  Gets smoothed result
+  fResult = fTemp * fTemp * (orx2F(3.0) - (orx2F(2.0) * fTemp))
+  ##  Done!
+  return fResult
 
 ## * Gets smoother stepped value between two extrema
 ##  @param[in]   _fMin                           Minimum value
@@ -282,8 +344,18 @@ proc orxMath_SmoothStep*(fMin: orxFLOAT; fMax: orxFLOAT; fValue: orxFLOAT): orxF
 ##
 
 proc orxMath_SmootherStep*(fMin: orxFLOAT; fMax: orxFLOAT; fValue: orxFLOAT): orxFLOAT {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var
+    fTemp: orxFLOAT
+    fResult: orxFLOAT
+  ##  Gets normalized and clamped value
+  fTemp = (fValue - fMin) div (fMax - fMin)
+  fTemp = orxCLAMP(fTemp, orxFLOAT_0, orxFLOAT_1)
+  ##  Gets smoothed result
+  fResult = fTemp * fTemp * fTemp *
+      (fTemp * ((fTemp * orx2F(6.0)) - orx2F(15.0)) + orx2F(10.0))
+  ##  Done!
+  return fResult
 
 ## ** Math Definitions **
 
@@ -305,40 +377,60 @@ const
 ##  @return      Sine of the given angle
 ##
 
-proc orxMath_Sin*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Sin*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = sinf(fOp)
+  ##  Done!
+  return fResult
 
 ## * Gets a cosine
 ##  @param[in]   _fOp                            Input radian angle value
 ##  @return      Cosine of the given angle
 ##
 
-proc orxMath_Cos*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Cos*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = cosf(fOp)
+  ##  Done!
+  return fResult
 
 ## * Gets a tangent
 ##  @param[in]   _fOp                            Input radian angle value
 ##  @return      Tangent of the given angle
 ##
 
-proc orxMath_Tan*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Tan*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = tanf(fOp)
+  ##  Done!
+  return fResult
 
 ## * Gets an arccosine
 ##  @param[in]   _fOp                            Input radian angle value
 ##  @return      Arccosine of the given angle
 ##
 
-proc orxMath_ACos*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_ACos*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = acosf(fOp)
+  ##  Done!
+  return fResult
 
 ## * Gets an arcsine
 ##  @param[in]   _fOp                            Input radian angle value
 ##  @return      Arcsine of the given angle
 ##
 
-proc orxMath_ASin*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_ASin*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = asinf(fOp)
+  ##  Done!
+  return fResult
 
 ## * Gets an arctangent
 ##  @param[in]   _fOp1                           First operand
@@ -346,8 +438,12 @@ proc orxMath_ASin*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
 ##  @return      Arctangent of the given angle
 ##
 
-proc orxMath_ATan*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_ATan*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = atan2f(fOp1, fOp2)
+  ##  Done!
+  return fResult
 
 ## ** Misc functions **
 ## * Gets a square root
@@ -355,32 +451,52 @@ proc orxMath_ATan*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.cdecl.} =
 ##  @return      Square root of the given value
 ##
 
-proc orxMath_Sqrt*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Sqrt*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = sqrtf(fOp)
+  ##  Done!
+  return fResult
 
 ## * Gets a floored value
 ##  @param[in]   _fOp                            Input value
 ##  @return      Floored value
 ##
 
-proc orxMath_Floor*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Floor*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = floorf(fOp)
+  ##  Done!
+  return fResult
 
 ## * Gets a ceiled value
 ##  @param[in]   _fOp                            Input value
 ##  @return      Ceiled value
 ##
 
-proc orxMath_Ceil*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Ceil*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = ceilf(fOp)
+  ##  Done!
+  return fResult
 
 ## * Gets a rounded value
 ##  @param[in]   _fOp                            Input value
 ##  @return      Rounded value
 ##
 
-proc orxMath_Round*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Round*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  when defined(MSVC):
+    ##  Updates result
+    fResult = floorf(fOp + orx2F(0.5))
+  else:
+    ##  Updates result
+    fResult = rintf(fOp)
+  ##  Done!
+  return fResult
 
 ## * Gets a modulo value
 ##  @param[in]   _fOp1                           Input value
@@ -388,8 +504,12 @@ proc orxMath_Round*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
 ##  @return      Modulo value
 ##
 
-proc orxMath_Mod*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Mod*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = fmodf(fOp1, fOp2)
+  ##  Done!
+  return fResult
 
 ## * Gets a powed value
 ##  @param[in]   _fOp                            Input value
@@ -397,15 +517,23 @@ proc orxMath_Mod*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.cdecl.} =
 ##  @return      Powed value
 ##
 
-proc orxMath_Pow*(fOp: orxFLOAT; fExp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Pow*(fOp: orxFLOAT; fExp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = powf(fOp, fExp)
+  ##  Done!
+  return fResult
 
 ## * Gets an absolute value
 ##  @param[in]   _fOp                            Input value
 ##  @return      Absolute value
 ##
 
-proc orxMath_Abs*(fOp: orxFLOAT): orxFLOAT {.cdecl.} =
-  discard
+proc orxMath_Abs*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Updates result
+  fResult = fabsf(fOp)
+  ##  Done!
+  return fResult
 
 ## * @}

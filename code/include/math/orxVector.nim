@@ -82,8 +82,15 @@ type
 ##
 
 proc orxVector_Set*(pvVec: ptr orxVECTOR; fX: orxFLOAT; fY: orxFLOAT; fZ: orxFLOAT): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvVec != orxNULL)
+  ##  Stores values
+  pvVec.fX = fX
+  pvVec.fY = fY
+  pvVec.fZ = fZ
+  ##  Done !
+  return pvVec
 
 ## * Sets all the vector coordinates with the given value
 ##  @param[in]   _pvVec                        Concerned vector
@@ -91,8 +98,10 @@ proc orxVector_Set*(pvVec: ptr orxVECTOR; fX: orxFLOAT; fY: orxFLOAT; fZ: orxFLO
 ##  @return      Vector
 ##
 
-proc orxVector_SetAll*(pvVec: ptr orxVECTOR; fValue: orxFLOAT): ptr orxVECTOR {.cdecl.} =
-  discard
+proc orxVector_SetAll*(pvVec: ptr orxVECTOR; fValue: orxFLOAT): ptr orxVECTOR {.inline,
+    cdecl.} =
+  ##  Done !
+  return orxVector_Set(pvVec, fValue, fValue, fValue)
 
 ## * Copies a vector onto another one
 ##  @param[in]   _pvDst                        Vector to copy to (destination)
@@ -100,8 +109,15 @@ proc orxVector_SetAll*(pvVec: ptr orxVECTOR; fValue: orxFLOAT): ptr orxVECTOR {.
 ##  @return      Destination vector
 ##
 
-proc orxVector_Copy*(pvDst: ptr orxVECTOR; pvSrc: ptr orxVECTOR): ptr orxVECTOR {.cdecl.} =
-  discard
+proc orxVector_Copy*(pvDst: ptr orxVECTOR; pvSrc: ptr orxVECTOR): ptr orxVECTOR {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pvDst != orxNULL)
+  orxASSERT(pvSrc != orxNULL)
+  ##  Copies it
+  orxMemory_Copy(pvDst, pvSrc, sizeof((orxVECTOR)))
+  ##  Done!
+  return pvDst
 
 ## * Adds vectors and stores result in a third one
 ##  @param[out]  _pvRes                        Vector where to store result (can be one of the two operands)
@@ -111,8 +127,17 @@ proc orxVector_Copy*(pvDst: ptr orxVECTOR; pvSrc: ptr orxVECTOR): ptr orxVECTOR 
 ##
 
 proc orxVector_Add*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Adds all
+  pvRes.fX = pvOp1.fX + pvOp2.fX
+  pvRes.fY = pvOp1.fY + pvOp2.fY
+  pvRes.fZ = pvOp1.fZ + pvOp2.fZ
+  ##  Done!
+  return pvRes
 
 ## * Substracts vectors and stores result in a third one
 ##  @param[out]  _pvRes                        Vector where to store result (can be one of the two operands)
@@ -122,8 +147,17 @@ proc orxVector_Add*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 ##
 
 proc orxVector_Sub*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Adds all
+  pvRes.fX = pvOp1.fX - pvOp2.fX
+  pvRes.fY = pvOp1.fY - pvOp2.fY
+  pvRes.fZ = pvOp1.fZ - pvOp2.fZ
+  ##  Done!
+  return pvRes
 
 ## * Multiplies a vector by an orxFLOAT and stores result in another one
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -133,8 +167,16 @@ proc orxVector_Sub*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 ##
 
 proc orxVector_Mulf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  ##  Muls all
+  pvRes.fX = pvOp1.fX * fOp2
+  pvRes.fY = pvOp1.fY * fOp2
+  pvRes.fZ = pvOp1.fZ * fOp2
+  ##  Done!
+  return pvRes
 
 ## * Multiplies a vector by another vector and stores result in a third one
 ##  @param[out]  _pvRes                        Vector where to store result (can be one of the two operands)
@@ -144,8 +186,17 @@ proc orxVector_Mulf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT)
 ##
 
 proc orxVector_Mul*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Muls all
+  pvRes.fX = pvOp1.fX * pvOp2.fX
+  pvRes.fY = pvOp1.fY * pvOp2.fY
+  pvRes.fZ = pvOp1.fZ * pvOp2.fZ
+  ##  Done!
+  return pvRes
 
 ## * Divides a vector by an orxFLOAT and stores result in another one
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -155,8 +206,20 @@ proc orxVector_Mul*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 ##
 
 proc orxVector_Divf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var fRecCoef: orxFLOAT
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(fOp2 != orxFLOAT_0)
+  ##  Gets reciprocal coef
+  fRecCoef = orxFLOAT_1 div fOp2
+  ##  Muls all
+  pvRes.fX = pvOp1.fX * fRecCoef
+  pvRes.fY = pvOp1.fY * fRecCoef
+  pvRes.fZ = pvOp1.fZ * fRecCoef
+  ##  Done!
+  return pvRes
 
 ## * Divides a vector by another vector and stores result in a third one
 ##  @param[out]  _pvRes                        Vector where to store result (can be one of the two operands)
@@ -166,8 +229,17 @@ proc orxVector_Divf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT)
 ##
 
 proc orxVector_Div*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Divs all
+  pvRes.fX = pvOp1.fX div pvOp2.fX
+  pvRes.fY = pvOp1.fY div pvOp2.fY
+  pvRes.fZ = pvOp1.fZ div pvOp2.fZ
+  ##  Done!
+  return pvRes
 
 ## * Lerps from one vector to another one using a coefficient
 ##  @param[out]  _pvRes                        Vector where to store result (can be one of the two operands)
@@ -178,8 +250,18 @@ proc orxVector_Div*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 ##
 
 proc orxVector_Lerp*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR;
-                    fOp: orxFLOAT): ptr orxVECTOR {.cdecl.} =
-  discard
+                    fOp: orxFLOAT): ptr orxVECTOR {.inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  orxASSERT(fOp >= orxFLOAT_0)
+  ##  Lerps all
+  pvRes.fX = orxLERP(pvOp1.fX, pvOp2.fX, fOp)
+  pvRes.fY = orxLERP(pvOp1.fY, pvOp2.fY, fOp)
+  pvRes.fZ = orxLERP(pvOp1.fZ, pvOp2.fZ, fOp)
+  ##  Done!
+  return pvRes
 
 ## * Gets minimum between two vectors
 ##  @param[out]  _pvRes                        Vector where to store result (can be one of the two operands)
@@ -189,8 +271,17 @@ proc orxVector_Lerp*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxV
 ##
 
 proc orxVector_Min*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Gets all mins
+  pvRes.fX = orxMIN(pvOp1.fX, pvOp2.fX)
+  pvRes.fY = orxMIN(pvOp1.fY, pvOp2.fY)
+  pvRes.fZ = orxMIN(pvOp1.fZ, pvOp2.fZ)
+  ##  Done!
+  return pvRes
 
 ## * Gets maximum between two vectors
 ##  @param[out]  _pvRes                        Vector where to store result (can be one of the two operands)
@@ -200,8 +291,17 @@ proc orxVector_Min*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 ##
 
 proc orxVector_Max*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Gets all maxs
+  pvRes.fX = orxMAX(pvOp1.fX, pvOp2.fX)
+  pvRes.fY = orxMAX(pvOp1.fY, pvOp2.fY)
+  pvRes.fZ = orxMAX(pvOp1.fZ, pvOp2.fZ)
+  ##  Done!
+  return pvRes
 
 ## * Clamps a vector between two others
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -212,8 +312,18 @@ proc orxVector_Max*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 ##
 
 proc orxVector_Clamp*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; pvMin: ptr orxVECTOR;
-                     pvMax: ptr orxVECTOR): ptr orxVECTOR {.cdecl.} =
-  discard
+                     pvMax: ptr orxVECTOR): ptr orxVECTOR {.inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp != orxNULL)
+  orxASSERT(pvMin != orxNULL)
+  orxASSERT(pvMax != orxNULL)
+  ##  Gets all clamped values
+  pvRes.fX = orxCLAMP(pvOp.fX, pvMin.fX, pvMax.fX)
+  pvRes.fY = orxCLAMP(pvOp.fY, pvMin.fY, pvMax.fY)
+  pvRes.fZ = orxCLAMP(pvOp.fZ, pvMin.fZ, pvMax.fZ)
+  ##  Done!
+  return pvRes
 
 ## * Negates a vector and stores result in another one
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -221,8 +331,17 @@ proc orxVector_Clamp*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; pvMin: ptr orxV
 ##  @return      Resulting vector (-Op)
 ##
 
-proc orxVector_Neg*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.cdecl.} =
-  discard
+proc orxVector_Neg*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp != orxNULL)
+  ##  Negates all
+  pvRes.fX = -(pvOp.fX)
+  pvRes.fY = -(pvOp.fY)
+  pvRes.fZ = -(pvOp.fZ)
+  ##  Done!
+  return pvRes
 
 ## * Gets reciprocal (1.0 /) vector and stores the result in another one
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -230,8 +349,17 @@ proc orxVector_Neg*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
 ##  @return      Resulting vector (1 / Op)
 ##
 
-proc orxVector_Rec*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.cdecl.} =
-  discard
+proc orxVector_Rec*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp != orxNULL)
+  ##  Reverts all
+  pvRes.fX = orxFLOAT_1 div pvOp.fX
+  pvRes.fY = orxFLOAT_1 div pvOp.fY
+  pvRes.fZ = orxFLOAT_1 div pvOp.fZ
+  ##  Done!
+  return pvRes
 
 ## * Gets floored vector and stores the result in another one
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -239,8 +367,17 @@ proc orxVector_Rec*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
 ##  @return      Resulting vector Floor(Op)
 ##
 
-proc orxVector_Floor*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.cdecl.} =
-  discard
+proc orxVector_Floor*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp != orxNULL)
+  ##  Reverts all
+  pvRes.fX = orxMath_Floor(pvOp.fX)
+  pvRes.fY = orxMath_Floor(pvOp.fY)
+  pvRes.fZ = orxMath_Floor(pvOp.fZ)
+  ##  Done!
+  return pvRes
 
 ## * Gets rounded vector and stores the result in another one
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -248,24 +385,45 @@ proc orxVector_Floor*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR 
 ##  @return      Resulting vector Round(Op)
 ##
 
-proc orxVector_Round*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.cdecl.} =
-  discard
+proc orxVector_Round*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp != orxNULL)
+  ##  Reverts all
+  pvRes.fX = orxMath_Round(pvOp.fX)
+  pvRes.fY = orxMath_Round(pvOp.fY)
+  pvRes.fZ = orxMath_Round(pvOp.fZ)
+  ##  Done!
+  return pvRes
 
 ## * Gets vector squared size
 ##  @param[in]   _pvOp                         Input vector
 ##  @return      Vector's squared size
 ##
 
-proc orxVector_GetSquareSize*(pvOp: ptr orxVECTOR): orxFLOAT {.cdecl.} =
-  discard
+proc orxVector_GetSquareSize*(pvOp: ptr orxVECTOR): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Checks
+  orxASSERT(pvOp != orxNULL)
+  ##  Updates result
+  fResult = (pvOp.fX * pvOp.fX) + (pvOp.fY * pvOp.fY) + (pvOp.fZ * pvOp.fZ)
+  ##  Done!
+  return fResult
 
 ## * Gets vector size
 ##  @param[in]   _pvOp                         Input vector
 ##  @return      Vector's size
 ##
 
-proc orxVector_GetSize*(pvOp: ptr orxVECTOR): orxFLOAT {.cdecl.} =
-  discard
+proc orxVector_GetSize*(pvOp: ptr orxVECTOR): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Checks
+  orxASSERT(pvOp != orxNULL)
+  ##  Updates result
+  fResult = orxMath_Sqrt((pvOp.fX * pvOp.fX) + (pvOp.fY * pvOp.fY) + (pvOp.fZ * pvOp.fZ))
+  ##  Done!
+  return fResult
 
 ## * Gets squared distance between 2 positions
 ##  @param[in]   _pvOp1                        First position
@@ -274,8 +432,18 @@ proc orxVector_GetSize*(pvOp: ptr orxVECTOR): orxFLOAT {.cdecl.} =
 ##
 
 proc orxVector_GetSquareDistance*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var vTemp: orxVECTOR
+  var fResult: orxFLOAT
+  ##  Checks
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Gets distance vector
+  orxVector_Sub(addr(vTemp), pvOp2, pvOp1)
+  ##  Updates result
+  fResult = orxVector_GetSquareSize(addr(vTemp))
+  ##  Done!
+  return fResult
 
 ## * Gets distance between 2 positions
 ##  @param[in]   _pvOp1                        First position
@@ -284,8 +452,18 @@ proc orxVector_GetSquareDistance*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): o
 ##
 
 proc orxVector_GetDistance*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var vTemp: orxVECTOR
+  var fResult: orxFLOAT
+  ##  Checks
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Gets distance vector
+  orxVector_Sub(addr(vTemp), pvOp2, pvOp1)
+  ##  Updates result
+  fResult = orxVector_GetSize(addr(vTemp))
+  ##  Done!
+  return fResult
 
 ## * Normalizes a vector
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -294,8 +472,21 @@ proc orxVector_GetDistance*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOA
 ##
 
 proc orxVector_Normalize*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var fOp: orxFLOAT
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp != orxNULL)
+  ##  Gets squared size
+  fOp = (pvOp.fX * pvOp.fX) + (pvOp.fY * pvOp.fY) + (pvOp.fZ * pvOp.fZ)
+  ##  Gets reciprocal size
+  fOp = orxFLOAT_1 div (orxMATH_KF_TINY_EPSILON + orxMath_Sqrt(fOp))
+  ##  Updates result
+  pvRes.fX = fOp * pvOp.fX
+  pvRes.fY = fOp * pvOp.fY
+  pvRes.fZ = fOp * pvOp.fZ
+  ##  Done!
+  return pvRes
 
 ## * Rotates a 2D vector (along Z-axis)
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -305,16 +496,44 @@ proc orxVector_Normalize*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVEC
 ##
 
 proc orxVector_2DRotate*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; fAngle: orxFLOAT): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp != orxNULL)
+  ##  PI/2?
+  if fAngle == orxMATH_KF_PI_BY_2:
+    ##  Updates result
+    orxVector_Set(pvRes, -pvOp.fY, pvOp.fX, pvOp.fZ)
+  elif fAngle == -orxMATH_KF_PI_BY_2: ##  Any other angle
+    ##  Updates result
+    orxVector_Set(pvRes, pvOp.fY, -pvOp.fX, pvOp.fZ)
+  else:
+    var
+      fSin: orxFLOAT
+      fCos: orxFLOAT
+    ##  Gets cos & sin of angle
+    fCos = orxMath_Cos(fAngle)
+    fSin = orxMath_Sin(fAngle)
+    ##  Updates result
+    orxVector_Set(pvRes, (fCos * pvOp.fX) - (fSin * pvOp.fY),
+                  (fSin * pvOp.fX) + (fCos * pvOp.fY), pvOp.fZ)
+  ##  Done!
+  return pvRes
 
 ## * Is vector null?
 ##  @param[in]   _pvOp                         Vector to test
 ##  @return      orxTRUE if vector's null, orxFALSE otherwise
 ##
 
-proc orxVector_IsNull*(pvOp: ptr orxVECTOR): orxBOOL {.cdecl.} =
-  discard
+proc orxVector_IsNull*(pvOp: ptr orxVECTOR): orxBOOL {.inline, cdecl.} =
+  var bResult: orxBOOL
+  ##  Checks
+  orxASSERT(pvOp != orxNULL)
+  ##  Updates result
+  bResult = if ((pvOp.fX == orxFLOAT_0) and (pvOp.fY == orxFLOAT_0) and
+      (pvOp.fZ == orxFLOAT_0)): orxTRUE else: orxFALSE
+  ##  Done!
+  return bResult
 
 ## * Are vectors equal?
 ##  @param[in]   _pvOp1                        First vector to compare
@@ -322,8 +541,17 @@ proc orxVector_IsNull*(pvOp: ptr orxVECTOR): orxBOOL {.cdecl.} =
 ##  @return      orxTRUE if both vectors are equal, orxFALSE otherwise
 ##
 
-proc orxVector_AreEqual*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxBOOL {.cdecl.} =
-  discard
+proc orxVector_AreEqual*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxBOOL {.inline,
+    cdecl.} =
+  var bResult: orxBOOL
+  ##  Checks
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Updates result
+  bResult = if ((pvOp1.fX == pvOp2.fX) and (pvOp1.fY == pvOp2.fY) and
+      (pvOp1.fZ == pvOp2.fZ)): orxTRUE else: orxFALSE
+  ##  Done!
+  return bResult
 
 ## * Transforms a cartesian vector into a spherical one
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -332,8 +560,60 @@ proc orxVector_AreEqual*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxBOOL {.
 ##
 
 proc orxVector_FromCartesianToSpherical*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp != orxNULL)
+  ##  Is operand vector null?
+  if (pvOp.fX == orxFLOAT_0) and (pvOp.fY == orxFLOAT_0) and (pvOp.fZ == orxFLOAT_0):
+    ##  Updates result vector
+    pvRes.fRho = pvRes.fTheta = pvRes.fPhi = orxFLOAT_0
+  else:
+    var
+      fRho: orxFLOAT
+      fTheta: orxFLOAT
+      fPhi: orxFLOAT
+    ##  Z = 0?
+    if pvOp.fZ == orxFLOAT_0:
+      ##  X = 0?
+      if pvOp.fX == orxFLOAT_0:
+        ##  Gets absolute value
+        fRho = orxMath_Abs(pvOp.fY)
+      elif pvOp.fY == orxFLOAT_0: ##  X != 0 and Y != 0
+        ##  Gets absolute value
+        fRho = orxMath_Abs(pvOp.fX)
+      else:
+        ##  Computes rho
+        fRho = orxMath_Sqrt((pvOp.fX * pvOp.fX) + (pvOp.fY * pvOp.fY))
+      ##  Sets phi
+      fPhi = orxMATH_KF_PI_BY_2
+    else:
+      ##  X = 0 and Y = 0?
+      if (pvOp.fX == orxFLOAT_0) and (pvOp.fY == orxFLOAT_0):
+        ##  Z < 0?
+        if pvOp.fZ < orxFLOAT_0:
+          ##  Gets absolute value
+          fRho = orxMath_Abs(pvOp.fZ)
+          ##  Sets phi
+          fPhi = orxMATH_KF_PI
+        else:
+          ##  Sets rho
+          fRho = pvOp.fZ
+          ##  Sets phi
+          fPhi = orxFLOAT_0
+      else:
+        ##  Computes rho
+        fRho = orxMath_Sqrt(orxVector_GetSquareSize(pvOp))
+        ##  Computes phi
+        fPhi = orxMath_ACos(pvOp.fZ div fRho)
+    ##  Computes theta
+    fTheta = orxMath_ATan(pvOp.fY, pvOp.fX)
+    ##  Updates result
+    pvRes.fRho = fRho
+    pvRes.fTheta = fTheta
+    pvRes.fPhi = fPhi
+  ##  Done!
+  return pvRes
 
 ## * Transforms a spherical vector into a cartesian one
 ##  @param[out]  _pvRes                        Vector where to store result (can be the operand)
@@ -342,8 +622,36 @@ proc orxVector_FromCartesianToSpherical*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECT
 ##
 
 proc orxVector_FromSphericalToCartesian*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var
+    fSinPhi: orxFLOAT
+    fCosPhi: orxFLOAT
+    fSinTheta: orxFLOAT
+    fCosTheta: orxFLOAT
+    fRho: orxFLOAT
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp != orxNULL)
+  ##  Stores rho
+  fRho = pvOp.fRho
+  ##  Gets sine & cosine
+  fSinTheta = orxMath_Sin(pvOp.fTheta)
+  fCosTheta = orxMath_Cos(pvOp.fTheta)
+  fSinPhi = orxMath_Sin(pvOp.fPhi)
+  fCosPhi = orxMath_Cos(pvOp.fPhi)
+  if orxMath_Abs(fSinTheta) < orxMATH_KF_EPSILON:
+    fSinTheta = orxFLOAT_0
+  if orxMath_Abs(fCosTheta) < orxMATH_KF_EPSILON:
+    fCosTheta = orxFLOAT_0
+  if orxMath_Abs(fSinPhi) < orxMATH_KF_EPSILON:
+    fSinPhi = orxFLOAT_0
+  if orxMath_Abs(fCosPhi) < orxMATH_KF_EPSILON:
+    fCosPhi = orxFLOAT_0
+  pvRes.fX = fRho * fCosTheta * fSinPhi
+  pvRes.fY = fRho * fSinTheta * fSinPhi
+  pvRes.fZ = fRho * fCosPhi
+  ##  Done!
+  return pvRes
 
 ## * Gets dot product of two vectors
 ##  @param[in]   _pvOp1                      First operand
@@ -351,8 +659,15 @@ proc orxVector_FromSphericalToCartesian*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECT
 ##  @return      Dot product
 ##
 
-proc orxVector_Dot*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.cdecl.} =
-  discard
+proc orxVector_Dot*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.inline, cdecl.} =
+  var fResult: orxFLOAT
+  ##  Checks
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Updates result
+  fResult = (pvOp1.fX * pvOp2.fX) + (pvOp1.fY * pvOp2.fY) + (pvOp1.fZ * pvOp2.fZ)
+  ##  Done!
+  return fResult
 
 ## * Gets 2D dot product of two vectors
 ##  @param[in]   _pvOp1                      First operand
@@ -360,8 +675,16 @@ proc orxVector_Dot*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.cdec
 ##  @return      2D dot product
 ##
 
-proc orxVector_2DDot*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.cdecl.} =
-  discard
+proc orxVector_2DDot*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.inline,
+    cdecl.} =
+  var fResult: orxFLOAT
+  ##  Checks
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Updates result
+  fResult = (pvOp1.fX * pvOp2.fX) + (pvOp1.fY * pvOp2.fY)
+  ##  Done!
+  return fResult
 
 ## * Gets cross product of two vectors
 ##  @param[out]  _pvRes                       Vector where to store result
@@ -371,8 +694,22 @@ proc orxVector_2DDot*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.cd
 ##
 
 proc orxVector_Cross*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  var
+    fTemp1: orxFLOAT
+    fTemp2: orxFLOAT
+  ##  Checks
+  orxASSERT(pvRes != orxNULL)
+  orxASSERT(pvOp1 != orxNULL)
+  orxASSERT(pvOp2 != orxNULL)
+  ##  Computes cross product
+  fTemp1 = (pvOp1.fY * pvOp2.fZ) - (pvOp1.fZ * pvOp2.fY)
+  fTemp2 = (pvOp1.fZ * pvOp2.fX) - (pvOp1.fX * pvOp2.fZ)
+  pvRes.fZ = (pvOp1.fX * pvOp2.fY) - (pvOp1.fY * pvOp2.fX)
+  pvRes.fY = fTemp2
+  pvRes.fX = fTemp1
+  ##  Done!
+  return pvRes
 
 ##  *** Vector functions ***
 ## * Computes an interpolated point on a cubic Bezier curve segment for a given parameter
@@ -388,7 +725,7 @@ proc orxVector_Cross*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orx
 proc orxVector_Bezier*(pvRes: ptr orxVECTOR; pvPoint1: ptr orxVECTOR;
                       pvPoint2: ptr orxVECTOR; pvPoint3: ptr orxVECTOR;
                       pvPoint4: ptr orxVECTOR; fT: orxFLOAT): ptr orxVECTOR {.cdecl,
-    importcpp: "orxVector_Bezier(@)", dynlib: "liborx.so".}
+    importc: "orxVector_Bezier", dynlib: "liborx.so".}
 ## * Computes an interpolated point on a Catmull-Rom curve segment for a given parameter
 ##  @param[out]  _pvRes                      Vector where to store result
 ##  @param[in]   _pvPoint1                   First control point for this curve segment
@@ -402,58 +739,58 @@ proc orxVector_Bezier*(pvRes: ptr orxVECTOR; pvPoint1: ptr orxVECTOR;
 proc orxVector_CatmullRom*(pvRes: ptr orxVECTOR; pvPoint1: ptr orxVECTOR;
                           pvPoint2: ptr orxVECTOR; pvPoint3: ptr orxVECTOR;
                           pvPoint4: ptr orxVECTOR; fT: orxFLOAT): ptr orxVECTOR {.
-    cdecl, importcpp: "orxVector_CatmullRom(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxVector_CatmullRom", dynlib: "liborx.so".}
 ##  *** Vector constants ***
 
-var orxVECTOR_X* {.importcpp: "orxVECTOR_X", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_X* {.importc: "orxVECTOR_X", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< X-Axis unit vector
 
-var orxVECTOR_Y* {.importcpp: "orxVECTOR_Y", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_Y* {.importc: "orxVECTOR_Y", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Y-Axis unit vector
 
-var orxVECTOR_Z* {.importcpp: "orxVECTOR_Z", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_Z* {.importc: "orxVECTOR_Z", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Z-Axis unit vector
 
-var orxVECTOR_0* {.importcpp: "orxVECTOR_0", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_0* {.importc: "orxVECTOR_0", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Null vector
 
-var orxVECTOR_1* {.importcpp: "orxVECTOR_1", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_1* {.importc: "orxVECTOR_1", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Vector filled with 1s
 
-var orxVECTOR_RED* {.importcpp: "orxVECTOR_RED", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_RED* {.importc: "orxVECTOR_RED", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Red color vector
 
-var orxVECTOR_GREEN* {.importcpp: "orxVECTOR_GREEN", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_GREEN* {.importc: "orxVECTOR_GREEN", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Green color vector
 
-var orxVECTOR_BLUE* {.importcpp: "orxVECTOR_BLUE", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_BLUE* {.importc: "orxVECTOR_BLUE", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Blue color vector
 
-var orxVECTOR_YELLOW* {.importcpp: "orxVECTOR_YELLOW", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_YELLOW* {.importc: "orxVECTOR_YELLOW", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Yellow color vector
 
-var orxVECTOR_CYAN* {.importcpp: "orxVECTOR_CYAN", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_CYAN* {.importc: "orxVECTOR_CYAN", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Cyan color vector
 
-var orxVECTOR_MAGENTA* {.importcpp: "orxVECTOR_MAGENTA", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_MAGENTA* {.importc: "orxVECTOR_MAGENTA", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Magenta color vector
 
-var orxVECTOR_BLACK* {.importcpp: "orxVECTOR_BLACK", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_BLACK* {.importc: "orxVECTOR_BLACK", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< Black color vector
 
-var orxVECTOR_WHITE* {.importcpp: "orxVECTOR_WHITE", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_WHITE* {.importc: "orxVECTOR_WHITE", dynlib: "liborx.so".}: orxVECTOR
 
 ## *< White color vector
 

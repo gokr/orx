@@ -98,7 +98,7 @@ type
 ##
 
 proc orxLinkList_Clean*(pstList: ptr orxLINKLIST): orxSTATUS {.cdecl,
-    importcpp: "orxLinkList_Clean(@)", dynlib: "liborx.so".}
+    importc: "orxLinkList_Clean", dynlib: "liborx.so".}
 ## * Adds a node at the start of a list
 ##  @param[in]   _pstList                        Concerned list
 ##  @param[in]   _pstNode                        Node to add
@@ -106,7 +106,7 @@ proc orxLinkList_Clean*(pstList: ptr orxLINKLIST): orxSTATUS {.cdecl,
 ##
 
 proc orxLinkList_AddStart*(pstList: ptr orxLINKLIST; pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.
-    cdecl, importcpp: "orxLinkList_AddStart(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxLinkList_AddStart", dynlib: "liborx.so".}
 ## * Adds a node at the end of a list
 ##  @param[in]   _pstList                        Concerned list
 ##  @param[in]   _pstNode                        Node to add
@@ -114,7 +114,7 @@ proc orxLinkList_AddStart*(pstList: ptr orxLINKLIST; pstNode: ptr orxLINKLIST_NO
 ##
 
 proc orxLinkList_AddEnd*(pstList: ptr orxLINKLIST; pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.
-    cdecl, importcpp: "orxLinkList_AddEnd(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxLinkList_AddEnd", dynlib: "liborx.so".}
 ## * Adds a node before another one
 ##  @param[in]   _pstRefNode                     Reference node (add before this one)
 ##  @param[in]   _pstNode                        Node to add
@@ -123,7 +123,7 @@ proc orxLinkList_AddEnd*(pstList: ptr orxLINKLIST; pstNode: ptr orxLINKLIST_NODE
 
 proc orxLinkList_AddBefore*(pstRefNode: ptr orxLINKLIST_NODE;
                            pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.cdecl,
-    importcpp: "orxLinkList_AddBefore(@)", dynlib: "liborx.so".}
+    importc: "orxLinkList_AddBefore", dynlib: "liborx.so".}
 ## * Adds a node after another one
 ##  @param[in]   _pstRefNode                     Reference node (add after this one)
 ##  @param[in]   _pstNode                        Node to add
@@ -132,22 +132,26 @@ proc orxLinkList_AddBefore*(pstRefNode: ptr orxLINKLIST_NODE;
 
 proc orxLinkList_AddAfter*(pstRefNode: ptr orxLINKLIST_NODE;
                           pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.cdecl,
-    importcpp: "orxLinkList_AddAfter(@)", dynlib: "liborx.so".}
+    importc: "orxLinkList_AddAfter", dynlib: "liborx.so".}
 ## * Removes a node from its list
 ##  @param[in]   _pstNode                        Concerned node
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxLinkList_Remove*(pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.cdecl,
-    importcpp: "orxLinkList_Remove(@)", dynlib: "liborx.so".}
+    importc: "orxLinkList_Remove", dynlib: "liborx.so".}
 ##  *** LinkList inlined accessors ***
 ## * Gets a node list
 ##  @param[in]   _pstNode                        Concerned node
 ##  @return orxLINKLIST / orxNULL
 ##
 
-proc orxLinkList_GetList*(pstNode: ptr orxLINKLIST_NODE): ptr orxLINKLIST {.cdecl.} =
-  discard
+proc orxLinkList_GetList*(pstNode: ptr orxLINKLIST_NODE): ptr orxLINKLIST {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pstNode != orxNULL)
+  ##  Returns it
+  return pstNode.pstList
 
 ## * Gets previous node in list
 ##  @param[in]   _pstNode                        Concerned node
@@ -155,39 +159,57 @@ proc orxLinkList_GetList*(pstNode: ptr orxLINKLIST_NODE): ptr orxLINKLIST {.cdec
 ##
 
 proc orxLinkList_GetPrevious*(pstNode: ptr orxLINKLIST_NODE): ptr orxLINKLIST_NODE {.
-    cdecl.} =
-  discard
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pstNode != orxNULL)
+  ##  Returns it
+  return if (pstNode.pstList != orxNULL): pstNode.pstPrevious else: cast[ptr orxLINKLIST_NODE](orxNULL)
 
 ## * Gets next node in list
 ##  @param[in]   _pstNode                        Concerned node
 ##  @return orxLINKLIST_NODE / orxNULL
 ##
 
-proc orxLinkList_GetNext*(pstNode: ptr orxLINKLIST_NODE): ptr orxLINKLIST_NODE {.cdecl.} =
-  discard
+proc orxLinkList_GetNext*(pstNode: ptr orxLINKLIST_NODE): ptr orxLINKLIST_NODE {.
+    inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pstNode != orxNULL)
+  ##  Returns it
+  return if (pstNode.pstList != orxNULL): pstNode.pstNext else: cast[ptr orxLINKLIST_NODE](orxNULL)
 
 ## * Gets a list first node
 ##  @param[in]   _pstList                        Concerned list
 ##  @return orxLINKLIST_NODE / orxNULL
 ##
 
-proc orxLinkList_GetFirst*(pstList: ptr orxLINKLIST): ptr orxLINKLIST_NODE {.cdecl.} =
-  discard
+proc orxLinkList_GetFirst*(pstList: ptr orxLINKLIST): ptr orxLINKLIST_NODE {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pstList != orxNULL)
+  ##  Returns it
+  return pstList.pstFirst
 
 ## * Gets a list last node
 ##  @param[in]   _pstList                        Concerned list
 ##  @return orxLINKLIST_NODE / orxNULL
 ##
 
-proc orxLinkList_GetLast*(pstList: ptr orxLINKLIST): ptr orxLINKLIST_NODE {.cdecl.} =
-  discard
+proc orxLinkList_GetLast*(pstList: ptr orxLINKLIST): ptr orxLINKLIST_NODE {.inline,
+    cdecl.} =
+  ##  Checks
+  orxASSERT(pstList != orxNULL)
+  ##  Returns it
+  return pstList.pstLast
 
 ## * Gets a list count
 ##  @param[in]   _pstList                        Concerned list
 ##  @return Number of nodes in list
 ##
 
-proc orxLinkList_GetCount*(pstList: ptr orxLINKLIST): orxU32 {.cdecl.} =
-  discard
+proc orxLinkList_GetCount*(pstList: ptr orxLINKLIST): orxU32 {.inline, cdecl.} =
+  ##  Checks
+  orxASSERT(pstList != orxNULL)
+  ##  Returns it
+  return pstList.u32Count
 
 ## * @}

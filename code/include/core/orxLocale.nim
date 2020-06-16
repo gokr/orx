@@ -66,63 +66,63 @@ type
 ## * Locale module setup
 ##
 
-proc orxLocale_Setup*() {.cdecl, importcpp: "orxLocale_Setup(@)", dynlib: "liborx.so".}
+proc orxLocale_Setup*() {.cdecl, importc: "orxLocale_Setup", dynlib: "liborx.so".}
 ## * Initializes the Locale Module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxLocale_Init*(): orxSTATUS {.cdecl, importcpp: "orxLocale_Init(@)",
+proc orxLocale_Init*(): orxSTATUS {.cdecl, importc: "orxLocale_Init",
                                  dynlib: "liborx.so".}
 ## * Exits from the Locale Module
 ##
 
-proc orxLocale_Exit*() {.cdecl, importcpp: "orxLocale_Exit(@)", dynlib: "liborx.so".}
+proc orxLocale_Exit*() {.cdecl, importc: "orxLocale_Exit", dynlib: "liborx.so".}
 ## * Selects current working language
 ##  @param[in] _zLanguage        Language to select
 ##
 
 proc orxLocale_SelectLanguage*(zLanguage: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxLocale_SelectLanguage(@)", dynlib: "liborx.so".}
+    importc: "orxLocale_SelectLanguage", dynlib: "liborx.so".}
 ## * Gets current language
 ##  @return Current selected language
 ##
 
 proc orxLocale_GetCurrentLanguage*(): ptr orxCHAR {.cdecl,
-    importcpp: "orxLocale_GetCurrentLanguage(@)", dynlib: "liborx.so".}
+    importc: "orxLocale_GetCurrentLanguage", dynlib: "liborx.so".}
 ## * Has given language? (if not correctly defined, false will be returned)
 ##  @param[in] _zLanguage        Concerned language
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxLocale_HasLanguage*(zLanguage: ptr orxCHAR): orxBOOL {.cdecl,
-    importcpp: "orxLocale_HasLanguage(@)", dynlib: "liborx.so".}
+    importc: "orxLocale_HasLanguage", dynlib: "liborx.so".}
 ## * Gets language count
 ##  @return Number of languages defined
 ##
 
 proc orxLocale_GetLanguageCount*(): orxU32 {.cdecl,
-    importcpp: "orxLocale_GetLanguageCount(@)", dynlib: "liborx.so".}
+    importc: "orxLocale_GetLanguageCount", dynlib: "liborx.so".}
 ## * Gets language at the given index
 ##  @param[in] _u32LanguageIndex Index of the desired language
 ##  @return orxSTRING if exist, orxSTRING_EMPTY otherwise
 ##
 
 proc orxLocale_GetLanguage*(u32LanguageIndex: orxU32): ptr orxCHAR {.cdecl,
-    importcpp: "orxLocale_GetLanguage(@)", dynlib: "liborx.so".}
+    importc: "orxLocale_GetLanguage", dynlib: "liborx.so".}
 ## * Has string for the given key?
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxLocale_HasString*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
-    importcpp: "orxLocale_HasString(@)", dynlib: "liborx.so".}
+    importc: "orxLocale_HasString", dynlib: "liborx.so".}
 ## * Reads a string in the current language for the given key
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
 proc orxLocale_GetString*(zKey: ptr orxCHAR): ptr orxCHAR {.cdecl,
-    importcpp: "orxLocale_GetString(@)", dynlib: "liborx.so".}
+    importc: "orxLocale_GetString", dynlib: "liborx.so".}
 ## * Writes a string in the current language for the given key
 ##  @param[in] _zKey             Key name
 ##  @param[in] _zValue           Value
@@ -130,13 +130,12 @@ proc orxLocale_GetString*(zKey: ptr orxCHAR): ptr orxCHAR {.cdecl,
 ##
 
 proc orxLocale_SetString*(zKey: ptr orxCHAR; zValue: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxLocale_SetString(@)", dynlib: "liborx.so".}
+    importc: "orxLocale_SetString", dynlib: "liborx.so".}
 ## * Gets key count for the current language
 ##  @return Key count the current language if valid, 0 otherwise
 ##
 
-proc orxLocale_GetKeyCount*(): orxU32 {.cdecl,
-                                     importcpp: "orxLocale_GetKeyCount(@)",
+proc orxLocale_GetKeyCount*(): orxU32 {.cdecl, importc: "orxLocale_GetKeyCount",
                                      dynlib: "liborx.so".}
 ## * Gets key for the current language at the given index
 ##  @param[in] _u32KeyIndex      Index of the desired key
@@ -144,5 +143,5 @@ proc orxLocale_GetKeyCount*(): orxU32 {.cdecl,
 ##
 
 proc orxLocale_GetKey*(u32KeyIndex: orxU32): ptr orxCHAR {.cdecl,
-    importcpp: "orxLocale_GetKey(@)", dynlib: "liborx.so".}
+    importc: "orxLocale_GetKey", dynlib: "liborx.so".}
 ## * @}

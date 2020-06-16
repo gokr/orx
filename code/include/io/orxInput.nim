@@ -109,44 +109,44 @@ type
 ## * Input module setup
 ##
 
-proc orxInput_Setup*() {.cdecl, importcpp: "orxInput_Setup(@)", dynlib: "liborx.so".}
+proc orxInput_Setup*() {.cdecl, importc: "orxInput_Setup", dynlib: "liborx.so".}
 ## * Initializes Input module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxInput_Init*(): orxSTATUS {.cdecl, importcpp: "orxInput_Init(@)",
+proc orxInput_Init*(): orxSTATUS {.cdecl, importc: "orxInput_Init",
                                 dynlib: "liborx.so".}
 ## * Exits from Input module
 ##
 
-proc orxInput_Exit*() {.cdecl, importcpp: "orxInput_Exit(@)", dynlib: "liborx.so".}
+proc orxInput_Exit*() {.cdecl, importc: "orxInput_Exit", dynlib: "liborx.so".}
 ## * Loads inputs from config
 ##  @param[in] _zFileName        File name to load, will use current loaded config if orxSTRING_EMPTY/orxNULL
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxInput_Load*(zFileName: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxInput_Load(@)", dynlib: "liborx.so".}
+    importc: "orxInput_Load", dynlib: "liborx.so".}
 ## * Saves inputs to config
 ##  @param[in] _zFileName        File name
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxInput_Save*(zFileName: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxInput_Save(@)", dynlib: "liborx.so".}
+    importc: "orxInput_Save", dynlib: "liborx.so".}
 ## * Selects (and enables) current working set
 ##  @param[in] _zSetName         Set name to select
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxInput_SelectSet*(zSetName: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxInput_SelectSet(@)", dynlib: "liborx.so".}
+    importc: "orxInput_SelectSet", dynlib: "liborx.so".}
 ## * Gets current working set
 ##  @return Current selected set
 ##
 
 proc orxInput_GetCurrentSet*(): ptr orxCHAR {.cdecl,
-    importcpp: "orxInput_GetCurrentSet(@)", dynlib: "liborx.so".}
+    importc: "orxInput_GetCurrentSet", dynlib: "liborx.so".}
 ## * Enables/disables working set (without selecting it)
 ##  @param[in] _zSetName         Set name to enable/disable
 ##  @param[in] _bEnable          Enable / Disable
@@ -154,14 +154,14 @@ proc orxInput_GetCurrentSet*(): ptr orxCHAR {.cdecl,
 ##
 
 proc orxInput_EnableSet*(zSetName: ptr orxCHAR; bEnable: orxBOOL): orxSTATUS {.cdecl,
-    importcpp: "orxInput_EnableSet(@)", dynlib: "liborx.so".}
+    importc: "orxInput_EnableSet", dynlib: "liborx.so".}
 ## * Is working set enabled (includes current working set)?
 ##  @param[in] _zSetName         Set name to check
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxInput_IsSetEnabled*(zSetName: ptr orxCHAR): orxBOOL {.cdecl,
-    importcpp: "orxInput_IsSetEnabled(@)", dynlib: "liborx.so".}
+    importc: "orxInput_IsSetEnabled", dynlib: "liborx.so".}
 ## * Sets current set's type flags, only set types will be polled when updating the set (use orxINPUT_GET_FLAG(TYPE) in order to get the flag that matches a type)
 ##  @param[in] _u32AddTypeFlags      Type flags to add
 ##  @param[in] _u32RemoveTypeFlags   Type flags to remove
@@ -169,42 +169,42 @@ proc orxInput_IsSetEnabled*(zSetName: ptr orxCHAR): orxBOOL {.cdecl,
 ##
 
 proc orxInput_SetTypeFlags*(u32AddTypeFlags: orxU32; u32RemoveTypeFlags: orxU32): orxSTATUS {.
-    cdecl, importcpp: "orxInput_SetTypeFlags(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxInput_SetTypeFlags", dynlib: "liborx.so".}
 ## * Is input active?
 ##  @param[in] _zInputName       Concerned input name
 ##  @return orxTRUE if active, orxFALSE otherwise
 ##
 
 proc orxInput_IsActive*(zInputName: ptr orxCHAR): orxBOOL {.cdecl,
-    importcpp: "orxInput_IsActive(@)", dynlib: "liborx.so".}
+    importc: "orxInput_IsActive", dynlib: "liborx.so".}
 ## * Has input been activated (this frame)?
 ##  @param[in] _zInputName       Concerned input name
 ##  @return orxTRUE if newly activated since last frame, orxFALSE otherwise
 ##
 
 proc orxInput_HasBeenActivated*(zInputName: ptr orxCHAR): orxBOOL {.cdecl,
-    importcpp: "orxInput_HasBeenActivated(@)", dynlib: "liborx.so".}
+    importc: "orxInput_HasBeenActivated", dynlib: "liborx.so".}
 ## * Has input been deactivated (this frame)?
 ##  @param[in] _zInputName       Concerned input name
 ##  @return orxTRUE if newly deactivated since last frame, orxFALSE otherwise
 ##
 
 proc orxInput_HasBeenDeactivated*(zInputName: ptr orxCHAR): orxBOOL {.cdecl,
-    importcpp: "orxInput_HasBeenDeactivated(@)", dynlib: "liborx.so".}
+    importc: "orxInput_HasBeenDeactivated", dynlib: "liborx.so".}
 ## * Has a new active status since this frame?
 ##  @param[in] _zInputName       Concerned input name
 ##  @return orxTRUE if active status is new, orxFALSE otherwise
 ##
 
 proc orxInput_HasNewStatus*(zInputName: ptr orxCHAR): orxBOOL {.cdecl,
-    importcpp: "orxInput_HasNewStatus(@)", dynlib: "liborx.so".}
+    importc: "orxInput_HasNewStatus", dynlib: "liborx.so".}
 ## * Gets input value
 ##  @param[in] _zInputName       Concerned input name
 ##  @return orxFLOAT
 ##
 
 proc orxInput_GetValue*(zInputName: ptr orxCHAR): orxFLOAT {.cdecl,
-    importcpp: "orxInput_GetValue(@)", dynlib: "liborx.so".}
+    importc: "orxInput_GetValue", dynlib: "liborx.so".}
 ## * Sets input value (will prevail on peripheral inputs only once)
 ##  @param[in] _zInputName       Concerned input name
 ##  @param[in] _fValue           Value to set, orxFLOAT_0 to deactivate
@@ -212,7 +212,7 @@ proc orxInput_GetValue*(zInputName: ptr orxCHAR): orxFLOAT {.cdecl,
 ##
 
 proc orxInput_SetValue*(zInputName: ptr orxCHAR; fValue: orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxInput_SetValue(@)", dynlib: "liborx.so".}
+    importc: "orxInput_SetValue", dynlib: "liborx.so".}
 ## * Sets permanent input value (will prevail on peripheral inputs till reset)
 ##  @param[in] _zInputName       Concerned input name
 ##  @param[in] _fValue           Value to set, orxFLOAT_0 to deactivate
@@ -220,21 +220,21 @@ proc orxInput_SetValue*(zInputName: ptr orxCHAR; fValue: orxFLOAT): orxSTATUS {.
 ##
 
 proc orxInput_SetPermanentValue*(zInputName: ptr orxCHAR; fValue: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxInput_SetPermanentValue(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxInput_SetPermanentValue", dynlib: "liborx.so".}
 ## * Resets input value (peripheral inputs will then be used instead of code ones)
 ##  @param[in] _zInputName       Concerned input name
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxInput_ResetValue*(zInputName: ptr orxCHAR): orxSTATUS {.cdecl,
-    importcpp: "orxInput_ResetValue(@)", dynlib: "liborx.so".}
+    importc: "orxInput_ResetValue", dynlib: "liborx.so".}
 ## * Gets input threshold
 ##  @param[in] _zInputName       Concerned input name
 ##  @return Input threshold
 ##
 
 proc orxInput_GetThreshold*(zInputName: ptr orxCHAR): orxFLOAT {.cdecl,
-    importcpp: "orxInput_GetThreshold(@)", dynlib: "liborx.so".}
+    importc: "orxInput_GetThreshold", dynlib: "liborx.so".}
 ## * Sets input threshold, if not set the default global threshold will be used
 ##  @param[in] _zInputName       Concerned input name
 ##  @param[in] _fThreshold       Threshold value (between 0.0f and 1.0f)
@@ -242,14 +242,14 @@ proc orxInput_GetThreshold*(zInputName: ptr orxCHAR): orxFLOAT {.cdecl,
 ##
 
 proc orxInput_SetThreshold*(zInputName: ptr orxCHAR; fThreshold: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxInput_SetThreshold(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxInput_SetThreshold", dynlib: "liborx.so".}
 ## * Gets input multiplier
 ##  @param[in] _zInputName       Concerned input name
 ##  @return Input multiplier
 ##
 
 proc orxInput_GetMultiplier*(zInputName: ptr orxCHAR): orxFLOAT {.cdecl,
-    importcpp: "orxInput_GetMultiplier(@)", dynlib: "liborx.so".}
+    importc: "orxInput_GetMultiplier", dynlib: "liborx.so".}
 ## * Sets input multiplier, if not set the default global multiplier will be used
 ##  @param[in] _zInputName       Concerned input name
 ##  @param[in] _fMultiplier      Multiplier value, can be negative
@@ -257,7 +257,7 @@ proc orxInput_GetMultiplier*(zInputName: ptr orxCHAR): orxFLOAT {.cdecl,
 ##
 
 proc orxInput_SetMultiplier*(zInputName: ptr orxCHAR; fMultiplier: orxFLOAT): orxSTATUS {.
-    cdecl, importcpp: "orxInput_SetMultiplier(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxInput_SetMultiplier", dynlib: "liborx.so".}
 ## * Sets an input combine mode
 ##  @param[in] _zName            Concerned input name
 ##  @param[in] _bCombine         If orxTRUE, all assigned bindings need to be active in order to activate input, otherwise input will be considered active if any of its binding is
@@ -265,14 +265,14 @@ proc orxInput_SetMultiplier*(zInputName: ptr orxCHAR; fMultiplier: orxFLOAT): or
 ##
 
 proc orxInput_SetCombineMode*(zName: ptr orxCHAR; bCombine: orxBOOL): orxSTATUS {.
-    cdecl, importcpp: "orxInput_SetCombineMode(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxInput_SetCombineMode", dynlib: "liborx.so".}
 ## * Is an input in combine mode?
 ##  @param[in] _zName            Concerned input name
 ##  @return orxTRUE if the input is in combine mode, orxFALSE otherwise
 ##
 
 proc orxInput_IsInCombineMode*(zName: ptr orxCHAR): orxBOOL {.cdecl,
-    importcpp: "orxInput_IsInCombineMode(@)", dynlib: "liborx.so".}
+    importc: "orxInput_IsInCombineMode", dynlib: "liborx.so".}
 ## * Binds an input to a mouse/joystick button, keyboard key or joystick axis
 ##  @param[in] _zName            Concerned input name
 ##  @param[in] _eType            Type of peripheral to bind
@@ -284,7 +284,7 @@ proc orxInput_IsInCombineMode*(zName: ptr orxCHAR): orxBOOL {.cdecl,
 
 proc orxInput_Bind*(zName: ptr orxCHAR; eType: orxINPUT_TYPE; eID: orxENUM;
                    eMode: orxINPUT_MODE; s32BindingIndex: orxS32): orxSTATUS {.cdecl,
-    importcpp: "orxInput_Bind(@)", dynlib: "liborx.so".}
+    importc: "orxInput_Bind", dynlib: "liborx.so".}
 ## * Unbinds an input
 ##  @param[in] _zName            Concerned input name
 ##  @param[in] _s32BindingIndex  Index of the desired binding, if < 0 all the bindings will be removed
@@ -292,7 +292,7 @@ proc orxInput_Bind*(zName: ptr orxCHAR; eType: orxINPUT_TYPE; eID: orxENUM;
 ##
 
 proc orxInput_Unbind*(zName: ptr orxCHAR; s32BindingIndex: orxS32): orxSTATUS {.cdecl,
-    importcpp: "orxInput_Unbind(@)", dynlib: "liborx.so".}
+    importc: "orxInput_Unbind", dynlib: "liborx.so".}
 ## * Gets the input count to which a mouse/joystick button, keyboard key or joystick axis is bound
 ##  @param[in] _eType            Type of peripheral to test
 ##  @param[in] _eID              ID of button/key/axis to test
@@ -302,7 +302,7 @@ proc orxInput_Unbind*(zName: ptr orxCHAR; s32BindingIndex: orxS32): orxSTATUS {.
 
 proc orxInput_GetBoundInputCount*(eType: orxINPUT_TYPE; eID: orxENUM;
                                  eMode: orxINPUT_MODE): orxU32 {.cdecl,
-    importcpp: "orxInput_GetBoundInputCount(@)", dynlib: "liborx.so".}
+    importc: "orxInput_GetBoundInputCount", dynlib: "liborx.so".}
 ## * Gets the input name to which a mouse/joystick button, keyboard key or joystick axis is bound (at given index)
 ##  @param[in] _eType            Type of peripheral to test
 ##  @param[in] _eID              ID of button/key/axis to test
@@ -316,7 +316,7 @@ proc orxInput_GetBoundInputCount*(eType: orxINPUT_TYPE; eID: orxENUM;
 proc orxInput_GetBoundInput*(eType: orxINPUT_TYPE; eID: orxENUM;
                             eMode: orxINPUT_MODE; u32InputIndex: orxU32;
                             pzName: ptr ptr orxCHAR; pu32BindingIndex: ptr orxU32): orxSTATUS {.
-    cdecl, importcpp: "orxInput_GetBoundInput(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxInput_GetBoundInput", dynlib: "liborx.so".}
 ## * Gets an input binding (mouse/joystick button, keyboard key or joystick axis) at a given index
 ##  @param[in]   _zName            Concerned input name
 ##  @param[in]   _u32BindingIndex  Index of the desired binding, should be less than orxINPUT_KU32_BINDING_NUMBER
@@ -329,7 +329,7 @@ proc orxInput_GetBoundInput*(eType: orxINPUT_TYPE; eID: orxENUM;
 proc orxInput_GetBinding*(zName: ptr orxCHAR; u32BindingIndex: orxU32;
                          peType: ptr orxINPUT_TYPE; peID: ptr orxENUM;
                          peMode: ptr orxINPUT_MODE): orxSTATUS {.cdecl,
-    importcpp: "orxInput_GetBinding(@)", dynlib: "liborx.so".}
+    importc: "orxInput_GetBinding", dynlib: "liborx.so".}
 ## * Gets an input binding (mouse/joystick button, keyboard key or joystick axis) list
 ##  @param[in]   _zName          Concerned input name
 ##  @param[out]  _aeTypeList     List of binding types (if a slot is not bound, its value is orxINPUT_TYPE_NONE)
@@ -342,7 +342,7 @@ proc orxInput_GetBindingList*(zName: ptr orxCHAR; aeTypeList: array[
     orxINPUT_KU32_BINDING_NUMBER, orxINPUT_TYPE]; aeIDList: array[
     orxINPUT_KU32_BINDING_NUMBER, orxENUM]; aeModeList: array[
     orxINPUT_KU32_BINDING_NUMBER, orxINPUT_MODE]): orxSTATUS {.cdecl,
-    importcpp: "orxInput_GetBindingList(@)", dynlib: "liborx.so".}
+    importc: "orxInput_GetBindingList", dynlib: "liborx.so".}
 ## * Gets a binding name, don't keep the result as is as it'll get overridden during the next call to this function
 ##  @param[in]   _eType          Binding type (mouse/joystick button, keyboard key or joystick axis)
 ##  @param[in]   _eID            Binding ID (ID of button/key/axis to bind)
@@ -352,7 +352,7 @@ proc orxInput_GetBindingList*(zName: ptr orxCHAR; aeTypeList: array[
 
 proc orxInput_GetBindingName*(eType: orxINPUT_TYPE; eID: orxENUM;
                              eMode: orxINPUT_MODE): ptr orxCHAR {.cdecl,
-    importcpp: "orxInput_GetBindingName(@)", dynlib: "liborx.so".}
+    importc: "orxInput_GetBindingName", dynlib: "liborx.so".}
 ## * Gets a binding type and ID from its name
 ##  @param[in]   _zName          Concerned input name
 ##  @param[out]  _peType         Binding type (mouse/joystick button, keyboard key or joystick axis)
@@ -363,7 +363,7 @@ proc orxInput_GetBindingName*(eType: orxINPUT_TYPE; eID: orxENUM;
 
 proc orxInput_GetBindingType*(zName: ptr orxCHAR; peType: ptr orxINPUT_TYPE;
                              peID: ptr orxENUM; peMode: ptr orxINPUT_MODE): orxSTATUS {.
-    cdecl, importcpp: "orxInput_GetBindingType(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxInput_GetBindingType", dynlib: "liborx.so".}
 ## * Gets active binding (current pressed key/button/...) so as to allow on-the-fly user rebinding
 ##  @param[out]  _peType         Active binding's type (mouse/joystick button, keyboard key or joystick axis)
 ##  @param[out]  _peID           Active binding's ID (ID of button/key/axis to bind)
@@ -373,5 +373,5 @@ proc orxInput_GetBindingType*(zName: ptr orxCHAR; peType: ptr orxINPUT_TYPE;
 
 proc orxInput_GetActiveBinding*(peType: ptr orxINPUT_TYPE; peID: ptr orxENUM;
                                pfValue: ptr orxFLOAT): orxSTATUS {.cdecl,
-    importcpp: "orxInput_GetActiveBinding(@)", dynlib: "liborx.so".}
+    importc: "orxInput_GetActiveBinding", dynlib: "liborx.so".}
 ## * @}

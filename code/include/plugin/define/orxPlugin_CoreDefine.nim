@@ -50,29 +50,32 @@ import
 ##  Defines all core plugin register function
 ##
 
-proc registerFunction_DISPLAY*() {.cdecl,
-                                 importcpp: "_registerFunction_DISPLAY(@)",
+proc registerFunction_DISPLAY*() {.cdecl, importc: "_registerFunction_DISPLAY",
                                  dynlib: "liborx.so".}
-proc registerFunction_JOYSTICK*() {.cdecl,
-                                  importcpp: "_registerFunction_JOYSTICK(@)",
+proc registerFunction_JOYSTICK*() {.cdecl, importc: "_registerFunction_JOYSTICK",
                                   dynlib: "liborx.so".}
-proc registerFunction_KEYBOARD*() {.cdecl,
-                                  importcpp: "_registerFunction_KEYBOARD(@)",
+proc registerFunction_KEYBOARD*() {.cdecl, importc: "_registerFunction_KEYBOARD",
                                   dynlib: "liborx.so".}
-proc registerFunction_MOUSE*() {.cdecl, importcpp: "_registerFunction_MOUSE(@)",
+proc registerFunction_MOUSE*() {.cdecl, importc: "_registerFunction_MOUSE",
                                dynlib: "liborx.so".}
-proc registerFunction_PHYSICS*() {.cdecl,
-                                 importcpp: "_registerFunction_PHYSICS(@)",
+proc registerFunction_PHYSICS*() {.cdecl, importc: "_registerFunction_PHYSICS",
                                  dynlib: "liborx.so".}
-proc registerFunction_RENDER*() {.cdecl, importcpp: "_registerFunction_RENDER(@)",
+proc registerFunction_RENDER*() {.cdecl, importc: "_registerFunction_RENDER",
                                 dynlib: "liborx.so".}
-proc registerFunction_SOUNDSYSTEM*() {.cdecl, importcpp: "_registerFunction_SOUNDSYSTEM(@)",
+proc registerFunction_SOUNDSYSTEM*() {.cdecl,
+                                     importc: "_registerFunction_SOUNDSYSTEM",
                                      dynlib: "liborx.so".}
 ##
 ##  Inline core plugin registration function
 ##
 
-proc orxPlugin_RegisterCorePlugins*() {.cdecl.} =
-  discard
+proc orxPlugin_RegisterCorePlugins*() {.inline, cdecl.} =
+  registerFunction_DISPLAY()
+  registerFunction_JOYSTICK()
+  registerFunction_KEYBOARD()
+  registerFunction_MOUSE()
+  registerFunction_PHYSICS()
+  registerFunction_RENDER()
+  registerFunction_SOUNDSYSTEM()
 
 ## * @}

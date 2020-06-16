@@ -64,17 +64,17 @@ type
 ## * Thread module setup
 ##
 
-proc orxThread_Setup*() {.cdecl, importcpp: "orxThread_Setup(@)", dynlib: "liborx.so".}
+proc orxThread_Setup*() {.cdecl, importc: "orxThread_Setup", dynlib: "liborx.so".}
 ## * Inits the thread module
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxThread_Init*(): orxSTATUS {.cdecl, importcpp: "orxThread_Init(@)",
+proc orxThread_Init*(): orxSTATUS {.cdecl, importc: "orxThread_Init",
                                  dynlib: "liborx.so".}
 ## * Exits from the thread module
 ##
 
-proc orxThread_Exit*() {.cdecl, importcpp: "orxThread_Exit(@)", dynlib: "liborx.so".}
+proc orxThread_Exit*() {.cdecl, importc: "orxThread_Exit", dynlib: "liborx.so".}
 ## * Starts a new thread
 ##  @param[in]   _pfnRun                               Function to run on the new thread
 ##  @param[in]   _zName                                Thread's name
@@ -83,20 +83,20 @@ proc orxThread_Exit*() {.cdecl, importcpp: "orxThread_Exit(@)", dynlib: "liborx.
 ##
 
 proc orxThread_Start*(pfnRun: orxTHREAD_FUNCTION; zName: ptr orxCHAR;
-                     pContext: pointer): orxU32 {.cdecl,
-    importcpp: "orxThread_Start(@)", dynlib: "liborx.so".}
+                     pContext: pointer): orxU32 {.cdecl, importc: "orxThread_Start",
+    dynlib: "liborx.so".}
 ## * Joins a thread (blocks & waits until the other thread finishes)
 ##  @param[in]   _u32ThreadID                          ID of the thread for which to wait
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxThread_Join*(u32ThreadID: orxU32): orxSTATUS {.cdecl,
-    importcpp: "orxThread_Join(@)", dynlib: "liborx.so".}
+    importc: "orxThread_Join", dynlib: "liborx.so".}
 ## * Joins all threads (blocks & waits until the other threads finish)
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxThread_JoinAll*(): orxSTATUS {.cdecl, importcpp: "orxThread_JoinAll(@)",
+proc orxThread_JoinAll*(): orxSTATUS {.cdecl, importc: "orxThread_JoinAll",
                                     dynlib: "liborx.so".}
 ## * Gets a thread name
 ##  @param[in]   _u32ThreadID                          ID of the concerned thread
@@ -104,7 +104,7 @@ proc orxThread_JoinAll*(): orxSTATUS {.cdecl, importcpp: "orxThread_JoinAll(@)",
 ##
 
 proc orxThread_GetName*(u32ThreadID: orxU32): ptr orxCHAR {.cdecl,
-    importcpp: "orxThread_GetName(@)", dynlib: "liborx.so".}
+    importc: "orxThread_GetName", dynlib: "liborx.so".}
 ## * Enables / disables threads
 ##  @param[in]   _u32EnableThreads   Mask of threads to enable (1 << ThreadID)
 ##  @param[in]   _u32DisableThreads  Mask of threads to disable (1 << ThreadID)
@@ -112,45 +112,45 @@ proc orxThread_GetName*(u32ThreadID: orxU32): ptr orxCHAR {.cdecl,
 ##
 
 proc orxThread_Enable*(u32EnableThreads: orxU32; u32DisableThreads: orxU32): orxSTATUS {.
-    cdecl, importcpp: "orxThread_Enable(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxThread_Enable", dynlib: "liborx.so".}
 ## * Gets current thread ID
 ##  @return      Current thread ID
 ##
 
-proc orxThread_GetCurrent*(): orxU32 {.cdecl, importcpp: "orxThread_GetCurrent(@)",
+proc orxThread_GetCurrent*(): orxU32 {.cdecl, importc: "orxThread_GetCurrent",
                                     dynlib: "liborx.so".}
 ## * Yields to other threads
 ##
 
-proc orxThread_Yield*() {.cdecl, importcpp: "orxThread_Yield(@)", dynlib: "liborx.so".}
+proc orxThread_Yield*() {.cdecl, importc: "orxThread_Yield", dynlib: "liborx.so".}
 ## * Inits a semaphore with a given value
 ##  @param[in]   _u32Value                             Value with which to init the semaphore
 ##  @return      orxTHREAD_SEMAPHORE / orxNULL
 ##
 
 proc orxThread_CreateSemaphore*(u32Value: orxU32): ptr orxTHREAD_SEMAPHORE {.cdecl,
-    importcpp: "orxThread_CreateSemaphore(@)", dynlib: "liborx.so".}
+    importc: "orxThread_CreateSemaphore", dynlib: "liborx.so".}
 ## * Deletes a semaphore
 ##  @param[in]   _pstSemaphore                         Concerned semaphore
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxThread_DeleteSemaphore*(pstSemaphore: ptr orxTHREAD_SEMAPHORE): orxSTATUS {.
-    cdecl, importcpp: "orxThread_DeleteSemaphore(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxThread_DeleteSemaphore", dynlib: "liborx.so".}
 ## * Waits for a semaphore
 ##  @param[in]   _pstSemaphore                         Concerned semaphore
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxThread_WaitSemaphore*(pstSemaphore: ptr orxTHREAD_SEMAPHORE): orxSTATUS {.
-    cdecl, importcpp: "orxThread_WaitSemaphore(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxThread_WaitSemaphore", dynlib: "liborx.so".}
 ## * Signals a semaphore
 ##  @param[in]   _pstSemaphore                         Concerned semaphore
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxThread_SignalSemaphore*(pstSemaphore: ptr orxTHREAD_SEMAPHORE): orxSTATUS {.
-    cdecl, importcpp: "orxThread_SignalSemaphore(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxThread_SignalSemaphore", dynlib: "liborx.so".}
 ## * Runs an asynchronous task and optional follow-ups
 ##  @param[in]   _pfnRun                               Asynchronous task to run, executed on a different thread dedicated to tasks, if orxNULL defaults to an empty task that always succeed
 ##  @param[in]   _pfnThen                              Executed (on the main thread) if Run does *not* return orxSTATUS_FAILURE, can be orxNULL
@@ -161,13 +161,12 @@ proc orxThread_SignalSemaphore*(pstSemaphore: ptr orxTHREAD_SEMAPHORE): orxSTATU
 
 proc orxThread_RunTask*(pfnRun: orxTHREAD_FUNCTION; pfnThen: orxTHREAD_FUNCTION;
                        pfnElse: orxTHREAD_FUNCTION; pContext: pointer): orxSTATUS {.
-    cdecl, importcpp: "orxThread_RunTask(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxThread_RunTask", dynlib: "liborx.so".}
 ## * Gets number of pending asynchronous tasks awaiting full completion (might pump task notifications if called from main thread)
 ##  @return      Number of pending asynchronous tasks
 ##
 
-proc orxThread_GetTaskCount*(): orxU32 {.cdecl,
-                                      importcpp: "orxThread_GetTaskCount(@)",
+proc orxThread_GetTaskCount*(): orxU32 {.cdecl, importc: "orxThread_GetTaskCount",
                                       dynlib: "liborx.so".}
 ## * Sets callbacks to run when starting and stopping new threads
 ##  @param[in]   _pfnStart                             Function to run whenever a new thread is started
@@ -178,5 +177,5 @@ proc orxThread_GetTaskCount*(): orxU32 {.cdecl,
 
 proc orxThread_SetCallbacks*(pfnStart: orxTHREAD_FUNCTION;
                             pfnStop: orxTHREAD_FUNCTION; pContext: pointer): orxSTATUS {.
-    cdecl, importcpp: "orxThread_SetCallbacks(@)", dynlib: "liborx.so".}
+    cdecl, importc: "orxThread_SetCallbacks", dynlib: "liborx.so".}
 ## * @}

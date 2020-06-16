@@ -242,11 +242,11 @@ const
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxDebug_Init*(): orxSTATUS {.cdecl, importcpp: "_orxDebug_Init(@)",
+proc orxDebug_Init*(): orxSTATUS {.cdecl, importc: "_orxDebug_Init",
                                 dynlib: "liborx.so".}
 ## * Exits from the debug module
 
-proc orxDebug_Exit*() {.cdecl, importcpp: "_orxDebug_Exit(@)", dynlib: "liborx.so".}
+proc orxDebug_Exit*() {.cdecl, importc: "_orxDebug_Exit", dynlib: "liborx.so".}
 ## * Logs given debug text
 ##  @param[in]   _eLevel                       Debug level associated with this output
 ##  @param[in]   _zFunction                    Calling function name
@@ -257,52 +257,52 @@ proc orxDebug_Exit*() {.cdecl, importcpp: "_orxDebug_Exit(@)", dynlib: "liborx.s
 
 proc orxDebug_Log*(eLevel: orxDEBUG_LEVEL; zFunction: ptr orxCHAR; zFile: ptr orxCHAR;
                   u32Line: orxU32; zFormat: ptr orxCHAR) {.varargs, cdecl,
-    importcpp: "_orxDebug_Log(@)", dynlib: "liborx.so".}
+    importc: "_orxDebug_Log", dynlib: "liborx.so".}
 ## * Enables/disables a given log level
 ##  @param[in]   _eLevel                       Debug level to enable/disable
 ##  @param[in]   _bEnable                      Enable / disable
 ##
 
 proc orxDebug_EnableLevel*(eLevel: orxDEBUG_LEVEL; bEnable: orxBOOL) {.cdecl,
-    importcpp: "_orxDebug_EnableLevel(@)", dynlib: "liborx.so".}
+    importc: "_orxDebug_EnableLevel", dynlib: "liborx.so".}
 ## * Is a given log level enabled?
 ##  @param[in]   _eLevel                       Concerned debug level
 ##
 
 proc orxDebug_IsLevelEnabled*(eLevel: orxDEBUG_LEVEL): orxBOOL {.cdecl,
-    importcpp: "_orxDebug_IsLevelEnabled(@)", dynlib: "liborx.so".}
+    importc: "_orxDebug_IsLevelEnabled", dynlib: "liborx.so".}
 ## * Sets current debug flags
 ##  @param[in]   _u32Add                       Flags to add
 ##  @param[in]   _u32Remove                    Flags to remove
 ##
 
 proc orxDebug_SetFlags*(u32Add: orxU32; u32Remove: orxU32) {.cdecl,
-    importcpp: "_orxDebug_SetFlags(@)", dynlib: "liborx.so".}
+    importc: "_orxDebug_SetFlags", dynlib: "liborx.so".}
 ## * Gets current debug flags
 ##  @return Current debug flags
 ##
 
-proc orxDebug_GetFlags*(): orxU32 {.cdecl, importcpp: "_orxDebug_GetFlags(@)",
+proc orxDebug_GetFlags*(): orxU32 {.cdecl, importc: "_orxDebug_GetFlags",
                                  dynlib: "liborx.so".}
 ## * Software break function
 
-proc orxDebug_Break*() {.cdecl, importcpp: "_orxDebug_Break(@)", dynlib: "liborx.so".}
+proc orxDebug_Break*() {.cdecl, importc: "_orxDebug_Break", dynlib: "liborx.so".}
 ## * Sets debug file name
 ##  @param[in]   _zFileName                    Debug file name
 ##
 
 proc orxDebug_SetDebugFile*(zFileName: ptr orxCHAR) {.cdecl,
-    importcpp: "_orxDebug_SetDebugFile(@)", dynlib: "liborx.so".}
+    importc: "_orxDebug_SetDebugFile", dynlib: "liborx.so".}
 ## * Sets log file name
 ##  @param[in]   _zFileName                    Log file name
 ##
 
 proc orxDebug_SetLogFile*(zFileName: ptr orxCHAR) {.cdecl,
-    importcpp: "_orxDebug_SetLogFile(@)", dynlib: "liborx.so".}
+    importc: "_orxDebug_SetLogFile", dynlib: "liborx.so".}
 ## * Sets log callback function, if the callback returns orxSTATUS_FAILURE, the log entry will be entirely inhibited
 ##  @param[in]   _pfnLogCallback                Log callback function, orxNULL to remove it
 ##
 
 proc orxDebug_SetLogCallback*(pfnLogCallback: orxDEBUG_CALLBACK_FUNCTION) {.cdecl,
-    importcpp: "_orxDebug_SetLogCallback(@)", dynlib: "liborx.so".}
+    importc: "_orxDebug_SetLogCallback", dynlib: "liborx.so".}
 ## * @}
