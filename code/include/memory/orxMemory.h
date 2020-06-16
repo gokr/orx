@@ -157,7 +157,13 @@ static orxINLINE void *                                   orxMemory_Copy(void *_
   orxASSERT(_pSrc != orxNULL);
 
   /* Done! */
+  #ifndef C2NIM
   return((void *)memcpy(_pDest, _pSrc, (size_t)_u32Size));
+  #else
+  #@
+{.emit"return((void *)memcpy(pDest, pSrc, (size_t)u32Size));".}
+  @#
+  #endif
 }
 
 /** Moves a part of memory into another one
@@ -173,7 +179,13 @@ static orxINLINE void *                                   orxMemory_Move(void *_
   orxASSERT(_pSrc != orxNULL);
 
   /* Done! */
+  #ifndef C2NIM
   return((void *)memmove(_pDest, _pSrc, (size_t)_u32Size));
+  #else
+  #@
+{.emit"return((void *)memmove(pDest, pSrc, (size_t)u32Size));".}
+  @#
+  #endif
 }
 
 /** Compares two parts of memory
@@ -189,7 +201,13 @@ static orxINLINE orxU32                                   orxMemory_Compare(cons
   orxASSERT(_pMem2 != orxNULL);
 
   /* Done! */
+  #ifndef C2NIM
   return((orxU32)memcmp(_pMem1, _pMem2, (size_t)_u32Size));
+  #else
+  #@
+{.emit"return((orxU32)memcmp(pMem1, pMem2, (size_t)u32Size));".}
+  @#
+  #endif
 }
 
 /** Fills a part of memory with _u32Data
@@ -204,7 +222,13 @@ static orxINLINE void *                                   orxMemory_Set(void *_p
   orxASSERT(_pDest != orxNULL);
 
   /* Done! */
+  #ifndef C2NIM
   return((void *)memset(_pDest, _u8Data, (size_t)_u32Size));
+  #else
+  #@
+{.emit"return((void *)memset(pDest, u8Data, (size_t)u32Size));".}
+  @#
+  #endif
 }
 
 /** Fills a part of memory with zeroes
@@ -218,7 +242,13 @@ static orxINLINE void *                                   orxMemory_Zero(void *_
   orxASSERT(_pDest != orxNULL);
 
   /* Done! */
+  #ifndef C2NIM
   return((void *)memset(_pDest, 0, (size_t)_u32Size));
+  #else
+  #@
+{.emit"return((void *)memset(pDest, 0, (size_t)u32Size));".}
+  @#
+  #endif
 }
 
 

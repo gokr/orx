@@ -141,7 +141,7 @@ proc orxMemory_Copy*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.
   orxASSERT(pDest != orxNULL)
   orxASSERT(pSrc != orxNULL)
   ##  Done!
-  return cast[pointer](memcpy(pDest, pSrc, cast[csize](u32Size)))
+  {.emit"return((void *)memcpy(pDest, pSrc, (size_t)u32Size));".}
 
 ## * Moves a part of memory into another one
 ##  @param[out] _pDest   Destination pointer
@@ -156,7 +156,7 @@ proc orxMemory_Move*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.
   orxASSERT(pDest != orxNULL)
   orxASSERT(pSrc != orxNULL)
   ##  Done!
-  return cast[pointer](memmove(pDest, pSrc, cast[csize](u32Size)))
+  {.emit"return((void *)memmove(pDest, pSrc, (size_t)u32Size));".}
 
 ## * Compares two parts of memory
 ##  @param[in]  _pMem1   First part to test
@@ -171,7 +171,7 @@ proc orxMemory_Compare*(pMem1: pointer; pMem2: pointer; u32Size: orxU32): orxU32
   orxASSERT(pMem1 != orxNULL)
   orxASSERT(pMem2 != orxNULL)
   ##  Done!
-  return cast[orxU32](memcmp(pMem1, pMem2, cast[csize](u32Size)))
+  {.emit"return((orxU32)memcmp(pMem1, pMem2, (size_t)u32Size));".}
 
 ## * Fills a part of memory with _u32Data
 ##  @param[out] _pDest   Destination pointer
@@ -185,7 +185,7 @@ proc orxMemory_Set*(pDest: pointer; u8Data: orxU8; u32Size: orxU32): pointer {.i
   ##  Checks
   orxASSERT(pDest != orxNULL)
   ##  Done!
-  return cast[pointer](memset(pDest, u8Data, cast[csize](u32Size)))
+  {.emit"return((void *)memset(pDest, u8Data, (size_t)u32Size));".}
 
 ## * Fills a part of memory with zeroes
 ##  @param[out] _pDest   Destination pointer
@@ -197,7 +197,7 @@ proc orxMemory_Zero*(pDest: pointer; u32Size: orxU32): pointer {.inline, cdecl.}
   ##  Checks
   orxASSERT(pDest != orxNULL)
   ##  Done!
-  return cast[pointer](memset(pDest, 0, cast[csize](u32Size)))
+  {.emit"return((void *)memset(pDest, 0, (size_t)u32Size));".}
 
 ## * Gets memory type literal name
 ##  @param[in] _eMemType               Concerned memory type
