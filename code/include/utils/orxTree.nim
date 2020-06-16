@@ -38,7 +38,10 @@
 ##
 
 import
-  orxInclude, debug/orxDebug, base/orxType
+  orxInclude, debug/orxDebug
+
+import
+  base/orxType
 
 ## * Tree node structure
 ##
@@ -50,6 +53,10 @@ type
     pstSibling*: ptr orxTREE_NODE ## *< Next sibling node pointer : 12/24
     pstPrevious*: ptr orxTREE_NODE ## *< Previous sibling node pointer : 16/32
     pstTree*: ptr orxTREE        ## *< Associated tree pointer : 20/40
+## * Tree structure
+##
+
+type
   orxTREE* {.bycopy.} = object
     pstRoot*: ptr orxTREE_NODE  ## *< Root node pointer : 4/8
     u32Count*: orxU32          ## *< Node count : 8/12

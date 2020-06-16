@@ -48,9 +48,13 @@
 
 #include "debug/orxDebug.h"
 
+#ifdef C2NIM
+#include "base/orxType.h"
+#endif
 
 /** Tree node structure
  */
+#ifndef C2NIM
 typedef struct __orxTREE_NODE_t
 {
   struct __orxTREE_NODE_t *pstParent;           /**< Parent node pointer : 4/8 */
@@ -60,7 +64,17 @@ typedef struct __orxTREE_NODE_t
   struct __orxTREE_t      *pstTree;             /**< Associated tree pointer : 20/40 */
 
 } orxTREE_NODE;
-
+#else
+#@
+type
+  orxTREE_NODE* {.bycopy.} = object
+    pstParent*: ptr orxTREE_NODE ## *< Parent node pointer : 4/8
+    pstChild*: ptr orxTREE_NODE  ## *< First child node pointer : 8/16
+    pstSibling*: ptr orxTREE_NODE ## *< Next sibling node pointer : 12/24
+    pstPrevious*: ptr orxTREE_NODE ## *< Previous sibling node pointer : 16/32
+    pstTree*: ptr orxTREE        ## *< Associated tree pointer : 20/40
+@#
+#endif
 /** Tree structure
  */
 typedef struct __orxTREE_t
