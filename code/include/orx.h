@@ -52,6 +52,11 @@ extern "C" {
 #include "orxInclude.h"
 #include "orxKernel.h"
 #include "orxUtils.h"
+#ifdef C2NIM
+#include "base/orxType.h"
+#include "base/orxModule.h"
+#include "core/orxEvent.h"
+#endif
 
 #ifndef __orxPLUGIN__
 
@@ -125,7 +130,11 @@ static void orxFASTCALL orx_MainSetup()
 }
 
 #ifdef __orxIOS__
-
+  #ifdef C2NIM
+  #@
+  discard
+  @#
+  #endif
 #else /* __orxIOS__ */
 
   #if defined(__orxANDROID__) || defined(__orxANDROID_NATIVE__)
