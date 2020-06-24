@@ -39,17 +39,13 @@
 ##
 
 import
-  orxInclude, memory/orxMemory, math/orxVector
-
-import
-  base/orxType
+  orxInclude, memory/orxMemory, math/orxVector  
 
 when defined(MSVC):
   const
     strtoll* = strtoi64
     strtoull* = strtoui64
-import
-  debug/orxDebug
+
 
 const
   orxSTRING_KC_VECTOR_START* = '('
@@ -70,6 +66,7 @@ const
 var saau32CRCTable* {.importc: "saau32CRCTable", dynlib: "liborx.so".}: array[8,
     array[256, orxU32]]
 
+#[
 ##  *** String inlined functions ***
 ## * Skips all white spaces
 ##  @param[in] _zString        Concerned string
@@ -1142,3 +1139,4 @@ proc orxString_GetFromID*(u32ID: orxSTRINGID): ptr orxCHAR {.cdecl,
 proc orxString_Store*(zString: ptr orxCHAR): ptr orxCHAR {.cdecl,
     importc: "orxString_Store", dynlib: "liborx.so".}
 ## * @}
+]#

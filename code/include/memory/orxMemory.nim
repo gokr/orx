@@ -135,7 +135,7 @@ proc orxMemory_Free*(pMem: pointer) {.cdecl, importc: "orxMemory_Free",
 ##  @note if _pSrc and _pDest overlap, use orxMemory_Move instead
 ##
 
-proc orxMemory_Copy*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.inline,
+proc orxMemory_Copy*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.inline, discardable,
     cdecl.} =
   ##  Checks
   orxASSERT(pDest != orxNULL)

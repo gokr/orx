@@ -38,7 +38,7 @@
 ##
 
 import
-  orxInclude, math/orxVector
+  orxInclude, math/orxVector, memory/orxMemory
 
 import
   base/orxType
@@ -181,7 +181,7 @@ proc orxAABox_Copy*(pstDst: ptr orxAABOX; pstSrc: ptr orxAABOX): ptr orxAABOX {.
   orxASSERT(pstDst != orxNULL)
   orxASSERT(pstSrc != orxNULL)
   ##  Copies it
-  orxMemory_Copy(pstDst, pstSrc, sizeof((orxAABOX)))
+  discard orxMemory_Copy(pstDst, pstSrc, sizeof((orxAABOX)).orxU32)
   ##  Done!
   return pstDst
 
@@ -199,8 +199,8 @@ proc orxAABox_Move*(pstRes: ptr orxAABOX; pstOp: ptr orxAABOX; pvMove: ptr orxVE
   orxASSERT(pstOp != orxNULL)
   orxASSERT(pvMove != orxNULL)
   ##  Updates result
-  orxVector_Add(addr((pstRes.vTL)), addr((pstOp.vTL)), pvMove)
-  orxVector_Add(addr((pstRes.vBR)), addr((pstOp.vBR)), pvMove)
+  discard orxVector_Add(addr((pstRes.vTL)), addr((pstOp.vTL)), pvMove)
+  discard orxVector_Add(addr((pstRes.vBR)), addr((pstOp.vBR)), pvMove)
   ##  Done!
   return pstRes
 
@@ -216,7 +216,7 @@ proc orxAABox_GetCenter*(pstOp: ptr orxAABOX; pvRes: ptr orxVECTOR): ptr orxVECT
   orxASSERT(pstOp != orxNULL)
   orxASSERT(pvRes != orxNULL)
   ##  Gets box center
-  orxVector_Add(pvRes, addr((pstOp.vTL)), addr((pstOp.vBR)))
+  discard orxVector_Add(pvRes, addr((pstOp.vTL)), addr((pstOp.vBR)))
   orxVector_Mulf(pvRes, pvRes, orx2F(0.5))
   ##  Done!
   return pvRes

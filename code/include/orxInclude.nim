@@ -20,31 +20,11 @@
 ##
 ##     3. This notice may not be removed or altered from any source
 ##     distribution.
-##
-## *
-##  @file orxInclude.h
-##  @date 12/09/2005
-##  @author iarwain@orx-project.org
-##
-##  @todo
-##  - Add multi animation interpreter (for blends, transitions, etc...)
-##  - Add fixed point decimals
-##  - Add Matrix module
-##  - Update camera to use 3D matrix
-##  - Add network :)
-##
-## *
-##  @addtogroup Orx
-##
-##  Local include file
-##
-##  @{
-##
 
-## * Includes
-##
+import base/orxType, base/orxModule, debug/orxDebug, core/orxSystem
 
-import
-  base/orxModule
-
-## * @}
+# We need to export also, to mimic C includes
+export orxType
+export orxModule
+export orxDebug
+export orxSystem

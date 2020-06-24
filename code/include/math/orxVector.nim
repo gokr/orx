@@ -47,29 +47,35 @@ import
 ##
 
 type
-  INNER_C_UNION_orxVector_72* {.bycopy.} = object {.union.}
-    fX*: orxFLOAT              ## *< First coordinate in the cartesian space
-    fRho*: orxFLOAT            ## *< First coordinate in the spherical space
-    fR*: orxFLOAT              ## *< First coordinate in the RGB color space
-    fH*: orxFLOAT              ## *< First coordinate in the HSL/HSV color spaces
+  #INNER_C_UNION_orxVector_72* {.bycopy.} = object {.union.}
+  #  fX*: orxFLOAT              ## *< First coordinate in the cartesian space
+  #  fRho*: orxFLOAT            ## *< First coordinate in the spherical space
+  #  fR*: orxFLOAT              ## *< First coordinate in the RGB color space
+  #  fH*: orxFLOAT              ## *< First coordinate in the HSL/HSV color spaces
 
-  INNER_C_UNION_orxVector_80* {.bycopy.} = object {.union.}
-    fY*: orxFLOAT              ## *< Second coordinate in the cartesian space
-    fTheta*: orxFLOAT          ## *< Second coordinate in the spherical space
-    fG*: orxFLOAT              ## *< Second coordinate in the RGB color space
-    fS*: orxFLOAT              ## *< Second coordinate in the HSL/HSV color spaces
+  #INNER_C_UNION_orxVector_80* {.bycopy.} = object {.union.}
+  #  fY*: orxFLOAT              ## *< Second coordinate in the cartesian space
+  #  fTheta*: orxFLOAT          ## *< Second coordinate in the spherical space
+  #  fG*: orxFLOAT              ## *< Second coordinate in the RGB color space
+  #  fS*: orxFLOAT              ## *< Second coordinate in the HSL/HSV color spaces
 
-  INNER_C_UNION_orxVector_88* {.bycopy.} = object {.union.}
-    fZ*: orxFLOAT              ## *< Third coordinate in the cartesian space
-    fPhi*: orxFLOAT            ## *< Third coordinate in the spherical space
-    fB*: orxFLOAT              ## *< Third coordinate in the RGB color space
-    fL*: orxFLOAT              ## *< Third coordinate in the HSL color space
-    fV*: orxFLOAT              ## *< Third coordinate in the HSV color space
+  #INNER_C_UNION_orxVector_88* {.bycopy.} = object {.union.}
+  #  fZ*: orxFLOAT              ## *< Third coordinate in the cartesian space
+  #  fPhi*: orxFLOAT            ## *< Third coordinate in the spherical space
+  #  fB*: orxFLOAT              ## *< Third coordinate in the RGB color space
+  #  fL*: orxFLOAT              ## *< Third coordinate in the HSL color space
+  #  fV*: orxFLOAT              ## *< Third coordinate in the HSV color space
 
-  orxVECTOR* {.bycopy.} = object
-    ano_orxVector_76*: INNER_C_UNION_orxVector_72 ## * Coordinates : 12
-    ano_orxVector_84*: INNER_C_UNION_orxVector_80
-    ano_orxVector_93*: INNER_C_UNION_orxVector_88
+  #orxVECTOR* {.bycopy.} = object
+  #  ano_orxVector_76*: INNER_C_UNION_orxVector_72 ## * Coordinates : 12
+  #  ano_orxVector_84*: INNER_C_UNION_orxVector_80
+  #  ano_orxVector_93*: INNER_C_UNION_orxVector_88
+
+  orxVECTOR* {.bycopy.} = tuple[fX: orxFLOAT, fY: orxFLOAT, fZ: orxFLOAT]
+  orxSPVECTOR* {.bycopy.} = tuple[fRho: orxFLOAT, fTheta: orxFLOAT, fPhi: orxFLOAT]
+  orxRGB* {.bycopy.} = tuple[fR: orxFLOAT, fG: orxFLOAT, fB: orxFLOAT]
+  orxHSL* {.bycopy.} = tuple[fH: orxFLOAT, fS: orxFLOAT, fL: orxFLOAT]
+  orxHSV* {.bycopy.} = tuple[fH: orxFLOAT, fS: orxFLOAT, fV: orxFLOAT]
 
 
 ##  *** Vector inlined functions ***
@@ -82,7 +88,7 @@ type
 ##
 
 proc orxVector_Set*(pvVec: ptr orxVECTOR; fX: orxFLOAT; fY: orxFLOAT; fZ: orxFLOAT): ptr orxVECTOR {.
-    inline, cdecl.} =
+    inline, discardable, cdecl.} =
   ##  Checks
   orxASSERT(pvVec != orxNULL)
   ##  Stores values
@@ -109,13 +115,13 @@ proc orxVector_SetAll*(pvVec: ptr orxVECTOR; fValue: orxFLOAT): ptr orxVECTOR {.
 ##  @return      Destination vector
 ##
 
-proc orxVector_Copy*(pvDst: ptr orxVECTOR; pvSrc: ptr orxVECTOR): ptr orxVECTOR {.inline,
+proc orxVector_Copy*(pvDst: ptr orxVECTOR; pvSrc: ptr orxVECTOR): ptr orxVECTOR {.inline, discardable,
     cdecl.} =
   ##  Checks
   orxASSERT(pvDst != orxNULL)
   orxASSERT(pvSrc != orxNULL)
   ##  Copies it
-  orxMemory_Copy(pvDst, pvSrc, sizeof((orxVECTOR)))
+  discard orxMemory_Copy(pvDst, pvSrc, sizeof((orxVECTOR)).orxU32)
   ##  Done!
   return pvDst
 
@@ -127,7 +133,7 @@ proc orxVector_Copy*(pvDst: ptr orxVECTOR; pvSrc: ptr orxVECTOR): ptr orxVECTOR 
 ##
 
 proc orxVector_Add*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
-    inline, cdecl.} =
+    inline, discardable, cdecl.} =
   ##  Checks
   orxASSERT(pvRes != orxNULL)
   orxASSERT(pvOp1 != orxNULL)
@@ -147,7 +153,7 @@ proc orxVector_Add*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 ##
 
 proc orxVector_Sub*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
-    inline, cdecl.} =
+    inline, discardable, cdecl.} =
   ##  Checks
   orxASSERT(pvRes != orxNULL)
   orxASSERT(pvOp1 != orxNULL)
@@ -167,7 +173,7 @@ proc orxVector_Sub*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 ##
 
 proc orxVector_Mulf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT): ptr orxVECTOR {.
-    inline, cdecl.} =
+    inline, discardable, cdecl.} =
   ##  Checks
   orxASSERT(pvRes != orxNULL)
   orxASSERT(pvOp1 != orxNULL)
@@ -213,7 +219,7 @@ proc orxVector_Divf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT)
   orxASSERT(pvOp1 != orxNULL)
   orxASSERT(fOp2 != orxFLOAT_0)
   ##  Gets reciprocal coef
-  fRecCoef = orxFLOAT_1 div fOp2
+  fRecCoef = orxFLOAT_1 / fOp2
   ##  Muls all
   pvRes.fX = pvOp1.fX * fRecCoef
   pvRes.fY = pvOp1.fY * fRecCoef
@@ -235,9 +241,9 @@ proc orxVector_Div*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
   orxASSERT(pvOp1 != orxNULL)
   orxASSERT(pvOp2 != orxNULL)
   ##  Divs all
-  pvRes.fX = pvOp1.fX div pvOp2.fX
-  pvRes.fY = pvOp1.fY div pvOp2.fY
-  pvRes.fZ = pvOp1.fZ div pvOp2.fZ
+  pvRes.fX = pvOp1.fX / pvOp2.fX
+  pvRes.fY = pvOp1.fY / pvOp2.fY
+  pvRes.fZ = pvOp1.fZ / pvOp2.fZ
   ##  Done!
   return pvRes
 
@@ -355,9 +361,9 @@ proc orxVector_Rec*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
   orxASSERT(pvRes != orxNULL)
   orxASSERT(pvOp != orxNULL)
   ##  Reverts all
-  pvRes.fX = orxFLOAT_1 div pvOp.fX
-  pvRes.fY = orxFLOAT_1 div pvOp.fY
-  pvRes.fZ = orxFLOAT_1 div pvOp.fZ
+  pvRes.fX = orxFLOAT_1 / pvOp.fX
+  pvRes.fY = orxFLOAT_1 / pvOp.fY
+  pvRes.fZ = orxFLOAT_1 / pvOp.fZ
   ##  Done!
   return pvRes
 
@@ -439,7 +445,7 @@ proc orxVector_GetSquareDistance*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): o
   orxASSERT(pvOp1 != orxNULL)
   orxASSERT(pvOp2 != orxNULL)
   ##  Gets distance vector
-  orxVector_Sub(addr(vTemp), pvOp2, pvOp1)
+  discard orxVector_Sub(addr(vTemp), pvOp2, pvOp1)
   ##  Updates result
   fResult = orxVector_GetSquareSize(addr(vTemp))
   ##  Done!
@@ -459,7 +465,7 @@ proc orxVector_GetDistance*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOA
   orxASSERT(pvOp1 != orxNULL)
   orxASSERT(pvOp2 != orxNULL)
   ##  Gets distance vector
-  orxVector_Sub(addr(vTemp), pvOp2, pvOp1)
+  discard orxVector_Sub(addr(vTemp), pvOp2, pvOp1)
   ##  Updates result
   fResult = orxVector_GetSize(addr(vTemp))
   ##  Done!
@@ -480,7 +486,7 @@ proc orxVector_Normalize*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVEC
   ##  Gets squared size
   fOp = (pvOp.fX * pvOp.fX) + (pvOp.fY * pvOp.fY) + (pvOp.fZ * pvOp.fZ)
   ##  Gets reciprocal size
-  fOp = orxFLOAT_1 div (orxMATH_KF_TINY_EPSILON + orxMath_Sqrt(fOp))
+  fOp = orxFLOAT_1 / (orxMATH_KF_TINY_EPSILON + orxMath_Sqrt(fOp))
   ##  Updates result
   pvRes.fX = fOp * pvOp.fX
   pvRes.fY = fOp * pvOp.fY
@@ -503,10 +509,10 @@ proc orxVector_2DRotate*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; fAngle: orxF
   ##  PI/2?
   if fAngle == orxMATH_KF_PI_BY_2:
     ##  Updates result
-    orxVector_Set(pvRes, -pvOp.fY, pvOp.fX, pvOp.fZ)
+    discard orxVector_Set(pvRes, -pvOp.fY, pvOp.fX, pvOp.fZ)
   elif fAngle == -orxMATH_KF_PI_BY_2: ##  Any other angle
     ##  Updates result
-    orxVector_Set(pvRes, pvOp.fY, -pvOp.fX, pvOp.fZ)
+    discard orxVector_Set(pvRes, pvOp.fY, -pvOp.fX, pvOp.fZ)
   else:
     var
       fSin: orxFLOAT
@@ -515,7 +521,7 @@ proc orxVector_2DRotate*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; fAngle: orxF
     fCos = orxMath_Cos(fAngle)
     fSin = orxMath_Sin(fAngle)
     ##  Updates result
-    orxVector_Set(pvRes, (fCos * pvOp.fX) - (fSin * pvOp.fY),
+    discard orxVector_Set(pvRes, (fCos * pvOp.fX) - (fSin * pvOp.fY),
                   (fSin * pvOp.fX) + (fCos * pvOp.fY), pvOp.fZ)
   ##  Done!
   return pvRes
@@ -559,7 +565,7 @@ proc orxVector_AreEqual*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxBOOL {.
 ##  @return      Transformed vector
 ##
 
-proc orxVector_FromCartesianToSpherical*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
+proc orxVector_FromCartesianToSpherical*(pvRes: ptr orxSPVECTOR; pvOp: ptr orxVECTOR): ptr orxSPVECTOR {.
     inline, cdecl.} =
   ##  Checks
   orxASSERT(pvRes != orxNULL)
@@ -567,7 +573,9 @@ proc orxVector_FromCartesianToSpherical*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECT
   ##  Is operand vector null?
   if (pvOp.fX == orxFLOAT_0) and (pvOp.fY == orxFLOAT_0) and (pvOp.fZ == orxFLOAT_0):
     ##  Updates result vector
-    pvRes.fRho = pvRes.fTheta = pvRes.fPhi = orxFLOAT_0
+    pvRes.fRho = orxFLOAT_0
+    pvRes.fTheta = orxFLOAT_0
+    pvRes.fPhi = orxFLOAT_0
   else:
     var
       fRho: orxFLOAT
@@ -605,7 +613,7 @@ proc orxVector_FromCartesianToSpherical*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECT
         ##  Computes rho
         fRho = orxMath_Sqrt(orxVector_GetSquareSize(pvOp))
         ##  Computes phi
-        fPhi = orxMath_ACos(pvOp.fZ div fRho)
+        fPhi = orxMath_ACos(pvOp.fZ / fRho)
     ##  Computes theta
     fTheta = orxMath_ATan(pvOp.fY, pvOp.fX)
     ##  Updates result
@@ -621,7 +629,7 @@ proc orxVector_FromCartesianToSpherical*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECT
 ##  @return      Transformed vector
 ##
 
-proc orxVector_FromSphericalToCartesian*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
+proc orxVector_FromSphericalToCartesian*(pvRes: ptr orxVECTOR; pvOp: ptr orxSPVECTOR): ptr orxVECTOR {.
     inline, cdecl.} =
   var
     fSinPhi: orxFLOAT

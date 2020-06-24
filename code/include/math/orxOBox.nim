@@ -38,10 +38,10 @@
 ##
 
 import
-  orxInclude, math/orxVector
+  orxInclude, math/[orxVector, orxMath]
 
 import
-  base/orxType
+  base/orxType, memory/orxMemory
 
 ## * Public oriented box structure
 ##
@@ -105,7 +105,7 @@ proc orxOBox_Copy*(pstDst: ptr orxOBOX; pstSrc: ptr orxOBOX): ptr orxOBOX {.inli
   orxASSERT(pstDst != orxNULL)
   orxASSERT(pstSrc != orxNULL)
   ##  Copies it
-  orxMemory_Copy(pstDst, pstSrc, sizeof((orxOBOX)))
+  orxMemory_Copy(pstDst, pstSrc, sizeof((orxOBOX)).orxU32)
   ##  Done!
   return pstDst
 
@@ -302,7 +302,9 @@ proc orxOBox_ZAlignedTestIntersection*(pstBox1: ptr orxOBOX; pstBox2: ptr orxOBO
           fProj: orxFLOAT
         var k: orxU32
         ##  Gets initial projected values
-        fMin = fMax = fProj = orxVector_2DDot(addr(vToCorner[0]), pvAxis)
+        fMin =  orxVector_2DDot(addr(vToCorner[0]), pvAxis)
+        fMax = fMin
+        fProj = fMin
         ##  For all remaining corners
         k = 1
         while k < 4:

@@ -37,17 +37,8 @@
 ##  @{
 ##
 
-import
-  orxInclude, debug/orxDebug
+import base/orxType, debug/orxDebug, math, system
 
-import
-  base/orxType
-
-## * Maths related includes
-##
-
-## * Public macro
-##
 ## * Lerps between two values given a parameter T [0, 1]
 ##  @param[in]   A                               First value (will be selected for T = 0)
 ##  @param[in]   B                               Second value (will be selected for T = 1)
@@ -229,15 +220,7 @@ proc orxMath_SetRandomSeeds*(au32Seeds: array[4, orxU32]) {.cdecl,
 ##
 
 proc orxMath_GetBitCount*(u32Value: orxU32): orxU32 {.inline, cdecl.} =
-  var u32Result: orxU32
-  when defined(MSVC):
-    ##  Uses intrinsic
-    u32Result = popcnt(u32Value)
-  else:
-    ##  Uses intrinsic
-    u32Result = cast[orxU32](builtin_popcount(u32Value))
-  ##  Done!
-  return u32Result
+  {.emit"return(orxU32)__builtin_popcount(u32Value);".}
 
 ## * Gets the count of trailing zeros in an orxU32
 ##  @param[in]   _u32Value                       Value to process
@@ -253,7 +236,7 @@ proc orxMath_GetTrailingZeroCount*(u32Value: orxU32): orxU32 {.inline, cdecl.} =
     BitScanForward(cast[ptr culong](addr(u32Result)), u32Value)
   else:
     ##  Uses intrinsic
-    u32Result = cast[orxU32](builtin_ctz(u32Value))
+    {.emit"u32Result = (orxU32)__builtin_ctz(u32Value);".}
   ##  Done!
   return u32Result
 
@@ -277,7 +260,7 @@ proc orxMath_GetTrailingZeroCount64*(u64Value: orxU64): orxU32 {.inline, cdecl.}
           cast[orxU32](u64Value))
   else:
     ##  Uses intrinsic
-    u32Result = cast[orxU32](builtin_ctzll(u64Value))
+    {.emit"u32Result = (orxU32)__builtin_ctzll(u64Value);".}
   ##  Done!
   return u32Result
 
@@ -329,7 +312,7 @@ proc orxMath_SmoothStep*(fMin: orxFLOAT; fMax: orxFLOAT; fValue: orxFLOAT): orxF
     fTemp: orxFLOAT
     fResult: orxFLOAT
   ##  Gets normalized and clamped value
-  fTemp = (fValue - fMin) div (fMax - fMin)
+  fTemp = (fValue - fMin) / (fMax - fMin)
   fTemp = orxCLAMP(fTemp, orxFLOAT_0, orxFLOAT_1)
   ##  Gets smoothed result
   fResult = fTemp * fTemp * (orx2F(3.0) - (orx2F(2.0) * fTemp))
@@ -349,7 +332,7 @@ proc orxMath_SmootherStep*(fMin: orxFLOAT; fMax: orxFLOAT; fValue: orxFLOAT): or
     fTemp: orxFLOAT
     fResult: orxFLOAT
   ##  Gets normalized and clamped value
-  fTemp = (fValue - fMin) div (fMax - fMin)
+  fTemp = (fValue - fMin) / (fMax - fMin)
   fTemp = orxCLAMP(fTemp, orxFLOAT_0, orxFLOAT_1)
   ##  Gets smoothed result
   fResult = fTemp * fTemp * fTemp *
@@ -380,7 +363,7 @@ const
 proc orxMath_Sin*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = sinf(fOp)
+  fResult = sin(fOp)
   ##  Done!
   return fResult
 
@@ -392,7 +375,7 @@ proc orxMath_Sin*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_Cos*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = cosf(fOp)
+  fResult = cos(fOp)
   ##  Done!
   return fResult
 
@@ -404,7 +387,7 @@ proc orxMath_Cos*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_Tan*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = tanf(fOp)
+  fResult = tan(fOp)
   ##  Done!
   return fResult
 
@@ -416,7 +399,7 @@ proc orxMath_Tan*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_ACos*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = acosf(fOp)
+  fResult = arccos(fOp)
   ##  Done!
   return fResult
 
@@ -428,7 +411,7 @@ proc orxMath_ACos*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_ASin*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = asinf(fOp)
+  fResult = arcsin(fOp)
   ##  Done!
   return fResult
 
@@ -441,7 +424,7 @@ proc orxMath_ASin*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_ATan*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = atan2f(fOp1, fOp2)
+  fResult = arctan2(fOp1, fOp2)
   ##  Done!
   return fResult
 
@@ -454,7 +437,7 @@ proc orxMath_ATan*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_Sqrt*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = sqrtf(fOp)
+  fResult = sqrt(fOp)
   ##  Done!
   return fResult
 
@@ -466,7 +449,7 @@ proc orxMath_Sqrt*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_Floor*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = floorf(fOp)
+  fResult = floor(fOp)
   ##  Done!
   return fResult
 
@@ -478,7 +461,7 @@ proc orxMath_Floor*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_Ceil*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = ceilf(fOp)
+  fResult = ceil(fOp)
   ##  Done!
   return fResult
 
@@ -494,7 +477,7 @@ proc orxMath_Round*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
     fResult = floorf(fOp + orx2F(0.5))
   else:
     ##  Updates result
-    fResult = rintf(fOp)
+    fResult = round(fOp)
   ##  Done!
   return fResult
 
@@ -507,7 +490,7 @@ proc orxMath_Round*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_Mod*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = fmodf(fOp1, fOp2)
+  fResult = fmod(fOp1, fOp2)
   ##  Done!
   return fResult
 
@@ -520,7 +503,7 @@ proc orxMath_Mod*(fOp1: orxFLOAT; fOp2: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_Pow*(fOp: orxFLOAT; fExp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = powf(fOp, fExp)
+  fResult = pow(fOp, fExp)
   ##  Done!
   return fResult
 
@@ -532,7 +515,7 @@ proc orxMath_Pow*(fOp: orxFLOAT; fExp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
 proc orxMath_Abs*(fOp: orxFLOAT): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Updates result
-  fResult = fabsf(fOp)
+  fResult = abs(fOp)
   ##  Done!
   return fResult
 
