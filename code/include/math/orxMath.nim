@@ -230,7 +230,7 @@ proc orxMath_GetBitCount*(u32Value: orxU32): orxU32 {.inline, cdecl.} =
 proc orxMath_GetTrailingZeroCount*(u32Value: orxU32): orxU32 {.inline, cdecl.} =
   var u32Result: orxU32
   ##  Checks
-  orxASSERT(u32Value != 0)
+  assert(u32Value != 0)
   when defined(MSVC):
     ##  Uses intrinsic
     BitScanForward(cast[ptr culong](addr(u32Result)), u32Value)
@@ -248,7 +248,7 @@ proc orxMath_GetTrailingZeroCount*(u32Value: orxU32): orxU32 {.inline, cdecl.} =
 proc orxMath_GetTrailingZeroCount64*(u64Value: orxU64): orxU32 {.inline, cdecl.} =
   var u32Result: orxU32
   ##  Checks
-  orxASSERT(u64Value != 0)
+  assert(u64Value != 0)
   when defined(MSVC):
     when defined(orx64):
       ##  Uses intrinsic

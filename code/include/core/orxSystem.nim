@@ -155,13 +155,13 @@ proc orxSystem_GetVersionFullString*(): ptr orxCHAR {.cdecl,
 proc orxSystem_GetVersionNumeric*(): orxU32 {.cdecl,
     importc: "orxSystem_GetVersionNumeric", dynlib: "liborx.so".}
 ## * Gets clipboard's content
-##  @return Clipboard's content / orxNULL, valid until next call to orxSystem_GetClipboard/orxSystem_SetClipboard
+##  @return Clipboard's content / nil, valid until next call to orxSystem_GetClipboard/orxSystem_SetClipboard
 ##
 
 proc orxSystem_GetClipboard*(): ptr orxCHAR {.cdecl,
     importc: "orxSystem_GetClipboard", dynlib: "liborx.so".}
 ## * Sets clipboard's content
-##  @param[in] _zValue               Value to set in the clipboard, orxNULL to clear
+##  @param[in] _zValue               Value to set in the clipboard, nil to clear
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 

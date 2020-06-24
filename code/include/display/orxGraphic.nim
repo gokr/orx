@@ -105,14 +105,14 @@ proc orxGraphic_Init*(): orxSTATUS {.cdecl, importc: "orxGraphic_Init",
 
 proc orxGraphic_Exit*() {.cdecl, importc: "orxGraphic_Exit", dynlib: "liborx.so".}
 ## * Creates an empty graphic
-##  @return      Created orxGRAPHIC / orxNULL
+##  @return      Created orxGRAPHIC / nil
 ##
 
 proc orxGraphic_Create*(): ptr orxGRAPHIC {.cdecl, importc: "orxGraphic_Create",
                                         dynlib: "liborx.so".}
 ## * Creates a graphic from config
 ##  @param[in]   _zConfigID      Config ID
-##  @ return orxGRAPHIC / orxNULL
+##  @ return orxGRAPHIC / nil
 ##
 
 proc orxGraphic_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxGRAPHIC {.cdecl,
@@ -133,7 +133,7 @@ proc orxGraphic_GetName*(pstGraphic: ptr orxGRAPHIC): ptr orxCHAR {.cdecl,
     importc: "orxGraphic_GetName", dynlib: "liborx.so".}
 ## * Sets graphic data
 ##  @param[in]   _pstGraphic     Concerned graphic
-##  @param[in]   _pstData        Data structure to set / orxNULL
+##  @param[in]   _pstData        Data structure to set / nil
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -141,7 +141,7 @@ proc orxGraphic_SetData*(pstGraphic: ptr orxGRAPHIC; pstData: ptr orxSTRUCTURE):
     cdecl, importc: "orxGraphic_SetData", dynlib: "liborx.so".}
 ## * Gets graphic data
 ##  @param[in]   _pstGraphic     Concerned graphic
-##  @return      OrxSTRUCTURE / orxNULL
+##  @return      OrxSTRUCTURE / nil
 ##
 
 proc orxGraphic_GetData*(pstGraphic: ptr orxGRAPHIC): ptr orxSTRUCTURE {.cdecl,
@@ -184,7 +184,7 @@ proc orxGraphic_SetRelativePivot*(pstGraphic: ptr orxGRAPHIC; u32AlignFlags: orx
 ## * Gets graphic pivot
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[out]  _pvPivot        Graphic pivot
-##  @return      orxPIVOT / orxNULL
+##  @return      orxPIVOT / nil
 ##
 
 proc orxGraphic_GetPivot*(pstGraphic: ptr orxGRAPHIC; pvPivot: ptr orxVECTOR): ptr orxVECTOR {.
@@ -200,7 +200,7 @@ proc orxGraphic_SetSize*(pstGraphic: ptr orxGRAPHIC; pvSize: ptr orxVECTOR): orx
 ## * Gets graphic size
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[out]  _pvSize         Object's size
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxGraphic_GetSize*(pstGraphic: ptr orxGRAPHIC; pvSize: ptr orxVECTOR): ptr orxVECTOR {.
@@ -240,7 +240,7 @@ proc orxGraphic_HasColor*(pstGraphic: ptr orxGRAPHIC): orxBOOL {.cdecl,
 ## * Gets graphic color
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[out]  _pstColor       Object's color
-##  @return      orxCOLOR / orxNULL
+##  @return      orxCOLOR / nil
 ##
 
 proc orxGraphic_GetColor*(pstGraphic: ptr orxGRAPHIC; pstColor: ptr orxCOLOR): ptr orxCOLOR {.

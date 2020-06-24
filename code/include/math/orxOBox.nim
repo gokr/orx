@@ -37,11 +37,7 @@
 ##  @{
 ##
 
-import
-  orxInclude, math/[orxVector, orxMath]
-
-import
-  base/orxType, memory/orxMemory
+import orxInclude, math/[orxVector, orxMath], memory/orxMemory, base/orxDecl
 
 ## * Public oriented box structure
 ##
@@ -62,7 +58,7 @@ type
 ##  @param[in]   _pvPivot                      Pivot vector
 ##  @param[in]   _pvSize                       Size vector
 ##  @param[in]   _fAngle                       Z-axis angle (radians)
-##  @return      orxOBOX / orxNULL
+##  @return      orxOBOX / nil
 ##
 
 proc orxOBox_2DSet*(pstRes: ptr orxOBOX; pvWorldPosition: ptr orxVECTOR;
@@ -72,9 +68,9 @@ proc orxOBox_2DSet*(pstRes: ptr orxOBOX; pvWorldPosition: ptr orxVECTOR;
     fCos: orxFLOAT
     fSin: orxFLOAT
   ##  Checks
-  orxASSERT(pstRes != orxNULL)
-  orxASSERT(pvWorldPosition != orxNULL)
-  orxASSERT(pvPivot != orxNULL)
+  assert(pstRes != nil)
+  assert(pvWorldPosition != nil)
+  assert(pvPivot != nil)
   ##  Gets cosine and sine
   if fAngle == orxFLOAT_0:
     fCos = orxFLOAT_1
@@ -102,8 +98,8 @@ proc orxOBox_2DSet*(pstRes: ptr orxOBOX; pvWorldPosition: ptr orxVECTOR;
 
 proc orxOBox_Copy*(pstDst: ptr orxOBOX; pstSrc: ptr orxOBOX): ptr orxOBOX {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstDst != orxNULL)
-  orxASSERT(pstSrc != orxNULL)
+  assert(pstDst != nil)
+  assert(pstSrc != nil)
   ##  Copies it
   orxMemory_Copy(pstDst, pstSrc, sizeof((orxOBOX)).orxU32)
   ##  Done!
@@ -118,8 +114,8 @@ proc orxOBox_Copy*(pstDst: ptr orxOBOX; pstSrc: ptr orxOBOX): ptr orxOBOX {.inli
 proc orxOBox_GetCenter*(pstOp: ptr orxOBOX; pvRes: ptr orxVECTOR): ptr orxVECTOR {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstOp != orxNULL)
-  orxASSERT(pvRes != orxNULL)
+  assert(pstOp != nil)
+  assert(pvRes != nil)
   ##  Gets box center
   orxVector_Add(pvRes, orxVector_Add(pvRes, addr((pstOp.vX)), addr((pstOp.vY))),
                 addr((pstOp.vZ)))
@@ -139,9 +135,9 @@ proc orxOBox_GetCenter*(pstOp: ptr orxOBOX; pvRes: ptr orxVECTOR): ptr orxVECTOR
 proc orxOBox_Move*(pstRes: ptr orxOBOX; pstOp: ptr orxOBOX; pvMove: ptr orxVECTOR): ptr orxOBOX {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstRes != orxNULL)
-  orxASSERT(pstOp != orxNULL)
-  orxASSERT(pvMove != orxNULL)
+  assert(pstRes != nil)
+  assert(pstOp != nil)
+  assert(pvMove != nil)
   ##  Updates result
   orxVector_Add(addr((pstRes.vPosition)), addr((pstOp.vPosition)), pvMove)
   ##  Done!
@@ -160,8 +156,8 @@ proc orxOBox_2DRotate*(pstRes: ptr orxOBOX; pstOp: ptr orxOBOX; fAngle: orxFLOAT
     fSin: orxFLOAT
     fCos: orxFLOAT
   ##  Checks
-  orxASSERT(pstRes != orxNULL)
-  orxASSERT(pstOp != orxNULL)
+  assert(pstRes != nil)
+  assert(pstOp != nil)
   ##  Gets cos & sin of angle
   if fAngle == orxFLOAT_0:
     fCos = orxFLOAT_1
@@ -187,29 +183,31 @@ proc orxOBox_2DRotate*(pstRes: ptr orxOBOX; pstOp: ptr orxOBOX; fAngle: orxFLOAT
 ##  @return      orxTRUE if position is inside the box, orxFALSE otherwise
 ##
 
-proc orxOBox_IsInside*(pstBox: ptr orxOBOX; pvPosition: ptr orxVECTOR): orxBOOL {.
+proc orxOBox_IsInside*(pstBox: ptr orxOBOX; pvPosition: ptr orxVECTOR): bool {.
     inline, cdecl.} =
-  var bResult: orxBOOL
   var fProj: orxFLOAT
   var vToPos: orxVECTOR
   ##  Checks
-  orxASSERT(pstBox != orxNULL)
-  orxASSERT(pvPosition != orxNULL)
+  assert(pstBox != nil)
+  assert(pvPosition != nil)
   ##  Gets origin to position vector
   orxVector_Sub(addr(vToPos), pvPosition, orxVector_Sub(addr(vToPos),
       addr((pstBox.vPosition)), addr((pstBox.vPivot))))
   ##  Z-axis test
-  if ((fProj = orxVector_Dot(addr(vToPos), addr((pstBox.vZ)))) >= orxFLOAT_0) and
+  fProj = orxVector_Dot(addr(vToPos), addr(pstBox.vZ))
+  if (fProj >= orxFLOAT_0) and
       (fProj <= orxVector_GetSquareSize(addr((pstBox.vZ)))):
     ##  X-axis test
-    if ((fProj = orxVector_Dot(addr(vToPos), addr((pstBox.vX)))) >= orxFLOAT_0) and
+    fProj = orxVector_Dot(addr(vToPos), addr(pstBox.vX))
+    if (fProj >= orxFLOAT_0) and
         (fProj <= orxVector_GetSquareSize(addr((pstBox.vX)))):
       ##  Y-axis test
-      if ((fProj = orxVector_Dot(addr(vToPos), addr((pstBox.vY)))) >= orxFLOAT_0) and
+      fProj = orxVector_Dot(addr(vToPos), addr(pstBox.vY))
+      if (fProj >= orxFLOAT_0) and
           (fProj <= orxVector_GetSquareSize(addr((pstBox.vY)))):
         ##  Updates result
-        bResult = orxTRUE
-  return bResult
+        return true
+  return false
 
 ## * Is 2D position inside oriented box test
 ##  @param[in]   _pstBox                       Box to test against position
@@ -217,30 +215,30 @@ proc orxOBox_IsInside*(pstBox: ptr orxOBOX; pvPosition: ptr orxVECTOR): orxBOOL 
 ##  @return      orxTRUE if position is inside the box, orxFALSE otherwise
 ##
 
-proc orxOBox_2DIsInside*(pstBox: ptr orxOBOX; pvPosition: ptr orxVECTOR): orxBOOL {.
+proc orxOBox_2DIsInside*(pstBox: ptr orxOBOX; pvPosition: ptr orxVECTOR): bool {.
     inline, cdecl.} =
-  var bResult: orxBOOL
   var
     fProj: orxFLOAT
     fSize: orxFLOAT
   var vToPos: orxVECTOR
   ##  Checks
-  orxASSERT(pstBox != orxNULL)
-  orxASSERT(pvPosition != orxNULL)
+  assert(pstBox != nil)
+  assert(pvPosition != nil)
   ##  Gets origin to position vector
   orxVector_Sub(addr(vToPos), pvPosition, orxVector_Sub(addr(vToPos),
       addr((pstBox.vPosition)), addr((pstBox.vPivot))))
   ##  X-axis test
-  if ((fProj = orxVector_Dot(addr(vToPos), addr((pstBox.vX)))) >= orxFLOAT_0) and
-      ((fSize = orxVector_GetSquareSize(addr((pstBox.vX)))) > orxFLOAT_0) and
-      (fProj <= fSize):
-    ##  Y-axis test
-    if ((fProj = orxVector_Dot(addr(vToPos), addr((pstBox.vY)))) >= orxFLOAT_0) and
-        ((fSize = orxVector_GetSquareSize(addr((pstBox.vY)))) > orxFLOAT_0) and
-        (fProj <= fSize):
-      ##  Updates result
-      bResult = orxTRUE
-  return bResult
+  fProj = orxVector_Dot(addr(vToPos), addr(pstBox.vX))
+  if fProj >= orxFLOAT_0:
+    fSize = orxVector_GetSquareSize(addr(pstBox.vX))
+    if fSize > orxFLOAT_0 and fProj <= fSize:
+      ##  Y-axis test
+      fProj = orxVector_Dot(addr(vToPos), addr(pstBox.vY))
+      if fProj >= orxFLOAT_0:
+        fSize = orxVector_GetSquareSize(addr(pstBox.vY))
+        if fSize > orxFLOAT_0 and fProj <= fSize:
+          return true
+  return false
 
 ## * Tests oriented box intersection (simple Z-axis test, to use with Z-axis aligned orxOBOX)
 ##  @param[in]   _pstBox1                      First box operand
@@ -252,11 +250,11 @@ proc orxOBox_ZAlignedTestIntersection*(pstBox1: ptr orxOBOX; pstBox2: ptr orxOBO
     inline, cdecl.} =
   var bResult: orxBOOL
   ##  Checks
-  orxASSERT(pstBox1 != orxNULL)
-  orxASSERT(pstBox2 != orxNULL)
-  orxASSERT(pstBox1.vZ.fX == orxFLOAT_0)
-  orxASSERT(pstBox1.vZ.fY == orxFLOAT_0)
-  orxASSERT(pstBox1.vZ.fZ >= orxFLOAT_0)
+  assert(pstBox1 != nil)
+  assert(pstBox2 != nil)
+  assert(pstBox1.vZ.fX == orxFLOAT_0)
+  assert(pstBox1.vZ.fY == orxFLOAT_0)
+  assert(pstBox1.vZ.fZ >= orxFLOAT_0)
   ##  Z intersected?
   if (pstBox2.vPosition.fZ + pstBox2.vZ.fZ >= pstBox1.vPosition.fZ) and
       (pstBox2.vPosition.fZ <= pstBox1.vPosition.fZ + pstBox1.vZ.fZ):
@@ -322,7 +320,7 @@ proc orxOBox_ZAlignedTestIntersection*(pstBox1: ptr orxOBOX; pstBox2: ptr orxOBO
           bResult = orxFALSE
           break
         dec(j)
-        inc(pvAxis)
+        pvAxis = pvAxis.pointerAdd(1) #inc(pvAxis)
       dec(i)
       pstTemp = pstBox1
       pstBox1 = pstBox2
@@ -335,5 +333,3 @@ proc orxOBox_ZAlignedTestIntersection*(pstBox1: ptr orxOBOX; pstBox2: ptr orxOBO
     bResult = orxFALSE
   ##  Done!
   return bResult
-
-## * @}

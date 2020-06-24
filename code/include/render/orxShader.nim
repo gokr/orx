@@ -111,14 +111,14 @@ proc orxShader_Init*(): orxSTATUS {.cdecl, importc: "orxShader_Init",
 
 proc orxShader_Exit*() {.cdecl, importc: "orxShader_Exit", dynlib: "liborx.so".}
 ## * Creates an empty shader
-##  @return orxSHADER / orxNULL
+##  @return orxSHADER / nil
 ##
 
 proc orxShader_Create*(): ptr orxSHADER {.cdecl, importc: "orxShader_Create",
                                       dynlib: "liborx.so".}
 ## * Creates a shader from config
 ##  @param[in]   _zConfigID            Config ID
-##  @ return orxSHADER / orxNULL
+##  @ return orxSHADER / nil
 ##
 
 proc orxShader_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSHADER {.cdecl,
@@ -138,7 +138,7 @@ proc orxShader_ClearCache*(): orxSTATUS {.cdecl, importc: "orxShader_ClearCache"
                                        dynlib: "liborx.so".}
 ## * Starts a shader
 ##  @param[in] _pstShader              Concerned Shader
-##  @param[in] _pstOwner               Owner structure (orxOBJECT / orxVIEWPORT / orxNULL)
+##  @param[in] _pstOwner               Owner structure (orxOBJECT / orxVIEWPORT / nil)
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 

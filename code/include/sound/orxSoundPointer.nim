@@ -69,7 +69,7 @@ proc orxSoundPointer_Init*(): orxSTATUS {.cdecl, importc: "orxSoundPointer_Init"
 proc orxSoundPointer_Exit*() {.cdecl, importc: "orxSoundPointer_Exit",
                              dynlib: "liborx.so".}
 ## * Creates an empty SoundPointer
-##  @return orxSOUNDPOINTER / orxNULL
+##  @return orxSOUNDPOINTER / nil
 ##
 
 proc orxSoundPointer_Create*(): ptr orxSOUNDPOINTER {.cdecl,
@@ -179,7 +179,7 @@ proc orxSoundPointer_RemoveSoundFromConfig*(pstSoundPointer: ptr orxSOUNDPOINTER
     importc: "orxSoundPointer_RemoveSoundFromConfig", dynlib: "liborx.so".}
 ## * Gets last added sound (Do *NOT* destroy it directly before removing it!!!)
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
-##  @return      orxSOUND / orxNULL
+##  @return      orxSOUND / nil
 ##
 
 proc orxSoundPointer_GetLastAddedSound*(pstSoundPointer: ptr orxSOUNDPOINTER): ptr orxSOUND {.

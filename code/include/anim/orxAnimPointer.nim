@@ -69,14 +69,14 @@ proc orxAnimPointer_Exit*() {.cdecl, importc: "orxAnimPointer_Exit",
                             dynlib: "liborx.so".}
 ## * Creates an empty AnimPointer
 ##  @param[in]   _pstAnimSet                   AnimSet reference
-##  @return      orxANIMPOINTER / orxNULL
+##  @return      orxANIMPOINTER / nil
 ##
 
 proc orxAnimPointer_Create*(pstAnimSet: ptr orxANIMSET): ptr orxANIMPOINTER {.cdecl,
     importc: "orxAnimPointer_Create", dynlib: "liborx.so".}
 ## * Creates an animation pointer from config
 ##  @param[in]   _zConfigID                    Config ID
-##  @return      orxANIMPOINTER / orxNULL
+##  @return      orxANIMPOINTER / nil
 ##
 
 proc orxAnimPointer_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxANIMPOINTER {.
@@ -125,7 +125,7 @@ proc orxAnimPointer_GetTargetAnimName*(pstAnimPointer: ptr orxANIMPOINTER): ptr 
     cdecl, importc: "orxAnimPointer_GetTargetAnimName", dynlib: "liborx.so".}
 ## * AnimPointer current anim data get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
-##  @return      Current anim data / orxNULL
+##  @return      Current anim data / nil
 ##
 
 proc orxAnimPointer_GetCurrentAnimData*(pstAnimPointer: ptr orxANIMPOINTER): ptr orxSTRUCTURE {.
@@ -173,7 +173,7 @@ proc orxAnimPointer_SetCurrentAnimFromName*(pstAnimPointer: ptr orxANIMPOINTER;
                                      dynlib: "liborx.so".}
 ## * AnimPointer target Animation set accessor using name
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
-##  @param[in]   _zAnimName                    Animation name (config's name) to set / orxNULL
+##  @param[in]   _zAnimName                    Animation name (config's name) to set / nil
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 

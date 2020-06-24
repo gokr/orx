@@ -56,7 +56,7 @@ const
 ##  @param[in] _u32NbKey    Number of keys that will be inserted.
 ##  @param[in] _u32Flags    Flags used by the hash table
 ##  @param[in] _eMemType    Memory type to use
-##  @return Returns the hashtable pointer or orxNULL if failed.
+##  @return Returns the hashtable pointer or nil if failed.
 ##
 
 proc orxHashTable_Create*(u32NbKey: orxU32; u32Flags: orxU32;
@@ -89,7 +89,7 @@ proc orxHashTable_GetCount*(pstHashTable: ptr orxHASHTABLE): orxU32 {.cdecl,
 ## * Find an item in a hash table.
 ##  @param[in] _pstHashTable  The hash table where search.
 ##  @param[in] _u64Key      Key to find.
-##  @return The Element associated to the key or orxNULL if not found.
+##  @return The Element associated to the key or nil if not found.
 ##
 
 proc orxHashTable_Get*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): pointer {.
@@ -97,7 +97,7 @@ proc orxHashTable_Get*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): pointer 
 ## * Retrieves the bucket of an item in a hash table, if the item wasn't present, a new bucket will be created.
 ##  @param[in] _pstHashTable   Concerned hashtable
 ##  @param[in] _u64Key         Key to find
-##  @return The bucket associated to the given key if success, orxNULL otherwise
+##  @return The bucket associated to the given key if success, nil otherwise
 ##
 
 proc orxHashTable_Retrieve*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): ptr pointer {.
@@ -134,7 +134,7 @@ proc orxHashTable_Remove*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): orxST
 ##  @{
 ## * Gets the next item in the hashtable and returns an iterator for next search
 ##  @param[in]   _pstHashTable   Concerned HashTable
-##  @param[in]   _hIterator      Iterator from previous search or orxHANDLE_UNDEFINED/orxNULL for a new search
+##  @param[in]   _hIterator      Iterator from previous search or orxHANDLE_UNDEFINED/nil for a new search
 ##  @param[out]  _pu64Key        Current element key
 ##  @param[out]  _ppData         Current element data
 ##  @return Iterator for next element if an element has been found, orxHANDLE_UNDEFINED otherwise

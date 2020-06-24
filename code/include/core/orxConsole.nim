@@ -120,7 +120,7 @@ proc orxConsole_Log*(zText: ptr orxCHAR): orxSTATUS {.cdecl,
 proc orxConsole_SetFont*(pstFont: ptr orxFONT): orxSTATUS {.cdecl,
     importc: "orxConsole_SetFont", dynlib: "liborx.so".}
 ## * Gets the console font
-##  @return Current in-use font, orxNULL
+##  @return Current in-use font, nil
 ##
 
 proc orxConsole_GetFont*(): ptr orxFONT {.cdecl, importc: "orxConsole_GetFont",
@@ -139,7 +139,7 @@ proc orxConsole_SetLogLineLength*(u32LineLength: orxU32): orxSTATUS {.cdecl,
 proc orxConsole_GetLogLineLength*(): orxU32 {.cdecl,
     importc: "orxConsole_GetLogLineLength", dynlib: "liborx.so".}
 ## * Gets current completions count
-##  @param[out]  _pu32MaxLength Max completion length, orxNULL to ignore
+##  @param[out]  _pu32MaxLength Max completion length, nil to ignore
 ##  @return Current completions count
 ##
 
@@ -147,7 +147,7 @@ proc orxConsole_GetCompletionCount*(pu32MaxLength: ptr orxU32): orxU32 {.cdecl,
     importc: "orxConsole_GetCompletionCount", dynlib: "liborx.so".}
 ## * Gets completion
 ##  @param[in]   _u32Index     Index of the active completion
-##  @param[out]  _pbActive     Is completion active, orxNULL to ignore
+##  @param[out]  _pbActive     Is completion active, nil to ignore
 ##  @return Completion string if found, orxSTRING_EMPTY otherwise
 ##
 

@@ -88,7 +88,7 @@ proc orxPlugin_Unload*(hPluginHandle: orxHANDLE): orxSTATUS {.cdecl,
 ## * Gets a function from a plugin
 ##  @param[in] _hPluginHandle The plugin handle
 ##  @param[in] _zFunctionName The name of the function to find
-##  @return orxPLUGIN_FUNCTION / orxNULL
+##  @return orxPLUGIN_FUNCTION / nil
 ##
 
 proc orxPlugin_GetFunction*(hPluginHandle: orxHANDLE; zFunctionName: ptr orxCHAR): orxPLUGIN_FUNCTION {.

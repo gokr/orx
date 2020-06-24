@@ -88,14 +88,14 @@ proc orxViewport_Init*(): orxSTATUS {.cdecl, importc: "orxViewport_Init",
 
 proc orxViewport_Exit*() {.cdecl, importc: "orxViewport_Exit", dynlib: "liborx.so".}
 ## * Creates a viewport
-##  @return      Created orxVIEWPORT / orxNULL
+##  @return      Created orxVIEWPORT / nil
 ##
 
 proc orxViewport_Create*(): ptr orxVIEWPORT {.cdecl, importc: "orxViewport_Create",
     dynlib: "liborx.so".}
 ## * Creates a viewport from config
 ##  @param[in]   _zConfigID    Config ID
-##  @ return orxVIEWPORT / orxNULL
+##  @ return orxVIEWPORT / nil
 ##
 
 proc orxViewport_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxVIEWPORT {.cdecl,
@@ -190,7 +190,7 @@ proc orxViewport_SetCamera*(pstViewport: ptr orxVIEWPORT; pstCamera: ptr orxCAME
     cdecl, importc: "orxViewport_SetCamera", dynlib: "liborx.so".}
 ## * Gets a viewport camera
 ##  @param[in]   _pstViewport    Concerned viewport
-##  @return      Associated camera / orxNULL
+##  @return      Associated camera / nil
 ##
 
 proc orxViewport_GetCamera*(pstViewport: ptr orxVIEWPORT): ptr orxCAMERA {.cdecl,
@@ -229,7 +229,7 @@ proc orxViewport_IsShaderEnabled*(pstViewport: ptr orxVIEWPORT): orxBOOL {.cdecl
     importc: "orxViewport_IsShaderEnabled", dynlib: "liborx.so".}
 ## * Gets a viewport's shader pointer
 ##  @param[in]   _pstViewport      Concerned viewport
-##  @return      orxSHADERPOINTER / orxNULL
+##  @return      orxSHADERPOINTER / nil
 ##
 
 proc orxViewport_GetShaderPointer*(pstViewport: ptr orxVIEWPORT): ptr orxSHADERPOINTER {.
@@ -315,7 +315,7 @@ proc orxViewport_GetRelativeSize*(pstViewport: ptr orxVIEWPORT;
 ## * Gets an axis aligned box of viewport
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[out]  _pstBox         Output box
-##  @return orxAABOX / orxNULL
+##  @return orxAABOX / nil
 ##
 
 proc orxViewport_GetBox*(pstViewport: ptr orxVIEWPORT; pstBox: ptr orxAABOX): ptr orxAABOX {.
@@ -336,7 +336,7 @@ proc orxViewport_GetName*(pstViewport: ptr orxVIEWPORT): ptr orxCHAR {.cdecl,
     importc: "orxViewport_GetName", dynlib: "liborx.so".}
 ## * Gets viewport given its name
 ##  @param[in]   _zName          Camera name
-##  @return      orxVIEWPORT / orxNULL
+##  @return      orxVIEWPORT / nil
 ##
 
 proc orxViewport_Get*(zName: ptr orxCHAR): ptr orxVIEWPORT {.cdecl,

@@ -222,14 +222,6 @@ else:
       if not orxFALSE:
         break
 
-  template orxASSERT*(TEST: untyped): void =
-    discard
-
-  template orxASSERT*(TEST, A: untyped): void =
-    discard
-
-  template orxASSERT*(TEST, A, B: untyped): void =
-    discard
 ## ***************************************************************************
 ##  *** Debug defines. ***
 
@@ -300,7 +292,7 @@ proc orxDebug_SetDebugFile*(zFileName: ptr orxCHAR) {.cdecl,
 proc orxDebug_SetLogFile*(zFileName: ptr orxCHAR) {.cdecl,
     importc: "_orxDebug_SetLogFile", dynlib: "liborx.so".}
 ## * Sets log callback function, if the callback returns orxSTATUS_FAILURE, the log entry will be entirely inhibited
-##  @param[in]   _pfnLogCallback                Log callback function, orxNULL to remove it
+##  @param[in]   _pfnLogCallback                Log callback function, nil to remove it
 ##
 
 proc orxDebug_SetLogCallback*(pfnLogCallback: orxDEBUG_CALLBACK_FUNCTION) {.cdecl,

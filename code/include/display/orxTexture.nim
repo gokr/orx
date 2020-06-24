@@ -78,7 +78,7 @@ proc orxTexture_Init*(): orxSTATUS {.cdecl, importc: "orxTexture_Init",
 
 proc orxTexture_Exit*() {.cdecl, importc: "orxTexture_Exit", dynlib: "liborx.so".}
 ## * Creates an empty texture
-##  @return      orxTEXTURE / orxNULL
+##  @return      orxTEXTURE / nil
 ##
 
 proc orxTexture_Create*(): ptr orxTEXTURE {.cdecl, importc: "orxTexture_Create",
@@ -86,7 +86,7 @@ proc orxTexture_Create*(): ptr orxTEXTURE {.cdecl, importc: "orxTexture_Create",
 ## * Creates a texture from a bitmap file
 ##  @param[in]   _zFileName      Name of the bitmap
 ##  @param[in]   _bKeepInCache   Should be kept in cache after no more references exist?
-##  @return      orxTEXTURE / orxNULL
+##  @return      orxTEXTURE / nil
 ##
 
 proc orxTexture_CreateFromFile*(zFileName: ptr orxCHAR; bKeepInCache: orxBOOL): ptr orxTEXTURE {.
@@ -124,7 +124,7 @@ proc orxTexture_UnlinkBitmap*(pstTexture: ptr orxTEXTURE): orxSTATUS {.cdecl,
     importc: "orxTexture_UnlinkBitmap", dynlib: "liborx.so".}
 ## * Gets texture bitmap
 ##  @param[in]   _pstTexture     Concerned texture
-##  @return      orxBITMAP / orxNULL
+##  @return      orxBITMAP / nil
 ##
 
 proc orxTexture_GetBitmap*(pstTexture: ptr orxTEXTURE): ptr orxBITMAP {.cdecl,
@@ -147,7 +147,7 @@ proc orxTexture_GetSize*(pstTexture: ptr orxTEXTURE; pfWidth: ptr orxFLOAT;
 proc orxTexture_GetName*(pstTexture: ptr orxTEXTURE): ptr orxCHAR {.cdecl,
     importc: "orxTexture_GetName", dynlib: "liborx.so".}
 ## * Gets screen texture
-##  @return      Screen texture / orxNULL
+##  @return      Screen texture / nil
 ##
 
 proc orxTexture_GetScreenTexture*(): ptr orxTEXTURE {.cdecl,

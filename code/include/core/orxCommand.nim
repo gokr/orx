@@ -146,7 +146,7 @@ proc orxCommand_IsRegistered*(zCommand: ptr orxCHAR): orxBOOL {.cdecl,
 ## * Adds a command alias
 ##  @param[in]   _zAlias        Command alias
 ##  @param[in]   _zCommand      Command name
-##  @param[in]   _zArgs         Command argument, orxNULL for none
+##  @param[in]   _zArgs         Command argument, nil for none
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -175,10 +175,10 @@ proc orxCommand_IsAlias*(zAlias: ptr orxCHAR): orxBOOL {.cdecl,
 proc orxCommand_GetPrototype*(zCommand: ptr orxCHAR): ptr orxCHAR {.cdecl,
     importc: "orxCommand_GetPrototype", dynlib: "liborx.so".}
 ## * Gets next command using an optional base
-##  @param[in]   _zBase             Base name, can be set to orxNULL for no base
-##  @param[in]   _zPrevious         Previous command, orxNULL to get the first command
-##  @param[out]  _pu32CommonLength  Length of the common prefix of all potential results, orxNULL to ignore
-##  @return      Next command found, orxNULL if none
+##  @param[in]   _zBase             Base name, can be set to nil for no base
+##  @param[in]   _zPrevious         Previous command, nil to get the first command
+##  @param[out]  _pu32CommonLength  Length of the common prefix of all potential results, nil to ignore
+##  @return      Next command found, nil if none
 ##
 
 proc orxCommand_GetNext*(zBase: ptr orxCHAR; zPrevious: ptr orxCHAR;
@@ -187,7 +187,7 @@ proc orxCommand_GetNext*(zBase: ptr orxCHAR; zPrevious: ptr orxCHAR;
 ## * Evaluates a command
 ##  @param[in]   _zCommandLine  Command name + arguments
 ##  @param[out]  _pstResult     Variable that will contain the result
-##  @return      Command result if found, orxNULL otherwise
+##  @return      Command result if found, nil otherwise
 ##
 
 proc orxCommand_Evaluate*(zCommandLine: ptr orxCHAR; pstResult: ptr orxCOMMAND_VAR): ptr orxCOMMAND_VAR {.
@@ -196,7 +196,7 @@ proc orxCommand_Evaluate*(zCommandLine: ptr orxCHAR; pstResult: ptr orxCOMMAND_V
 ##  @param[in]   _zCommandLine  Command name + arguments
 ##  @param[in]   _u64GUID       GUID to use in place of the GUID markers in the command
 ##  @param[out]  _pstResult     Variable that will contain the result
-##  @return      Command result if found, orxNULL otherwise
+##  @return      Command result if found, nil otherwise
 ##
 
 proc orxCommand_EvaluateWithGUID*(zCommandLine: ptr orxCHAR; u64GUID: orxU64;
@@ -207,7 +207,7 @@ proc orxCommand_EvaluateWithGUID*(zCommandLine: ptr orxCHAR; u64GUID: orxU64;
 ##  @param[in]   _u32ArgNumber  Number of arguments sent to the command
 ##  @param[in]   _astArgList    List of arguments sent to the command
 ##  @param[out]  _pstResult     Variable that will contain the result
-##  @return      Command result if found, orxNULL otherwise
+##  @return      Command result if found, nil otherwise
 ##
 
 proc orxCommand_Execute*(zCommand: ptr orxCHAR; u32ArgNumber: orxU32;

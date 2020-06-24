@@ -88,7 +88,7 @@ proc orxConfig_Init*(): orxSTATUS {.cdecl, importc: "orxConfig_Init",
 
 proc orxConfig_Exit*() {.cdecl, importc: "orxConfig_Exit", dynlib: "liborx.so".}
 ## * Sets encryption key
-##  @param[in] _zEncryptionKey  Encryption key to use, orxNULL to clear
+##  @param[in] _zEncryptionKey  Encryption key to use, nil to clear
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -156,7 +156,7 @@ proc orxConfig_Save*(zFileName: ptr orxCHAR; bUseEncryption: orxBOOL;
 ## * Copies a file with optional encryption
 ##  @param[in] _zDstFileName     Name of the destination file
 ##  @param[in] _zSrcFileName     Name of the source file
-##  @param[in] _zEncryptionKey   Encryption key to use when writing destination file, orxNULL for no encryption
+##  @param[in] _zEncryptionKey   Encryption key to use when writing destination file, nil for no encryption
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -167,7 +167,7 @@ proc orxConfig_CopyFile*(zDstFileName: ptr orxCHAR; zSrcFileName: ptr orxCHAR;
 ##  @param[in] _zDstFileName     Name of the destination file
 ##  @param[in] _azSrcFileName    List of the names of the source files
 ##  @param[in] _u32Number        Number of source file names
-##  @param[in] _zEncryptionKey   Encryption key to use when writing destination file, orxNULL for no encryption
+##  @param[in] _zEncryptionKey   Encryption key to use when writing destination file, nil for no encryption
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -207,7 +207,7 @@ proc orxConfig_GetOriginID*(zSectionName: ptr orxCHAR): orxSTRINGID {.cdecl,
     importc: "orxConfig_GetOriginID", dynlib: "liborx.so".}
 ## * Sets a section's parent
 ##  @param[in] _zSectionName     Concerned section, if the section doesn't exist, it will be created
-##  @param[in] _zParentName      Parent section's name, if the section doesn't exist, it will be created, if orxNULL is provided, the former parent will be erased, if orxSTRING_EMPTY is provided, "no default parent" will be enforced
+##  @param[in] _zParentName      Parent section's name, if the section doesn't exist, it will be created, if nil is provided, the former parent will be erased, if orxSTRING_EMPTY is provided, "no default parent" will be enforced
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -215,13 +215,13 @@ proc orxConfig_SetParent*(zSectionName: ptr orxCHAR; zParentName: ptr orxCHAR): 
     cdecl, importc: "orxConfig_SetParent", dynlib: "liborx.so".}
 ## * Gets a section's parent
 ##  @param[in] _zSectionName     Concerned section
-##  @return Section's parent name if set or orxSTRING_EMPTY if no parent has been forced, orxNULL otherwise
+##  @return Section's parent name if set or orxSTRING_EMPTY if no parent has been forced, nil otherwise
 ##
 
 proc orxConfig_GetParent*(zSectionName: ptr orxCHAR): ptr orxCHAR {.cdecl,
     importc: "orxConfig_GetParent", dynlib: "liborx.so".}
 ## * Sets default parent for all sections
-##  @param[in] _zSectionName     Section name that will be used as an implicit default parent section for all config sections, if orxNULL is provided, default parent will be removed
+##  @param[in] _zSectionName     Section name that will be used as an implicit default parent section for all config sections, if nil is provided, default parent will be removed
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 

@@ -87,7 +87,7 @@ proc orxTimeLine_Init*(): orxSTATUS {.cdecl, importc: "orxTimeLine_Init",
 
 proc orxTimeLine_Exit*() {.cdecl, importc: "orxTimeLine_Exit", dynlib: "liborx.so".}
 ## * Creates an empty TimeLine
-##  @return orxTIMELINE / orxNULL
+##  @return orxTIMELINE / nil
 ##
 
 proc orxTimeLine_Create*(): ptr orxTIMELINE {.cdecl, importc: "orxTimeLine_Create",

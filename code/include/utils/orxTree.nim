@@ -110,67 +110,67 @@ proc orxTree_Remove*(pstNode: ptr orxTREE_NODE): orxSTATUS {.cdecl,
 ##  *** Tree inlined accessors ***
 ## * Gets a node tree
 ##  @param[in]   _pstNode                        Concerned node
-##  @return orxTREE / orxNULL
+##  @return orxTREE / nil
 ##
 
 proc orxTree_GetTree*(pstNode: ptr orxTREE_NODE): ptr orxTREE {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstNode != orxNULL)
+  assert(pstNode != nil)
   ##  Returns it
   return pstNode.pstTree
 
 ## * Gets parent node
 ##  @param[in]   _pstNode                        Concerned node
-##  @return orxTREE_NODE / orxNULL
+##  @return orxTREE_NODE / nil
 ##
 
 proc orxTree_GetParent*(pstNode: ptr orxTREE_NODE): ptr orxTREE_NODE {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstNode != orxNULL)
+  assert(pstNode != nil)
   ##  Returns it
-  return if (pstNode.pstTree != orxNULL): pstNode.pstParent else: cast[ptr orxTREE_NODE](orxNULL)
+  return if (pstNode.pstTree != nil): pstNode.pstParent else: cast[ptr orxTREE_NODE](nil)
 
 ## * Gets first child node
 ##  @param[in]   _pstNode                        Concerned node
-##  @return orxTREE_NODE / orxNULL
+##  @return orxTREE_NODE / nil
 ##
 
 proc orxTree_GetChild*(pstNode: ptr orxTREE_NODE): ptr orxTREE_NODE {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstNode != orxNULL)
+  assert(pstNode != nil)
   ##  Returns it
-  return if (pstNode.pstTree != orxNULL): pstNode.pstChild else: cast[ptr orxTREE_NODE](orxNULL)
+  return if (pstNode.pstTree != nil): pstNode.pstChild else: cast[ptr orxTREE_NODE](nil)
 
 ## * Gets (next) sibling node
 ##  @param[in]   _pstNode                        Concerned node
-##  @return orxTREE_NODE / orxNULL
+##  @return orxTREE_NODE / nil
 ##
 
 proc orxTree_GetSibling*(pstNode: ptr orxTREE_NODE): ptr orxTREE_NODE {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstNode != orxNULL)
+  assert(pstNode != nil)
   ##  Returns it
-  return if (pstNode.pstTree != orxNULL): pstNode.pstSibling else: cast[ptr orxTREE_NODE](orxNULL)
+  return if (pstNode.pstTree != nil): pstNode.pstSibling else: cast[ptr orxTREE_NODE](nil)
 
 ## * Gets previous sibling node
 ##  @param[in]   _pstNode                        Concerned node
-##  @return orxTREE_NODE / orxNULL
+##  @return orxTREE_NODE / nil
 ##
 
 proc orxTree_GetPrevious*(pstNode: ptr orxTREE_NODE): ptr orxTREE_NODE {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstNode != orxNULL)
+  assert(pstNode != nil)
   ##  Returns it
-  return if (pstNode.pstTree != orxNULL): pstNode.pstPrevious else: cast[ptr orxTREE_NODE](orxNULL)
+  return if (pstNode.pstTree != nil): pstNode.pstPrevious else: cast[ptr orxTREE_NODE](nil)
 
 ## * Gets a tree root
 ##  @param[in]   _pstTree                        Concerned tree
-##  @return orxTREE_NODE / orxNULL
+##  @return orxTREE_NODE / nil
 ##
 
 proc orxTree_GetRoot*(pstTree: ptr orxTREE): ptr orxTREE_NODE {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstTree != orxNULL)
+  assert(pstTree != nil)
   ##  Returns it
   return pstTree.pstRoot
 
@@ -181,7 +181,7 @@ proc orxTree_GetRoot*(pstTree: ptr orxTREE): ptr orxTREE_NODE {.inline, cdecl.} 
 
 proc orxTree_GetCount*(pstTree: ptr orxTREE): orxU32 {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstTree != orxNULL)
+  assert(pstTree != nil)
   ##  Returns it
   return pstTree.u32Count
 

@@ -134,7 +134,7 @@ proc orxAnim_Exit*() {.cdecl, importc: "orxAnim_Exit", dynlib: "liborx.so".}
 ##  @param[in]   _u32Flags       Flags for created animation
 ##  @param[in]   _u32KeyNumber   Number of keys for this animation
 ##  @param[in]   _u32EventNumber Number of events for this animation
-##  @return      Created orxANIM / orxNULL
+##  @return      Created orxANIM / nil
 ##
 
 proc orxAnim_Create*(u32Flags: orxU32; u32KeyNumber: orxU32; u32EventNumber: orxU32): ptr orxANIM {.
@@ -212,7 +212,7 @@ proc orxAnim_GetKey*(pstAnim: ptr orxANIM; fTimeStamp: orxFLOAT): orxU32 {.cdecl
 ## * Anim key data accessor
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @param[in]   _u32Index       Index of desired key data
-##  @return      Desired orxSTRUCTURE / orxNULL
+##  @return      Desired orxSTRUCTURE / nil
 ##
 
 proc orxAnim_GetKeyData*(pstAnim: ptr orxANIM; u32Index: orxU32): ptr orxSTRUCTURE {.

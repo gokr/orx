@@ -41,21 +41,23 @@
 import
   orxInclude, core/orxClock, memory/orxMemory, utils/orxLinkList, utils/orxTree
 
-import
-  base/orxType
 
 ## * Structure pointer get helpers
 ##
+
+template orxSTRUCTURE_ASSERT(X: untyped) =
+  # TODO: Hack for now
+  discard
 
 template orxSTRUCTURE_GET_POINTER*(STRUCTURE, TYPE, ID: untyped): untyped =
   (cast[ptr TYPE](orxStructure_GetPointer(STRUCTURE, ID)))
 
 template orxSTRUCTURE_MACRO*(STRUCTURE: untyped): untyped =
-  (if (((STRUCTURE) != orxNULL) and
-      ((((cast[ptr orxSTRUCTURE](STRUCTURE)).u64GUID and
+  (if (((STRUCTURE) != nil) and
+      ((((cast[ptr orxSTRUCTURE](STRUCTURE)).u64GUID.int64 and
       orxSTRUCTURE_GUID_MASK_STRUCTURE_ID) shr
-      orxSTRUCTURE_GUID_SHIFT_STRUCTURE_ID) < orxSTRUCTURE_ID_NUMBER)): cast[ptr orxSTRUCTURE]((
-      STRUCTURE)) else: cast[ptr orxSTRUCTURE](orxNULL))
+      orxSTRUCTURE_GUID_SHIFT_STRUCTURE_ID) < orxSTRUCTURE_ID_NUMBER.int64)): cast[ptr orxSTRUCTURE]((
+      STRUCTURE)) else: cast[ptr orxSTRUCTURE](nil))
 
 template orxANIM*(STRUCTURE: untyped): untyped =
   orxSTRUCTURE_GET_POINTER(STRUCTURE, orxANIM, orxSTRUCTURE_ID_ANIM)
@@ -202,73 +204,68 @@ type
 ## * Gets structure pointer / debug mode
 ##  @param[in]   _pStructure    Concerned structure
 ##  @param[in]   _eStructureID   ID to test the structure against
-##  @return      Valid orxSTRUCTURE, orxNULL otherwise
+##  @return      Valid orxSTRUCTURE, nil otherwise
 ##
 
 proc orxStructure_GetPointer*(pStructure: pointer; eStructureID: orxSTRUCTURE_ID): ptr orxSTRUCTURE {.
     inline, cdecl.} =
-  var pstResult: ptr orxSTRUCTURE
-  ##  Updates result
-  pstResult = if ((pStructure != orxNULL) and
-      (((cast[ptr orxSTRUCTURE](pStructure)).u64GUID and
-      orxSTRUCTURE_GUID_MASK_STRUCTURE_ID) shr
-      orxSTRUCTURE_GUID_SHIFT_STRUCTURE_ID) == eStructureID): cast[ptr orxSTRUCTURE](pStructure) else: cast[ptr orxSTRUCTURE](orxNULL)
-  ##  Done!
-  return pstResult
+  let uid: int64 = (cast[ptr orxSTRUCTURE](pStructure)).u64GUID.int64
+  if (pStructure != nil and ((uid and orxSTRUCTURE_GUID_MASK_STRUCTURE_ID) shr orxSTRUCTURE_GUID_SHIFT_STRUCTURE_ID) == eStructureID.int64):
+    return cast[ptr orxSTRUCTURE](pStructure)
+  else:
+    return cast[ptr orxSTRUCTURE](nil)
+
 
 ## * Gets structure ID string
 ##  @param[in]   _eID                       Concerned ID
 ##  @return      Corresponding literal string
 ##
 
-proc orxStructure_GetIDString*(eID: orxSTRUCTURE_ID): ptr orxCHAR {.inline, cdecl.} =
-  var zResult: ptr orxCHAR
+proc orxStructure_GetIDString*(eID: orxSTRUCTURE_ID): string {.inline, cdecl.} =
   ##  Depending on ID
   case eID
   of orxSTRUCTURE_ID_ANIMPOINTER:
-    zResult = "ANIMPOINTER"
+    return "ANIMPOINTER"
   of orxSTRUCTURE_ID_BODY:
-    zResult = "BODY"
+    return "BODY"
   of orxSTRUCTURE_ID_CLOCK:
-    zResult = "CLOCK"
+    return "CLOCK"
   of orxSTRUCTURE_ID_FRAME:
-    zResult = "FRAME"
+    return "FRAME"
   of orxSTRUCTURE_ID_FXPOINTER:
-    zResult = "FXPOINTER"
+    return "FXPOINTER"
   of orxSTRUCTURE_ID_GRAPHIC:
-    zResult = "GRAPHIC"
+    return "GRAPHIC"
   of orxSTRUCTURE_ID_SHADERPOINTER:
-    zResult = "SHADERPOINTER"
+    return "SHADERPOINTER"
   of orxSTRUCTURE_ID_SOUNDPOINTER:
-    zResult = "SOUNDPOINTER"
+    return "SOUNDPOINTER"
   of orxSTRUCTURE_ID_SPAWNER:
-    zResult = "SPAWNER"
+    return "SPAWNER"
   of orxSTRUCTURE_ID_TIMELINE:
-    zResult = "TIMELINE"
+    return "TIMELINE"
   of orxSTRUCTURE_ID_ANIM:
-    zResult = "ANIM"
+    return "ANIM"
   of orxSTRUCTURE_ID_ANIMSET:
-    zResult = "ANIMSET"
+    return "ANIMSET"
   of orxSTRUCTURE_ID_FONT:
-    zResult = "FONT"
+    return "FONT"
   of orxSTRUCTURE_ID_FX:
-    zResult = "FX"
+    return "FX"
   of orxSTRUCTURE_ID_OBJECT:
-    zResult = "OBJECT"
+    return "OBJECT"
   of orxSTRUCTURE_ID_SHADER:
-    zResult = "SHADER"
+    return "SHADER"
   of orxSTRUCTURE_ID_SOUND:
-    zResult = "SOUND"
+    return "SOUND"
   of orxSTRUCTURE_ID_TEXT:
-    zResult = "TEXT"
+    return "TEXT"
   of orxSTRUCTURE_ID_TEXTURE:
-    zResult = "TEXTURE"
+    return "TEXTURE"
   of orxSTRUCTURE_ID_VIEWPORT:
-    zResult = "VIEWPORT"
+    return "VIEWPORT"
   else:
-    zResult = "INVALID STRUCTURE ID"
-  ##  Done!
-  return zResult
+    return "INVALID STRUCTURE ID"
 
 ## * Structure module setup
 ##
@@ -310,7 +307,7 @@ proc orxStructure_Unregister*(eStructureID: orxSTRUCTURE_ID): orxSTATUS {.cdecl,
     importc: "orxStructure_Unregister", dynlib: "liborx.so".}
 ## * Creates a clean structure for given type
 ##  @param[in]   _eStructureID   Concerned structure ID
-##  @return      orxSTRUCTURE / orxNULL
+##  @return      orxSTRUCTURE / nil
 ##
 
 proc orxStructure_Create*(eStructureID: orxSTRUCTURE_ID): ptr orxSTRUCTURE {.cdecl,
@@ -349,14 +346,14 @@ proc orxStructure_Update*(pStructure: pointer; phCaller: pointer;
 ## * *** Structure storage accessors ***
 ## * Gets structure given its GUID
 ##  @param[in]   _u64GUID        Structure's GUID
-##  @return      orxSTRUCTURE / orxNULL if not found/alive
+##  @return      orxSTRUCTURE / nil if not found/alive
 ##
 
 proc orxStructure_Get*(u64GUID: orxU64): ptr orxSTRUCTURE {.cdecl,
     importc: "orxStructure_Get", dynlib: "liborx.so".}
 ## * Gets structure's owner
 ##  @param[in]   _pStructure    Concerned structure
-##  @return      orxSTRUCTURE / orxNULL if not found/alive
+##  @return      orxSTRUCTURE / nil if not found/alive
 ##
 
 proc orxStructure_GetOwner*(pStructure: pointer): ptr orxSTRUCTURE {.cdecl,
@@ -442,16 +439,16 @@ proc orxStructure_IncreaseCount*(pStructure: pointer) {.inline, cdecl.} =
   ##  Checks
   orxSTRUCTURE_ASSERT(pStructure)
   ##  Gets current count
-  u64Count = (orxSTRUCTURE_MACRO(pStructure).u64GUID and
-      orxSTRUCTURE_GUID_MASK_REF_COUNT) shr orxSTRUCTURE_GUID_SHIFT_REF_COUNT
+  u64Count = (orxSTRUCTURE_MACRO(pStructure).u64GUID.uint64 and
+      orxSTRUCTURE_GUID_MASK_REF_COUNT.uint64) shr orxSTRUCTURE_GUID_SHIFT_REF_COUNT
   ##  Updates it
   inc(u64Count)
   ##  Checks
-  orxASSERT(u64Count <=
-      (orxSTRUCTURE_GUID_MASK_REF_COUNT shr orxSTRUCTURE_GUID_SHIFT_REF_COUNT))
+  assert(u64Count <=
+      (orxSTRUCTURE_GUID_MASK_REF_COUNT.uint64 shr orxSTRUCTURE_GUID_SHIFT_REF_COUNT))
   ##  Stores it
-  orxSTRUCTURE_MACRO(pStructure).u64GUID = (orxSTRUCTURE_MACRO(pStructure).u64GUID and
-      not orxSTRUCTURE_GUID_MASK_REF_COUNT) or
+  orxSTRUCTURE_MACRO(pStructure).u64GUID = (orxSTRUCTURE_MACRO(pStructure).u64GUID.uint64 and
+      not orxSTRUCTURE_GUID_MASK_REF_COUNT.uint64) or
       (u64Count shl orxSTRUCTURE_GUID_SHIFT_REF_COUNT)
   ##  Done!
   return
@@ -465,15 +462,15 @@ proc orxStructure_DecreaseCount*(pStructure: pointer) {.inline, cdecl.} =
   ##  Checks
   orxSTRUCTURE_ASSERT(pStructure)
   ##  Gets current count
-  u64Count = (orxSTRUCTURE_MACRO(pStructure).u64GUID and
-      orxSTRUCTURE_GUID_MASK_REF_COUNT) shr orxSTRUCTURE_GUID_SHIFT_REF_COUNT
+  u64Count = (orxSTRUCTURE_MACRO(pStructure).u64GUID.uint64 and
+      orxSTRUCTURE_GUID_MASK_REF_COUNT.uint64) shr orxSTRUCTURE_GUID_SHIFT_REF_COUNT
   ##  Checks
-  orxASSERT(u64Count != 0)
+  assert(u64Count != 0)
   ##  Updates it
   dec(u64Count)
   ##  Stores it
-  orxSTRUCTURE_MACRO(pStructure).u64GUID = (orxSTRUCTURE_MACRO(pStructure).u64GUID and
-      not orxSTRUCTURE_GUID_MASK_REF_COUNT) or
+  orxSTRUCTURE_MACRO(pStructure).u64GUID = (orxSTRUCTURE_MACRO(pStructure).u64GUID.uint64 and
+      not orxSTRUCTURE_GUID_MASK_REF_COUNT.uint64) or
       (u64Count shl orxSTRUCTURE_GUID_SHIFT_REF_COUNT)
   ##  Done!
   return
@@ -487,8 +484,8 @@ proc orxStructure_GetRefCount*(pStructure: pointer): orxU32 {.inline, cdecl.} =
   ##  Checks
   orxSTRUCTURE_ASSERT(pStructure)
   ##  Done!
-  return (orxU32)((orxSTRUCTURE_MACRO(pStructure).u64GUID and
-      orxSTRUCTURE_GUID_MASK_REF_COUNT) shr orxSTRUCTURE_GUID_SHIFT_REF_COUNT)
+  return (orxU32)((orxSTRUCTURE_MACRO(pStructure).u64GUID.uint64 and
+      orxSTRUCTURE_GUID_MASK_REF_COUNT.uint64) shr orxSTRUCTURE_GUID_SHIFT_REF_COUNT)
 
 ## * Gets structure GUID
 ##  @param[in]   _pStructure    Concerned structure
@@ -499,8 +496,8 @@ proc orxStructure_GetGUID*(pStructure: pointer): orxU64 {.inline, cdecl.} =
   ##  Checks
   orxSTRUCTURE_ASSERT(pStructure)
   ##  Done!
-  return orxSTRUCTURE_MACRO(pStructure).u64GUID and
-      not orxSTRUCTURE_GUID_MASK_REF_COUNT
+  return orxSTRUCTURE_MACRO(pStructure).u64GUID.uint64 and
+      not orxSTRUCTURE_GUID_MASK_REF_COUNT.uint64
 
 ## * Gets structure ID
 ##  @param[in]   _pStructure    Concerned structure
@@ -511,8 +508,8 @@ proc orxStructure_GetID*(pStructure: pointer): orxSTRUCTURE_ID {.inline, cdecl.}
   ##  Checks
   orxSTRUCTURE_ASSERT(pStructure)
   ##  Done!
-  return (orxSTRUCTURE_ID)((orxSTRUCTURE_MACRO(pStructure).u64GUID and
-      orxSTRUCTURE_GUID_MASK_STRUCTURE_ID) shr
+  return (orxSTRUCTURE_ID)((orxSTRUCTURE_MACRO(pStructure).u64GUID.uint64 and
+      orxSTRUCTURE_GUID_MASK_STRUCTURE_ID.uint64) shr
       orxSTRUCTURE_GUID_SHIFT_STRUCTURE_ID)
 
 ## * Tests flags against structure ones
@@ -520,7 +517,8 @@ proc orxStructure_GetID*(pStructure: pointer): orxSTRUCTURE_ID {.inline, cdecl.}
 ##  @param[in]   _u32Flags      Flags to test
 ##  @return      orxTRUE / orxFALSE
 ##
-
+#TODO: Removed these for now
+#[
 proc orxStructure_TestFlags*(pStructure: pointer; u32Flags: orxU32): orxBOOL {.inline,
     cdecl.} =
   ##  Checks
@@ -569,3 +567,4 @@ proc orxStructure_SetFlags*(pStructure: pointer; u32AddFlags: orxU32;
   return
 
 ## * @}
+]#

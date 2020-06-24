@@ -96,7 +96,7 @@ proc orxSoundSystem_Exit*() {.cdecl, importc: "orxSoundSystem_Exit",
 ##  @param[in]   _u32ChannelNumber                     Number of channels of the sample
 ##  @param[in]   _u32FrameNumber                       Number of frame of the sample (number of "samples" = number of frames * number of channels)
 ##  @param[in]   _u32SampleRate                        Sampling rate of the sample (ie. number of frames per second)
-##  @return orxSOUNDSYSTEM_SAMPLE / orxNULL
+##  @return orxSOUNDSYSTEM_SAMPLE / nil
 ##
 
 proc orxSoundSystem_CreateSample*(u32ChannelNumber: orxU32; u32FrameNumber: orxU32;
@@ -104,7 +104,7 @@ proc orxSoundSystem_CreateSample*(u32ChannelNumber: orxU32; u32FrameNumber: orxU
     cdecl, importc: "orxSoundSystem_CreateSample", dynlib: "liborx.so".}
 ## * Loads a sound sample from file (cannot be played directly)
 ##  @param[in]   _zFilename                            Name of the file to load as a sample (completely loaded in memory, useful for sound effects)
-##  @return orxSOUNDSYSTEM_SAMPLE / orxNULL
+##  @return orxSOUNDSYSTEM_SAMPLE / nil
 ##
 
 proc orxSoundSystem_LoadSample*(zFilename: ptr orxCHAR): ptr orxSOUNDSYSTEM_SAMPLE {.
@@ -141,7 +141,7 @@ proc orxSoundSystem_SetSampleData*(pstSample: ptr orxSOUNDSYSTEM_SAMPLE;
     cdecl, importc: "orxSoundSystem_SetSampleData", dynlib: "liborx.so".}
 ## * Creates a sound from preloaded sample (can be played directly)
 ##  @param[in]   _pstSample                            Concerned sample
-##  @return orxSOUNDSYSTEM_SOUND / orxNULL
+##  @return orxSOUNDSYSTEM_SOUND / nil
 ##
 
 proc orxSoundSystem_CreateFromSample*(pstSample: ptr orxSOUNDSYSTEM_SAMPLE): ptr orxSOUNDSYSTEM_SOUND {.
@@ -150,7 +150,7 @@ proc orxSoundSystem_CreateFromSample*(pstSample: ptr orxSOUNDSYSTEM_SAMPLE): ptr
 ##  @param[in]   _u32ChannelNumber                     Number of channels for the stream
 ##  @param[in]   _u32SampleRate                        Sampling rate of the stream (ie. number of frames per second)
 ##  @param[in]   _zReference                           Reference name used for streaming events (usually the corresponding config ID)
-##  @return orxSOUNDSYSTEM_SOUND / orxNULL
+##  @return orxSOUNDSYSTEM_SOUND / nil
 ##
 
 proc orxSoundSystem_CreateStream*(u32ChannelNumber: orxU32; u32SampleRate: orxU32;
@@ -159,7 +159,7 @@ proc orxSoundSystem_CreateStream*(u32ChannelNumber: orxU32; u32SampleRate: orxU3
 ## * Creates a streamed sound from file (can be played directly)
 ##  @param[in]   _zFilename                            Name of the file to load as a stream (won't be completely loaded in memory, useful for musics)
 ##  @param[in]   _zReference                           Reference name used for streaming events (usually the corresponding config ID)
-##  @return orxSOUNDSYSTEM_SOUND / orxNULL
+##  @return orxSOUNDSYSTEM_SOUND / nil
 ##
 
 proc orxSoundSystem_CreateStreamFromFile*(zFilename: ptr orxCHAR;
@@ -361,7 +361,7 @@ proc orxSoundSystem_SetListenerPosition*(pvPosition: ptr orxVECTOR): orxSTATUS {
     cdecl, importc: "orxSoundSystem_SetListenerPosition", dynlib: "liborx.so".}
 ## * Gets listener position
 ##  @param[out] _pvPosition                            Listener's position
-##  @return orxVECTOR / orxNULL
+##  @return orxVECTOR / nil
 ##
 
 proc orxSoundSystem_GetListenerPosition*(pvPosition: ptr orxVECTOR): ptr orxVECTOR {.

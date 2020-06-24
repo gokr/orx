@@ -76,7 +76,7 @@ var saau32CRCTable* {.importc: "saau32CRCTable", dynlib: "liborx.so".}: array[8,
 proc orxString_SkipWhiteSpaces*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.} =
   var zResult: ptr orxCHAR
   ##  Non null?
-  if zString != orxNULL:
+  if zString != nil:
     ##  Skips all white spaces
     zResult = zString
     while (zResult[] == ' ') or (zResult[] == '\t') or (zResult[] == orxCHAR_CR) or
@@ -88,7 +88,7 @@ proc orxString_SkipWhiteSpaces*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cde
       zResult = orxSTRING_EMPTY
   else:
     ##  Updates result
-    zResult = orxNULL
+    zResult = nil
   ##  Done!
   return zResult
 
@@ -100,7 +100,7 @@ proc orxString_SkipWhiteSpaces*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cde
 proc orxString_SkipPath*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.} =
   var zResult: ptr orxCHAR
   ##  Non null?
-  if zString != orxNULL:
+  if zString != nil:
     var pc: ptr orxCHAR
     ##  Updates result
     zResult = zString
@@ -120,7 +120,7 @@ proc orxString_SkipPath*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.} =
       inc(pc)
   else:
     ##  Updates result
-    zResult = orxNULL
+    zResult = nil
   ##  Done!
   return zResult
 
@@ -131,7 +131,7 @@ proc orxString_SkipPath*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.} =
 
 proc orxString_GetLength*(zString: ptr orxCHAR): orxU32 {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(zString != orxNULL)
+  assert(zString != nil)
   ##  Done!
   return cast[orxU32](strlen(zString))
 
@@ -264,7 +264,7 @@ proc orxString_GetFirstCharacterCodePoint*(zString: ptr orxCHAR;
   var pu8Byte: ptr orxU8
   var u32Result: orxU32
   ##  Checks
-  orxASSERT(zString != orxNULL)
+  assert(zString != nil)
   ##  Gets the first byte
   pu8Byte = cast[ptr orxU8](zString)
   ##  ASCII?
@@ -368,7 +368,7 @@ proc orxString_GetFirstCharacterCodePoint*(zString: ptr orxCHAR;
     ##  Updates result
     u32Result = orxU32_UNDEFINED
   ##  Asks for remaining string?
-  if pzRemaining != orxNULL:
+  if pzRemaining != nil:
     ##  Stores it
     pzRemaining[] = cast[ptr orxCHAR]((pu8Byte + 1))
   return u32Result
@@ -382,7 +382,7 @@ proc orxString_GetCharacterCount*(zString: ptr orxCHAR): orxU32 {.inline, cdecl.
   var pc: ptr orxCHAR
   var u32Result: orxU32
   ##  Checks
-  orxASSERT(zString != orxNULL)
+  assert(zString != nil)
   ##  For all characters
   pc = zString
   u32Result = 0
@@ -409,8 +409,8 @@ proc orxString_GetCharacterCount*(zString: ptr orxCHAR): orxU32 {.inline, cdecl.
 proc orxString_NCopy*(zDstString: ptr orxCHAR; zSrcString: ptr orxCHAR;
                      u32CharNumber: orxU32): ptr orxCHAR {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(zDstString != orxNULL)
-  orxASSERT(zSrcString != orxNULL)
+  assert(zDstString != nil)
+  assert(zSrcString != nil)
   ##  Done!
   return strncpy(zDstString, zSrcString, cast[csize](u32CharNumber))
 
@@ -423,13 +423,13 @@ proc orxString_Duplicate*(zSrcString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.
   var u32Size: orxU32
   var zResult: ptr orxCHAR
   ##  Checks
-  orxASSERT(zSrcString != orxNULL)
+  assert(zSrcString != nil)
   ##  Gets string size in bytes
   u32Size = (orxString_GetLength(zSrcString) + 1) * sizeof((orxCHAR))
   ##  Allocates it
   zResult = cast[ptr orxCHAR](orxMemory_Allocate(u32Size, orxMEMORY_TYPE_TEXT))
   ##  Valid?
-  if zResult != orxNULL:
+  if zResult != nil:
     ##  Copies source to it
     orxMemory_Copy(zResult, zSrcString, u32Size)
   return zResult
@@ -440,8 +440,8 @@ proc orxString_Duplicate*(zSrcString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.
 
 proc orxString_Delete*(zString: ptr orxCHAR): orxSTATUS {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(zString != orxNULL)
-  orxASSERT(zString != orxSTRING_EMPTY)
+  assert(zString != nil)
+  assert(zString != orxSTRING_EMPTY)
   ##  Frees its memory
   orxMemory_Free(zString)
   ##  Done!
@@ -457,8 +457,8 @@ proc orxString_Delete*(zString: ptr orxCHAR): orxSTATUS {.inline, cdecl.} =
 proc orxString_Compare*(zString1: ptr orxCHAR; zString2: ptr orxCHAR): orxS32 {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(zString1 != orxNULL)
-  orxASSERT(zString2 != orxNULL)
+  assert(zString1 != nil)
+  assert(zString2 != nil)
   ##  Done!
   return strcmp(zString1, zString2)
 
@@ -474,8 +474,8 @@ proc orxString_Compare*(zString1: ptr orxCHAR; zString2: ptr orxCHAR): orxS32 {.
 proc orxString_NCompare*(zString1: ptr orxCHAR; zString2: ptr orxCHAR;
                         u32CharNumber: orxU32): orxS32 {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(zString1 != orxNULL)
-  orxASSERT(zString2 != orxNULL)
+  assert(zString1 != nil)
+  assert(zString2 != nil)
   ##  Done!
   return strncmp(zString1, zString2, cast[csize](u32CharNumber))
 
@@ -489,8 +489,8 @@ proc orxString_NCompare*(zString1: ptr orxCHAR; zString2: ptr orxCHAR;
 proc orxString_ICompare*(zString1: ptr orxCHAR; zString2: ptr orxCHAR): orxS32 {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(zString1 != orxNULL)
-  orxASSERT(zString2 != orxNULL)
+  assert(zString1 != nil)
+  assert(zString2 != nil)
   when defined(WINDOWS):
     ##  Done!
     return stricmp(zString1, zString2)
@@ -510,8 +510,8 @@ proc orxString_ICompare*(zString1: ptr orxCHAR; zString2: ptr orxCHAR): orxS32 {
 proc orxString_NICompare*(zString1: ptr orxCHAR; zString2: ptr orxCHAR;
                          u32CharNumber: orxU32): orxS32 {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(zString1 != orxNULL)
-  orxASSERT(zString2 != orxNULL)
+  assert(zString1 != nil)
+  assert(zString2 != nil)
   when defined(WINDOWS):
     ##  Done!
     return strnicmp(zString1, zString2, cast[csize](u32CharNumber))
@@ -532,7 +532,7 @@ proc orxString_ExtractBase*(zString: ptr orxCHAR; pzRemaining: ptr ptr orxCHAR):
     u32Result: orxU32
     u32Offset: orxU32
   ##  Checks
-  orxASSERT(zString != orxNULL)
+  assert(zString != nil)
   ##  Skips white spaces
   zString = orxString_SkipWhiteSpaces(zString)
   ##  Default result and offset: decimal
@@ -569,7 +569,7 @@ proc orxString_ExtractBase*(zString: ptr orxCHAR; pzRemaining: ptr ptr orxCHAR):
   else:
     break
   ##  Asks for remaining string?
-  if pzRemaining != orxNULL:
+  if pzRemaining != nil:
     ##  Stores it
     pzRemaining[] = zString + u32Offset
   return u32Result
@@ -588,8 +588,8 @@ proc orxString_ToS32Base*(zString: ptr orxCHAR; u32Base: orxU32;
   var pcEnd: ptr orxCHAR
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(ps32OutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(ps32OutValue != nil)
+  assert(zString != nil)
   ##  Convert
   ps32OutValue[] = cast[orxS32](strtol(zString, addr(pcEnd), cast[cint](u32Base)))
   ##  Valid conversion ?
@@ -600,7 +600,7 @@ proc orxString_ToS32Base*(zString: ptr orxCHAR; u32Base: orxU32;
     ##  Updates result
     eResult = orxSTATUS_FAILURE
   ##  Asks for remaining string?
-  if pzRemaining != orxNULL:
+  if pzRemaining != nil:
     ##  Stores it
     pzRemaining[] = pcEnd
   return eResult
@@ -618,8 +618,8 @@ proc orxString_ToS32*(zString: ptr orxCHAR; ps32OutValue: ptr orxS32;
   var u32Base: orxU32
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(ps32OutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(ps32OutValue != nil)
+  assert(zString != nil)
   ##  Extracts base
   u32Base = orxString_ExtractBase(zString, addr(zValue))
   ##  Gets value
@@ -641,8 +641,8 @@ proc orxString_ToU32Base*(zString: ptr orxCHAR; u32Base: orxU32;
   var pcEnd: ptr orxCHAR
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(pu32OutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(pu32OutValue != nil)
+  assert(zString != nil)
   ##  Convert
   pu32OutValue[] = cast[orxU32](strtoul(zString, addr(pcEnd), cast[cint](u32Base)))
   ##  Valid conversion ?
@@ -653,7 +653,7 @@ proc orxString_ToU32Base*(zString: ptr orxCHAR; u32Base: orxU32;
     ##  Updates result
     eResult = orxSTATUS_FAILURE
   ##  Asks for remaining string?
-  if pzRemaining != orxNULL:
+  if pzRemaining != nil:
     ##  Stores it
     pzRemaining[] = pcEnd
   return eResult
@@ -671,8 +671,8 @@ proc orxString_ToU32*(zString: ptr orxCHAR; pu32OutValue: ptr orxU32;
   var u32Base: orxU32
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(pu32OutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(pu32OutValue != nil)
+  assert(zString != nil)
   ##  Extracts base
   u32Base = orxString_ExtractBase(zString, addr(zValue))
   ##  Gets value
@@ -694,8 +694,8 @@ proc orxString_ToS64Base*(zString: ptr orxCHAR; u32Base: orxU32;
   var pcEnd: ptr orxCHAR
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(ps64OutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(ps64OutValue != nil)
+  assert(zString != nil)
   ##  Convert
   ps64OutValue[] = cast[orxS64](strtoll(zString, addr(pcEnd), cast[cint](u32Base)))
   ##  Valid conversion ?
@@ -706,7 +706,7 @@ proc orxString_ToS64Base*(zString: ptr orxCHAR; u32Base: orxU32;
     ##  Updates result
     eResult = orxSTATUS_FAILURE
   ##  Asks for remaining string?
-  if pzRemaining != orxNULL:
+  if pzRemaining != nil:
     ##  Stores it
     pzRemaining[] = pcEnd
   return eResult
@@ -724,8 +724,8 @@ proc orxString_ToS64*(zString: ptr orxCHAR; ps64OutValue: ptr orxS64;
   var u32Base: orxU32
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(ps64OutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(ps64OutValue != nil)
+  assert(zString != nil)
   ##  Extracts base
   u32Base = orxString_ExtractBase(zString, addr(zValue))
   ##  Gets signed value
@@ -747,8 +747,8 @@ proc orxString_ToU64Base*(zString: ptr orxCHAR; u32Base: orxU32;
   var pcEnd: ptr orxCHAR
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(pu64OutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(pu64OutValue != nil)
+  assert(zString != nil)
   ##  Convert
   pu64OutValue[] = cast[orxU64](strtoull(zString, addr(pcEnd), cast[cint](u32Base)))
   ##  Valid conversion ?
@@ -759,7 +759,7 @@ proc orxString_ToU64Base*(zString: ptr orxCHAR; u32Base: orxU32;
     ##  Updates result
     eResult = orxSTATUS_FAILURE
   ##  Asks for remaining string?
-  if pzRemaining != orxNULL:
+  if pzRemaining != nil:
     ##  Stores it
     pzRemaining[] = pcEnd
   return eResult
@@ -777,8 +777,8 @@ proc orxString_ToU64*(zString: ptr orxCHAR; pu64OutValue: ptr orxU64;
   var u32Base: orxU32
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(pu64OutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(pu64OutValue != nil)
+  assert(zString != nil)
   ##  Extracts base
   u32Base = orxString_ExtractBase(zString, addr(zValue))
   ##  Gets signed value
@@ -798,8 +798,8 @@ proc orxString_ToFloat*(zString: ptr orxCHAR; pfOutValue: ptr orxFLOAT;
   var pcEnd: ptr orxCHAR
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(pfOutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(pfOutValue != nil)
+  assert(zString != nil)
   ##  Linux / Mac / iOS / Android / MSVC?
   when defined(LINUX) or defined(MAC) or defined(IOS) or defined(MSVC) or
       defined(ANDROID):
@@ -816,7 +816,7 @@ proc orxString_ToFloat*(zString: ptr orxCHAR; pfOutValue: ptr orxFLOAT;
     ##  Updates result
     eResult = orxSTATUS_FAILURE
   ##  Asks for remaining string?
-  if pzRemaining != orxNULL:
+  if pzRemaining != nil:
     ##  Stores it
     pzRemaining[] = pcEnd
   return eResult
@@ -834,8 +834,8 @@ proc orxString_ToVector*(zString: ptr orxCHAR; pvOutValue: ptr orxVECTOR;
   var zString: ptr orxCHAR
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(pvOutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(pvOutValue != nil)
+  assert(zString != nil)
   ##  Skips all white spaces
   zString = orxString_SkipWhiteSpaces(zString)
   ##  Is a vector start character?
@@ -882,7 +882,7 @@ proc orxString_ToVector*(zString: ptr orxCHAR; pvOutValue: ptr orxVECTOR;
     ##  Updates vector
     orxVector_Copy(pvOutValue, addr(stValue))
     ##  Asks for remaining string?
-    if pzRemaining != orxNULL:
+    if pzRemaining != nil:
       ##  Stores it
       pzRemaining[] = zString + 1
   return eResult
@@ -899,8 +899,8 @@ proc orxString_ToBool*(zString: ptr orxCHAR; pbOutValue: ptr orxBOOL;
   var s32Value: orxS32
   var eResult: orxSTATUS
   ##  Checks
-  orxASSERT(pbOutValue != orxNULL)
-  orxASSERT(zString != orxNULL)
+  assert(pbOutValue != nil)
+  assert(zString != nil)
   ##  Tries numeric value
   eResult = orxString_ToS32Base(zString, 10, addr(s32Value), pzRemaining)
   ##  Valid?
@@ -916,7 +916,7 @@ proc orxString_ToBool*(zString: ptr orxCHAR; pbOutValue: ptr orxBOOL;
       ##  Updates boolean
       pbOutValue[] = orxFALSE
       ##  Has remaining?
-      if pzRemaining != orxNULL:
+      if pzRemaining != nil:
         ##  Updates it
         inc(pzRemaining[], u32Length)
       eResult = orxSTATUS_SUCCESS
@@ -928,7 +928,7 @@ proc orxString_ToBool*(zString: ptr orxCHAR; pbOutValue: ptr orxBOOL;
         ##  Updates boolean
         pbOutValue[] = orxTRUE
         ##  Has remaining?
-        if pzRemaining != orxNULL:
+        if pzRemaining != nil:
           ##  Updates it
           inc(pzRemaining[], u32Length)
         eResult = orxSTATUS_SUCCESS
@@ -943,7 +943,7 @@ proc orxString_ToBool*(zString: ptr orxCHAR; pbOutValue: ptr orxBOOL;
 proc orxString_LowerCase*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.} =
   var pc: ptr orxCHAR
   ##  Checks
-  orxASSERT(zString != orxNULL)
+  assert(zString != nil)
   ##  Converts the whole string
   pc = zString
   while pc[] != orxCHAR_NULL:
@@ -962,7 +962,7 @@ proc orxString_LowerCase*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.} =
 proc orxString_UpperCase*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.} =
   var pc: ptr orxCHAR
   ##  Checks
-  orxASSERT(zString != orxNULL)
+  assert(zString != nil)
   ##  Converts the whole string
   pc = zString
   while pc[] != orxCHAR_NULL:
@@ -976,27 +976,27 @@ proc orxString_UpperCase*(zString: ptr orxCHAR): ptr orxCHAR {.inline, cdecl.} =
 ## * Returns the first occurrence of _zString2 in _zString1
 ##  @param[in] _zString1 String to analyze
 ##  @param[in] _zString2 String that must be inside _zString1
-##  @return The pointer of the first occurrence of _zString2, or orxNULL if not found
+##  @return The pointer of the first occurrence of _zString2, or nil if not found
 ##
 
 proc orxString_SearchString*(zString1: ptr orxCHAR; zString2: ptr orxCHAR): ptr orxCHAR {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(zString1 != orxNULL)
-  orxASSERT(zString2 != orxNULL)
+  assert(zString1 != nil)
+  assert(zString2 != nil)
   ##  Returns result
   return strstr(zString1, zString2)
 
 ## * Returns the first occurrence of _cChar in _zString
 ##  @param[in] _zString String to analyze
 ##  @param[in] _cChar   The character to find
-##  @return The pointer of the first occurrence of _cChar, or orxNULL if not found
+##  @return The pointer of the first occurrence of _cChar, or nil if not found
 ##
 
 proc orxString_SearchChar*(zString: ptr orxCHAR; cChar: orxCHAR): ptr orxCHAR {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(zString != orxNULL)
+  assert(zString != nil)
   ##  Returns result
   return strchr(zString, cChar)
 
@@ -1014,8 +1014,8 @@ proc orxString_SearchCharIndex*(zString: ptr orxCHAR; cChar: orxCHAR;
     s32Result: orxS32
   var pc: ptr orxCHAR
   ##  Checks
-  orxASSERT(zString != orxNULL)
-  orxASSERT(s32Position <= cast[orxS32](orxString_GetLength(zString)))
+  assert(zString != nil)
+  assert(s32Position <= cast[orxS32](orxString_GetLength(zString)))
   ##  For all characters
   s32Index = s32Position
   pc = zString + s32Index
@@ -1041,8 +1041,8 @@ proc orxString_Print*(zDstString: ptr orxCHAR; zSrcString: ptr orxCHAR): orxS32 
   var stArgs: va_list
   var s32Result: orxS32
   ##  Checks
-  orxASSERT(zDstString != orxNULL)
-  orxASSERT(zSrcString != orxNULL)
+  assert(zDstString != nil)
+  assert(zSrcString != nil)
   ##  Gets variable arguments & prints the string
   va_start(stArgs, zSrcString)
   s32Result = vsprintf(zDstString, zSrcString, stArgs)
@@ -1064,8 +1064,8 @@ proc orxString_NPrint*(zDstString: ptr orxCHAR; u32CharNumber: orxU32;
   var stArgs: va_list
   var s32Result: orxS32
   ##  Checks
-  orxASSERT(zDstString != orxNULL)
-  orxASSERT(zSrcString != orxNULL)
+  assert(zDstString != nil)
+  assert(zSrcString != nil)
   ##  Gets variable arguments & prints the string
   va_start(stArgs, zSrcString)
   s32Result = vsnprintf(zDstString, cast[csize](u32CharNumber), zSrcString, stArgs)
@@ -1091,7 +1091,7 @@ proc orxString_GetExtension*(zFileName: ptr orxCHAR): ptr orxCHAR {.inline, cdec
     s32NextIndex: orxS32
   var zResult: ptr orxCHAR
   ##  Checks
-  orxASSERT(zFileName != orxNULL)
+  assert(zFileName != nil)
   ##  Finds last '.'
   s32Index = orxString_SearchCharIndex(zFileName, '.', 0)
   while (s32Index >= 0) and

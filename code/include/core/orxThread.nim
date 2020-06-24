@@ -125,7 +125,7 @@ proc orxThread_GetCurrent*(): orxU32 {.cdecl, importc: "orxThread_GetCurrent",
 proc orxThread_Yield*() {.cdecl, importc: "orxThread_Yield", dynlib: "liborx.so".}
 ## * Inits a semaphore with a given value
 ##  @param[in]   _u32Value                             Value with which to init the semaphore
-##  @return      orxTHREAD_SEMAPHORE / orxNULL
+##  @return      orxTHREAD_SEMAPHORE / nil
 ##
 
 proc orxThread_CreateSemaphore*(u32Value: orxU32): ptr orxTHREAD_SEMAPHORE {.cdecl,
@@ -152,9 +152,9 @@ proc orxThread_WaitSemaphore*(pstSemaphore: ptr orxTHREAD_SEMAPHORE): orxSTATUS 
 proc orxThread_SignalSemaphore*(pstSemaphore: ptr orxTHREAD_SEMAPHORE): orxSTATUS {.
     cdecl, importc: "orxThread_SignalSemaphore", dynlib: "liborx.so".}
 ## * Runs an asynchronous task and optional follow-ups
-##  @param[in]   _pfnRun                               Asynchronous task to run, executed on a different thread dedicated to tasks, if orxNULL defaults to an empty task that always succeed
-##  @param[in]   _pfnThen                              Executed (on the main thread) if Run does *not* return orxSTATUS_FAILURE, can be orxNULL
-##  @param[in]   _pfnElse                              Executed (on the main thread) if Run returns orxSTATUS_FAILURE, can be orxNULL
+##  @param[in]   _pfnRun                               Asynchronous task to run, executed on a different thread dedicated to tasks, if nil defaults to an empty task that always succeed
+##  @param[in]   _pfnThen                              Executed (on the main thread) if Run does *not* return orxSTATUS_FAILURE, can be nil
+##  @param[in]   _pfnElse                              Executed (on the main thread) if Run returns orxSTATUS_FAILURE, can be nil
 ##  @param[in]   _pContext                             Context that will be transmitted to all the task functions
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##

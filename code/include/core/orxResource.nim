@@ -137,7 +137,7 @@ proc orxResource_GetGroupCount*(): orxU32 {.cdecl,
     importc: "orxResource_GetGroupCount", dynlib: "liborx.so".}
 ## * Gets resource group at given index
 ##  @param[in] _u32Index         Index of resource group
-##  @return Resource group if index is valid, orxNULL otherwise
+##  @return Resource group if index is valid, nil otherwise
 ##
 
 proc orxResource_GetGroup*(u32Index: orxU32): ptr orxCHAR {.cdecl,
@@ -170,7 +170,7 @@ proc orxResource_GetStorageCount*(zGroup: ptr orxCHAR): orxU32 {.cdecl,
 ## * Gets storage at given index for a given resource group
 ##  @param[in] _zGroup           Concerned resource group
 ##  @param[in] _u32Index         Index of storage
-##  @return Storage if index is valid, orxNULL otherwise
+##  @return Storage if index is valid, nil otherwise
 ##
 
 proc orxResource_GetStorage*(zGroup: ptr orxCHAR; u32Index: orxU32): ptr orxCHAR {.
@@ -184,16 +184,16 @@ proc orxResource_ReloadStorage*(): orxSTATUS {.cdecl,
 ## * Gets the location of an *existing* resource for a given group, location gets cached if found
 ##  @param[in] _zGroup           Concerned resource group
 ##  @param[in] _zName            Name of the resource to locate
-##  @return Location string if found, orxNULL otherwise
+##  @return Location string if found, nil otherwise
 ##
 
 proc orxResource_Locate*(zGroup: ptr orxCHAR; zName: ptr orxCHAR): ptr orxCHAR {.cdecl,
     importc: "orxResource_Locate", dynlib: "liborx.so".}
 ## * Gets the location for a resource (existing or not) in a *specific storage*, for a given group. The location doesn't get cached and thus needs to be copied by the caller before the next call
 ##  @param[in] _zGroup           Concerned resource group
-##  @param[in] _zStorage         Concerned storage, if orxNULL then the highest priority storage will be used
+##  @param[in] _zStorage         Concerned storage, if nil then the highest priority storage will be used
 ##  @param[in] _zName            Name of the resource
-##  @return Location string if found, orxNULL otherwise
+##  @return Location string if found, nil otherwise
 ##
 
 proc orxResource_LocateInStorage*(zGroup: ptr orxCHAR; zStorage: ptr orxCHAR;
@@ -208,7 +208,7 @@ proc orxResource_GetPath*(zLocation: ptr orxCHAR): ptr orxCHAR {.cdecl,
     importc: "orxResource_GetPath", dynlib: "liborx.so".}
 ## * Gets the resource type from a location
 ##  @param[in] _zLocation        Location of the concerned resource
-##  @return orxRESOURCE_TYPE_INFO if valid, orxNULL otherwise
+##  @return orxRESOURCE_TYPE_INFO if valid, nil otherwise
 ##
 
 proc orxResource_GetType*(zLocation: ptr orxCHAR): ptr orxRESOURCE_TYPE_INFO {.cdecl,
@@ -269,7 +269,7 @@ proc orxResource_Tell*(hResource: orxHANDLE): orxS64 {.cdecl,
 ##  @param[in] _hResource        Concerned resource
 ##  @param[in] _s64Size          Size to read (in bytes)
 ##  @param[out] _pBuffer         Buffer that will be filled by the read data
-##  @param[in] _pfnCallback      Callback that will get called after asynchronous operation; if orxNULL, operation will be synchronous
+##  @param[in] _pfnCallback      Callback that will get called after asynchronous operation; if nil, operation will be synchronous
 ##  @param[in] _pContext         Context that will be transmitted to the callback when called
 ##  @return Size of the read data, in bytes or -1 for successful asynchronous call
 ##
@@ -281,7 +281,7 @@ proc orxResource_Read*(hResource: orxHANDLE; s64Size: orxS64; pBuffer: pointer;
 ##  @param[in] _hResource        Concerned resource
 ##  @param[in] _s64Size          Size to write (in bytes)
 ##  @param[out] _pBuffer         Buffer that will be written
-##  @param[in] _pfnCallback      Callback that will get called after asynchronous operation; if orxNULL, operation will be synchronous
+##  @param[in] _pfnCallback      Callback that will get called after asynchronous operation; if nil, operation will be synchronous
 ##  @param[in] _pContext         Context that will be transmitted to the callback when called
 ##  @return Size of the written data, in bytes, 0 if nothing could be written/no write support for this resource type or -1 for successful asynchronous call
 ##
@@ -325,7 +325,7 @@ proc orxResource_GetTypeCount*(): orxU32 {.cdecl,
                                         dynlib: "liborx.so".}
 ## * Gets registered type info at given index
 ##  @param[in] _u32Index         Index of storage
-##  @return Type tag string if index is valid, orxNULL otherwise
+##  @return Type tag string if index is valid, nil otherwise
 ##
 
 proc orxResource_GetTypeTag*(u32Index: orxU32): ptr orxCHAR {.cdecl,

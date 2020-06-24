@@ -101,13 +101,13 @@ proc orxFX_Init*(): orxSTATUS {.cdecl, importc: "orxFX_Init", dynlib: "liborx.so
 
 proc orxFX_Exit*() {.cdecl, importc: "orxFX_Exit", dynlib: "liborx.so".}
 ## * Creates an empty FX
-##  @return orxFX / orxNULL
+##  @return orxFX / nil
 ##
 
 proc orxFX_Create*(): ptr orxFX {.cdecl, importc: "orxFX_Create", dynlib: "liborx.so".}
 ## * Creates an FX from config
 ##  @param[in]   _zConfigID    Config ID
-##  @ return orxFX / orxNULL
+##  @ return orxFX / nil
 ##
 
 proc orxFX_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxFX {.cdecl,

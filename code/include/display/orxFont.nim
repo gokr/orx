@@ -66,14 +66,14 @@ proc orxFont_Init*(): orxSTATUS {.cdecl, importc: "orxFont_Init", dynlib: "libor
 
 proc orxFont_Exit*() {.cdecl, importc: "orxFont_Exit", dynlib: "liborx.so".}
 ## * Creates an empty font
-##  @return      orxFONT / orxNULL
+##  @return      orxFONT / nil
 ##
 
 proc orxFont_Create*(): ptr orxFONT {.cdecl, importc: "orxFont_Create",
                                   dynlib: "liborx.so".}
 ## * Creates a font from config
 ##  @param[in]   _zConfigID    Config ID
-##  @return      orxFONT / orxNULL
+##  @return      orxFONT / nil
 ##
 
 proc orxFont_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxFONT {.cdecl,
@@ -86,7 +86,7 @@ proc orxFont_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxFONT {.cdecl,
 proc orxFont_Delete*(pstFont: ptr orxFONT): orxSTATUS {.cdecl,
     importc: "orxFont_Delete", dynlib: "liborx.so".}
 ## * Gets default font
-##  @return      Default font / orxNULL
+##  @return      Default font / nil
 ##
 
 proc orxFont_GetDefaultFont*(): ptr orxFONT {.cdecl,
@@ -152,14 +152,14 @@ proc orxFont_SetSize*(pstFont: ptr orxFONT; pvSize: ptr orxVECTOR): orxSTATUS {.
     importc: "orxFont_SetSize", dynlib: "liborx.so".}
 ## * Gets font's texture
 ##  @param[in]   _pstFont      Concerned font
-##  @return      Font texture / orxNULL
+##  @return      Font texture / nil
 ##
 
 proc orxFont_GetTexture*(pstFont: ptr orxFONT): ptr orxTEXTURE {.cdecl,
     importc: "orxFont_GetTexture", dynlib: "liborx.so".}
 ## * Gets font's character list
 ##  @param[in]   _pstFont      Concerned font
-##  @return      Font's character list / orxNULL
+##  @return      Font's character list / nil
 ##
 
 proc orxFont_GetCharacterList*(pstFont: ptr orxFONT): ptr orxCHAR {.cdecl,
@@ -182,7 +182,7 @@ proc orxFont_GetCharacterWidth*(pstFont: ptr orxFONT; u32CharacterCodePoint: orx
 ## * Gets font's character spacing
 ##  @param[in]   _pstFont      Concerned font
 ##  @param[out]  _pvSpacing    Character's spacing
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxFont_GetCharacterSpacing*(pstFont: ptr orxFONT; pvSpacing: ptr orxVECTOR): ptr orxVECTOR {.
@@ -190,7 +190,7 @@ proc orxFont_GetCharacterSpacing*(pstFont: ptr orxFONT; pvSpacing: ptr orxVECTOR
 ## * Gets font's origin
 ##  @param[in]   _pstFont      Concerned font
 ##  @param[out]  _pvOrigin     Font's origin
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxFont_GetOrigin*(pstFont: ptr orxFONT; pvOrigin: ptr orxVECTOR): ptr orxVECTOR {.
@@ -198,14 +198,14 @@ proc orxFont_GetOrigin*(pstFont: ptr orxFONT; pvOrigin: ptr orxVECTOR): ptr orxV
 ## * Gets font's size
 ##  @param[in]   _pstFont      Concerned font
 ##  @param[out]  _pvSize       Font's size
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxFont_GetSize*(pstFont: ptr orxFONT; pvSize: ptr orxVECTOR): ptr orxVECTOR {.
     cdecl, importc: "orxFont_GetSize", dynlib: "liborx.so".}
 ## * Gets font's map
 ##  @param[in]   _pstFont      Concerned font
-##  @return      orxCHARACTER_MAP / orxNULL
+##  @return      orxCHARACTER_MAP / nil
 ##
 
 proc orxFont_GetMap*(pstFont: ptr orxFONT): ptr orxCHARACTER_MAP {.cdecl,

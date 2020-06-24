@@ -86,7 +86,7 @@ proc orxBank_Delete*(pstBank: ptr orxBANK) {.cdecl, importc: "orxBank_Delete",
     dynlib: "liborx.so".}
 ## * Allocates a new cell from the bank
 ##  @param[in] _pstBank    Pointer to the memory bank to use
-##  @return a new cell of memory (orxNULL if no allocation possible)
+##  @return a new cell of memory (nil if no allocation possible)
 ##
 
 proc orxBank_Allocate*(pstBank: ptr orxBANK): pointer {.cdecl,
@@ -95,7 +95,7 @@ proc orxBank_Allocate*(pstBank: ptr orxBANK): pointer {.cdecl,
 ##  @param[in] _pstBank        Pointer to the memory bank to use
 ##  @param[out] _pu32ItemIndex Will be set with the allocated item index
 ##  @param[out] _ppPrevious    If non-null, will contain previous neighbor if found
-##  @return a new cell of memory (orxNULL if no allocation possible)
+##  @return a new cell of memory (nil if no allocation possible)
 ##
 
 proc orxBank_AllocateIndexed*(pstBank: ptr orxBANK; pu32ItemIndex: ptr orxU32;
@@ -128,7 +128,7 @@ proc orxBank_CompactAll*() {.cdecl, importc: "orxBank_CompactAll",
 ## * Gets the next cell
 ##  @param[in] _pstBank    Bank of memory from where _pCell has been allocated
 ##  @param[in] _pCell      Pointer to the current cell of memory
-##  @return The next cell. If _pCell is orxNULL, the first cell will be returned. Returns orxNULL when no more cell can be returned.
+##  @return The next cell. If _pCell is nil, the first cell will be returned. Returns nil when no more cell can be returned.
 ##
 
 proc orxBank_GetNext*(pstBank: ptr orxBANK; pCell: pointer): pointer {.cdecl,
@@ -141,10 +141,10 @@ proc orxBank_GetNext*(pstBank: ptr orxBANK; pCell: pointer): pointer {.cdecl,
 
 proc orxBank_GetIndex*(pstBank: ptr orxBANK; pCell: pointer): orxU32 {.cdecl,
     importc: "orxBank_GetIndex", dynlib: "liborx.so".}
-## * Gets the cell at given index, orxNULL is the cell isn't allocated
+## * Gets the cell at given index, nil is the cell isn't allocated
 ##  @param[in] _pstBank    Concerned memory bank
 ##  @param[in] _u32Index   Index of the cell to retrieve
-##  @return The cell at the given index if allocated, orxNULL otherwise
+##  @return The cell at the given index if allocated, nil otherwise
 ##
 
 proc orxBank_GetAtIndex*(pstBank: ptr orxBANK; u32Index: orxU32): pointer {.cdecl,

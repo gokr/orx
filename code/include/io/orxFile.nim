@@ -83,14 +83,14 @@ proc orxFile_Init*(): orxSTATUS {.cdecl, importc: "orxFile_Init", dynlib: "libor
 
 proc orxFile_Exit*() {.cdecl, importc: "orxFile_Exit", dynlib: "liborx.so".}
 ## * Gets current user's home directory using linux separators (without trailing separator)
-##  @param[in] _zSubPath                     Sub-path to append to the home directory, orxNULL for none
+##  @param[in] _zSubPath                     Sub-path to append to the home directory, nil for none
 ##  @return Current user's home directory, use it immediately or copy it as will be modified by the next call to orxFile_GetHomeDirectory() or orxFile_GetApplicationSaveDirectory()
 ##
 
 proc orxFile_GetHomeDirectory*(zSubPath: ptr orxCHAR): ptr orxCHAR {.cdecl,
     importc: "orxFile_GetHomeDirectory", dynlib: "liborx.so".}
 ## * Gets current user's application save directory using linux separators (without trailing separator)
-##  @param[in] _zSubPath                     Sub-path to append to the application save directory, orxNULL for none
+##  @param[in] _zSubPath                     Sub-path to append to the application save directory, nil for none
 ##  @return Current user's application save directory, use it immediately or copy it as it will be modified by the next call to orxFile_GetHomeDirectory() or orxFile_GetApplicationSaveDirectory()
 ##
 
@@ -149,7 +149,7 @@ proc orxFile_MakeDirectory*(zName: ptr orxCHAR): orxSTATUS {.cdecl,
 ## * Opens a file for later read or write operation
 ##  @param[in] _zFileName           Full file's path to open
 ##  @param[in] _u32OpenFlags        List of used flags when opened
-##  @return a File pointer (or orxNULL if an error has occurred)
+##  @return a File pointer (or nil if an error has occurred)
 ##
 
 proc orxFile_Open*(zFileName: ptr orxCHAR; u32OpenFlags: orxU32): ptr orxFILE {.cdecl,

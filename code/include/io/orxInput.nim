@@ -121,7 +121,7 @@ proc orxInput_Init*(): orxSTATUS {.cdecl, importc: "orxInput_Init",
 
 proc orxInput_Exit*() {.cdecl, importc: "orxInput_Exit", dynlib: "liborx.so".}
 ## * Loads inputs from config
-##  @param[in] _zFileName        File name to load, will use current loaded config if orxSTRING_EMPTY/orxNULL
+##  @param[in] _zFileName        File name to load, will use current loaded config if orxSTRING_EMPTY/nil
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -309,7 +309,7 @@ proc orxInput_GetBoundInputCount*(eType: orxINPUT_TYPE; eID: orxENUM;
 ##  @param[in] _eMode            Mode (only used for axis input)
 ##  @param[in] _u32InputIndex    Index of the desired input
 ##  @param[out] _pzName          Input name, mandatory
-##  @param[out] _pu32BindingIndex Binding index for this input, ignored if orxNULL
+##  @param[out] _pu32BindingIndex Binding index for this input, ignored if nil
 ##  @return orxSTATUS_SUCCESS if binding exists / orxSTATUS_FAILURE otherwise
 ##
 

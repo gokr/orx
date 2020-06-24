@@ -324,7 +324,7 @@ proc orxPhysics_SetGravity*(pvGravity: ptr orxVECTOR): orxSTATUS {.cdecl,
     importc: "orxPhysics_SetGravity", dynlib: "liborx.so".}
 ## * Gets physics gravity
 ##  @param[in]   _pvGravity                            Gravity to get
-##  @return orxVECTOR / orxNULL
+##  @return orxVECTOR / nil
 ##
 
 proc orxPhysics_GetGravity*(pvGravity: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
@@ -332,7 +332,7 @@ proc orxPhysics_GetGravity*(pvGravity: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
 ## * Creates a physical body
 ##  @param[in]   _hUserData                            User data to associate with this physical body
 ##  @param[in]   _pstBodyDef                           Physical body definition
-##  @return orxPHYSICS_BODY / orxNULL
+##  @return orxPHYSICS_BODY / nil
 ##
 
 proc orxPhysics_CreateBody*(hUserData: orxHANDLE; pstBodyDef: ptr orxBODY_DEF): ptr orxPHYSICS_BODY {.
@@ -347,7 +347,7 @@ proc orxPhysics_DeleteBody*(pstBody: ptr orxPHYSICS_BODY) {.cdecl,
 ##  @param[in]   _pstBody                              Concerned physical body
 ##  @param[in]   _hUserData                            User data to associate with this physical body part
 ##  @param[in]   _pstBodyPartDef                       Physical body part definition
-##  @return orxPHYSICS_BODY_PART / orxNULL
+##  @return orxPHYSICS_BODY_PART / nil
 ##
 
 proc orxPhysics_CreatePart*(pstBody: ptr orxPHYSICS_BODY; hUserData: orxHANDLE;
@@ -364,7 +364,7 @@ proc orxPhysics_DeletePart*(pstBodyPart: ptr orxPHYSICS_BODY_PART) {.cdecl,
 ##  @param[in]   _pstDstBody                           Concerned destination body
 ##  @param[in]   _hUserData                            User data to associate with this physical body part
 ##  @param[in]   _pstBodyJointDef                      Physical body joint definition
-##  @return orxPHYSICS_BODY_JOINT / orxNULL
+##  @return orxPHYSICS_BODY_JOINT / nil
 ##
 
 proc orxPhysics_CreateJoint*(pstSrcBody: ptr orxPHYSICS_BODY;
@@ -412,7 +412,7 @@ proc orxPhysics_SetAngularVelocity*(pstBody: ptr orxPHYSICS_BODY;
     importc: "orxPhysics_SetAngularVelocity", dynlib: "liborx.so".}
 ## * Sets the custom gravity of a physical body
 ##  @param[in]   _pstBody                              Concerned physical body
-##  @param[in]   _pvCustomGravity                      Custom gravity multiplier to set / orxNULL to remove it
+##  @param[in]   _pvCustomGravity                      Custom gravity multiplier to set / nil to remove it
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -487,7 +487,7 @@ proc orxPhysics_GetAngularVelocity*(pstBody: ptr orxPHYSICS_BODY): orxFLOAT {.cd
 ## * Gets the custom gravity of a physical body
 ##  @param[in]   _pstBody                              Concerned physical body
 ##  @param[out]  _pvCustomGravity                      Custom gravity to get
-##  @return Physical body custom gravity / orxNULL is object doesn't have any
+##  @return Physical body custom gravity / nil is object doesn't have any
 ##
 
 proc orxPhysics_GetCustomGravity*(pstBody: ptr orxPHYSICS_BODY;

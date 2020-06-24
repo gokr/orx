@@ -60,14 +60,14 @@ proc orxText_Init*(): orxSTATUS {.cdecl, importc: "orxText_Init", dynlib: "libor
 
 proc orxText_Exit*() {.cdecl, importc: "orxText_Exit", dynlib: "liborx.so".}
 ## * Creates an empty text
-##  @return      orxTEXT / orxNULL
+##  @return      orxTEXT / nil
 ##
 
 proc orxText_Create*(): ptr orxTEXT {.cdecl, importc: "orxText_Create",
                                   dynlib: "liborx.so".}
 ## * Creates a text from config
 ##  @param[in]   _zConfigID    Config ID
-##  @return      orxTEXT / orxNULL
+##  @return      orxTEXT / nil
 ##
 
 proc orxText_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxTEXT {.cdecl,
@@ -81,7 +81,7 @@ proc orxText_Delete*(pstText: ptr orxTEXT): orxSTATUS {.cdecl,
     importc: "orxText_Delete", dynlib: "liborx.so".}
 ## * Gets text name
 ##  @param[in]   _pstText      Concerned text
-##  @return      Text name / orxNULL
+##  @return      Text name / nil
 ##
 
 proc orxText_GetName*(pstText: ptr orxTEXT): ptr orxCHAR {.cdecl,
@@ -130,7 +130,7 @@ proc orxText_GetString*(pstText: ptr orxTEXT): ptr orxCHAR {.cdecl,
     importc: "orxText_GetString", dynlib: "liborx.so".}
 ## * Gets text font
 ##  @param[in]   _pstText      Concerned text
-##  @return      Text font / orxNULL
+##  @return      Text font / nil
 ##
 
 proc orxText_GetFont*(pstText: ptr orxTEXT): ptr orxFONT {.cdecl,
@@ -139,7 +139,7 @@ proc orxText_GetFont*(pstText: ptr orxTEXT): ptr orxFONT {.cdecl,
 ##  @param[in]   _pstText      Concerned text
 ##  @param[in]   _fWidth       Max width for the text, remove any size constraint if negative
 ##  @param[in]   _fHeight      Max height for the text, ignored if negative (ie. unconstrained height)
-##  @param[in]   _pzExtra      Text that wouldn't fit inside the box if height is provided, orxSTRING_EMPTY if no extra, orxNULL to ignore
+##  @param[in]   _pzExtra      Text that wouldn't fit inside the box if height is provided, orxSTRING_EMPTY if no extra, nil to ignore
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -156,7 +156,7 @@ proc orxText_SetString*(pstText: ptr orxTEXT; zString: ptr orxCHAR): orxSTATUS {
     importc: "orxText_SetString", dynlib: "liborx.so".}
 ## * Sets text font
 ##  @param[in]   _pstText      Concerned text
-##  @param[in]   _pstFont      Font / orxNULL to use default
+##  @param[in]   _pstFont      Font / nil to use default
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 

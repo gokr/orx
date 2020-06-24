@@ -92,7 +92,7 @@ proc orxMouse_SetPosition*(pvPosition: ptr orxVECTOR): orxSTATUS {.cdecl,
     importc: "orxMouse_SetPosition", dynlib: "liborx.so".}
 ## * Gets mouse position
 ##  @param[out] _pvPosition  Mouse position
-##  @return orxVECTOR / orxNULL
+##  @return orxVECTOR / nil
 ##
 
 proc orxMouse_GetPosition*(pvPosition: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
@@ -106,7 +106,7 @@ proc orxMouse_IsButtonPressed*(eButton: orxMOUSE_BUTTON): orxBOOL {.cdecl,
     importc: "orxMouse_IsButtonPressed", dynlib: "liborx.so".}
 ## * Gets mouse move delta (since last call)
 ##  @param[out] _pvMoveDelta Mouse move delta
-##  @return orxVECTOR / orxNULL
+##  @return orxVECTOR / nil
 ##
 
 proc orxMouse_GetMoveDelta*(pvMoveDelta: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
@@ -124,8 +124,8 @@ proc orxMouse_GetWheelDelta*(): orxFLOAT {.cdecl, importc: "orxMouse_GetWheelDel
 proc orxMouse_ShowCursor*(bShow: orxBOOL): orxSTATUS {.cdecl,
     importc: "orxMouse_ShowCursor", dynlib: "liborx.so".}
 ## * Sets mouse (hardware) cursor
-##  @param[in] _zName       Cursor's name can be: a standard name (arrow, ibeam, hand, crosshair, hresize or vresize), a file name or orxNULL to reset the hardware cursor to default
-##  @param[in] _pvPivot     Cursor's pivot (aka hotspot), orxNULL will default to (0, 0)
+##  @param[in] _zName       Cursor's name can be: a standard name (arrow, ibeam, hand, crosshair, hresize or vresize), a file name or nil to reset the hardware cursor to default
+##  @param[in] _pvPivot     Cursor's pivot (aka hotspot), nil will default to (0, 0)
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 

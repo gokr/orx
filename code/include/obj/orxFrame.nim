@@ -125,7 +125,7 @@ proc orxFrame_Init*(): orxSTATUS {.cdecl, importc: "orxFrame_Init",
 proc orxFrame_Exit*() {.cdecl, importc: "orxFrame_Exit", dynlib: "liborx.so".}
 ## * Creates a frame
 ##  @param[in]   _u32Flags       Flags for created animation
-##  @return      Created orxFRAME / orxNULL
+##  @return      Created orxFRAME / nil
 ##
 
 proc orxFrame_Create*(u32Flags: orxU32): ptr orxFRAME {.cdecl,
@@ -146,21 +146,21 @@ proc orxFrame_SetParent*(pstFrame: ptr orxFRAME; pstParent: ptr orxFRAME) {.cdec
     importc: "orxFrame_SetParent", dynlib: "liborx.so".}
 ## * Get frame parent
 ##  @param[in]   _pstFrame       Concerned frame
-##  @return orxFRAME / orxNULL
+##  @return orxFRAME / nil
 ##
 
 proc orxFrame_GetParent*(pstFrame: ptr orxFRAME): ptr orxFRAME {.cdecl,
     importc: "orxFrame_GetParent", dynlib: "liborx.so".}
 ## * Gets frame first child
 ##  @param[in]   _pstFrame       Concerned frame
-##  @return orxFRAME / orxNULL
+##  @return orxFRAME / nil
 ##
 
 proc orxFrame_GetChild*(pstFrame: ptr orxFRAME): ptr orxFRAME {.cdecl,
     importc: "orxFrame_GetChild", dynlib: "liborx.so".}
 ## * Gets frame next sibling
 ##  @param[in]   _pstFrame       Concerned frame
-##  @return orxFRAME / orxNULL
+##  @return orxFRAME / nil
 ##
 
 proc orxFrame_GetSibling*(pstFrame: ptr orxFRAME): ptr orxFRAME {.cdecl,
@@ -203,7 +203,7 @@ proc orxFrame_SetScale*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Coordinate space system to use
 ##  @param[out]  _pvPos          Position of the given frame
-##  @return orxVECTOR / orxNULL
+##  @return orxVECTOR / nil
 ##
 
 proc orxFrame_GetPosition*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
@@ -221,7 +221,7 @@ proc orxFrame_GetRotation*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE): orxF
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Coordinate space system to use
 ##  @param[out]  _pvScale        Scale
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxFrame_GetScale*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
@@ -231,7 +231,7 @@ proc orxFrame_GetScale*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Input coordinate space system to use
 ##  @param[out]  _pvPos          Concerned position
-##  @return orxVECTOR / orxNULL
+##  @return orxVECTOR / nil
 ##
 
 proc orxFrame_TransformPosition*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
@@ -251,7 +251,7 @@ proc orxFrame_TransformRotation*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Input coordinate space system to use
 ##  @param[out]  _pvScale        Concerned scale
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxFrame_TransformScale*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;

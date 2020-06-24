@@ -68,7 +68,7 @@ proc orxFXPointer_Init*(): orxSTATUS {.cdecl, importc: "orxFXPointer_Init",
 
 proc orxFXPointer_Exit*() {.cdecl, importc: "orxFXPointer_Exit", dynlib: "liborx.so".}
 ## * Creates an empty FXPointer
-##  @return orxFXPOINTER / orxNULL
+##  @return orxFXPOINTER / nil
 ##
 
 proc orxFXPointer_Create*(): ptr orxFXPOINTER {.cdecl,

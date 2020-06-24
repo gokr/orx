@@ -59,7 +59,7 @@ when not defined(PLUGIN):
   proc orx_DefaultEventHandler*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl.} =
     var eResult: orxSTATUS
     ##  Checks
-    orxASSERT(pstEvent.eType == orxEVENT_TYPE_SYSTEM)
+    assert(pstEvent.eType == orxEVENT_TYPE_SYSTEM)
     ##  Depending on event ID
     case pstEvent.eID          ##  Close event
     of orxSYSTEM_EVENT_CLOSE:
@@ -111,14 +111,14 @@ when not defined(PLUGIN):
         ##  Inits the Debug System
         orxDEBUG_INIT()
         ##  Checks
-        orxASSERT(pfnRun != orxNULL)
+        assert(pfnRun != nil)
         ##  Registers main module
         orxModule_Register(orxMODULE_ID_MAIN, "MAIN", orx_MainSetup, pfnInit,
                            pfnExit)
         ##  Sends the command line arguments to orxParam module
         if orxParam_SetArgs(u32NbParams, azParams) != orxSTATUS_FAILURE:
           ##  Sets thread callbacks
-          orxThread_SetCallbacks(orxAndroid_JNI_SetupThread, orxNULL, orxNULL)
+          orxThread_SetCallbacks(orxAndroid_JNI_SetupThread, nil, nil)
           ##  Inits the engine
           if orxModule_Init(orxMODULE_ID_MAIN) != orxSTATUS_FAILURE:
             var stPayload: orxSYSTEM_EVENT_PAYLOAD
@@ -137,7 +137,7 @@ when not defined(PLUGIN):
               orxAndroid_PumpEvents()
               ##  Sends frame start event
               orxEVENT_SEND(orxEVENT_TYPE_SYSTEM,
-                            orxSYSTEM_EVENT_GAME_LOOP_START, orxNULL, orxNULL,
+                            orxSYSTEM_EVENT_GAME_LOOP_START, nil, nil,
                             addr(stPayload))
               ##  Runs the engine
               eMainStatus = pfnRun()
@@ -145,7 +145,7 @@ when not defined(PLUGIN):
               eClockStatus = orxClock_Update()
               ##  Sends frame stop event
               orxEVENT_SEND(orxEVENT_TYPE_SYSTEM, orxSYSTEM_EVENT_GAME_LOOP_STOP,
-                            orxNULL, orxNULL, addr(stPayload))
+                            nil, nil, addr(stPayload))
               ##  Updates frame count
               inc(stPayload.u32FrameCount)
               bStop = if ((sbStopByEvent != orxFALSE) or
@@ -171,9 +171,9 @@ when not defined(PLUGIN):
         ##  Inits the Debug System
         orxDEBUG_INIT()
         ##  Checks
-        orxASSERT(u32NbParams > 0)
-        orxASSERT(azParams != orxNULL)
-        orxASSERT(pfnRun != orxNULL)
+        assert(u32NbParams > 0)
+        assert(azParams != nil)
+        assert(pfnRun != nil)
         ##  Registers main module
         orxModule_Register(orxMODULE_ID_MAIN, "MAIN", orx_MainSetup, pfnInit,
                            pfnExit)
@@ -196,7 +196,7 @@ when not defined(PLUGIN):
             while bStop == orxFALSE:
               ##  Sends frame start event
               orxEVENT_SEND(orxEVENT_TYPE_SYSTEM,
-                            orxSYSTEM_EVENT_GAME_LOOP_START, orxNULL, orxNULL,
+                            orxSYSTEM_EVENT_GAME_LOOP_START, nil, nil,
                             addr(stPayload))
               ##  Runs the engine
               eMainStatus = pfnRun()
@@ -204,7 +204,7 @@ when not defined(PLUGIN):
               eClockStatus = orxClock_Update()
               ##  Sends frame stop event
               orxEVENT_SEND(orxEVENT_TYPE_SYSTEM, orxSYSTEM_EVENT_GAME_LOOP_STOP,
-                            orxNULL, orxNULL, addr(stPayload))
+                            nil, nil, addr(stPayload))
               ##  Updates frame count
               inc(stPayload.u32FrameCount)
               bStop = if ((sbStopByEvent != orxFALSE) or

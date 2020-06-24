@@ -106,7 +106,7 @@ proc orxMemory_Exit*() {.cdecl, importc: "orxMemory_Exit", dynlib: "liborx.so".}
 ## * Allocates some memory in the system and returns a pointer to it
 ##  @param[in]  _u32Size  Size of the memory to allocate
 ##  @param[in]  _eMemType Memory zone where data will be allocated
-##  @return  returns a pointer to the memory allocated, or orxNULL if an error has occurred
+##  @return  returns a pointer to the memory allocated, or nil if an error has occurred
 ##
 
 proc orxMemory_Allocate*(u32Size: orxU32; eMemType: orxMEMORY_TYPE): pointer {.cdecl,
@@ -116,7 +116,7 @@ proc orxMemory_Allocate*(u32Size: orxU32; eMemType: orxMEMORY_TYPE): pointer {.c
 ##  copy the data over and deallocates the original block
 ##  @param[in]  _pMem      Memory block to reallocate
 ##  @param[in]  _u32Size   Size of the memory to allocate
-##  @return  returns a pointer to the reallocated memory block or orxNULL if an error has occurred
+##  @return  returns a pointer to the reallocated memory block or nil if an error has occurred
 ##
 
 proc orxMemory_Reallocate*(pMem: pointer; u32Size: orxU32): pointer {.cdecl,
@@ -138,8 +138,8 @@ proc orxMemory_Free*(pMem: pointer) {.cdecl, importc: "orxMemory_Free",
 proc orxMemory_Copy*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.inline, discardable,
     cdecl.} =
   ##  Checks
-  orxASSERT(pDest != orxNULL)
-  orxASSERT(pSrc != orxNULL)
+  assert(pDest != nil)
+  assert(pSrc != nil)
   ##  Done!
   {.emit"return((void *)memcpy(pDest, pSrc, (size_t)u32Size));".}
 
@@ -153,8 +153,8 @@ proc orxMemory_Copy*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.
 proc orxMemory_Move*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pDest != orxNULL)
-  orxASSERT(pSrc != orxNULL)
+  assert(pDest != nil)
+  assert(pSrc != nil)
   ##  Done!
   {.emit"return((void *)memmove(pDest, pSrc, (size_t)u32Size));".}
 
@@ -168,8 +168,8 @@ proc orxMemory_Move*(pDest: pointer; pSrc: pointer; u32Size: orxU32): pointer {.
 proc orxMemory_Compare*(pMem1: pointer; pMem2: pointer; u32Size: orxU32): orxU32 {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pMem1 != orxNULL)
-  orxASSERT(pMem2 != orxNULL)
+  assert(pMem1 != nil)
+  assert(pMem2 != nil)
   ##  Done!
   {.emit"return((orxU32)memcmp(pMem1, pMem2, (size_t)u32Size));".}
 
@@ -183,7 +183,7 @@ proc orxMemory_Compare*(pMem1: pointer; pMem2: pointer; u32Size: orxU32): orxU32
 proc orxMemory_Set*(pDest: pointer; u8Data: orxU8; u32Size: orxU32): pointer {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pDest != orxNULL)
+  assert(pDest != nil)
   ##  Done!
   {.emit"return((void *)memset(pDest, u8Data, (size_t)u32Size));".}
 
@@ -195,7 +195,7 @@ proc orxMemory_Set*(pDest: pointer; u8Data: orxU8; u32Size: orxU32): pointer {.i
 
 proc orxMemory_Zero*(pDest: pointer; u32Size: orxU32): pointer {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pDest != orxNULL)
+  assert(pDest != nil)
   ##  Done!
   {.emit"return((void *)memset(pDest, 0, (size_t)u32Size));".}
 

@@ -73,7 +73,7 @@ proc orxBody_Exit*() {.cdecl, importc: "orxBody_Exit", dynlib: "liborx.so".}
 ## * Creates an empty body
 ##  @param[in]   _pstOwner                     Body's owner used for collision callbacks (usually an orxOBJECT)
 ##  @param[in]   _pstBodyDef                   Body definition
-##  @return      Created orxGRAPHIC / orxNULL
+##  @return      Created orxGRAPHIC / nil
 ##
 
 proc orxBody_Create*(pstOwner: ptr orxSTRUCTURE; pstBodyDef: ptr orxBODY_DEF): ptr orxBODY {.
@@ -81,7 +81,7 @@ proc orxBody_Create*(pstOwner: ptr orxSTRUCTURE; pstBodyDef: ptr orxBODY_DEF): p
 ## * Creates a body from config
 ##  @param[in]   _pstOwner                     Body's owner used for collision callbacks (usually an orxOBJECT)
 ##  @param[in]   _zConfigID                    Body config ID
-##  @return      Created orxGRAPHIC / orxNULL
+##  @return      Created orxGRAPHIC / nil
 ##
 
 proc orxBody_CreateFromConfig*(pstOwner: ptr orxSTRUCTURE; zConfigID: ptr orxCHAR): ptr orxBODY {.
@@ -127,7 +127,7 @@ proc orxBody_GetDefFlags*(pstBody: ptr orxBODY; u32Mask: orxU32): orxU32 {.cdecl
 ## * Adds a part to body
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pstBodyPartDef Body part definition
-##  @return      orxBODY_PART / orxNULL
+##  @return      orxBODY_PART / nil
 ##
 
 proc orxBody_AddPart*(pstBody: ptr orxBODY; pstBodyPartDef: ptr orxBODY_PART_DEF): ptr orxBODY_PART {.
@@ -135,7 +135,7 @@ proc orxBody_AddPart*(pstBody: ptr orxBODY; pstBodyPartDef: ptr orxBODY_PART_DEF
 ## * Adds a part to body from config
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _zConfigID      Body part config ID
-##  @return      orxBODY_PART / orxNULL
+##  @return      orxBODY_PART / nil
 ##
 
 proc orxBody_AddPartFromConfig*(pstBody: ptr orxBODY; zConfigID: ptr orxCHAR): ptr orxBODY_PART {.
@@ -150,29 +150,29 @@ proc orxBody_RemovePartFromConfig*(pstBody: ptr orxBODY; zConfigID: ptr orxCHAR)
     cdecl, importc: "orxBody_RemovePartFromConfig", dynlib: "liborx.so".}
 ## * Gets next body part
 ##  @param[in]   _pstBody        Concerned body
-##  @param[in]   _pstBodyPart    Current body part (orxNULL to get the first one)
-##  @return      orxBODY_PART / orxNULL
+##  @param[in]   _pstBodyPart    Current body part (nil to get the first one)
+##  @return      orxBODY_PART / nil
 ##
 
 proc orxBody_GetNextPart*(pstBody: ptr orxBODY; pstBodyPart: ptr orxBODY_PART): ptr orxBODY_PART {.
     cdecl, importc: "orxBody_GetNextPart", dynlib: "liborx.so".}
 ## * Gets a body part name
 ##  @param[in]   _pstBodyPart    Concerned body part
-##  @return      orxSTRING / orxNULL
+##  @return      orxSTRING / nil
 ##
 
 proc orxBody_GetPartName*(pstBodyPart: ptr orxBODY_PART): ptr orxCHAR {.cdecl,
     importc: "orxBody_GetPartName", dynlib: "liborx.so".}
 ## * Gets a body part definition (matching current part status)
 ##  @param[in]   _pstBodyPart    Concerned body part
-##  @return      orxBODY_PART_DEF / orxNULL
+##  @return      orxBODY_PART_DEF / nil
 ##
 
 proc orxBody_GetPartDef*(pstBodyPart: ptr orxBODY_PART): ptr orxBODY_PART_DEF {.cdecl,
     importc: "orxBody_GetPartDef", dynlib: "liborx.so".}
 ## * Gets a body part body (ie. owner)
 ##  @param[in]   _pstBodyPart    Concerned body part
-##  @return      orxBODY / orxNULL
+##  @return      orxBODY / nil
 ##
 
 proc orxBody_GetPartBody*(pstBodyPart: ptr orxBODY_PART): ptr orxBODY {.cdecl,
@@ -188,7 +188,7 @@ proc orxBody_RemovePart*(pstBodyPart: ptr orxBODY_PART): orxSTATUS {.cdecl,
 ##  @param[in]   _pstSrcBody       Concerned source body
 ##  @param[in]   _pstDstBody       Concerned destination body
 ##  @param[in]   _pstBodyJointDef  Body joint definition
-##  @return      orxBODY_JOINT / orxNULL
+##  @return      orxBODY_JOINT / nil
 ##
 
 proc orxBody_AddJoint*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBODY;
@@ -198,7 +198,7 @@ proc orxBody_AddJoint*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBODY;
 ##  @param[in]   _pstSrcBody     Concerned source body
 ##  @param[in]   _pstDstBody     Concerned destination body
 ##  @param[in]   _zConfigID      Body joint config ID
-##  @return      orxBODY_JOINT / orxNULL
+##  @return      orxBODY_JOINT / nil
 ##
 
 proc orxBody_AddJointFromConfig*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBODY;
@@ -206,15 +206,15 @@ proc orxBody_AddJointFromConfig*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBOD
     importc: "orxBody_AddJointFromConfig", dynlib: "liborx.so".}
 ## * Gets next body joint
 ##  @param[in]   _pstBody        Concerned body
-##  @param[in]   _pstBodyJoint   Current body joint (orxNULL to get the first one)
-##  @return      orxBODY_JOINT / orxNULL
+##  @param[in]   _pstBodyJoint   Current body joint (nil to get the first one)
+##  @return      orxBODY_JOINT / nil
 ##
 
 proc orxBody_GetNextJoint*(pstBody: ptr orxBODY; pstBodyJoint: ptr orxBODY_JOINT): ptr orxBODY_JOINT {.
     cdecl, importc: "orxBody_GetNextJoint", dynlib: "liborx.so".}
 ## * Gets a body joint name
 ##  @param[in]   _pstBodyJoint   Concerned body joint
-##  @return      orxSTRING / orxNULL
+##  @return      orxSTRING / nil
 ##
 
 proc orxBody_GetJointName*(pstBodyJoint: ptr orxBODY_JOINT): ptr orxCHAR {.cdecl,
@@ -268,7 +268,7 @@ proc orxBody_SetAngularVelocity*(pstBody: ptr orxBODY; fVelocity: orxFLOAT): orx
     cdecl, importc: "orxBody_SetAngularVelocity", dynlib: "liborx.so".}
 ## * Sets a body custom gravity
 ##  @param[in]   _pstBody          Concerned body
-##  @param[in]   _pvCustomGravity  Custom gravity to set / orxNULL to remove it
+##  @param[in]   _pvCustomGravity  Custom gravity to set / nil to remove it
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -301,7 +301,7 @@ proc orxBody_SetAllowMoving*(pstBody: ptr orxBODY; bAllowMoving: orxBOOL): orxST
 ## * Gets a body position
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[out]  _pvPosition     Position to get
-##  @return      Body position / orxNULL
+##  @return      Body position / nil
 ##
 
 proc orxBody_GetPosition*(pstBody: ptr orxBODY; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
@@ -316,7 +316,7 @@ proc orxBody_GetRotation*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
 ## * Gets a body speed
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[out]  _pvSpeed        Speed to get
-##  @return      Body speed / orxNULL
+##  @return      Body speed / nil
 ##
 
 proc orxBody_GetSpeed*(pstBody: ptr orxBODY; pvSpeed: ptr orxVECTOR): ptr orxVECTOR {.
@@ -325,7 +325,7 @@ proc orxBody_GetSpeed*(pstBody: ptr orxBODY; pvSpeed: ptr orxVECTOR): ptr orxVEC
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pvPosition     Concerned world position
 ##  @param[out]  _pvSpeed        Speed to get
-##  @return      Body speed / orxNULL
+##  @return      Body speed / nil
 ##
 
 proc orxBody_GetSpeedAtWorldPosition*(pstBody: ptr orxBODY;
@@ -342,7 +342,7 @@ proc orxBody_GetAngularVelocity*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
 ## * Gets a body custom gravity
 ##  @param[in]   _pstBody          Concerned body
 ##  @param[out]  _pvCustomGravity  Custom gravity to get
-##  @return      Body custom gravity / orxNULL is object doesn't have any
+##  @return      Body custom gravity / nil is object doesn't have any
 ##
 
 proc orxBody_GetCustomGravity*(pstBody: ptr orxBODY; pvCustomGravity: ptr orxVECTOR): ptr orxVECTOR {.
@@ -378,7 +378,7 @@ proc orxBody_GetMass*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
 ## * Gets a body center of mass (object space)
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[out]  _pvMassCenter   Mass center to get
-##  @return      Mass center / orxNULL
+##  @return      Mass center / nil
 ##
 
 proc orxBody_GetMassCenter*(pstBody: ptr orxBODY; pvMassCenter: ptr orxVECTOR): ptr orxVECTOR {.
@@ -432,7 +432,7 @@ proc orxBody_ApplyTorque*(pstBody: ptr orxBODY; fTorque: orxFLOAT): orxSTATUS {.
 ## * Applies a force
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pvForce        Force to apply
-##  @param[in]   _pvPoint        Point (world coordinates) where the force will be applied, if orxNULL, center of mass will be used
+##  @param[in]   _pvPoint        Point (world coordinates) where the force will be applied, if nil, center of mass will be used
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -442,7 +442,7 @@ proc orxBody_ApplyForce*(pstBody: ptr orxBODY; pvForce: ptr orxVECTOR;
 ## * Applies an impulse
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pvImpulse      Impulse to apply
-##  @param[in]   _pvPoint        Point (world coordinates) where the impulse will be applied, if orxNULL, center of mass will be used
+##  @param[in]   _pvPoint        Point (world coordinates) where the impulse will be applied, if nil, center of mass will be used
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -597,7 +597,7 @@ proc orxBody_GetJointReactionTorque*(pstBodyJoint: ptr orxBODY_JOINT): orxFLOAT 
 ##  @param[in]   _bEarlyExit     Should stop as soon as an object has been hit (which might not be the closest)
 ##  @param[in]   _pvContact      If non-null and a contact is found it will be stored here
 ##  @param[in]   _pvNormal       If non-null and a contact is found, its normal will be stored here
-##  @return Colliding orxBODY / orxNULL
+##  @return Colliding orxBODY / nil
 ##
 
 proc orxBody_Raycast*(pvBegin: ptr orxVECTOR; pvEnd: ptr orxVECTOR;

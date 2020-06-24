@@ -69,7 +69,7 @@ proc orxShaderPointer_Init*(): orxSTATUS {.cdecl, importc: "orxShaderPointer_Ini
 proc orxShaderPointer_Exit*() {.cdecl, importc: "orxShaderPointer_Exit",
                               dynlib: "liborx.so".}
 ## * Creates an empty ShaderPointer
-##  @return orxSHADERPOINTER / orxNULL
+##  @return orxSHADERPOINTER / nil
 ##
 
 proc orxShaderPointer_Create*(): ptr orxSHADERPOINTER {.cdecl,
@@ -131,7 +131,7 @@ proc orxShaderPointer_RemoveShader*(pstShaderPointer: ptr orxSHADERPOINTER;
 ## * Gets a shader
 ##  @param[in]   _pstShaderPointer Concerned ShaderPointer
 ##  @param[in]   _u32Index         Index of shader to get
-##  @return      orxSHADER / orxNULL
+##  @return      orxSHADER / nil
 ##
 
 proc orxShaderPointer_GetShader*(pstShaderPointer: ptr orxSHADERPOINTER;

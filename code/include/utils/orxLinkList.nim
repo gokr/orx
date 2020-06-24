@@ -143,61 +143,61 @@ proc orxLinkList_Remove*(pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.cdecl,
 ##  *** LinkList inlined accessors ***
 ## * Gets a node list
 ##  @param[in]   _pstNode                        Concerned node
-##  @return orxLINKLIST / orxNULL
+##  @return orxLINKLIST / nil
 ##
 
 proc orxLinkList_GetList*(pstNode: ptr orxLINKLIST_NODE): ptr orxLINKLIST {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pstNode != orxNULL)
+  assert(pstNode != nil)
   ##  Returns it
   return pstNode.pstList
 
 ## * Gets previous node in list
 ##  @param[in]   _pstNode                        Concerned node
-##  @return orxLINKLIST_NODE / orxNULL
+##  @return orxLINKLIST_NODE / nil
 ##
 
 proc orxLinkList_GetPrevious*(pstNode: ptr orxLINKLIST_NODE): ptr orxLINKLIST_NODE {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstNode != orxNULL)
+  assert(pstNode != nil)
   ##  Returns it
-  return if (pstNode.pstList != orxNULL): pstNode.pstPrevious else: cast[ptr orxLINKLIST_NODE](orxNULL)
+  return if (pstNode.pstList != nil): pstNode.pstPrevious else: cast[ptr orxLINKLIST_NODE](nil)
 
 ## * Gets next node in list
 ##  @param[in]   _pstNode                        Concerned node
-##  @return orxLINKLIST_NODE / orxNULL
+##  @return orxLINKLIST_NODE / nil
 ##
 
 proc orxLinkList_GetNext*(pstNode: ptr orxLINKLIST_NODE): ptr orxLINKLIST_NODE {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstNode != orxNULL)
+  assert(pstNode != nil)
   ##  Returns it
-  return if (pstNode.pstList != orxNULL): pstNode.pstNext else: cast[ptr orxLINKLIST_NODE](orxNULL)
+  return if (pstNode.pstList != nil): pstNode.pstNext else: cast[ptr orxLINKLIST_NODE](nil)
 
 ## * Gets a list first node
 ##  @param[in]   _pstList                        Concerned list
-##  @return orxLINKLIST_NODE / orxNULL
+##  @return orxLINKLIST_NODE / nil
 ##
 
 proc orxLinkList_GetFirst*(pstList: ptr orxLINKLIST): ptr orxLINKLIST_NODE {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pstList != orxNULL)
+  assert(pstList != nil)
   ##  Returns it
   return pstList.pstFirst
 
 ## * Gets a list last node
 ##  @param[in]   _pstList                        Concerned list
-##  @return orxLINKLIST_NODE / orxNULL
+##  @return orxLINKLIST_NODE / nil
 ##
 
 proc orxLinkList_GetLast*(pstList: ptr orxLINKLIST): ptr orxLINKLIST_NODE {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pstList != orxNULL)
+  assert(pstList != nil)
   ##  Returns it
   return pstList.pstLast
 
@@ -208,7 +208,7 @@ proc orxLinkList_GetLast*(pstList: ptr orxLINKLIST): ptr orxLINKLIST_NODE {.inli
 
 proc orxLinkList_GetCount*(pstList: ptr orxLINKLIST): orxU32 {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstList != orxNULL)
+  assert(pstList != nil)
   ##  Returns it
   return pstList.u32Count
 

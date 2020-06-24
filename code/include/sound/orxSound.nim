@@ -133,14 +133,14 @@ proc orxSound_Init*(): orxSTATUS {.cdecl, importc: "orxSound_Init",
 
 proc orxSound_Exit*() {.cdecl, importc: "orxSound_Exit", dynlib: "liborx.so".}
 ## * Creates an empty sound
-##  @return      Created orxSOUND / orxNULL
+##  @return      Created orxSOUND / nil
 ##
 
 proc orxSound_Create*(): ptr orxSOUND {.cdecl, importc: "orxSound_Create",
                                     dynlib: "liborx.so".}
 ## * Creates sound from config
 ##  @param[in]   _zConfigID    Config ID
-##  @ return orxSOUND / orxNULL
+##  @ return orxSOUND / nil
 ##
 
 proc orxSound_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSOUND {.cdecl,
@@ -149,7 +149,7 @@ proc orxSound_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSOUND {.cdecl,
 ##  @param[in] _u32ChannelNumber Number of channels of the stream
 ##  @param[in] _u32SampleRate    Sampling rate of the stream (ie. number of frames per second)
 ##  @param[in] _zName            Name to associate with this sound
-##  @return orxSOUND / orxNULL
+##  @return orxSOUND / nil
 ##
 
 proc orxSound_CreateWithEmptyStream*(u32ChannelNumber: orxU32;
@@ -173,7 +173,7 @@ proc orxSound_ClearCache*(): orxSTATUS {.cdecl, importc: "orxSound_ClearCache",
 ##  @param[in] _u32FrameNumber   Number of frame of the sample (number of "samples" = number of frames * number of channels)
 ##  @param[in] _u32SampleRate    Sampling rate of the sample (ie. number of frames per second)
 ##  @param[in] _zName            Name to associate with the sample
-##  @return orxSOUNDSYSTEM_SAMPLE / orxNULL
+##  @return orxSOUNDSYSTEM_SAMPLE / nil
 ##
 
 proc orxSound_CreateSample*(u32ChannelNumber: orxU32; u32FrameNumber: orxU32;
@@ -339,7 +339,7 @@ proc orxSound_GetTime*(pstSound: ptr orxSOUND): orxFLOAT {.cdecl,
 ## * Gets sound position
 ##  @param[in]  _pstSound      Concerned Sound
 ##  @param[out] _pvPosition    Sound's position
-##  @return orxVECTOR / orxNULL
+##  @return orxVECTOR / nil
 ##
 
 proc orxSound_GetPosition*(pstSound: ptr orxSOUND; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
@@ -408,9 +408,9 @@ proc orxSound_GetBusID*(pstSound: ptr orxSOUND): orxSTRINGID {.cdecl,
 proc orxSound_SetBusID*(pstSound: ptr orxSOUND; stBusID: orxSTRINGID): orxSTATUS {.
     cdecl, importc: "orxSound_SetBusID", dynlib: "liborx.so".}
 ## * Gets next sound in bus
-##  @param[in]   _pstSound     Concerned sound, orxNULL to get the first one
+##  @param[in]   _pstSound     Concerned sound, nil to get the first one
 ##  @param[in]   _stBusID      Bus ID to consider, orxSTRINGID_UNDEFINED for all
-##  @return      orxSOUND / orxNULL
+##  @return      orxSOUND / nil
 ##
 
 proc orxSound_GetNext*(pstSound: ptr orxSOUND; stBusID: orxSTRINGID): ptr orxSOUND {.

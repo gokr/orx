@@ -85,14 +85,14 @@ proc orxObject_Exit*() {.cdecl, importc: "orxObject_Exit", dynlib: "liborx.so".}
 ## * @name Basic handling
 ##  @{
 ## * Creates an empty object.
-##  @return orxOBJECT / orxNULL
+##  @return orxOBJECT / nil
 ##
 
 proc orxObject_Create*(): ptr orxOBJECT {.cdecl, importc: "orxObject_Create",
                                       dynlib: "liborx.so".}
 ## * Creates an object from config.
 ##  @param[in]   _zConfigID    Config ID
-##  @ return orxOBJECT / orxNULL
+##  @ return orxOBJECT / nil
 ##
 
 proc orxObject_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxOBJECT {.cdecl,
@@ -160,14 +160,14 @@ proc orxObject_IsPaused*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
 ## * Sets user data for an object. Orx ignores the user data, this is a mechanism for attaching custom
 ##  data to be used later by user code.
 ##  @param[in]   _pstObject    Concerned object
-##  @param[in]   _pUserData    User data to store / orxNULL
+##  @param[in]   _pUserData    User data to store / nil
 ##
 
 proc orxObject_SetUserData*(pstObject: ptr orxOBJECT; pUserData: pointer) {.cdecl,
     importc: "orxObject_SetUserData", dynlib: "liborx.so".}
 ## * Gets object's user data.
 ##  @param[in]   _pstObject    Concerned object
-##  @return      Stored user data / orxNULL
+##  @return      Stored user data / nil
 ##
 
 proc orxObject_GetUserData*(pstObject: ptr orxOBJECT): pointer {.cdecl,
@@ -183,14 +183,14 @@ proc orxObject_GetUserData*(pstObject: ptr orxOBJECT): pointer {.cdecl,
 ##  exception to this though; when an object's child has a parent camera, the object is only the owner, and
 ##  the camera is the parent.
 ##  @param[in]   _pstObject    Concerned object
-##  @param[in]   _pOwner       Owner to set / orxNULL, if owner is an orxOBJECT, the owned object will be added to it as a children
+##  @param[in]   _pOwner       Owner to set / nil, if owner is an orxOBJECT, the owned object will be added to it as a children
 ##
 
 proc orxObject_SetOwner*(pstObject: ptr orxOBJECT; pOwner: pointer) {.cdecl,
     importc: "orxObject_SetOwner", dynlib: "liborx.so".}
 ## * Gets object's owner. See orxObject_SetOwner().
 ##  @param[in]   _pstObject    Concerned object
-##  @return      Owner / orxNULL
+##  @return      Owner / nil
 ##
 
 proc orxObject_GetOwner*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
@@ -207,7 +207,7 @@ proc orxObject_GetOwner*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
 ##      do_something(pstChild);
 ##  } @endcode
 ##  @param[in]   _pstObject    Concerned object
-##  @return      First owned child object / orxNULL
+##  @return      First owned child object / nil
 ##
 
 proc orxObject_GetOwnedChild*(pstObject: ptr orxOBJECT): ptr orxOBJECT {.cdecl,
@@ -215,7 +215,7 @@ proc orxObject_GetOwnedChild*(pstObject: ptr orxOBJECT): ptr orxOBJECT {.cdecl,
 ## * Gets object's next owned sibling (only if created with a config ChildList / has an owner set with orxObject_SetOwner)
 ##  This function is typically used to iterate over the owned children of an object, see orxObject_GetOwnedChild() for an example.
 ##  @param[in]   _pstObject    Concerned object
-##  @return      Next sibling object / orxNULL
+##  @return      Next sibling object / nil
 ##
 
 proc orxObject_GetOwnedSibling*(pstObject: ptr orxOBJECT): ptr orxOBJECT {.cdecl,
@@ -225,7 +225,7 @@ proc orxObject_GetOwnedSibling*(pstObject: ptr orxOBJECT): ptr orxOBJECT {.cdecl
 ##  @{
 ## * Sets associated clock for an object.
 ##  @param[in]   _pstObject    Concerned object
-##  @param[in]   _pstClock     Clock to associate / orxNULL
+##  @param[in]   _pstClock     Clock to associate / nil
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -233,7 +233,7 @@ proc orxObject_SetClock*(pstObject: ptr orxOBJECT; pstClock: ptr orxCLOCK): orxS
     cdecl, importc: "orxObject_SetClock", dynlib: "liborx.so".}
 ## * Gets object's clock.
 ##  @param[in]   _pstObject    Concerned object
-##  @return      Associated clock / orxNULL
+##  @return      Associated clock / nil
 ##
 
 proc orxObject_GetClock*(pstObject: ptr orxOBJECT): ptr orxCLOCK {.cdecl,
@@ -262,7 +262,7 @@ proc orxObject_UnlinkStructure*(pstObject: ptr orxOBJECT;
 ##  #orxOBJECT_GET_STRUCTURE())
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _eStructureID   ID of the structure to get
-##  @return orxSTRUCTURE / orxNULL
+##  @return orxSTRUCTURE / nil
 ##
 
 proc orxObject_GetStructure*(pstObject: ptr orxOBJECT; eStructureID: orxSTRUCTURE_ID): ptr orxSTRUCTURE {.
@@ -329,7 +329,7 @@ proc orxObject_SetSize*(pstObject: ptr orxOBJECT; pvSize: ptr orxVECTOR): orxSTA
 ## * Get object pivot. See orxObject_SetPivot() for a more detailed explanation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvPivot        Object pivot
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxObject_GetPivot*(pstObject: ptr orxOBJECT; pvPivot: ptr orxVECTOR): ptr orxVECTOR {.
@@ -337,7 +337,7 @@ proc orxObject_GetPivot*(pstObject: ptr orxOBJECT; pvPivot: ptr orxVECTOR): ptr 
 ## * Get object origin. See orxObject_SetOrigin() for a more detailed explanation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvOrigin       Object origin
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxObject_GetOrigin*(pstObject: ptr orxOBJECT; pvOrigin: ptr orxVECTOR): ptr orxVECTOR {.
@@ -345,7 +345,7 @@ proc orxObject_GetOrigin*(pstObject: ptr orxOBJECT; pvOrigin: ptr orxVECTOR): pt
 ## * Gets object size. See orxObject_SetSize() for a more detailed explanation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvSize         Object's size
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxObject_GetSize*(pstObject: ptr orxOBJECT; pvSize: ptr orxVECTOR): ptr orxVECTOR {.
@@ -411,7 +411,7 @@ proc orxObject_SetWorldScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR):
 ## * Get object position. See orxObject_SetPosition().
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvPosition     Object position
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxObject_GetPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
@@ -419,7 +419,7 @@ proc orxObject_GetPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVECTOR)
 ## * Get object world position. See orxObject_SetWorldPosition().
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvPosition     Object world position
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxObject_GetWorldPosition*(pstObject: ptr orxOBJECT; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
@@ -466,7 +466,7 @@ proc orxObject_GetWorldScale*(pstObject: ptr orxOBJECT; pvScale: ptr orxVECTOR):
 ##  exception to this though; when an object's child has a parent camera, the object is only the owner, and
 ##  the camera is the parent.
 ##  @param[in]   _pstObject      Concerned object
-##  @param[in]   _pParent        Parent structure to set (object, spawner, camera or frame) / orxNULL
+##  @param[in]   _pParent        Parent structure to set (object, spawner, camera or frame) / nil
 ##  @return      orsSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -474,7 +474,7 @@ proc orxObject_SetParent*(pstObject: ptr orxOBJECT; pParent: pointer): orxSTATUS
     cdecl, importc: "orxObject_SetParent", dynlib: "liborx.so".}
 ## * Gets object's parent. See orxObject_SetParent() for a more detailed explanation.
 ##  @param[in]   _pstObject    Concerned object
-##  @return      Parent (object, spawner, camera or frame) / orxNULL
+##  @return      Parent (object, spawner, camera or frame) / nil
 ##
 
 proc orxObject_GetParent*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
@@ -485,14 +485,14 @@ proc orxObject_GetParent*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
 ##  This function is typically used to iterate over the children of an object. For example:
 ##  @code
 ##  for(orxOBJECT *pstChild = orxOBJECT(orxObject_GetChild(pstObject));
-##      pstChild != orxNULL;
+##      pstChild != nil;
 ##      pstChild = orxOBJECT(orxObject_GetSibling(pstChild)))
 ##  {
 ##      DoSomething(pstChild);
 ##  }
 ##  @endcode
 ##  @param[in]   _pstObject    Concerned object
-##  @return      First child structure (object, spawner, camera or frame) / orxNULL
+##  @return      First child structure (object, spawner, camera or frame) / nil
 ##
 
 proc orxObject_GetChild*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
@@ -500,7 +500,7 @@ proc orxObject_GetChild*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
 ## * Gets object's next sibling. This function is typically used for iterating over the children of an object,
 ##  see orxObject_GetChild() for an iteration example.
 ##  @param[in]   _pstObject    Concerned object
-##  @return      Next sibling structure (object, spawner, camera or frame) / orxNULL
+##  @return      Next sibling structure (object, spawner, camera or frame) / nil
 ##
 
 proc orxObject_GetSibling*(pstObject: ptr orxOBJECT): ptr orxSTRUCTURE {.cdecl,
@@ -532,7 +532,7 @@ proc orxObject_LogParents*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
 ##  @{
 ## * Sets an object animset.
 ##  @param[in]   _pstObject      Concerned object
-##  @param[in]   _pstAnimSet     Animation set to set / orxNULL
+##  @param[in]   _pstAnimSet     Animation set to set / nil
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -565,7 +565,7 @@ proc orxObject_GetAnimFrequency*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 ## * Sets current animation for an object. This function switches the currently displayed animation of the object
 ##  immediately. Compare this with orxObject_SetTargetAnim().
 ##  @param[in]   _pstObject      Concerned object
-##  @param[in]   _zAnimName      Animation name (config's one) to set / orxNULL
+##  @param[in]   _zAnimName      Animation name (config's one) to set / nil
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -573,7 +573,7 @@ proc orxObject_SetCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR)
     cdecl, importc: "orxObject_SetCurrentAnim", dynlib: "liborx.so".}
 ## * Sets current animation for an object and its children.
 ##  @param[in]   _pstObject      Concerned object
-##  @param[in]   _zAnimName      Animation name (config's one) to set / orxNULL
+##  @param[in]   _zAnimName      Animation name (config's one) to set / nil
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -584,7 +584,7 @@ proc orxObject_SetCurrentAnimRecursive*(pstObject: ptr orxOBJECT;
 ##  defined by its AnimationSet. The sequence follows the graph and tries to reach the target animation. Use
 ##  orxObject_SetCurrentAnim() to switch the animation without using the link graph.
 ##  @param[in]   _pstObject      Concerned object
-##  @param[in]   _zAnimName      Animation name (config's one) to set / orxNULL
+##  @param[in]   _zAnimName      Animation name (config's one) to set / nil
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -592,7 +592,7 @@ proc orxObject_SetTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR):
     cdecl, importc: "orxObject_SetTargetAnim", dynlib: "liborx.so".}
 ## * Sets target animation for an object and its children.
 ##  @param[in]   _pstObject      Concerned object
-##  @param[in]   _zAnimName      Animation name (config's one) to set / orxNULL
+##  @param[in]   _zAnimName      Animation name (config's one) to set / nil
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -659,7 +659,7 @@ proc orxObject_SetAngularVelocity*(pstObject: ptr orxOBJECT; fVelocity: orxFLOAT
     cdecl, importc: "orxObject_SetAngularVelocity", dynlib: "liborx.so".}
 ## * Sets an object custom gravity.
 ##  @param[in]   _pstObject        Concerned object
-##  @param[in]   _pvCustomGravity  Custom gravity to set / orxNULL to remove it
+##  @param[in]   _pvCustomGravity  Custom gravity to set / nil to remove it
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -669,7 +669,7 @@ proc orxObject_SetCustomGravity*(pstObject: ptr orxOBJECT;
 ## * Gets an object speed.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]   _pvSpeed       Speed to get
-##  @return      Object speed / orxNULL
+##  @return      Object speed / nil
 ##
 
 proc orxObject_GetSpeed*(pstObject: ptr orxOBJECT; pvSpeed: ptr orxVECTOR): ptr orxVECTOR {.
@@ -677,7 +677,7 @@ proc orxObject_GetSpeed*(pstObject: ptr orxOBJECT; pvSpeed: ptr orxVECTOR): ptr 
 ## * Gets an object relative speed.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvRelativeSpeed Relative speed to get
-##  @return      Object relative speed / orxNULL
+##  @return      Object relative speed / nil
 ##
 
 proc orxObject_GetRelativeSpeed*(pstObject: ptr orxOBJECT;
@@ -693,7 +693,7 @@ proc orxObject_GetAngularVelocity*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 ## * Gets an object custom gravity.
 ##  @param[in]   _pstObject        Concerned object
 ##  @param[out]  _pvCustomGravity  Custom gravity to get
-##  @return      Object custom gravity / orxNULL is object doesn't have any
+##  @return      Object custom gravity / nil is object doesn't have any
 ##
 
 proc orxObject_GetCustomGravity*(pstObject: ptr orxOBJECT;
@@ -709,7 +709,7 @@ proc orxObject_GetMass*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 ## * Gets an object center of mass (object space).
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pvMassCenter   Mass center to get
-##  @return      Mass center / orxNULL
+##  @return      Mass center / nil
 ##
 
 proc orxObject_GetMassCenter*(pstObject: ptr orxOBJECT; pvMassCenter: ptr orxVECTOR): ptr orxVECTOR {.
@@ -725,7 +725,7 @@ proc orxObject_ApplyTorque*(pstObject: ptr orxOBJECT; fTorque: orxFLOAT): orxSTA
 ## * Applies a force.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pvForce        Force to apply
-##  @param[in]   _pvPoint        Point (world coordinates) where the force will be applied, if orxNULL, center of mass will be used
+##  @param[in]   _pvPoint        Point (world coordinates) where the force will be applied, if nil, center of mass will be used
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -735,7 +735,7 @@ proc orxObject_ApplyForce*(pstObject: ptr orxOBJECT; pvForce: ptr orxVECTOR;
 ## * Applies an impulse.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _pvImpulse      Impulse to apply
-##  @param[in]   _pvPoint        Point (world coordinates) where the impulse will be applied, if orxNULL, center of mass will be used
+##  @param[in]   _pvPoint        Point (world coordinates) where the impulse will be applied, if nil, center of mass will be used
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -750,7 +750,7 @@ proc orxObject_ApplyImpulse*(pstObject: ptr orxOBJECT; pvImpulse: ptr orxVECTOR;
 ##  @param[in]   _bEarlyExit     Should stop as soon as an object has been hit (which might not be the closest)
 ##  @param[in]   _pvContact      If non-null and a contact is found it will be stored here
 ##  @param[in]   _pvNormal       If non-null and a contact is found, its normal will be stored here
-##  @return Colliding orxOBJECT / orxNULL
+##  @return Colliding orxOBJECT / nil
 ##
 
 proc orxObject_Raycast*(pvBegin: ptr orxVECTOR; pvEnd: ptr orxVECTOR;
@@ -782,7 +782,7 @@ proc orxObject_GetTextString*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
 ## * Gets object's bounding box (OBB).
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pstBoundingBox Bounding box result
-##  @return      Bounding box / orxNULL
+##  @return      Bounding box / nil
 ##
 
 proc orxObject_GetBoundingBox*(pstObject: ptr orxOBJECT; pstBoundingBox: ptr orxOBOX): ptr orxOBOX {.
@@ -867,7 +867,7 @@ proc orxObject_RemoveSound*(pstObject: ptr orxOBJECT; zSoundConfigID: ptr orxCHA
     cdecl, importc: "orxObject_RemoveSound", dynlib: "liborx.so".}
 ## * Gets last added sound (Do *NOT* destroy it directly before removing it!!!).
 ##  @param[in]   _pstObject      Concerned object
-##  @return      orxSOUND / orxNULL
+##  @return      orxSOUND / nil
 ##
 
 proc orxObject_GetLastAddedSound*(pstObject: ptr orxOBJECT): ptr orxSOUND {.cdecl,
@@ -1008,7 +1008,7 @@ proc orxObject_GetName*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
 ##  @endcode
 ##  @param[in]   _pstCheckBox    Box to check intersection with
 ##  @param[in]   _stGroupID      Group ID to consider, orxSTRINGID_UNDEFINED for all
-##  @return      orxBANK / orxNULL
+##  @return      orxBANK / nil
 ##
 
 proc orxObject_CreateNeighborList*(pstCheckBox: ptr orxOBOX; stGroupID: orxSTRINGID): ptr orxBANK {.
@@ -1052,7 +1052,7 @@ proc orxObject_GetSmoothing*(pstObject: ptr orxOBJECT): orxDISPLAY_SMOOTHING {.c
 ##  @{
 ## * Gets object working texture.
 ##  @param[in]   _pstObject     Concerned object
-##  @return orxTEXTURE / orxNULL
+##  @return orxTEXTURE / nil
 ##
 
 proc orxObject_GetWorkingTexture*(pstObject: ptr orxOBJECT): ptr orxTEXTURE {.cdecl,
@@ -1062,14 +1062,14 @@ proc orxObject_GetWorkingTexture*(pstObject: ptr orxOBJECT): ptr orxTEXTURE {.cd
 ##  @{
 ## * Gets object working graphic.
 ##  @param[in]   _pstObject     Concerned object
-##  @return orxGRAPHIC / orxNULL
+##  @return orxGRAPHIC / nil
 ##
 
 proc orxObject_GetWorkingGraphic*(pstObject: ptr orxOBJECT): ptr orxGRAPHIC {.cdecl,
     importc: "orxObject_GetWorkingGraphic", dynlib: "liborx.so".}
 ## * Sets object color.
 ##  @param[in]   _pstObject      Concerned object
-##  @param[in]   _pstColor       Color to set, orxNULL to remove any specific color
+##  @param[in]   _pstColor       Color to set, nil to remove any specific color
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -1077,7 +1077,7 @@ proc orxObject_SetColor*(pstObject: ptr orxOBJECT; pstColor: ptr orxCOLOR): orxS
     cdecl, importc: "orxObject_SetColor", dynlib: "liborx.so".}
 ## * Sets color of an object and all its children.
 ##  @param[in]   _pstObject      Concerned object
-##  @param[in]   _pstColor       Color to set, orxNULL to remove any specific color
+##  @param[in]   _pstColor       Color to set, nil to remove any specific color
 ##
 
 proc orxObject_SetColorRecursive*(pstObject: ptr orxOBJECT; pstColor: ptr orxCOLOR) {.
@@ -1092,7 +1092,7 @@ proc orxObject_HasColor*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
 ## * Gets object color.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[out]  _pstColor       Object's color
-##  @return      orxCOLOR / orxNULL
+##  @return      orxCOLOR / nil
 ##
 
 proc orxObject_GetColor*(pstObject: ptr orxOBJECT; pstColor: ptr orxCOLOR): ptr orxCOLOR {.
@@ -1237,9 +1237,9 @@ proc orxObject_SetGroupID*(pstObject: ptr orxOBJECT; stGroupID: orxSTRINGID): or
 proc orxObject_SetGroupIDRecursive*(pstObject: ptr orxOBJECT; stGroupID: orxSTRINGID) {.
     cdecl, importc: "orxObject_SetGroupIDRecursive", dynlib: "liborx.so".}
 ## * Gets next object in group.
-##  @param[in]   _pstObject      Concerned object, orxNULL to get the first one
+##  @param[in]   _pstObject      Concerned object, nil to get the first one
 ##  @param[in]   _stGroupID      Group ID to consider, orxSTRINGID_UNDEFINED for all
-##  @return      orxOBJECT / orxNULL
+##  @return      orxOBJECT / nil
 ##
 
 proc orxObject_GetNext*(pstObject: ptr orxOBJECT; stGroupID: orxSTRINGID): ptr orxOBJECT {.
@@ -1252,7 +1252,7 @@ proc orxObject_GetNext*(pstObject: ptr orxOBJECT; stGroupID: orxSTRINGID): ptr o
 ##  objects.
 ##  @param[in]   _pvPosition     Position to pick from
 ##  @param[in]   _stGroupID      Group ID to consider, orxSTRINGID_UNDEFINED for all
-##  @return      orxOBJECT / orxNULL
+##  @return      orxOBJECT / nil
 ##
 
 proc orxObject_Pick*(pvPosition: ptr orxVECTOR; stGroupID: orxSTRINGID): ptr orxOBJECT {.
@@ -1261,7 +1261,7 @@ proc orxObject_Pick*(pvPosition: ptr orxVECTOR; stGroupID: orxSTRINGID): ptr orx
 ##  orxObject_CreateNeighborList() to get all the objects in the box.
 ##  @param[in]   _pstBox         Box to use for picking
 ##  @param[in]   _stGroupID      Group ID to consider, orxSTRINGID_UNDEFINED for all
-##  @return      orxOBJECT / orxNULL
+##  @return      orxOBJECT / nil
 ##
 
 proc orxObject_BoxPick*(pstBox: ptr orxOBOX; stGroupID: orxSTRINGID): ptr orxOBJECT {.

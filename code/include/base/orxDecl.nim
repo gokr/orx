@@ -277,4 +277,16 @@ const
   orxANSI_KZ_COLOR_BG_WHITE* = "\e[47m"
   orxANSI_KZ_COLOR_BG_DEFAULT* = "\e[49m"
 
-## * @}
+# Named these to make them stand out
+template pointerAdd*[T](p: ptr T, off: int): ptr T =
+  cast[ptr type(p[])](cast[ByteAddress](p) +% off * sizeof(p[]))
+
+template pointerSub*[T](p: ptr T, off: int): ptr T =
+  cast[ptr type(p[])](cast[ByteAddress](p) -% off * sizeof(p[]))
+
+template `[]`*[T](p: ptr T, off: int): T =
+  (p + off)[]
+
+template `[]=`*[T](p: ptr T, off: int, val: T) =
+  (p + off)[] = val
+

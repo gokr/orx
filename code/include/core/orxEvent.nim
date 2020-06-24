@@ -153,7 +153,7 @@ proc orxEvent_RemoveHandler*(eEventType: orxEVENT_TYPE;
 ## * Removes an event handler which matches given context
 ##  @param[in] _eEventType           Concerned type of event
 ##  @param[in] _pfnEventHandler      Event handler to remove
-##  @param[in] _pContext             Context of the handler to remove, orxNULL for removing all occurrences regardless of their context
+##  @param[in] _pContext             Context of the handler to remove, nil for removing all occurrences regardless of their context
 ##  return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -164,7 +164,7 @@ proc orxEvent_RemoveHandlerWithContext*(eEventType: orxEVENT_TYPE;
 ## * Sets an event handler's ID flags (use orxEVENT_GET_FLAG(ID) in order to get the flag that matches an ID)
 ##  @param[in] _pfnEventHandler      Concerned event handler, must have been previously added for the given type
 ##  @param[in] _eEventType           Concerned type of event
-##  @param[in] _pContext             Context of the handler to update, orxNULL for updating all occurrences regardless of their context
+##  @param[in] _pContext             Context of the handler to update, nil for updating all occurrences regardless of their context
 ##  @param[in] _u32AddIDFlags        ID flags to add
 ##  @param[in] _u32RemoveIDFlags     ID flags to remove
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE

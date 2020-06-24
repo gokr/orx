@@ -90,7 +90,7 @@ type
 proc orxVector_Set*(pvVec: ptr orxVECTOR; fX: orxFLOAT; fY: orxFLOAT; fZ: orxFLOAT): ptr orxVECTOR {.
     inline, discardable, cdecl.} =
   ##  Checks
-  orxASSERT(pvVec != orxNULL)
+  assert(pvVec != nil)
   ##  Stores values
   pvVec.fX = fX
   pvVec.fY = fY
@@ -118,8 +118,8 @@ proc orxVector_SetAll*(pvVec: ptr orxVECTOR; fValue: orxFLOAT): ptr orxVECTOR {.
 proc orxVector_Copy*(pvDst: ptr orxVECTOR; pvSrc: ptr orxVECTOR): ptr orxVECTOR {.inline, discardable,
     cdecl.} =
   ##  Checks
-  orxASSERT(pvDst != orxNULL)
-  orxASSERT(pvSrc != orxNULL)
+  assert(pvDst != nil)
+  assert(pvSrc != nil)
   ##  Copies it
   discard orxMemory_Copy(pvDst, pvSrc, sizeof((orxVECTOR)).orxU32)
   ##  Done!
@@ -135,9 +135,9 @@ proc orxVector_Copy*(pvDst: ptr orxVECTOR; pvSrc: ptr orxVECTOR): ptr orxVECTOR 
 proc orxVector_Add*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
     inline, discardable, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Adds all
   pvRes.fX = pvOp1.fX + pvOp2.fX
   pvRes.fY = pvOp1.fY + pvOp2.fY
@@ -155,9 +155,9 @@ proc orxVector_Add*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 proc orxVector_Sub*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
     inline, discardable, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Adds all
   pvRes.fX = pvOp1.fX - pvOp2.fX
   pvRes.fY = pvOp1.fY - pvOp2.fY
@@ -175,8 +175,8 @@ proc orxVector_Sub*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 proc orxVector_Mulf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT): ptr orxVECTOR {.
     inline, discardable, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
   ##  Muls all
   pvRes.fX = pvOp1.fX * fOp2
   pvRes.fY = pvOp1.fY * fOp2
@@ -194,9 +194,9 @@ proc orxVector_Mulf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT)
 proc orxVector_Mul*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Muls all
   pvRes.fX = pvOp1.fX * pvOp2.fX
   pvRes.fY = pvOp1.fY * pvOp2.fY
@@ -215,9 +215,9 @@ proc orxVector_Divf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT)
     inline, cdecl.} =
   var fRecCoef: orxFLOAT
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(fOp2 != orxFLOAT_0)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
+  assert(fOp2 != orxFLOAT_0)
   ##  Gets reciprocal coef
   fRecCoef = orxFLOAT_1 / fOp2
   ##  Muls all
@@ -237,9 +237,9 @@ proc orxVector_Divf*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; fOp2: orxFLOAT)
 proc orxVector_Div*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Divs all
   pvRes.fX = pvOp1.fX / pvOp2.fX
   pvRes.fY = pvOp1.fY / pvOp2.fY
@@ -258,10 +258,10 @@ proc orxVector_Div*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 proc orxVector_Lerp*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR;
                     fOp: orxFLOAT): ptr orxVECTOR {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
-  orxASSERT(fOp >= orxFLOAT_0)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
+  assert(fOp >= orxFLOAT_0)
   ##  Lerps all
   pvRes.fX = orxLERP(pvOp1.fX, pvOp2.fX, fOp)
   pvRes.fY = orxLERP(pvOp1.fY, pvOp2.fY, fOp)
@@ -279,9 +279,9 @@ proc orxVector_Lerp*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxV
 proc orxVector_Min*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Gets all mins
   pvRes.fX = orxMIN(pvOp1.fX, pvOp2.fX)
   pvRes.fY = orxMIN(pvOp1.fY, pvOp2.fY)
@@ -299,9 +299,9 @@ proc orxVector_Min*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 proc orxVector_Max*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Gets all maxs
   pvRes.fX = orxMAX(pvOp1.fX, pvOp2.fX)
   pvRes.fY = orxMAX(pvOp1.fY, pvOp2.fY)
@@ -320,10 +320,10 @@ proc orxVector_Max*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 proc orxVector_Clamp*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; pvMin: ptr orxVECTOR;
                      pvMax: ptr orxVECTOR): ptr orxVECTOR {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp != orxNULL)
-  orxASSERT(pvMin != orxNULL)
-  orxASSERT(pvMax != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp != nil)
+  assert(pvMin != nil)
+  assert(pvMax != nil)
   ##  Gets all clamped values
   pvRes.fX = orxCLAMP(pvOp.fX, pvMin.fX, pvMax.fX)
   pvRes.fY = orxCLAMP(pvOp.fY, pvMin.fY, pvMax.fY)
@@ -340,8 +340,8 @@ proc orxVector_Clamp*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; pvMin: ptr orxV
 proc orxVector_Neg*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp != nil)
   ##  Negates all
   pvRes.fX = -(pvOp.fX)
   pvRes.fY = -(pvOp.fY)
@@ -358,8 +358,8 @@ proc orxVector_Neg*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
 proc orxVector_Rec*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp != nil)
   ##  Reverts all
   pvRes.fX = orxFLOAT_1 / pvOp.fX
   pvRes.fY = orxFLOAT_1 / pvOp.fY
@@ -376,8 +376,8 @@ proc orxVector_Rec*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.
 proc orxVector_Floor*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp != nil)
   ##  Reverts all
   pvRes.fX = orxMath_Floor(pvOp.fX)
   pvRes.fY = orxMath_Floor(pvOp.fY)
@@ -394,8 +394,8 @@ proc orxVector_Floor*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR 
 proc orxVector_Round*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp != nil)
   ##  Reverts all
   pvRes.fX = orxMath_Round(pvOp.fX)
   pvRes.fY = orxMath_Round(pvOp.fY)
@@ -411,7 +411,7 @@ proc orxVector_Round*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVECTOR 
 proc orxVector_GetSquareSize*(pvOp: ptr orxVECTOR): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Checks
-  orxASSERT(pvOp != orxNULL)
+  assert(pvOp != nil)
   ##  Updates result
   fResult = (pvOp.fX * pvOp.fX) + (pvOp.fY * pvOp.fY) + (pvOp.fZ * pvOp.fZ)
   ##  Done!
@@ -425,7 +425,7 @@ proc orxVector_GetSquareSize*(pvOp: ptr orxVECTOR): orxFLOAT {.inline, cdecl.} =
 proc orxVector_GetSize*(pvOp: ptr orxVECTOR): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Checks
-  orxASSERT(pvOp != orxNULL)
+  assert(pvOp != nil)
   ##  Updates result
   fResult = orxMath_Sqrt((pvOp.fX * pvOp.fX) + (pvOp.fY * pvOp.fY) + (pvOp.fZ * pvOp.fZ))
   ##  Done!
@@ -442,8 +442,8 @@ proc orxVector_GetSquareDistance*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): o
   var vTemp: orxVECTOR
   var fResult: orxFLOAT
   ##  Checks
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Gets distance vector
   discard orxVector_Sub(addr(vTemp), pvOp2, pvOp1)
   ##  Updates result
@@ -462,8 +462,8 @@ proc orxVector_GetDistance*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOA
   var vTemp: orxVECTOR
   var fResult: orxFLOAT
   ##  Checks
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Gets distance vector
   discard orxVector_Sub(addr(vTemp), pvOp2, pvOp1)
   ##  Updates result
@@ -481,8 +481,8 @@ proc orxVector_Normalize*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVEC
     inline, cdecl.} =
   var fOp: orxFLOAT
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp != nil)
   ##  Gets squared size
   fOp = (pvOp.fX * pvOp.fX) + (pvOp.fY * pvOp.fY) + (pvOp.fZ * pvOp.fZ)
   ##  Gets reciprocal size
@@ -504,8 +504,8 @@ proc orxVector_Normalize*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR): ptr orxVEC
 proc orxVector_2DRotate*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; fAngle: orxFLOAT): ptr orxVECTOR {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp != nil)
   ##  PI/2?
   if fAngle == orxMATH_KF_PI_BY_2:
     ##  Updates result
@@ -534,7 +534,7 @@ proc orxVector_2DRotate*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; fAngle: orxF
 proc orxVector_IsNull*(pvOp: ptr orxVECTOR): orxBOOL {.inline, cdecl.} =
   var bResult: orxBOOL
   ##  Checks
-  orxASSERT(pvOp != orxNULL)
+  assert(pvOp != nil)
   ##  Updates result
   bResult = if ((pvOp.fX == orxFLOAT_0) and (pvOp.fY == orxFLOAT_0) and
       (pvOp.fZ == orxFLOAT_0)): orxTRUE else: orxFALSE
@@ -551,8 +551,8 @@ proc orxVector_AreEqual*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxBOOL {.
     cdecl.} =
   var bResult: orxBOOL
   ##  Checks
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Updates result
   bResult = if ((pvOp1.fX == pvOp2.fX) and (pvOp1.fY == pvOp2.fY) and
       (pvOp1.fZ == pvOp2.fZ)): orxTRUE else: orxFALSE
@@ -568,8 +568,8 @@ proc orxVector_AreEqual*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxBOOL {.
 proc orxVector_FromCartesianToSpherical*(pvRes: ptr orxSPVECTOR; pvOp: ptr orxVECTOR): ptr orxSPVECTOR {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp != nil)
   ##  Is operand vector null?
   if (pvOp.fX == orxFLOAT_0) and (pvOp.fY == orxFLOAT_0) and (pvOp.fZ == orxFLOAT_0):
     ##  Updates result vector
@@ -638,8 +638,8 @@ proc orxVector_FromSphericalToCartesian*(pvRes: ptr orxVECTOR; pvOp: ptr orxSPVE
     fCosTheta: orxFLOAT
     fRho: orxFLOAT
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp != nil)
   ##  Stores rho
   fRho = pvOp.fRho
   ##  Gets sine & cosine
@@ -670,8 +670,8 @@ proc orxVector_FromSphericalToCartesian*(pvRes: ptr orxVECTOR; pvOp: ptr orxSPVE
 proc orxVector_Dot*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.inline, cdecl.} =
   var fResult: orxFLOAT
   ##  Checks
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Updates result
   fResult = (pvOp1.fX * pvOp2.fX) + (pvOp1.fY * pvOp2.fY) + (pvOp1.fZ * pvOp2.fZ)
   ##  Done!
@@ -687,8 +687,8 @@ proc orxVector_2DDot*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.in
     cdecl.} =
   var fResult: orxFLOAT
   ##  Checks
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Updates result
   fResult = (pvOp1.fX * pvOp2.fX) + (pvOp1.fY * pvOp2.fY)
   ##  Done!
@@ -698,7 +698,7 @@ proc orxVector_2DDot*(pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): orxFLOAT {.in
 ##  @param[out]  _pvRes                       Vector where to store result
 ##  @param[in]   _pvOp1                      First operand
 ##  @param[in]   _pvOp2                      Second operand
-##  @return      Cross product orxVECTOR / orxNULL
+##  @return      Cross product orxVECTOR / nil
 ##
 
 proc orxVector_Cross*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVECTOR): ptr orxVECTOR {.
@@ -707,9 +707,9 @@ proc orxVector_Cross*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orx
     fTemp1: orxFLOAT
     fTemp2: orxFLOAT
   ##  Checks
-  orxASSERT(pvRes != orxNULL)
-  orxASSERT(pvOp1 != orxNULL)
-  orxASSERT(pvOp2 != orxNULL)
+  assert(pvRes != nil)
+  assert(pvOp1 != nil)
+  assert(pvOp2 != nil)
   ##  Computes cross product
   fTemp1 = (pvOp1.fY * pvOp2.fZ) - (pvOp1.fZ * pvOp2.fY)
   fTemp2 = (pvOp1.fZ * pvOp2.fX) - (pvOp1.fX * pvOp2.fZ)

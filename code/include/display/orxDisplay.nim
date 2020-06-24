@@ -314,7 +314,7 @@ proc orxColor_SetRGBA*(pstColor: ptr orxCOLOR; stRGBA: orxRGBA): ptr orxCOLOR {.
     cdecl.} =
   var pstResult: ptr orxCOLOR
   ##  Checks
-  orxASSERT(pstColor != orxNULL)
+  assert(pstColor != nil)
   ##  Stores RGB
   orxVector_Set(addr((pstColor.vRGB)),
                 orxCOLOR_NORMALIZER * orxU2F(orxRGBA_R(stRGBA)),
@@ -336,7 +336,7 @@ proc orxColor_Set*(pstColor: ptr orxCOLOR; pvRGB: ptr orxVECTOR; fAlpha: orxFLOA
     inline, cdecl.} =
   var pstResult: ptr orxCOLOR
   ##  Checks
-  orxASSERT(pstColor != orxNULL)
+  assert(pstColor != nil)
   ##  Stores RGB
   orxVector_Copy(addr((pstColor.vRGB)), pvRGB)
   ##  Stores alpha
@@ -354,8 +354,8 @@ proc orxColor_SetRGB*(pstColor: ptr orxCOLOR; pvRGB: ptr orxVECTOR): ptr orxCOLO
     inline, cdecl.} =
   var pstResult: ptr orxCOLOR
   ##  Checks
-  orxASSERT(pstColor != orxNULL)
-  orxASSERT(pvRGB != orxNULL)
+  assert(pstColor != nil)
+  assert(pvRGB != nil)
   ##  Stores components
   orxVector_Copy(addr((pstColor.vRGB)), pvRGB)
   ##  Done!
@@ -364,14 +364,14 @@ proc orxColor_SetRGB*(pstColor: ptr orxCOLOR; pvRGB: ptr orxVECTOR): ptr orxCOLO
 ## * Sets alpha component
 ##  @param[in]   _pstColor       Concerned color
 ##  @param[in]   _fAlpha         Normalized alpha component
-##  @return      orxCOLOR / orxNULL
+##  @return      orxCOLOR / nil
 ##
 
 proc orxColor_SetAlpha*(pstColor: ptr orxCOLOR; fAlpha: orxFLOAT): ptr orxCOLOR {.
     inline, cdecl.} =
   var pstResult: ptr orxCOLOR
   ##  Checks
-  orxASSERT(pstColor != orxNULL)
+  assert(pstColor != nil)
   ##  Stores it
   pstColor.fAlpha = fAlpha
   ##  Done!
@@ -387,7 +387,7 @@ proc orxColor_ToRGBA*(pstColor: ptr orxCOLOR): orxRGBA {.inline, cdecl.} =
   var vColor: orxVECTOR
   var fAlpha: orxFLOAT
   ##  Checks
-  orxASSERT(pstColor != orxNULL)
+  assert(pstColor != nil)
   ##  Clamps RGB components
   orxVector_Clamp(addr(vColor), addr((pstColor.vRGB)), addr(orxVECTOR_BLACK),
                   addr(orxVECTOR_WHITE))
@@ -410,8 +410,8 @@ proc orxColor_ToRGBA*(pstColor: ptr orxCOLOR): orxRGBA {.inline, cdecl.} =
 proc orxColor_Copy*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orxCOLOR {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pstDst != orxNULL)
-  orxASSERT(pstSrc != orxNULL)
+  assert(pstDst != nil)
+  assert(pstSrc != nil)
   ##  Copies it
   orxMemory_Copy(pstDst, pstSrc, sizeof((orxCOLOR)))
   ##  Done!
@@ -434,8 +434,8 @@ proc orxColor_FromRGBToHSL*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
     fG: orxFLOAT
     fB: orxFLOAT
   ##  Checks
-  orxASSERT(pstDst != orxNULL)
-  orxASSERT(pstSrc != orxNULL)
+  assert(pstDst != nil)
+  assert(pstSrc != nil)
   ##  Gets source red, blue and green components
   fR = pstSrc.vRGB.fR
   fG = pstSrc.vRGB.fG
@@ -507,8 +507,8 @@ proc orxColor_FromHSLToRGB*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
         break
 
   ##  Checks
-  orxASSERT(pstDst != orxNULL)
-  orxASSERT(pstSrc != orxNULL)
+  assert(pstDst != nil)
+  assert(pstSrc != nil)
   ##  Gets source hue, saturation and lightness components
   fH = pstSrc.vRGB.fH
   fS = pstSrc.vRGB.fS
@@ -561,8 +561,8 @@ proc orxColor_FromRGBToHSV*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
     fG: orxFLOAT
     fB: orxFLOAT
   ##  Checks
-  orxASSERT(pstDst != orxNULL)
-  orxASSERT(pstSrc != orxNULL)
+  assert(pstDst != nil)
+  assert(pstSrc != nil)
   ##  Gets source red, blue and green components
   fR = pstSrc.vRGB.fR
   fG = pstSrc.vRGB.fG
@@ -639,7 +639,7 @@ proc orxDisplay_Exit*() {.cdecl, importc: "orxDisplay_Exit", dynlib: "liborx.so"
 proc orxDisplay_Swap*(): orxSTATUS {.cdecl, importc: "orxDisplay_Swap",
                                   dynlib: "liborx.so".}
 ## * Gets screen bitmap
-##  @return orxBITMAP / orxNULL
+##  @return orxBITMAP / nil
 ##
 
 proc orxDisplay_GetScreenBitmap*(): ptr orxBITMAP {.cdecl,
@@ -655,7 +655,7 @@ proc orxDisplay_GetScreenSize*(pfWidth: ptr orxFLOAT; pfHeight: ptr orxFLOAT): o
 ## * Creates a bitmap
 ##  @param[in]   _u32Width                             Bitmap width
 ##  @param[in]   _u32Height                            Bitmap height
-##  @return orxBITMAP / orxNULL
+##  @return orxBITMAP / nil
 ##
 
 proc orxDisplay_CreateBitmap*(u32Width: orxU32; u32Height: orxU32): ptr orxBITMAP {.
@@ -668,7 +668,7 @@ proc orxDisplay_DeleteBitmap*(pstBitmap: ptr orxBITMAP) {.cdecl,
     importc: "orxDisplay_DeleteBitmap", dynlib: "liborx.so".}
 ## * Loads a bitmap from file (an event of ID orxDISPLAY_EVENT_BITMAP_LOAD will be sent upon completion, whether the loading is asynchronous or not)
 ##  @param[in]   _zFileName                            Name of the file to load
-##  @return orxBITMAP * / orxNULL
+##  @return orxBITMAP * / nil
 ##
 
 proc orxDisplay_LoadBitmap*(zFileName: ptr orxCHAR): ptr orxBITMAP {.cdecl,
@@ -682,7 +682,7 @@ proc orxDisplay_LoadBitmap*(zFileName: ptr orxCHAR): ptr orxBITMAP {.cdecl,
 proc orxDisplay_SaveBitmap*(pstBitmap: ptr orxBITMAP; zFileName: ptr orxCHAR): orxSTATUS {.
     cdecl, importc: "orxDisplay_SaveBitmap", dynlib: "liborx.so".}
 ## * Sets temp bitmap, if a valid temp bitmap is given, load operations will be asynchronous
-##  @param[in]   _pstBitmap                            Concerned bitmap, orxNULL for forcing synchronous load operations
+##  @param[in]   _pstBitmap                            Concerned bitmap, nil for forcing synchronous load operations
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -704,7 +704,7 @@ proc orxDisplay_SetDestinationBitmaps*(apstBitmapList: ptr ptr orxBITMAP;
                                       u32Number: orxU32): orxSTATUS {.cdecl,
     importc: "orxDisplay_SetDestinationBitmaps", dynlib: "liborx.so".}
 ## * Clears a bitmap
-##  @param[in]   _pstBitmap                            Concerned bitmap, if orxNULL all the current destination bitmaps will be cleared instead
+##  @param[in]   _pstBitmap                            Concerned bitmap, if nil all the current destination bitmaps will be cleared instead
 ##  @param[in]   _stColor                              Color to clear the bitmap with
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
@@ -719,7 +719,7 @@ proc orxDisplay_ClearBitmap*(pstBitmap: ptr orxBITMAP; stColor: orxRGBA): orxSTA
 proc orxDisplay_SetBlendMode*(eBlendMode: orxDISPLAY_BLEND_MODE): orxSTATUS {.cdecl,
     importc: "orxDisplay_SetBlendMode", dynlib: "liborx.so".}
 ## * Sets a bitmap clipping for blitting (both as source and destination)
-##  @param[in]   _pstBitmap                            Concerned bitmap, orxNULL to target the first destination bitmap
+##  @param[in]   _pstBitmap                            Concerned bitmap, nil to target the first destination bitmap
 ##  @param[in]   _u32TLX                               Top left X coord in pixels
 ##  @param[in]   _u32TLY                               Top left Y coord in pixels
 ##  @param[in]   _u32BRX                               Bottom right X coord in pixels
@@ -866,7 +866,7 @@ proc orxDisplay_DrawOBox*(pstBox: ptr orxOBOX; stColor: orxRGBA; bFill: orxBOOL)
     cdecl, importc: "orxDisplay_DrawOBox", dynlib: "liborx.so".}
 ## * Draws a textured mesh
 ##  @param[in]   _pstMesh                              Mesh to draw, if no primitive and no index buffer is given, separate quads arrangement will be assumed
-##  @param[in]   _pstBitmap                            Bitmap to use for texturing, orxNULL to use the current one
+##  @param[in]   _pstBitmap                            Bitmap to use for texturing, nil to use the current one
 ##  @param[in]   _eSmoothing                           Bitmap smoothing type
 ##  @param[in]   _eBlendMode                           Blend mode
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
@@ -990,7 +990,7 @@ proc orxDisplay_GetVideoModeCount*(): orxU32 {.cdecl,
 ## * Gets an available video mode
 ##  @param[in]   _u32Index                             Video mode index, pass _u32Index < orxDisplay_GetVideoModeCount() for an available listed mode, orxU32_UNDEFINED for the the default (desktop) mode and any other value for current mode
 ##  @param[out]  _pstVideoMode                         Storage for the video mode
-##  @return orxDISPLAY_VIDEO_MODE / orxNULL if invalid
+##  @return orxDISPLAY_VIDEO_MODE / nil if invalid
 ##
 
 proc orxDisplay_GetVideoMode*(u32Index: orxU32;

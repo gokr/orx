@@ -78,14 +78,14 @@ proc orxCamera_Init*(): orxSTATUS {.cdecl, importc: "orxCamera_Init",
 proc orxCamera_Exit*() {.cdecl, importc: "orxCamera_Exit", dynlib: "liborx.so".}
 ## * Creates a camera
 ##  @param[in]   _u32Flags       Camera flags (2D / ...)
-##  @return      Created orxCAMERA / orxNULL
+##  @return      Created orxCAMERA / nil
 ##
 
 proc orxCamera_Create*(u32Flags: orxU32): ptr orxCAMERA {.cdecl,
     importc: "orxCamera_Create", dynlib: "liborx.so".}
 ## * Creates a camera from config
 ##  @param[in]   _zConfigID      Config ID
-##  @ return orxCAMERA / orxNULL
+##  @ return orxCAMERA / nil
 ##
 
 proc orxCamera_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxCAMERA {.cdecl,
@@ -205,7 +205,7 @@ proc orxCamera_GetName*(pstCamera: ptr orxCAMERA): ptr orxCHAR {.cdecl,
     importc: "orxCamera_GetName", dynlib: "liborx.so".}
 ## * Gets camera given its name
 ##  @param[in]   _zName          Camera name
-##  @return      orxCAMERA / orxNULL
+##  @return      orxCAMERA / nil
 ##
 
 proc orxCamera_Get*(zName: ptr orxCHAR): ptr orxCAMERA {.cdecl,
@@ -219,7 +219,7 @@ proc orxCamera_GetFrame*(pstCamera: ptr orxCAMERA): ptr orxFRAME {.cdecl,
     importc: "orxCamera_GetFrame", dynlib: "liborx.so".}
 ## * Sets camera parent
 ##  @param[in]   _pstCamera      Concerned camera
-##  @param[in]   _pParent        Parent structure to set (object, spawner, camera or frame) / orxNULL
+##  @param[in]   _pParent        Parent structure to set (object, spawner, camera or frame) / nil
 ##  @return      orsSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -227,7 +227,7 @@ proc orxCamera_SetParent*(pstCamera: ptr orxCAMERA; pParent: pointer): orxSTATUS
     cdecl, importc: "orxCamera_SetParent", dynlib: "liborx.so".}
 ## * Gets camera parent
 ##  @param[in]   _pstCamera      Concerned camera
-##  @return      Parent (object, spawner, camera or frame) / orxNULL
+##  @return      Parent (object, spawner, camera or frame) / nil
 ##
 
 proc orxCamera_GetParent*(pstCamera: ptr orxCAMERA): ptr orxSTRUCTURE {.cdecl,

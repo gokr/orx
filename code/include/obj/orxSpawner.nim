@@ -90,14 +90,14 @@ proc orxSpawner_Init*(): orxSTATUS {.cdecl, importc: "orxSpawner_Init",
 
 proc orxSpawner_Exit*() {.cdecl, importc: "orxSpawner_Exit", dynlib: "liborx.so".}
 ## * Creates an empty spawner
-##  @return orxSPAWNER / orxNULL
+##  @return orxSPAWNER / nil
 ##
 
 proc orxSpawner_Create*(): ptr orxSPAWNER {.cdecl, importc: "orxSpawner_Create",
                                         dynlib: "liborx.so".}
 ## * Creates a spawner from config
 ##  @param[in]   _zConfigID    Config ID
-##  @ return orxSPAWNER / orxNULL
+##  @ return orxSPAWNER / nil
 ##
 
 proc orxSpawner_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSPAWNER {.cdecl,
@@ -214,7 +214,7 @@ proc orxSpawner_GetNextWaveDelay*(pstSpawner: ptr orxSPAWNER): orxFLOAT {.cdecl,
     importc: "orxSpawner_GetNextWaveDelay", dynlib: "liborx.so".}
 ## * Sets spawner object speed
 ##  @param[in]   _pstSpawner     Concerned spawner
-##  @param[in]   _pvObjectSpeed  Speed to apply to every spawned object / orxNULL to not apply any speed
+##  @param[in]   _pvObjectSpeed  Speed to apply to every spawned object / nil to not apply any speed
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -224,7 +224,7 @@ proc orxSpawner_SetObjectSpeed*(pstSpawner: ptr orxSPAWNER;
 ## * Gets spawner object speed
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _pvObjectSpeed  Speed applied to every spawned object
-##  @return      Speed applied to every spawned object / orxNULL if none is applied
+##  @return      Speed applied to every spawned object / nil if none is applied
 ##
 
 proc orxSpawner_GetObjectSpeed*(pstSpawner: ptr orxSPAWNER;
@@ -272,7 +272,7 @@ proc orxSpawner_SetScale*(pstSpawner: ptr orxSPAWNER; pvScale: ptr orxVECTOR): o
 ## * Get spawner position
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[out]  _pvPosition     Spawner position
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxSpawner_GetPosition*(pstSpawner: ptr orxSPAWNER; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
@@ -280,7 +280,7 @@ proc orxSpawner_GetPosition*(pstSpawner: ptr orxSPAWNER; pvPosition: ptr orxVECT
 ## * Get spawner world position
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[out]  _pvPosition     Spawner world position
-##  @return      orxVECTOR / orxNULL
+##  @return      orxVECTOR / nil
 ##
 
 proc orxSpawner_GetWorldPosition*(pstSpawner: ptr orxSPAWNER;
@@ -318,7 +318,7 @@ proc orxSpawner_GetWorldScale*(pstSpawner: ptr orxSPAWNER; pvScale: ptr orxVECTO
     cdecl, importc: "orxSpawner_GetWorldScale", dynlib: "liborx.so".}
 ## * Sets spawner parent
 ##  @param[in]   _pstSpawner     Concerned spawner
-##  @param[in]   _pParent        Parent structure to set (object, spawner, camera or frame) / orxNULL
+##  @param[in]   _pParent        Parent structure to set (object, spawner, camera or frame) / nil
 ##  @return      orsSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
@@ -326,7 +326,7 @@ proc orxSpawner_SetParent*(pstSpawner: ptr orxSPAWNER; pParent: pointer): orxSTA
     cdecl, importc: "orxSpawner_SetParent", dynlib: "liborx.so".}
 ## * Gets spawner parent
 ##  @param[in]   _pstSpawner Concerned spawner
-##  @return      Parent (object, spawner, camera or frame) / orxNULL
+##  @return      Parent (object, spawner, camera or frame) / nil
 ##
 
 proc orxSpawner_GetParent*(pstSpawner: ptr orxSPAWNER): ptr orxSTRUCTURE {.cdecl,

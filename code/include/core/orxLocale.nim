@@ -139,7 +139,7 @@ proc orxLocale_GetKeyCount*(): orxU32 {.cdecl, importc: "orxLocale_GetKeyCount",
                                      dynlib: "liborx.so".}
 ## * Gets key for the current language at the given index
 ##  @param[in] _u32KeyIndex      Index of the desired key
-##  @return orxSTRING if exist, orxNULL otherwise
+##  @return orxSTRING if exist, nil otherwise
 ##
 
 proc orxLocale_GetKey*(u32KeyIndex: orxU32): ptr orxCHAR {.cdecl,

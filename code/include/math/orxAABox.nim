@@ -60,7 +60,7 @@ type
 
 proc orxAABox_Reorder*(pstBox: ptr orxAABOX): ptr orxAABOX {.inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstBox != orxNULL)
+  assert(pstBox != nil)
   ##  Reorders coordinates so as to have upper left & bottom right box corners
   ##  X coord
   if pstBox.vTL.fX > pstBox.vBR.fX:
@@ -87,15 +87,15 @@ proc orxAABox_Reorder*(pstBox: ptr orxAABOX): ptr orxAABOX {.inline, cdecl.} =
 ##  @param[out]  _pstRes                       AABox to set
 ##  @param[in]   _pvTL                         Top left corner
 ##  @param[in]   _pvBR                         Bottom right corner
-##  @return      orxAABOX / orxNULL
+##  @return      orxAABOX / nil
 ##
 
 proc orxAABox_Set*(pstRes: ptr orxAABOX; pvTL: ptr orxVECTOR; pvBR: ptr orxVECTOR): ptr orxAABOX {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstRes != orxNULL)
-  orxASSERT(pvTL != orxNULL)
-  orxASSERT(pvBR != orxNULL)
+  assert(pstRes != nil)
+  assert(pvTL != nil)
+  assert(pvBR != nil)
   ##  Sets values
   orxVector_Copy(addr((pstRes.vTL)), pvTL)
   orxVector_Copy(addr((pstRes.vBR)), pvBR)
@@ -114,8 +114,8 @@ proc orxAABox_IsInside*(pstBox: ptr orxAABOX; pvPosition: ptr orxVECTOR): orxBOO
     inline, cdecl.} =
   var bResult: orxBOOL
   ##  Checks
-  orxASSERT(pstBox != orxNULL)
-  orxASSERT(pvPosition != orxNULL)
+  assert(pstBox != nil)
+  assert(pvPosition != nil)
   ##  Z intersected?
   if (pvPosition.fZ >= pstBox.vTL.fZ) and (pvPosition.fZ <= pstBox.vBR.fZ):
     ##  X intersected?
@@ -136,8 +136,8 @@ proc orxAABox_TestIntersection*(pstBox1: ptr orxAABOX; pstBox2: ptr orxAABOX): o
     inline, cdecl.} =
   var bResult: orxBOOL
   ##  Checks
-  orxASSERT(pstBox1 != orxNULL)
-  orxASSERT(pstBox2 != orxNULL)
+  assert(pstBox1 != nil)
+  assert(pstBox2 != nil)
   ##  Z intersected?
   if (pstBox2.vBR.fZ >= pstBox1.vTL.fZ) and (pstBox2.vTL.fZ <= pstBox1.vBR.fZ):
     ##  X intersected?
@@ -159,8 +159,8 @@ proc orxAABox_Test2DIntersection*(pstBox1: ptr orxAABOX; pstBox2: ptr orxAABOX):
     inline, cdecl.} =
   var bResult: orxBOOL
   ##  Checks
-  orxASSERT(pstBox1 != orxNULL)
-  orxASSERT(pstBox2 != orxNULL)
+  assert(pstBox1 != nil)
+  assert(pstBox2 != nil)
   ##  X intersected?
   if (pstBox2.vBR.fX >= pstBox1.vTL.fX) and (pstBox2.vTL.fX <= pstBox1.vBR.fX):
     ##  Y intersected?
@@ -178,8 +178,8 @@ proc orxAABox_Test2DIntersection*(pstBox1: ptr orxAABOX; pstBox2: ptr orxAABOX):
 proc orxAABox_Copy*(pstDst: ptr orxAABOX; pstSrc: ptr orxAABOX): ptr orxAABOX {.inline,
     cdecl.} =
   ##  Checks
-  orxASSERT(pstDst != orxNULL)
-  orxASSERT(pstSrc != orxNULL)
+  assert(pstDst != nil)
+  assert(pstSrc != nil)
   ##  Copies it
   discard orxMemory_Copy(pstDst, pstSrc, sizeof((orxAABOX)).orxU32)
   ##  Done!
@@ -195,9 +195,9 @@ proc orxAABox_Copy*(pstDst: ptr orxAABOX; pstSrc: ptr orxAABOX): ptr orxAABOX {.
 proc orxAABox_Move*(pstRes: ptr orxAABOX; pstOp: ptr orxAABOX; pvMove: ptr orxVECTOR): ptr orxAABOX {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstRes != orxNULL)
-  orxASSERT(pstOp != orxNULL)
-  orxASSERT(pvMove != orxNULL)
+  assert(pstRes != nil)
+  assert(pstOp != nil)
+  assert(pvMove != nil)
   ##  Updates result
   discard orxVector_Add(addr((pstRes.vTL)), addr((pstOp.vTL)), pvMove)
   discard orxVector_Add(addr((pstRes.vBR)), addr((pstOp.vBR)), pvMove)
@@ -213,8 +213,8 @@ proc orxAABox_Move*(pstRes: ptr orxAABOX; pstOp: ptr orxAABOX; pvMove: ptr orxVE
 proc orxAABox_GetCenter*(pstOp: ptr orxAABOX; pvRes: ptr orxVECTOR): ptr orxVECTOR {.
     inline, cdecl.} =
   ##  Checks
-  orxASSERT(pstOp != orxNULL)
-  orxASSERT(pvRes != orxNULL)
+  assert(pstOp != nil)
+  assert(pvRes != nil)
   ##  Gets box center
   discard orxVector_Add(pvRes, addr((pstOp.vTL)), addr((pstOp.vBR)))
   orxVector_Mulf(pvRes, pvRes, orx2F(0.5))

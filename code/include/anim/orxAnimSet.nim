@@ -95,14 +95,14 @@ proc orxAnimSet_Init*(): orxSTATUS {.cdecl, importc: "orxAnimSet_Init",
 proc orxAnimSet_Exit*() {.cdecl, importc: "orxAnimSet_Exit", dynlib: "liborx.so".}
 ## * Creates an empty AnimSet
 ##  @param[in]   _u32Size                            Storage size
-##  return       Created orxANIMSET / orxNULL
+##  return       Created orxANIMSET / nil
 ##
 
 proc orxAnimSet_Create*(u32Size: orxU32): ptr orxANIMSET {.cdecl,
     importc: "orxAnimSet_Create", dynlib: "liborx.so".}
 ## * Creates an animation set from config
 ##  @param[in]   _zConfigID                    Config ID
-##  @return      orxANIMSET / orxNULL
+##  @return      orxANIMSET / nil
 ##
 
 proc orxAnimSet_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxANIMSET {.cdecl,
@@ -245,7 +245,7 @@ proc orxAnimSet_FindNextAnim*(pstAnimSet: ptr orxANIMSET; u32SrcAnim: orxU32;
 ## * AnimSet Anim get accessor
 ##  @param[in]   _pstAnimSet                         Concerned AnimSet
 ##  @param[in]   _u32AnimID                          Anim ID
-##  @return Anim pointer / orxNULL
+##  @return Anim pointer / nil
 ##
 
 proc orxAnimSet_GetAnim*(pstAnimSet: ptr orxANIMSET; u32AnimID: orxU32): ptr orxANIM {.
