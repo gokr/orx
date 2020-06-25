@@ -48,9 +48,7 @@ import
 template orxEVENT_SEND_MACRO*(TYPE, ID, SENDER, RECIPIENT, PAYLOAD: untyped): void =
   var stEvent: orxEVENT
   stEvent.eType = cast[orxEVENT_TYPE](TYPE)
-  echo "TYPE: " & $TYPE
   stEvent.eID = cast[orxENUM](ID)
-  echo "ID: " & $ID
   stEvent.hSender = cast[orxHANDLE](SENDER)
   stEvent.hRecipient = cast[orxHANDLE](RECIPIENT)
   stEvent.pstPayload = cast[pointer](PAYLOAD)

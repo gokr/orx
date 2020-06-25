@@ -25,16 +25,7 @@
 ##  @file orx.h
 ##  @date 02/09/2005
 ##  @author iarwain@orx-project.org
-##
-##  @todo
-##
-## *
-##  @addtogroup Orx
-##
-##  Main orx include, execution convenience helpers, freely modifiable by users
-##
-##  @{
-##
+
 
 import
   orxInclude, orxKernel, orxUtils, main/orxParam
@@ -43,39 +34,29 @@ import
   base/[orxType, orxModule], core/[orxEvent, orxClock], memory/orxMemory
 
 when not defined(PLUGIN):
-  ## **************************************************************************
-  ##  Static variables                                                        *
-  ## *************************************************************************
-  ## * Should stop execution by default event handling?
-  ##
+  ## Should stop execution by default event handling?
   var sbStopByEvent* = false
-  ## **************************************************************************
-  ##  Public functions                                                        *
-  ## *************************************************************************
-  ## * Orx default basic event handler
-  ##  @param[in]   _pstEvent                     Sent event
+
+  ##  Orx default basic event handler
+  ##  @param[in]   pstEvent                     Sent event
   ##  @return      orxSTATUS_SUCCESS if handled / orxSTATUS_FAILURE otherwise
-  ##
   proc orx_DefaultEventHandler*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl.} =
     ##  Checks
     assert(pstEvent.eType == orxEVENT_TYPE_SYSTEM)
-    echo "pstEvent.eType: " & $pstEvent.eType
-    echo "pstEvent.eID: " & $pstEvent.eID
+    #echo "pstEvent.eType: " & $pstEvent.eType
+    #echo "pstEvent.eID: " & $pstEvent.eID
     ##  Depending on event ID
     case pstEvent.eID:
       of ord(orxSYSTEM_EVENT_CLOSE):
         ##  Updates status
-        echo "Got orxSYSTEM_EVENT_CLOSE"
         sbStopByEvent = true
       else:
         discard
     return orxSTATUS_SUCCESS
 
-  ## * Default main setup (module dependencies)
-  ##
+  ## Default main setup (module dependencies)
   proc orx_MainSetup*() {.cdecl.} =
     ##  Adds module dependencies
-    echo "Main setup"
     orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_PARAM)
     orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_CLOCK)
     orxModule_AddDependency(orxMODULE_ID_MAIN, orxMODULE_ID_CONFIG)
@@ -182,30 +163,22 @@ when not defined(PLUGIN):
               eMainStatus: orxSTATUS
             ##  Registers default event handler
             var st = orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
-            echo "Added handler: " & $st
             ##  Clears payload
             discard orxMemory_Zero(addr(stPayload), sizeof(orxSYSTEM_EVENT_PAYLOAD).orxU32)
             ##  Main loop
             var bStop = false
             sbStopByEvent = false
             while not bStop:
-              echo "A"
               ##  Sends frame start event
               orxEVENT_SEND_MACRO(orxEVENT_TYPE_SYSTEM, orxSYSTEM_EVENT_GAME_LOOP_START, nil, nil, addr(stPayload))
-              echo "B"
               ##  Runs the engine
               eMainStatus = pfnRun()
-              echo "eMainStatus = " & $eMainStatus
               ##  Updates clock system
               eClockStatus = orxClock_Update()
-              echo "eClockStatus = " & $eClockStatus
               ##  Sends frame stop event
               orxEVENT_SEND_MACRO(orxEVENT_TYPE_SYSTEM, orxSYSTEM_EVENT_GAME_LOOP_STOP, nil, nil, addr(stPayload))
-              echo "E"
               ##  Updates frame count
-              echo "Frame: " & $stPayload.u32FrameCount
               stPayload.u32FrameCount += 1
-              echo "Frame: " & $stPayload.u32FrameCount
               bStop = (sbStopByEvent or (eMainStatus == orxSTATUS_FAILURE) or (eClockStatus == orxSTATUS_FAILURE))
           discard orxEvent_RemoveHandler(orxEVENT_TYPE_SYSTEM, cast[orxEVENT_HANDLER](orx_DefaultEventHandler))
           ##  Exits from engine
