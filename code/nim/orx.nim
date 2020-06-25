@@ -66,7 +66,7 @@ when not defined(PLUGIN):
       of ord(orxSYSTEM_EVENT_CLOSE):
         ##  Updates status
         echo "Got orxSYSTEM_EVENT_CLOSE"
-        #sbStopByEvent = true
+        sbStopByEvent = true
       else:
         discard
     return orxSTATUS_SUCCESS
