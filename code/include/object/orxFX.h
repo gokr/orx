@@ -47,9 +47,6 @@
 #include "orxInclude.h"
 #include "math/orxVector.h"
 #include "object/orxObject.h"
-#ifdef C2NIM
-#include "base/orxType.h"
-#endif
 
 
 /** Slot flags
@@ -79,14 +76,7 @@
 
 /** Internal FX structure
  */
-#ifndef C2NIM
-typedef struct __orxFX_t        orxFX;
-#endif
-#ifdef C2NIM
-#@
-type orxFX* = object
-@#
-#endif
+typedef struct __orxFX_t                        orxFX;
 
 
 /** Event enum

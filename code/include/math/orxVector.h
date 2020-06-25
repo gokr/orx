@@ -49,17 +49,14 @@
 #include "memory/orxMemory.h"
 #include "math/orxMath.h"
 
-#ifdef C2NIM // orxFLOAT is in orxType.h
-#include "base/orxType.h"
-#endif
 
-#ifndef C2NIM
 #ifdef __orxGCC__
+
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wpragmas"
   #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+
 #endif /* __orxGCC__ */
-#endif
 
 
 /** Public structure definition
@@ -898,13 +895,11 @@ extern orxDLLAPI const orxVECTOR orxVECTOR_MAGENTA;/**< Magenta color vector */
 extern orxDLLAPI const orxVECTOR orxVECTOR_BLACK;  /**< Black color vector */
 extern orxDLLAPI const orxVECTOR orxVECTOR_WHITE;  /**< White color vector */
 
-#ifndef C2NIM
 #ifdef __orxGCC__
 
   #pragma GCC diagnostic pop
 
 #endif /* __orxGCC__ */
-#endif
 
 #endif /* _orxVECTOR_H_ */
 

@@ -45,17 +45,12 @@
 
 #include "orxInclude.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#endif
-
-#ifndef C2NIM
 #ifdef __orxWINDOWS__
   #include "memory/orxMemory.h"
 #else /* __orxWINDOWS__ */
   #include <semaphore.h>
 #endif /* __orxWINDOWS__ */
-#endif
+
 
 #define orxTHREAD_KU32_MAIN_THREAD_ID                 0           /**< Main thread ID */
 #define orxTHREAD_KU32_MAX_THREAD_NUMBER              16          /**< Max thread number */
@@ -66,14 +61,7 @@
 
 
 /** Semaphore structure */
-#ifndef C2NIM
-typedef struct __orxTHREAD_SEMAPHORE_t        orxTHREAD_SEMAPHORE;
-#endif
-#ifdef C2NIM
-#@
-type orxTHREAD_SEMAPHORE* = object
-@#
-#endif
+typedef struct __orxTHREAD_SEMAPHORE_t                orxTHREAD_SEMAPHORE;
 
 
 /** Thread run function type */

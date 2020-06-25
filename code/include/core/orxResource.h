@@ -43,9 +43,6 @@
 
 #include "orxInclude.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#endif
 
 /** Misc
  */

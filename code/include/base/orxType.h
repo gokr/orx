@@ -82,9 +82,7 @@
   typedef double                  orxDOUBLE;
 
   typedef char                    orxCHAR;
-  #ifndef C2NIM
   #define orxSTRING               orxCHAR *
-  #endif
   typedef orxU32                  orxSTRINGID;
 
   typedef orxU32                  orxENUM;
@@ -107,14 +105,13 @@
     typedef signed    long long   orxS64;
 
   #endif /* __orxLLVM__ */
-  #ifndef C2NIM
   #ifdef __orxMSVC__
 
     typedef unsigned  __int64     orxU64;
     typedef signed    __int64     orxS64;
 
   #endif /* __orxMSVC__ */
-  #endif
+
 #else /* __orxWINDOWS__ */
 
   /* Linux / Mac / iOS / Android */
@@ -156,9 +153,7 @@
     typedef double                orxDOUBLE;
 
     typedef char                  orxCHAR;
-    #ifndef C2NIM
     #define orxSTRING             orxCHAR *
-    #endif
     typedef orxU32                orxSTRINGID;
 
     typedef orxU32                orxENUM;
@@ -224,10 +219,10 @@ extern orxDLLAPI const orxSTRING  orxSTRING_EOL;
 #define orxCHAR_LF                '\n'
 #define orxCHAR_EOL               '\n'
 #define orxCHAR_ASCII_NUMBER      128
-#ifndef C2NIM
+
 #define _orxSTRINGIFY(X)          #X
 #define orxSTRINGIFY(X)           _orxSTRINGIFY(X)
-#endif
+
 
 /* *** Directory separators *** */
 

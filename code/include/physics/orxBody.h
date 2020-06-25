@@ -51,45 +51,18 @@
 #include "object/orxStructure.h"
 #include "physics/orxPhysics.h"
 
-#ifdef C2NIM
-#include "base/orxType.h"
-#include "math/orxVector.h"
-#include "math/orxAABox.h"
-#endif
-
 
 /** Internal Body structure
  */
-#ifndef C2NIM
-typedef struct __orxBODY_t        orxBODY;
-#endif
-#ifdef C2NIM
-#@
-type orxBODY* = object
-@#
-#endif
+typedef struct __orxBODY_t                    orxBODY;
 
 /** Internal Body part structure
  */
-#ifndef C2NIM
-typedef struct __orxBODY_PART_t        orxBODY_PART;
-#endif
-#ifdef C2NIM
-#@
-type orxBODY_PART* = object
-@#
-#endif
+typedef struct __orxBODY_PART_t               orxBODY_PART;
 
 /** Internal Body joint structure
  */
-#ifndef C2NIM
-typedef struct __orxBODY_JOINT_t        orxBODY_JOINT;
-#endif
-#ifdef C2NIM
-#@
-type orxBODY_JOINT* = object
-@#
-#endif
+typedef struct __orxBODY_JOINT_t              orxBODY_JOINT;
 
 
 /** Body module setup

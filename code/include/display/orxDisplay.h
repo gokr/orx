@@ -53,9 +53,6 @@
 #include "utils/orxString.h"
 #include "utils/orxLinkList.h"
 
-#ifdef C2NIM
-#include "base/orxType.h"
-#endif
 
 /** Misc defines
  */
@@ -79,23 +76,11 @@ typedef struct __orxRGBA_t
 #define orxRGBA_B(RGBA)             RGBA.u8B
 #define orxRGBA_A(RGBA)             RGBA.u8A
 
-#ifndef C2NIM
 #define orxCOLOR_NORMALIZER         (orx2F(1.0f / 255.0f))
-#else
-#@
-const orxCOLOR_NORMALIZER* = (orx2F(1.0 / 255.0))
-@#
-#endif
 #define orxCOLOR_DENORMALIZER       (orx2F(255.0f))
 
-#ifndef C2NIM
 typedef struct __orxBITMAP_t        orxBITMAP;
-#endif
-#ifdef C2NIM
-#@
-type orxBITMAP* = object
-@#
-#endif
+
 
 /** Vertex info structure
  */
@@ -308,6 +293,51 @@ typedef struct __orxDISPLAY_EVENT_PAYLOAD_t
 /***************************************************************************
  * Functions directly implemented by orx core
  ***************************************************************************/
+
+#if defined(__orxIOS__) && defined(__orxOBJC__)
+
+#import <UIKit/UIKit.h>
+#import <OpenGLES/EAGL.h>
+#import <OpenGLES/ES1/gl.h>
+#import <OpenGLES/ES1/glext.h>
+#import <OpenGLES/ES2/gl.h>
+#import <OpenGLES/ES2/glext.h>
+
+/** Orx view controller interface
+ */
+@interface orxViewController : UIViewController
+{
+@private
+  UIInterfaceOrientation eOrientation;
+}
+
+@property                     UIInterfaceOrientation eOrientation;
+
+@end
+
+/** Orx view interface
+ */
+@interface orxView : UIView
+{
+@private
+  EAGLContext  *poMainContext, *poThreadContext;
+  GLuint        uiRenderBuffer, uiDepthBuffer, uiScreenFrameBuffer, uiTextureFrameBuffer;
+  BOOL          bShaderSupport, bCompressedTextureSupport;
+}
+
++ (orxView *) GetInstance;
+
+- (void) QueueEvent:(orxENUM)_eID WithPayload:(orxSYSTEM_EVENT_PAYLOAD *)_pstPayload;
+- (void) NotifyAcceleration:(UIAcceleration *)_poAcceleration;
+
+@property (nonatomic, retain) EAGLContext  *poMainContext;
+@property (nonatomic, retain) EAGLContext  *poThreadContext;
+@property                     BOOL          bShaderSupport;
+@property                     BOOL          bCompressedTextureSupport;
+
+@end
+
+#endif /* __orxIOS__ && __orxOBJC__ */
 
 
 /** Display module setup
@@ -720,7 +750,6 @@ static orxCOLOR *orxFASTCALL      orxColor_FromRGBToHSV(orxCOLOR *_pstDst, const
  */
 static orxCOLOR *orxFASTCALL      orxColor_FromHSVToRGB(orxCOLOR *_pstDst, const orxCOLOR *_pstSrc)
 {
-  #ifndef C2NIM
   orxCOLOR *pstResult = _pstDst;
   orxFLOAT  fH, fS, fV;
 
@@ -821,7 +850,6 @@ static orxCOLOR *orxFASTCALL      orxColor_FromHSVToRGB(orxCOLOR *_pstDst, const
 
   /* Done! */
   return pstResult;
-  #endif
 }
 
 /** Gets blend mode from a string

@@ -45,11 +45,8 @@
 
 
 #include "orxInclude.h"
-#include "object/orxStructure.h"
 #include "object/orxFX.h"
-#ifdef C2NIM
-#include "base/orxType.h"
-#endif
+#include "object/orxStructure.h"
 
 
 /** Misc defines
@@ -58,14 +55,8 @@
 
 
 /** Internal FXPointer structure */
-#ifndef C2NIM
-typedef struct __orxFXPOINTER_t        orxFXPOINTER;
-#endif
-#ifdef C2NIM
-#@
-type orxFXPOINTER* = object
-@#
-#endif
+typedef struct __orxFXPOINTER_t                 orxFXPOINTER;
+
 
 /** FXPointer module setup
  */

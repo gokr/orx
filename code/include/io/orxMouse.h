@@ -48,9 +48,6 @@
 #include "math/orxVector.h"
 #include "utils/orxString.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#endif
 
 /** Button enum
  */

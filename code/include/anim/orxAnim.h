@@ -52,9 +52,6 @@
 
 #include "object/orxStructure.h"
 
-#ifdef C2NIM
-#include "base/orxType.h"
-#endif
 
 /** Anim flags
  */
@@ -74,14 +71,8 @@
 
 /** Internal Anim structure
  */
-#ifndef C2NIM
-typedef struct __orxANIM_t        orxANIM;
-#endif
-#ifdef C2NIM
-#@
-type orxANIM* = object
-@#
-#endif
+typedef struct __orxANIM_t                    orxANIM;
+
 
 /** Event enum
  */

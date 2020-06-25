@@ -52,10 +52,6 @@
 #include "object/orxStructure.h"
 #include "display/orxDisplay.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#include "math/orxVector.h"
-#endif
 
 /** Graphic flags
  */
@@ -102,14 +98,7 @@
 
 /** Internal Graphic structure
  */
-#ifndef C2NIM
-typedef struct __orxGRAPHIC_t        orxGRAPHIC;
-#endif
-#ifdef C2NIM
-#@
-type orxGRAPHIC* = object
-@#
-#endif
+typedef struct __orxGRAPHIC_t                 orxGRAPHIC;
 
 
 /** Graphic module setup

@@ -57,15 +57,10 @@
 #include "object/orxStructure.h"
 #include "sound/orxSound.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#include "math/orxVector.h"
-#endif
 
 /** Defines */
-#ifndef C2NIM
 #define orxOBJECT_GET_STRUCTURE(OBJECT, TYPE) orx##TYPE(_orxObject_GetStructure(OBJECT, orxSTRUCTURE_ID_##TYPE))
-#endif
+
 #define orxOBJECT_KZ_DEFAULT_GROUP          "default"
 
 
@@ -89,14 +84,7 @@ typedef enum __orxOBJECT_EVENT_t
 
 
 /** Internal object structure */
-#ifndef C2NIM
-typedef struct __orxOBJECT_t        orxOBJECT;
-#endif
-#ifdef C2NIM
-#@
-type orxOBJECT* = object
-@#
-#endif
+typedef struct __orxOBJECT_t                orxOBJECT;
 
 
 /** @name Internal module function

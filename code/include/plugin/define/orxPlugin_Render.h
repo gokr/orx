@@ -44,9 +44,6 @@
 
 #include "plugin/define/orxPlugin_CoreID.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#endif
 
 typedef enum __orxPLUGIN_FUNCTION_BASE_ID_RENDER_t
 {

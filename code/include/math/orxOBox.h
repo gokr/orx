@@ -47,9 +47,6 @@
 
 #include "math/orxVector.h"
 
-#ifdef C2NIM
-#include "base/orxType.h"
-#endif
 
 /** Public oriented box structure
 */

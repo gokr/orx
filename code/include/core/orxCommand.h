@@ -44,9 +44,6 @@
 #include "orxInclude.h"
 #include "math/orxVector.h"
 
-#ifdef C2NIM
-#include "base/orxType.h"
-#endif
 
 /** Misc
  */
@@ -112,7 +109,6 @@ typedef void (orxFASTCALL *orxCOMMAND_FUNCTION)(orxU32 _u32ArgNumber, const orxC
 
 /** Command registration helpers
  */
-#ifndef C2NIM
 #define orxCOMMAND_REGISTER_CORE_COMMAND(MODULE, COMMAND, RESULT_NAME, RESULT_TYPE, REQ_PARAM_NUMBER, OPT_PARAM_NUMBER, ...)                                    \
 do                                                                                                                                                              \
 {                                                                                                                                                               \
@@ -130,7 +126,7 @@ do                                                                              
 {                                                                                                                                                               \
   orxCommand_Unregister(#MODULE"."#COMMAND);                                                                                                                    \
 } while(orxFALSE)
-#endif
+
 
 /** Command module setup
  */

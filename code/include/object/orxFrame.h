@@ -55,9 +55,6 @@
 
 #include "math/orxVector.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#endif
 
 /** Frame flags
  */
@@ -110,14 +107,7 @@ typedef enum __orxFRAME_SPACE_t
 
 /** Internal Frame structure
  */
-#ifndef C2NIM
-typedef struct __orxFRAME_t        orxFRAME;
-#endif
-#ifdef C2NIM
-#@
-type orxFRAME* = object
-@#
-#endif
+typedef struct __orxFRAME_t                   orxFRAME;
 
 
 /** Get ignore flag values

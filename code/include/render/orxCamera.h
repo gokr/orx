@@ -47,14 +47,10 @@
 
 
 #include "orxInclude.h"
-#include "object/orxStructure.h"
-#include "object/orxFrame.h"
-#include "math/orxAABox.h"
 
-#ifdef C2NIM
-#include "base/orxType.h"
-#include "math/orxVector.h"
-#endif
+#include "object/orxFrame.h"
+#include "object/orxStructure.h"
+#include "math/orxAABox.h"
 
 
 /** Anim flags
@@ -73,14 +69,7 @@
 
 /** Internal camera structure
  */
-#ifndef C2NIM
-typedef struct __orxCAMERA_t        orxCAMERA;
-#endif
-#ifdef C2NIM
-#@
-type orxCAMERA* = object
-@#
-#endif
+typedef struct __orxCAMERA_t                            orxCAMERA;
 
 
 /** Camera module setup

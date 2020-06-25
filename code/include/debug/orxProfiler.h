@@ -48,9 +48,6 @@
 
 #include "core/orxThread.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#endif
 
 /* *** Uncomment the line below to enable orx profiling in non debug builds *** */
 //#define __orxPROFILER__

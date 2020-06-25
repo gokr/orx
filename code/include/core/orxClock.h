@@ -47,10 +47,6 @@
 #include "core/orxSystem.h"
 #include "utils/orxString.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#include "base/orxModule.h"
-#endif
 
 #define orxCLOCK_KU32_CLOCK_BANK_SIZE                 16          /**< Clock bank size */
 #define orxCLOCK_KU32_TIMER_BANK_SIZE                 32          /**< Timer bank size */
@@ -139,15 +135,9 @@ typedef enum __orxCLOCK_EVENT_t
 
 } orxCLOCK_EVENT;
 
+
 /** Clock structure */
-#ifndef C2NIM
 typedef struct __orxCLOCK_t                           orxCLOCK;
-#endif
-#ifdef C2NIM
-#@
-type orxCLOCK* = object
-@#
-#endif
 
 /** Clock callback function type to use with clock bindings */
 typedef void (orxFASTCALL *orxCLOCK_FUNCTION)(const orxCLOCK_INFO *_pstClockInfo, void *_pContext);

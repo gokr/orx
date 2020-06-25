@@ -51,10 +51,6 @@
 #include "display/orxDisplay.h"
 #include "display/orxTexture.h"
 
-#ifdef C2NIM // ENUM_NONE is in orxType.h
-#include "base/orxType.h"
-#include "math/orxAABox.h"
-#endif
 
 /** Viewport flags
  */
@@ -72,14 +68,7 @@
 
 
 /** Internal Viewport structure */
-#ifndef C2NIM
-typedef struct __orxVIEWPORT_t        orxVIEWPORT;
-#endif
-#ifdef C2NIM
-#@
-type orxVIEWPORT* = object
-@#
-#endif
+typedef struct __orxVIEWPORT_t                orxVIEWPORT;
 
 
 /** Event enum

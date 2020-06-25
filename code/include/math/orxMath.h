@@ -46,21 +46,12 @@
 #include "orxInclude.h"
 #include "debug/orxDebug.h"
 
-#ifdef C2NIM // orxU32 is in orxType.h
-#include "base/orxType.h"
-#@
-import math, os
-@#
-#endif
-
 /** Maths related includes
  */
 #include <math.h>
-#ifndef C2NIM
 #ifdef __orxMSVC__
   #include <intrin.h>
 #endif /* __orxMSVC__ */
-#endif
 
 
 /** Public macro
@@ -223,8 +214,8 @@ extern orxDLLAPI void orxFASTCALL     orxMath_SetRandomSeeds(const orxU32 _au32S
  */
 static orxINLINE orxU32               orxMath_GetBitCount(orxU32 _u32Value)
 {
-#ifndef C2NIM
   orxU32 u32Result;
+
 #ifdef __orxMSVC__
 
   /* Uses intrinsic */
@@ -239,11 +230,6 @@ static orxINLINE orxU32               orxMath_GetBitCount(orxU32 _u32Value)
 
   /* Done! */
   return u32Result;
-#else
-#@
-{.emit"return(orxU32)__builtin_popcount(u32Value);".}
-@#
-#endif
 }
 
 /** Gets the count of trailing zeros in an orxU32
@@ -265,13 +251,7 @@ static orxINLINE orxU32               orxMath_GetTrailingZeroCount(orxU32 _u32Va
 #else /* __orxMSVC__ */
 
   /* Uses intrinsic */
-#ifndef C2NIM
   u32Result = (orxU32)__builtin_ctz(_u32Value);
-#else
-#@
-{.emit"u32Result = (orxU32)__builtin_ctz(u32Value);".}
-@#
-#endif  
 
 #endif /* __orxMSVC__ */
 
@@ -307,13 +287,7 @@ static orxINLINE orxU32               orxMath_GetTrailingZeroCount64(orxU64 _u64
 #else /* __orxMSVC__ */
 
   /* Uses intrinsic */
-#ifndef C2NIM
   u32Result = (orxU32)__builtin_ctzll(_u64Value);
-#else
-#@
-{.emit"u32Result = (orxU32)__builtin_ctzll(u64Value);".}
-@#
-#endif  
 
 #endif /* __orxMSVC__ */
 
@@ -377,13 +351,7 @@ static orxINLINE orxFLOAT             orxMath_SmoothStep(orxFLOAT _fMin, orxFLOA
   orxFLOAT fTemp, fResult;
 
   /* Gets normalized and clamped value */
-  #ifndef C2NIM
   fTemp = (_fValue - _fMin) / (_fMax - _fMin);
-  #else
-  #@
-fTemp = (fValue - fMin) / (fMax - fMin)
-  @#
-  #endif
   fTemp = orxCLAMP(fTemp, orxFLOAT_0, orxFLOAT_1);
 
   /* Gets smoothed result */
@@ -404,13 +372,7 @@ static orxINLINE orxFLOAT             orxMath_SmootherStep(orxFLOAT _fMin, orxFL
   orxFLOAT fTemp, fResult;
 
   /* Gets normalized and clamped value */
-  #ifndef C2NIM
   fTemp = (_fValue - _fMin) / (_fMax - _fMin);
-  #else
-  #@
-fTemp = (fValue - fMin) / (fMax - fMin)
-  @#
-  #endif
   fTemp = orxCLAMP(fTemp, orxFLOAT_0, orxFLOAT_1);
 
   /* Gets smoothed result */
@@ -430,17 +392,9 @@ fTemp = (fValue - fMin) / (fMax - fMin)
 #define orxMATH_KF_PI                 orx2F(3.141592654f)           /**< PI constant */
 #define orxMATH_KF_PI_BY_2            orx2F(1.570796327f)           /**< PI / 2 constant */
 #define orxMATH_KF_PI_BY_4            orx2F(0.785398163f)           /**< PI / 4 constant */
-#ifndef C2NIM
 #define orxMATH_KF_DEG_TO_RAD         orx2F(3.141592654f / 180.0f)  /**< Degree to radian conversion constant */
 #define orxMATH_KF_RAD_TO_DEG         orx2F(180.0f / 3.141592654f)  /**< Radian to degree conversion constant */
-#endif
-#ifdef C2NIM
-#@
-const
-  orxMATH_KF_DEG_TO_RAD* = orx2F(3.141592654 / 180.0) ## *< Degree to radian conversion constant
-  orxMATH_KF_RAD_TO_DEG* = orx2F(180.0 / 3.141592654) ## *< Radian to degree conversion constant
-@#
-#endif
+
 
 /*** Trigonometric function ***/
 

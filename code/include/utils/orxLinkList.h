@@ -88,11 +88,7 @@
 
 #include "debug/orxDebug.h"
 
-#ifdef C2NIM // orxU32 is in orxType.h
-#include "base/orxType.h"
-#endif
 
-#ifndef C2NIM
 /** Node list structure
  */
 typedef struct __orxLINKLIST_NODE_t
@@ -112,20 +108,6 @@ typedef struct __orxLINKLIST_t
   orxU32            u32Count;                   /**< Node count : 12/20 */
 
 } orxLINKLIST;
-#endif
-#ifdef C2NIM
-#@
-type
-  orxLINKLIST_NODE* {.bycopy.} = object
-    pstNext*: ptr orxLINKLIST_NODE ## *< Next node pointer : 4/8
-    pstPrevious*: ptr orxLINKLIST_NODE ## *< Previous node pointer : 8/16
-    pstList*: ptr orxLINKLIST    ## *< Associated list pointer : 12/24
-  orxLINKLIST* {.bycopy.} = object
-    pstFirst*: ptr orxLINKLIST_NODE ## *< First node pointer : 4/8
-    pstLast*: ptr orxLINKLIST_NODE ## *< Last node pointer : 8/16
-    u32Count*: orxU32          ## *< Node count : 12/20
-@#
-#endif
 
 
 /** Cleans a linklist

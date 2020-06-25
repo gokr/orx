@@ -56,7 +56,7 @@
 /*********************************************
  Constants
  *********************************************/
-#ifndef C2NIM
+
 /* Defines a user plugin entry function (that takes no arguments and return an orxSTATUS value) */
 #define orxPLUGIN_DECLARE_ENTRY_POINT(ENTRY_FUNCTION)   \
 extern orxIMPORT orxDLLEXPORT orxSTATUS orxPLUGIN_K_INIT_FUNCTION_NAME(orxS32 *_ps32Number, orxPLUGIN_USER_FUNCTION_INFO **_ppstInfo) \
@@ -135,4 +135,3 @@ extern orxIMPORT orxDLLEXPORT orxSTATUS orxPLUGIN_K_INIT_FUNCTION_NAME(orxS32 *_
 #endif /* _orxPLUGIN_USER_H_ */
 
 /** @} */
-#endif
