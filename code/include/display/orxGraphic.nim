@@ -94,43 +94,43 @@ type orxGRAPHIC* = object
 ## * Graphic module setup
 ##
 
-proc orxGraphic_Setup*() {.cdecl, importc: "orxGraphic_Setup", dynlib: "liborx.so".}
+proc orxGraphic_Setup*() {.cdecl, importc: "orxGraphic_Setup", dynlib: "liborxd.so".}
 ## * Inits the Graphic module
 ##
 
 proc orxGraphic_Init*(): orxSTATUS {.cdecl, importc: "orxGraphic_Init",
-                                  dynlib: "liborx.so".}
+                                  dynlib: "liborxd.so".}
 ## * Exits from the Graphic module
 ##
 
-proc orxGraphic_Exit*() {.cdecl, importc: "orxGraphic_Exit", dynlib: "liborx.so".}
+proc orxGraphic_Exit*() {.cdecl, importc: "orxGraphic_Exit", dynlib: "liborxd.so".}
 ## * Creates an empty graphic
 ##  @return      Created orxGRAPHIC / nil
 ##
 
 proc orxGraphic_Create*(): ptr orxGRAPHIC {.cdecl, importc: "orxGraphic_Create",
-                                        dynlib: "liborx.so".}
+                                        dynlib: "liborxd.so".}
 ## * Creates a graphic from config
 ##  @param[in]   _zConfigID      Config ID
 ##  @ return orxGRAPHIC / nil
 ##
 
 proc orxGraphic_CreateFromConfig*(zConfigID: cstring): ptr orxGRAPHIC {.cdecl,
-    importc: "orxGraphic_CreateFromConfig", dynlib: "liborx.so".}
+    importc: "orxGraphic_CreateFromConfig", dynlib: "liborxd.so".}
 ## * Deletes a graphic
 ##  @param[in]   _pstGraphic     Graphic to delete
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxGraphic_Delete*(pstGraphic: ptr orxGRAPHIC): orxSTATUS {.cdecl,
-    importc: "orxGraphic_Delete", dynlib: "liborx.so".}
+    importc: "orxGraphic_Delete", dynlib: "liborxd.so".}
 ## * Gets graphic config name
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxGraphic_GetName*(pstGraphic: ptr orxGRAPHIC): cstring {.cdecl,
-    importc: "orxGraphic_GetName", dynlib: "liborx.so".}
+    importc: "orxGraphic_GetName", dynlib: "liborxd.so".}
 ## * Sets graphic data
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _pstData        Data structure to set / nil
@@ -138,14 +138,14 @@ proc orxGraphic_GetName*(pstGraphic: ptr orxGRAPHIC): cstring {.cdecl,
 ##
 
 proc orxGraphic_SetData*(pstGraphic: ptr orxGRAPHIC; pstData: ptr orxSTRUCTURE): orxSTATUS {.
-    cdecl, importc: "orxGraphic_SetData", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_SetData", dynlib: "liborxd.so".}
 ## * Gets graphic data
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @return      OrxSTRUCTURE / nil
 ##
 
 proc orxGraphic_GetData*(pstGraphic: ptr orxGRAPHIC): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxGraphic_GetData", dynlib: "liborx.so".}
+    importc: "orxGraphic_GetData", dynlib: "liborxd.so".}
 ## * Sets graphic flipping
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _bFlipX         Flip it on X axis
@@ -154,7 +154,7 @@ proc orxGraphic_GetData*(pstGraphic: ptr orxGRAPHIC): ptr orxSTRUCTURE {.cdecl,
 ##
 
 proc orxGraphic_SetFlip*(pstGraphic: ptr orxGRAPHIC; bFlipX: orxBOOL; bFlipY: orxBOOL): orxSTATUS {.
-    cdecl, importc: "orxGraphic_SetFlip", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_SetFlip", dynlib: "liborxd.so".}
 ## * Gets graphic flipping
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _pbFlipX        X axis flipping
@@ -164,7 +164,7 @@ proc orxGraphic_SetFlip*(pstGraphic: ptr orxGRAPHIC; bFlipX: orxBOOL; bFlipY: or
 
 proc orxGraphic_GetFlip*(pstGraphic: ptr orxGRAPHIC; pbFlipX: ptr orxBOOL;
                         pbFlipY: ptr orxBOOL): orxSTATUS {.cdecl,
-    importc: "orxGraphic_GetFlip", dynlib: "liborx.so".}
+    importc: "orxGraphic_GetFlip", dynlib: "liborxd.so".}
 ## * Sets graphic pivot
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _pvPivot        Pivot to set
@@ -172,7 +172,7 @@ proc orxGraphic_GetFlip*(pstGraphic: ptr orxGRAPHIC; pbFlipX: ptr orxBOOL;
 ##
 
 proc orxGraphic_SetPivot*(pstGraphic: ptr orxGRAPHIC; pvPivot: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importc: "orxGraphic_SetPivot", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_SetPivot", dynlib: "liborxd.so".}
 ## * Sets relative graphic pivot
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _u32AlignFlags  Alignment flags
@@ -180,7 +180,7 @@ proc orxGraphic_SetPivot*(pstGraphic: ptr orxGRAPHIC; pvPivot: ptr orxVECTOR): o
 ##
 
 proc orxGraphic_SetRelativePivot*(pstGraphic: ptr orxGRAPHIC; u32AlignFlags: orxU32): orxSTATUS {.
-    cdecl, importc: "orxGraphic_SetRelativePivot", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_SetRelativePivot", dynlib: "liborxd.so".}
 ## * Gets graphic pivot
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[out]  _pvPivot        Graphic pivot
@@ -188,7 +188,7 @@ proc orxGraphic_SetRelativePivot*(pstGraphic: ptr orxGRAPHIC; u32AlignFlags: orx
 ##
 
 proc orxGraphic_GetPivot*(pstGraphic: ptr orxGRAPHIC; pvPivot: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxGraphic_GetPivot", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_GetPivot", dynlib: "liborxd.so".}
 ## * Sets graphic size
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _pvSize         Size to set
@@ -196,7 +196,7 @@ proc orxGraphic_GetPivot*(pstGraphic: ptr orxGRAPHIC; pvPivot: ptr orxVECTOR): p
 ##
 
 proc orxGraphic_SetSize*(pstGraphic: ptr orxGRAPHIC; pvSize: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importc: "orxGraphic_SetSize", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_SetSize", dynlib: "liborxd.so".}
 ## * Gets graphic size
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[out]  _pvSize         Object's size
@@ -204,7 +204,7 @@ proc orxGraphic_SetSize*(pstGraphic: ptr orxGRAPHIC; pvSize: ptr orxVECTOR): orx
 ##
 
 proc orxGraphic_GetSize*(pstGraphic: ptr orxGRAPHIC; pvSize: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxGraphic_GetSize", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_GetSize", dynlib: "liborxd.so".}
 ## * Sets graphic color
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _pstColor       Color to set
@@ -212,7 +212,7 @@ proc orxGraphic_GetSize*(pstGraphic: ptr orxGRAPHIC; pvSize: ptr orxVECTOR): ptr
 ##
 
 proc orxGraphic_SetColor*(pstGraphic: ptr orxGRAPHIC; pstColor: ptr orxCOLOR): orxSTATUS {.
-    cdecl, importc: "orxGraphic_SetColor", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_SetColor", dynlib: "liborxd.so".}
 ## * Sets graphic repeat (wrap) value
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _fRepeatX       X-axis repeat value
@@ -222,21 +222,21 @@ proc orxGraphic_SetColor*(pstGraphic: ptr orxGRAPHIC; pstColor: ptr orxCOLOR): o
 
 proc orxGraphic_SetRepeat*(pstGraphic: ptr orxGRAPHIC; fRepeatX: orxFLOAT;
                           fRepeatY: orxFLOAT): orxSTATUS {.cdecl,
-    importc: "orxGraphic_SetRepeat", dynlib: "liborx.so".}
+    importc: "orxGraphic_SetRepeat", dynlib: "liborxd.so".}
 ## * Clears graphic color
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxGraphic_ClearColor*(pstGraphic: ptr orxGRAPHIC): orxSTATUS {.cdecl,
-    importc: "orxGraphic_ClearColor", dynlib: "liborx.so".}
+    importc: "orxGraphic_ClearColor", dynlib: "liborxd.so".}
 ## * Graphic has color accessor
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxGraphic_HasColor*(pstGraphic: ptr orxGRAPHIC): orxBOOL {.cdecl,
-    importc: "orxGraphic_HasColor", dynlib: "liborx.so".}
+    importc: "orxGraphic_HasColor", dynlib: "liborxd.so".}
 ## * Gets graphic color
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[out]  _pstColor       Object's color
@@ -244,7 +244,7 @@ proc orxGraphic_HasColor*(pstGraphic: ptr orxGRAPHIC): orxBOOL {.cdecl,
 ##
 
 proc orxGraphic_GetColor*(pstGraphic: ptr orxGRAPHIC; pstColor: ptr orxCOLOR): ptr orxCOLOR {.
-    cdecl, importc: "orxGraphic_GetColor", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_GetColor", dynlib: "liborxd.so".}
 ## * Gets graphic repeat (wrap) values
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[out]  _pfRepeatX      X-axis repeat value
@@ -254,7 +254,7 @@ proc orxGraphic_GetColor*(pstGraphic: ptr orxGRAPHIC; pstColor: ptr orxCOLOR): p
 
 proc orxGraphic_GetRepeat*(pstGraphic: ptr orxGRAPHIC; pfRepeatX: ptr orxFLOAT;
                           pfRepeatY: ptr orxFLOAT): orxSTATUS {.cdecl,
-    importc: "orxGraphic_GetRepeat", dynlib: "liborx.so".}
+    importc: "orxGraphic_GetRepeat", dynlib: "liborxd.so".}
 ## * Sets graphic origin
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _pvOrigin       Origin coordinates
@@ -262,7 +262,7 @@ proc orxGraphic_GetRepeat*(pstGraphic: ptr orxGRAPHIC; pfRepeatX: ptr orxFLOAT;
 ##
 
 proc orxGraphic_SetOrigin*(pstGraphic: ptr orxGRAPHIC; pvOrigin: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importc: "orxGraphic_SetOrigin", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_SetOrigin", dynlib: "liborxd.so".}
 ## * Gets graphic origin
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[out]  _pvOrigin       Origin coordinates
@@ -270,14 +270,14 @@ proc orxGraphic_SetOrigin*(pstGraphic: ptr orxGRAPHIC; pvOrigin: ptr orxVECTOR):
 ##
 
 proc orxGraphic_GetOrigin*(pstGraphic: ptr orxGRAPHIC; pvOrigin: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxGraphic_GetOrigin", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_GetOrigin", dynlib: "liborxd.so".}
 ## * Updates graphic size (recompute)
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxGraphic_UpdateSize*(pstGraphic: ptr orxGRAPHIC): orxSTATUS {.cdecl,
-    importc: "orxGraphic_UpdateSize", dynlib: "liborx.so".}
+    importc: "orxGraphic_UpdateSize", dynlib: "liborxd.so".}
 ## * Sets graphic smoothing
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _eSmoothing     Smoothing type (enabled, default or none)
@@ -286,14 +286,14 @@ proc orxGraphic_UpdateSize*(pstGraphic: ptr orxGRAPHIC): orxSTATUS {.cdecl,
 
 proc orxGraphic_SetSmoothing*(pstGraphic: ptr orxGRAPHIC;
                              eSmoothing: orxDISPLAY_SMOOTHING): orxSTATUS {.cdecl,
-    importc: "orxGraphic_SetSmoothing", dynlib: "liborx.so".}
+    importc: "orxGraphic_SetSmoothing", dynlib: "liborxd.so".}
 ## * Gets graphic smoothing
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @return Smoothing type (enabled, default or none)
 ##
 
 proc orxGraphic_GetSmoothing*(pstGraphic: ptr orxGRAPHIC): orxDISPLAY_SMOOTHING {.
-    cdecl, importc: "orxGraphic_GetSmoothing", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_GetSmoothing", dynlib: "liborxd.so".}
 ## * Sets object blend mode
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @param[in]   _eBlendMode     Blend mode (alpha, multiply, add or none)
@@ -302,26 +302,26 @@ proc orxGraphic_GetSmoothing*(pstGraphic: ptr orxGRAPHIC): orxDISPLAY_SMOOTHING 
 
 proc orxGraphic_SetBlendMode*(pstGraphic: ptr orxGRAPHIC;
                              eBlendMode: orxDISPLAY_BLEND_MODE): orxSTATUS {.cdecl,
-    importc: "orxGraphic_SetBlendMode", dynlib: "liborx.so".}
+    importc: "orxGraphic_SetBlendMode", dynlib: "liborxd.so".}
 ## * Clears graphic blend mode
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxGraphic_ClearBlendMode*(pstGraphic: ptr orxGRAPHIC): orxSTATUS {.cdecl,
-    importc: "orxGraphic_ClearBlendMode", dynlib: "liborx.so".}
+    importc: "orxGraphic_ClearBlendMode", dynlib: "liborxd.so".}
 ## * Graphic has blend mode accessor
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxGraphic_HasBlendMode*(pstGraphic: ptr orxGRAPHIC): orxBOOL {.cdecl,
-    importc: "orxGraphic_HasBlendMode", dynlib: "liborx.so".}
+    importc: "orxGraphic_HasBlendMode", dynlib: "liborxd.so".}
 ## * Gets graphic blend mode
 ##  @param[in]   _pstGraphic     Concerned graphic
 ##  @return Blend mode (alpha, multiply, add or none)
 ##
 
 proc orxGraphic_GetBlendMode*(pstGraphic: ptr orxGRAPHIC): orxDISPLAY_BLEND_MODE {.
-    cdecl, importc: "orxGraphic_GetBlendMode", dynlib: "liborx.so".}
+    cdecl, importc: "orxGraphic_GetBlendMode", dynlib: "liborxd.so".}
 ## * @}

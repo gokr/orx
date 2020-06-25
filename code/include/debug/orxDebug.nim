@@ -114,23 +114,25 @@ type
 
 ##  *** Debug Macros ***
 
+template orxDEBUG_ENABLE_LEVEL_MACRO*(LEVEL, ENABLE: untyped): untyped =
+  orxDebug_EnableLevel(LEVEL, ENABLE)
+
+template orxDEBUG_IS_LEVEL_ENABLED_MACRO*(LEVEL: untyped): untyped =
+  orxDebug_IsLevelEnabled(LEVEL)
+
+template orxDEBUG_SET_FLAGS_MACRO*(SET, UNSET: untyped): untyped =
+  orxDebug_SetFlags(SET, UNSET)
+
+template orxDEBUG_GET_FLAGS_MACRO*(): untyped =
+  orxDebug_GetFlags()
+
+template orxDEBUG_SET_LOG_CALLBACK*(CALLBACK: untyped): untyped =
+  orxDebug_SetLogCallback(CALLBACK)
+
+template orxDEBUG_SETLOGFILE*(FILE: untyped): untyped =
+  orxDebug_SetLogFile(FILE)
+
 when defined(DEBUG):
-  ##  End platform specific
-  template orxDEBUG_ENABLE_LEVEL*(LEVEL, ENABLE: untyped): untyped =
-    orxDebug_EnableLevel(LEVEL, ENABLE)
-
-  template orxDEBUG_IS_LEVEL_ENABLED*(LEVEL: untyped): untyped =
-    orxDebug_IsLevelEnabled(LEVEL)
-
-  template orxDEBUG_SET_FLAGS*(SET, UNSET: untyped): untyped =
-    orxDebug_SetFlagsInternal(SET, UNSET)
-
-  template orxDEBUG_GET_FLAGS*(): untyped =
-    orxDebug_GetFlagsInternal()
-
-  template orxDEBUG_SET_LOG_CALLBACK*(CALLBACK: untyped): untyped =
-    orxDebug_SetLogCallback(CALLBACK)
-
   ##  Break
   template orxBREAK*(): untyped =
     orxDebug_Break()
@@ -138,9 +140,6 @@ when defined(DEBUG):
   ##  Files
   template orxDEBUG_SETDEBUGFILE*(FILE: untyped): untyped =
     orxDebug_SetDebugFile(FILE)
-
-  template orxDEBUG_SETLOGFILE*(FILE: untyped): untyped =
-    orxDebug_SetLogFile(FILE)
 
   template orxDEBUG_SETBASEFILENAME*(FILE: untyped): void =
     var zBuffer: array[512, orxCHAR]
@@ -151,24 +150,7 @@ when defined(DEBUG):
     strncpy(zBuffer, FILE, 256)
     strncat(zBuffer, orxDEBUG_KZ_DEFAULT_LOG_SUFFIX, 255)
     orxDebug_SetLogFile(zBuffer)
-
-  ##  Assert
 else:
-  template orxDEBUG_ENABLE_LEVEL*(LEVEL, ENABLE: untyped): untyped =
-    orxDebug_EnableLevel(LEVEL, ENABLE)
-
-  template orxDEBUG_IS_LEVEL_ENABLED*(LEVEL: untyped): untyped =
-    orxDebug_IsLevelEnabled(LEVEL)
-
-  template orxDEBUG_SET_FLAGS*(SET, UNSET: untyped): untyped =
-    orxDebug_SetFlagsInternal(SET, UNSET)
-
-  template orxDEBUG_GET_FLAGS*(): untyped =
-    orxDebug_GetFlagsInternal()
-
-  template orxDEBUG_SET_LOG_CALLBACK*(CALLBACK: untyped): untyped =
-    orxDebug_SetLogCallback(CALLBACK)
-
   ##  Break
   template orxBREAK*(): void =
     nil
@@ -176,9 +158,6 @@ else:
   ##  File
   template orxDEBUG_SETDEBUGFILE*(FILE: untyped): void =
     nil
-
-  template orxDEBUG_SETLOGFILE*(FILE: untyped): untyped =
-    orxDebug_SetLogFile(FILE)
 
   template orxDEBUG_SETBASEFILENAME*(FILE: untyped): void =
     var zBuffer: array[512, orxCHAR]
@@ -200,11 +179,11 @@ const
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxDebug_InitInternal*(): orxSTATUS {.cdecl, importc: "_orxDebug_Init",
-                                dynlib: "liborx.so".}
+proc orxDebug_Init*(): orxSTATUS {.cdecl, importc: "_orxDebug_Init",
+                                dynlib: "liborxd.so".}
 ## * Exits from the debug module
 
-proc orxDebug_ExitInternal*() {.cdecl, importc: "_orxDebug_Exit", dynlib: "liborx.so".}
+proc orxDebug_Exit*() {.cdecl, importc: "_orxDebug_Exit", dynlib: "liborxd.so".}
 ## * Logs given debug text
 ##  @param[in]   _eLevel                       Debug level associated with this output
 ##  @param[in]   _zFunction                    Calling function name
@@ -215,71 +194,71 @@ proc orxDebug_ExitInternal*() {.cdecl, importc: "_orxDebug_Exit", dynlib: "libor
 
 proc orxDebug_Log*(eLevel: orxDEBUG_LEVEL; zFunction: cstring; zFile: cstring;
                   u32Line: orxU32; zFormat: cstring) {.varargs, cdecl,
-    importc: "_orxDebug_Log", dynlib: "liborx.so".}
+    importc: "_orxDebug_Log", dynlib: "liborxd.so".}
 ## * Enables/disables a given log level
 ##  @param[in]   _eLevel                       Debug level to enable/disable
 ##  @param[in]   _bEnable                      Enable / disable
 ##
 
 proc orxDebug_EnableLevel*(eLevel: orxDEBUG_LEVEL; bEnable: orxBOOL) {.cdecl,
-    importc: "_orxDebug_EnableLevel", dynlib: "liborx.so".}
+    importc: "_orxDebug_EnableLevel", dynlib: "liborxd.so".}
 ## * Is a given log level enabled?
 ##  @param[in]   _eLevel                       Concerned debug level
 ##
 
 proc orxDebug_IsLevelEnabled*(eLevel: orxDEBUG_LEVEL): orxBOOL {.cdecl,
-    importc: "_orxDebug_IsLevelEnabled", dynlib: "liborx.so".}
+    importc: "_orxDebug_IsLevelEnabled", dynlib: "liborxd.so".}
 ## * Sets current debug flags
 ##  @param[in]   _u32Add                       Flags to add
 ##  @param[in]   _u32Remove                    Flags to remove
 ##
 
-proc orxDebug_SetFlagsInternal*(u32Add: orxU32; u32Remove: orxU32) {.cdecl,
-    importc: "_orxDebug_SetFlags", dynlib: "liborx.so".}
+proc orxDebug_SetFlags*(u32Add: orxU32; u32Remove: orxU32) {.cdecl,
+    importc: "_orxDebug_SetFlags", dynlib: "liborxd.so".}
 ## * Gets current debug flags
 ##  @return Current debug flags
 ##
 
-proc orxDebug_GetFlagsInternal*(): orxU32 {.cdecl, importc: "_orxDebug_GetFlags",
-                                 dynlib: "liborx.so".}
+proc orxDebug_GetFlags*(): orxU32 {.cdecl, importc: "_orxDebug_GetFlags",
+                                 dynlib: "liborxd.so".}
 ## * Software break function
 
-proc orxDebug_Break*() {.cdecl, importc: "_orxDebug_Break", dynlib: "liborx.so".}
+proc orxDebug_Break*() {.cdecl, importc: "_orxDebug_Break", dynlib: "liborxd.so".}
 ## * Sets debug file name
 ##  @param[in]   _zFileName                    Debug file name
 ##
 
 proc orxDebug_SetDebugFile*(zFileName: cstring) {.cdecl,
-    importc: "_orxDebug_SetDebugFile", dynlib: "liborx.so".}
+    importc: "_orxDebug_SetDebugFile", dynlib: "liborxd.so".}
 ## * Sets log file name
 ##  @param[in]   _zFileName                    Log file name
 ##
 
 proc orxDebug_SetLogFile*(zFileName: cstring) {.cdecl,
-    importc: "_orxDebug_SetLogFile", dynlib: "liborx.so".}
+    importc: "_orxDebug_SetLogFile", dynlib: "liborxd.so".}
 ## * Sets log callback function, if the callback returns orxSTATUS_FAILURE, the log entry will be entirely inhibited
 ##  @param[in]   _pfnLogCallback                Log callback function, nil to remove it
 ##
 
 proc orxDebug_SetLogCallback*(pfnLogCallback: orxDEBUG_CALLBACK_FUNCTION) {.cdecl,
-    importc: "_orxDebug_SetLogCallback", dynlib: "liborx.so".}
+    importc: "_orxDebug_SetLogCallback", dynlib: "liborxd.so".}
 ## * @}
 
 
 
-template orxDEBUG_INIT*(): void =
+template orxDEBUG_INIT_MACRO*(): void =
   var u32DebugFlags: orxU32
-  discard orxDebug_InitInternal()
-  u32DebugFlags = orxDebug_GetFlagsInternal()
-  orxDebug_SetFlagsInternal(orxDEBUG_KU32_STATIC_MASK_DEBUG, orxDEBUG_KU32_STATIC_MASK_USER_ALL)
+  discard orxDebug_Init()
+  u32DebugFlags = orxDebug_GetFlags()
+  orxDebug_SetFlags(orxDEBUG_KU32_STATIC_MASK_DEBUG, orxDEBUG_KU32_STATIC_MASK_USER_ALL)
   if orxSystem_GetVersionNumeric().int64 < VERSION:
     orxLOG("The version of the runtime library [" & $orxSystem_GetVersionFullString() &
       "] is older than the version used when compiling this program [" & VERSION_FULL_STRING & "].\n\nProblems will likely ensue!")
   elif orxSystem_GetVersionNumeric().int64 > VERSION:
     orxLOG("The version of the runtime library [" & $orxSystem_GetVersionFullString() &
       "] is more recent than the version used when compiling this program [" & VERSION_FULL_STRING & "].\n\nProblems may arise due to possible incompatibilities!")
-  orxDebug_SetFlagsInternal(u32DebugFlags, orxDEBUG_KU32_STATIC_MASK_USER_ALL)
+  orxDebug_SetFlags(u32DebugFlags, orxDEBUG_KU32_STATIC_MASK_USER_ALL)
 
-template orxDEBUG_EXIT*(): untyped =
-  orxDebug_ExitInternal()
+template orxDEBUG_EXIT_MACRO*(): untyped =
+  orxDebug_Exit()
 

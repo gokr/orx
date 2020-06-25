@@ -271,17 +271,17 @@ proc orxStructure_GetIDString*(eID: orxSTRUCTURE_ID): string {.inline, cdecl.} =
 ##
 
 proc orxStructure_Setup*() {.cdecl, importc: "orxStructure_Setup",
-                           dynlib: "liborx.so".}
+                           dynlib: "liborxd.so".}
 ## * Initializess the structure module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxStructure_Init*(): orxSTATUS {.cdecl, importc: "orxStructure_Init",
-                                    dynlib: "liborx.so".}
+                                    dynlib: "liborxd.so".}
 ## * Exits from the structure module
 ##
 
-proc orxStructure_Exit*() {.cdecl, importc: "orxStructure_Exit", dynlib: "liborx.so".}
+proc orxStructure_Exit*() {.cdecl, importc: "orxStructure_Exit", dynlib: "liborxd.so".}
 ## * Registers a given ID
 ##  @param[in]   _eStructureID   Concerned structure ID
 ##  @param[in]   _eStorageType   Storage type to use for this structure type
@@ -297,42 +297,42 @@ proc orxStructure_Register*(eStructureID: orxSTRUCTURE_ID;
                            eMemoryType: orxMEMORY_TYPE; u32Size: orxU32;
                            u32BankSize: orxU32;
                            pfnUpdate: orxSTRUCTURE_UPDATE_FUNCTION): orxSTATUS {.
-    cdecl, importc: "orxStructure_Register", dynlib: "liborx.so".}
+    cdecl, importc: "orxStructure_Register", dynlib: "liborxd.so".}
 ## * Unregisters a given ID
 ##  @param[in]   _eStructureID   Concerned structure ID
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxStructure_Unregister*(eStructureID: orxSTRUCTURE_ID): orxSTATUS {.cdecl,
-    importc: "orxStructure_Unregister", dynlib: "liborx.so".}
+    importc: "orxStructure_Unregister", dynlib: "liborxd.so".}
 ## * Creates a clean structure for given type
 ##  @param[in]   _eStructureID   Concerned structure ID
 ##  @return      orxSTRUCTURE / nil
 ##
 
 proc orxStructure_Create*(eStructureID: orxSTRUCTURE_ID): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_Create", dynlib: "liborx.so".}
+    importc: "orxStructure_Create", dynlib: "liborxd.so".}
 ## * Deletes a structure (needs to be cleaned beforehand)
 ##  @param[in]   _pStructure    Concerned structure
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxStructure_Delete*(pStructure: pointer): orxSTATUS {.cdecl,
-    importc: "orxStructure_Delete", dynlib: "liborx.so".}
+    importc: "orxStructure_Delete", dynlib: "liborxd.so".}
 ## * Gets structure storage type
 ##  @param[in]   _eStructureID   Concerned structure ID
 ##  @return      orxSTRUCTURE_STORAGE_TYPE
 ##
 
 proc orxStructure_GetStorageType*(eStructureID: orxSTRUCTURE_ID): orxSTRUCTURE_STORAGE_TYPE {.
-    cdecl, importc: "orxStructure_GetStorageType", dynlib: "liborx.so".}
+    cdecl, importc: "orxStructure_GetStorageType", dynlib: "liborxd.so".}
 ## * Gets given type structure count
 ##  @param[in]   _eStructureID   Concerned structure ID
 ##  @return      orxU32 / orxU32_UNDEFINED
 ##
 
 proc orxStructure_GetCount*(eStructureID: orxSTRUCTURE_ID): orxU32 {.cdecl,
-    importc: "orxStructure_GetCount", dynlib: "liborx.so".}
+    importc: "orxStructure_GetCount", dynlib: "liborxd.so".}
 ## * Updates structure if update function was registered for the structure type
 ##  @param[in]   _pStructure     Concerned structure
 ##  @param[in]   _phCaller       Caller structure
@@ -342,7 +342,7 @@ proc orxStructure_GetCount*(eStructureID: orxSTRUCTURE_ID): orxU32 {.cdecl,
 
 proc orxStructure_Update*(pStructure: pointer; phCaller: pointer;
                          pstClockInfo: ptr orxCLOCK_INFO): orxSTATUS {.cdecl,
-    importc: "orxStructure_Update", dynlib: "liborx.so".}
+    importc: "orxStructure_Update", dynlib: "liborxd.so".}
 ## * *** Structure storage accessors ***
 ## * Gets structure given its GUID
 ##  @param[in]   _u64GUID        Structure's GUID
@@ -350,14 +350,14 @@ proc orxStructure_Update*(pStructure: pointer; phCaller: pointer;
 ##
 
 proc orxStructure_Get*(u64GUID: orxU64): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_Get", dynlib: "liborx.so".}
+    importc: "orxStructure_Get", dynlib: "liborxd.so".}
 ## * Gets structure's owner
 ##  @param[in]   _pStructure    Concerned structure
 ##  @return      orxSTRUCTURE / nil if not found/alive
 ##
 
 proc orxStructure_GetOwner*(pStructure: pointer): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_GetOwner", dynlib: "liborx.so".}
+    importc: "orxStructure_GetOwner", dynlib: "liborxd.so".}
 ## * Sets structure owner
 ##  @param[in]   _pStructure    Concerned structure
 ##  @param[in]   _pOwner        Structure to set as owner
@@ -365,56 +365,56 @@ proc orxStructure_GetOwner*(pStructure: pointer): ptr orxSTRUCTURE {.cdecl,
 ##
 
 proc orxStructure_SetOwner*(pStructure: pointer; pOwner: pointer): orxSTATUS {.cdecl,
-    importc: "orxStructure_SetOwner", dynlib: "liborx.so".}
+    importc: "orxStructure_SetOwner", dynlib: "liborxd.so".}
 ## * Gets first stored structure (first list cell or tree root depending on storage type)
 ##  @param[in]   _eStructureID   Concerned structure ID
 ##  @return      orxSTRUCTURE
 ##
 
 proc orxStructure_GetFirst*(eStructureID: orxSTRUCTURE_ID): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_GetFirst", dynlib: "liborx.so".}
+    importc: "orxStructure_GetFirst", dynlib: "liborxd.so".}
 ## * Gets last stored structure (last list cell or tree root depending on storage type)
 ##  @param[in]   _eStructureID   Concerned structure ID
 ##  @return      orxSTRUCTURE
 ##
 
 proc orxStructure_GetLast*(eStructureID: orxSTRUCTURE_ID): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_GetLast", dynlib: "liborx.so".}
+    importc: "orxStructure_GetLast", dynlib: "liborxd.so".}
 ## * Gets structure tree parent
 ##  @param[in]   _pStructure    Concerned structure
 ##  @return      orxSTRUCTURE
 ##
 
 proc orxStructure_GetParent*(pStructure: pointer): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_GetParent", dynlib: "liborx.so".}
+    importc: "orxStructure_GetParent", dynlib: "liborxd.so".}
 ## * Gets structure tree child
 ##  @param[in]   _pStructure    Concerned structure
 ##  @return      orxSTRUCTURE
 ##
 
 proc orxStructure_GetChild*(pStructure: pointer): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_GetChild", dynlib: "liborx.so".}
+    importc: "orxStructure_GetChild", dynlib: "liborxd.so".}
 ## * Gets structure tree sibling
 ##  @param[in]   _pStructure    Concerned structure
 ##  @return      orxSTRUCTURE
 ##
 
 proc orxStructure_GetSibling*(pStructure: pointer): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_GetSibling", dynlib: "liborx.so".}
+    importc: "orxStructure_GetSibling", dynlib: "liborxd.so".}
 ## * Gets structure list previous
 ##  @param[in]   _pStructure    Concerned structure
 ##  @return      orxSTRUCTURE
 ##
 
 proc orxStructure_GetPrevious*(pStructure: pointer): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_GetPrevious", dynlib: "liborx.so".}
+    importc: "orxStructure_GetPrevious", dynlib: "liborxd.so".}
 ## * Gets structure list next
 ##  @param[in]   _pStructure    Concerned structure
 ##  @return      orxSTRUCTURE
 ##
 
 proc orxStructure_GetNext*(pStructure: pointer): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxStructure_GetNext", dynlib: "liborx.so".}
+    importc: "orxStructure_GetNext", dynlib: "liborxd.so".}
 ## * Sets structure tree parent
 ##  @param[in]   _pStructure    Concerned structure
 ##  @param[in]   _phParent       Structure to set as parent
@@ -422,13 +422,13 @@ proc orxStructure_GetNext*(pStructure: pointer): ptr orxSTRUCTURE {.cdecl,
 ##
 
 proc orxStructure_SetParent*(pStructure: pointer; phParent: pointer): orxSTATUS {.
-    cdecl, importc: "orxStructure_SetParent", dynlib: "liborx.so".}
+    cdecl, importc: "orxStructure_SetParent", dynlib: "liborxd.so".}
 ## * Logs all user-generated active structures
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxStructure_LogAll*(): orxSTATUS {.cdecl, importc: "orxStructure_LogAll",
-                                      dynlib: "liborx.so".}
+                                      dynlib: "liborxd.so".}
 ## * *** Inlined structure accessors ***
 ## * Increases structure reference count
 ##  @param[in]   _pStructure    Concerned structure

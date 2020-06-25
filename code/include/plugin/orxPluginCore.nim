@@ -91,7 +91,7 @@ proc orxPlugin_AddCoreInfo*(ePluginCoreID: orxPLUGIN_CORE_ID;
                            eModuleID: orxMODULE_ID;
                            astCoreFunction: ptr orxPLUGIN_CORE_FUNCTION;
                            u32CoreFunctionNumber: orxU32) {.cdecl,
-    importc: "orxPlugin_AddCoreInfo", dynlib: "liborx.so".}
+    importc: "orxPlugin_AddCoreInfo", dynlib: "liborxd.so".}
 when defined(EMBEDDED):
   ## * Binds a core plugin to its embedded implementation
   ##  Has to be called during a core module init
@@ -100,12 +100,12 @@ when defined(EMBEDDED):
   ##
   proc orxPlugin_BindCoreInfo*(ePluginCoreID: orxPLUGIN_CORE_ID;
                               pfnPluginInit: orxPLUGIN_INIT_FUNCTION) {.cdecl,
-      importc: "orxPlugin_BindCoreInfo", dynlib: "liborx.so".}
+      importc: "orxPlugin_BindCoreInfo", dynlib: "liborxd.so".}
 ## * Default core plugin function
 ##  Needs to be referenced by all core functions at module init.
 ##
 
 proc orxPlugin_DefaultCoreFunction*(zFunctionName: cstring;
                                    zFileName: cstring; u32Line: orxU32): pointer {.
-    cdecl, importc: "orxPlugin_DefaultCoreFunction", dynlib: "liborx.so".}
+    cdecl, importc: "orxPlugin_DefaultCoreFunction", dynlib: "liborxd.so".}
 ## * @}

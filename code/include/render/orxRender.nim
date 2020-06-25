@@ -115,7 +115,7 @@ type
 ## * Render module setup
 ##
 
-proc orxRender_Setup*() {.cdecl, importc: "orxRender_Setup", dynlib: "liborx.so".}
+proc orxRender_Setup*() {.cdecl, importc: "orxRender_Setup", dynlib: "liborxd.so".}
 ## **************************************************************************
 ##  Functions extended by plugins
 ## *************************************************************************
@@ -124,11 +124,11 @@ proc orxRender_Setup*() {.cdecl, importc: "orxRender_Setup", dynlib: "liborx.so"
 ##
 
 proc orxRender_Init*(): orxSTATUS {.cdecl, importc: "orxRender_Init",
-                                 dynlib: "liborx.so".}
+                                 dynlib: "liborxd.so".}
 ## * Exits from the render module
 ##
 
-proc orxRender_Exit*() {.cdecl, importc: "orxRender_Exit", dynlib: "liborx.so".}
+proc orxRender_Exit*() {.cdecl, importc: "orxRender_Exit", dynlib: "liborxd.so".}
 ## * Get a world position given a screen one (absolute picking)
 ##  @param[in]   _pvScreenPosition                     Concerned screen position
 ##  @param[in]   _pstViewport                          Concerned viewport, if nil then either the last viewport that contains the position (if any), or the last viewport with a camera in the list if none contains the position
@@ -139,7 +139,7 @@ proc orxRender_Exit*() {.cdecl, importc: "orxRender_Exit", dynlib: "liborx.so".}
 proc orxRender_GetWorldPosition*(pvScreenPosition: ptr orxVECTOR;
                                 pstViewport: ptr orxVIEWPORT;
                                 pvWorldPosition: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxRender_GetWorldPosition", dynlib: "liborx.so".}
+    cdecl, importc: "orxRender_GetWorldPosition", dynlib: "liborxd.so".}
 ## * Get a screen position given a world one and a viewport (rendering position)
 ##  @param[in]   _pvWorldPosition                      Concerned world position
 ##  @param[in]   _pstViewport                          Concerned viewport, if nil then the last viewport with a camera will be used
@@ -150,5 +150,5 @@ proc orxRender_GetWorldPosition*(pvScreenPosition: ptr orxVECTOR;
 proc orxRender_GetScreenPosition*(pvWorldPosition: ptr orxVECTOR;
                                  pstViewport: ptr orxVIEWPORT;
                                  pvScreenPosition: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxRender_GetScreenPosition", dynlib: "liborx.so".}
+    cdecl, importc: "orxRender_GetScreenPosition", dynlib: "liborxd.so".}
 ## * @}

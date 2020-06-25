@@ -282,7 +282,7 @@ type
 ## * Display module setup
 ##
 
-proc orxDisplay_Setup*() {.cdecl, importc: "orxDisplay_Setup", dynlib: "liborx.so".}
+proc orxDisplay_Setup*() {.cdecl, importc: "orxDisplay_Setup", dynlib: "liborxd.so".}
 ## * Sets all components of an orxRGBA
 ##  @param[in]   _u8R            Red value to set
 ##  @param[in]   _u8G            Green value to set
@@ -619,7 +619,7 @@ proc orxColor_FromHSVToRGB*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
 ##
 
 proc orxDisplay_GetBlendModeFromString*(zBlendMode: cstring): orxDISPLAY_BLEND_MODE {.
-    cdecl, importc: "orxDisplay_GetBlendModeFromString", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_GetBlendModeFromString", dynlib: "liborxd.so".}
 ## **************************************************************************
 ##  Functions extended by plugins
 ## *************************************************************************
@@ -628,23 +628,23 @@ proc orxDisplay_GetBlendModeFromString*(zBlendMode: cstring): orxDISPLAY_BLEND_M
 ##
 
 proc orxDisplay_Init*(): orxSTATUS {.cdecl, importc: "orxDisplay_Init",
-                                  dynlib: "liborx.so".}
+                                  dynlib: "liborxd.so".}
 ## * Exits from the display module
 ##
 
-proc orxDisplay_Exit*() {.cdecl, importc: "orxDisplay_Exit", dynlib: "liborx.so".}
+proc orxDisplay_Exit*() {.cdecl, importc: "orxDisplay_Exit", dynlib: "liborxd.so".}
 ## * Swaps/flips bufers (display on screen the current frame)
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxDisplay_Swap*(): orxSTATUS {.cdecl, importc: "orxDisplay_Swap",
-                                  dynlib: "liborx.so".}
+                                  dynlib: "liborxd.so".}
 ## * Gets screen bitmap
 ##  @return orxBITMAP / nil
 ##
 
 proc orxDisplay_GetScreenBitmap*(): ptr orxBITMAP {.cdecl,
-    importc: "orxDisplay_GetScreenBitmap", dynlib: "liborx.so".}
+    importc: "orxDisplay_GetScreenBitmap", dynlib: "liborxd.so".}
 ## * Gets screen size
 ##  @param[out]   _pfWidth                             Screen width
 ##  @param[out]   _pfHeight                            Screen height
@@ -652,7 +652,7 @@ proc orxDisplay_GetScreenBitmap*(): ptr orxBITMAP {.cdecl,
 ##
 
 proc orxDisplay_GetScreenSize*(pfWidth: ptr orxFLOAT; pfHeight: ptr orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxDisplay_GetScreenSize", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_GetScreenSize", dynlib: "liborxd.so".}
 ## * Creates a bitmap
 ##  @param[in]   _u32Width                             Bitmap width
 ##  @param[in]   _u32Height                            Bitmap height
@@ -660,20 +660,20 @@ proc orxDisplay_GetScreenSize*(pfWidth: ptr orxFLOAT; pfHeight: ptr orxFLOAT): o
 ##
 
 proc orxDisplay_CreateBitmap*(u32Width: orxU32; u32Height: orxU32): ptr orxBITMAP {.
-    cdecl, importc: "orxDisplay_CreateBitmap", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_CreateBitmap", dynlib: "liborxd.so".}
 ## * Deletes a bitmap
 ##  @param[in]   _pstBitmap                            Concerned bitmap
 ##
 
 proc orxDisplay_DeleteBitmap*(pstBitmap: ptr orxBITMAP) {.cdecl,
-    importc: "orxDisplay_DeleteBitmap", dynlib: "liborx.so".}
+    importc: "orxDisplay_DeleteBitmap", dynlib: "liborxd.so".}
 ## * Loads a bitmap from file (an event of ID orxDISPLAY_EVENT_BITMAP_LOAD will be sent upon completion, whether the loading is asynchronous or not)
 ##  @param[in]   _zFileName                            Name of the file to load
 ##  @return orxBITMAP * / nil
 ##
 
 proc orxDisplay_LoadBitmap*(zFileName: cstring): ptr orxBITMAP {.cdecl,
-    importc: "orxDisplay_LoadBitmap", dynlib: "liborx.so".}
+    importc: "orxDisplay_LoadBitmap", dynlib: "liborxd.so".}
 ## * Saves a bitmap to file
 ##  @param[in]   _pstBitmap                            Concerned bitmap
 ##  @param[in]   _zFileName                            Name of the file where to store the bitmap
@@ -681,20 +681,20 @@ proc orxDisplay_LoadBitmap*(zFileName: cstring): ptr orxBITMAP {.cdecl,
 ##
 
 proc orxDisplay_SaveBitmap*(pstBitmap: ptr orxBITMAP; zFileName: cstring): orxSTATUS {.
-    cdecl, importc: "orxDisplay_SaveBitmap", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_SaveBitmap", dynlib: "liborxd.so".}
 ## * Sets temp bitmap, if a valid temp bitmap is given, load operations will be asynchronous
 ##  @param[in]   _pstBitmap                            Concerned bitmap, nil for forcing synchronous load operations
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxDisplay_SetTempBitmap*(pstBitmap: ptr orxBITMAP): orxSTATUS {.cdecl,
-    importc: "orxDisplay_SetTempBitmap", dynlib: "liborx.so".}
+    importc: "orxDisplay_SetTempBitmap", dynlib: "liborxd.so".}
 ## * Gets current temp bitmap
 ##  @return orxBITMAP, if non-null, load operations are currently asynchronous, otherwise they're synchronous
 ##
 
 proc orxDisplay_GetTempBitmap*(): ptr orxBITMAP {.cdecl,
-    importc: "orxDisplay_GetTempBitmap", dynlib: "liborx.so".}
+    importc: "orxDisplay_GetTempBitmap", dynlib: "liborxd.so".}
 ## * Sets destination bitmaps
 ##  @param[in]   _apstBitmapList                       Destination bitmap list
 ##  @param[in]   _u32Number                            Number of destination bitmaps
@@ -703,7 +703,7 @@ proc orxDisplay_GetTempBitmap*(): ptr orxBITMAP {.cdecl,
 
 proc orxDisplay_SetDestinationBitmaps*(apstBitmapList: ptr ptr orxBITMAP;
                                       u32Number: orxU32): orxSTATUS {.cdecl,
-    importc: "orxDisplay_SetDestinationBitmaps", dynlib: "liborx.so".}
+    importc: "orxDisplay_SetDestinationBitmaps", dynlib: "liborxd.so".}
 ## * Clears a bitmap
 ##  @param[in]   _pstBitmap                            Concerned bitmap, if nil all the current destination bitmaps will be cleared instead
 ##  @param[in]   _stColor                              Color to clear the bitmap with
@@ -711,14 +711,14 @@ proc orxDisplay_SetDestinationBitmaps*(apstBitmapList: ptr ptr orxBITMAP;
 ##
 
 proc orxDisplay_ClearBitmap*(pstBitmap: ptr orxBITMAP; stColor: orxRGBA): orxSTATUS {.
-    cdecl, importc: "orxDisplay_ClearBitmap", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_ClearBitmap", dynlib: "liborxd.so".}
 ## * Sets current blend mode
 ##  @param[in]   _eBlendMode                           Blend mode to set
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxDisplay_SetBlendMode*(eBlendMode: orxDISPLAY_BLEND_MODE): orxSTATUS {.cdecl,
-    importc: "orxDisplay_SetBlendMode", dynlib: "liborx.so".}
+    importc: "orxDisplay_SetBlendMode", dynlib: "liborxd.so".}
 ## * Sets a bitmap clipping for blitting (both as source and destination)
 ##  @param[in]   _pstBitmap                            Concerned bitmap, nil to target the first destination bitmap
 ##  @param[in]   _u32TLX                               Top left X coord in pixels
@@ -730,7 +730,7 @@ proc orxDisplay_SetBlendMode*(eBlendMode: orxDISPLAY_BLEND_MODE): orxSTATUS {.cd
 
 proc orxDisplay_SetBitmapClipping*(pstBitmap: ptr orxBITMAP; u32TLX: orxU32;
                                   u32TLY: orxU32; u32BRX: orxU32; u32BRY: orxU32): orxSTATUS {.
-    cdecl, importc: "orxDisplay_SetBitmapClipping", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_SetBitmapClipping", dynlib: "liborxd.so".}
 ## * Sets a bitmap data (RGBA memory format)
 ##  @param[in]   _pstBitmap                            Concerned bitmap
 ##  @param[in]   _au8Data                              Data (4 channels, RGBA)
@@ -740,7 +740,7 @@ proc orxDisplay_SetBitmapClipping*(pstBitmap: ptr orxBITMAP; u32TLX: orxU32;
 
 proc orxDisplay_SetBitmapData*(pstBitmap: ptr orxBITMAP; au8Data: ptr orxU8;
                               u32ByteNumber: orxU32): orxSTATUS {.cdecl,
-    importc: "orxDisplay_SetBitmapData", dynlib: "liborx.so".}
+    importc: "orxDisplay_SetBitmapData", dynlib: "liborxd.so".}
 ## * Gets a bitmap data (RGBA memory format)
 ##  @param[in]   _pstBitmap                            Concerned bitmap
 ##  @param[in]   _au8Data                              Output buffer (4 channels, RGBA)
@@ -750,7 +750,7 @@ proc orxDisplay_SetBitmapData*(pstBitmap: ptr orxBITMAP; au8Data: ptr orxU8;
 
 proc orxDisplay_GetBitmapData*(pstBitmap: ptr orxBITMAP; au8Data: ptr orxU8;
                               u32ByteNumber: orxU32): orxSTATUS {.cdecl,
-    importc: "orxDisplay_GetBitmapData", dynlib: "liborx.so".}
+    importc: "orxDisplay_GetBitmapData", dynlib: "liborxd.so".}
 ## * Sets a partial (rectangle) bitmap data (RGBA memory format)
 ##  @param[in]   _pstBitmap                            Concerned bitmap
 ##  @param[in]   _au8Data                              Data (4 channels, RGBA)
@@ -764,7 +764,7 @@ proc orxDisplay_GetBitmapData*(pstBitmap: ptr orxBITMAP; au8Data: ptr orxU8;
 proc orxDisplay_SetPartialBitmapData*(pstBitmap: ptr orxBITMAP; au8Data: ptr orxU8;
                                      u32X: orxU32; u32Y: orxU32; u32Width: orxU32;
                                      u32Height: orxU32): orxSTATUS {.cdecl,
-    importc: "orxDisplay_SetPartialBitmapData", dynlib: "liborx.so".}
+    importc: "orxDisplay_SetPartialBitmapData", dynlib: "liborxd.so".}
 ## * Gets a bitmap size
 ##  @param[in]   _pstBitmap                            Concerned bitmap
 ##  @param[out]  _pfWidth                              Bitmap width
@@ -774,14 +774,14 @@ proc orxDisplay_SetPartialBitmapData*(pstBitmap: ptr orxBITMAP; au8Data: ptr orx
 
 proc orxDisplay_GetBitmapSize*(pstBitmap: ptr orxBITMAP; pfWidth: ptr orxFLOAT;
                               pfHeight: ptr orxFLOAT): orxSTATUS {.cdecl,
-    importc: "orxDisplay_GetBitmapSize", dynlib: "liborx.so".}
+    importc: "orxDisplay_GetBitmapSize", dynlib: "liborxd.so".}
 ## * Gets a bitmap (internal) ID
 ##  @param[in]   _pstBitmap                            Concerned bitmap
 ##  @return orxU32
 ##
 
 proc orxDisplay_GetBitmapID*(pstBitmap: ptr orxBITMAP): orxU32 {.cdecl,
-    importc: "orxDisplay_GetBitmapID", dynlib: "liborx.so".}
+    importc: "orxDisplay_GetBitmapID", dynlib: "liborxd.so".}
 ## * Transforms (and blits onto another) a bitmap
 ##  @param[in]   _pstSrc                               Bitmap to transform and draw
 ##  @param[in]   _pstTransform                         Transformation info (position, scale, rotation, ...)
@@ -796,7 +796,7 @@ proc orxDisplay_TransformBitmap*(pstSrc: ptr orxBITMAP;
                                 stColor: orxRGBA;
                                 eSmoothing: orxDISPLAY_SMOOTHING;
                                 eBlendMode: orxDISPLAY_BLEND_MODE): orxSTATUS {.
-    cdecl, importc: "orxDisplay_TransformBitmap", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_TransformBitmap", dynlib: "liborxd.so".}
 ## * Transforms a text (onto a bitmap)
 ##  @param[in]   _zString                              String to display
 ##  @param[in]   _pstFont                              Font bitmap
@@ -813,7 +813,7 @@ proc orxDisplay_TransformText*(zString: cstring; pstFont: ptr orxBITMAP;
                               pstTransform: ptr orxDISPLAY_TRANSFORM;
                               stColor: orxRGBA; eSmoothing: orxDISPLAY_SMOOTHING;
                               eBlendMode: orxDISPLAY_BLEND_MODE): orxSTATUS {.
-    cdecl, importc: "orxDisplay_TransformText", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_TransformText", dynlib: "liborxd.so".}
 ## * Draws a line
 ##  @param[in]   _pvStart                              Start point
 ##  @param[in]   _pvEnd                                End point
@@ -823,7 +823,7 @@ proc orxDisplay_TransformText*(zString: cstring; pstFont: ptr orxBITMAP;
 
 proc orxDisplay_DrawLine*(pvStart: ptr orxVECTOR; pvEnd: ptr orxVECTOR;
                          stColor: orxRGBA): orxSTATUS {.cdecl,
-    importc: "orxDisplay_DrawLine", dynlib: "liborx.so".}
+    importc: "orxDisplay_DrawLine", dynlib: "liborxd.so".}
 ## * Draws a polyline (aka open polygon)
 ##  @param[in]   _avVertexList                         List of vertices
 ##  @param[in]   _u32VertexNumber                      Number of vertices in the list
@@ -833,7 +833,7 @@ proc orxDisplay_DrawLine*(pvStart: ptr orxVECTOR; pvEnd: ptr orxVECTOR;
 
 proc orxDisplay_DrawPolyline*(avVertexList: ptr orxVECTOR; u32VertexNumber: orxU32;
                              stColor: orxRGBA): orxSTATUS {.cdecl,
-    importc: "orxDisplay_DrawPolyline", dynlib: "liborx.so".}
+    importc: "orxDisplay_DrawPolyline", dynlib: "liborxd.so".}
 ## * Draws a (closed) polygon; filled polygons *need* to be either convex or star-shaped concave with the first vertex part of the polygon's kernel
 ##  @param[in]   _avVertexList                         List of vertices
 ##  @param[in]   _u32VertexNumber                      Number of vertices in the list
@@ -844,7 +844,7 @@ proc orxDisplay_DrawPolyline*(avVertexList: ptr orxVECTOR; u32VertexNumber: orxU
 
 proc orxDisplay_DrawPolygon*(avVertexList: ptr orxVECTOR; u32VertexNumber: orxU32;
                             stColor: orxRGBA; bFill: orxBOOL): orxSTATUS {.cdecl,
-    importc: "orxDisplay_DrawPolygon", dynlib: "liborx.so".}
+    importc: "orxDisplay_DrawPolygon", dynlib: "liborxd.so".}
 ## * Draws a circle
 ##  @param[in]   _pvCenter                             Center
 ##  @param[in]   _fRadius                              Radius
@@ -855,7 +855,7 @@ proc orxDisplay_DrawPolygon*(avVertexList: ptr orxVECTOR; u32VertexNumber: orxU3
 
 proc orxDisplay_DrawCircle*(pvCenter: ptr orxVECTOR; fRadius: orxFLOAT;
                            stColor: orxRGBA; bFill: orxBOOL): orxSTATUS {.cdecl,
-    importc: "orxDisplay_DrawCircle", dynlib: "liborx.so".}
+    importc: "orxDisplay_DrawCircle", dynlib: "liborxd.so".}
 ## * Draws an oriented box
 ##  @param[in]   _pstBox                               Box to draw
 ##  @param[in]   _stColor                              Color
@@ -864,7 +864,7 @@ proc orxDisplay_DrawCircle*(pvCenter: ptr orxVECTOR; fRadius: orxFLOAT;
 ##
 
 proc orxDisplay_DrawOBox*(pstBox: ptr orxOBOX; stColor: orxRGBA; bFill: orxBOOL): orxSTATUS {.
-    cdecl, importc: "orxDisplay_DrawOBox", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_DrawOBox", dynlib: "liborxd.so".}
 ## * Draws a textured mesh
 ##  @param[in]   _pstMesh                              Mesh to draw, if no primitive and no index buffer is given, separate quads arrangement will be assumed
 ##  @param[in]   _pstBitmap                            Bitmap to use for texturing, nil to use the current one
@@ -876,13 +876,13 @@ proc orxDisplay_DrawOBox*(pstBox: ptr orxOBOX; stColor: orxRGBA; bFill: orxBOOL)
 proc orxDisplay_DrawMesh*(pstMesh: ptr orxDISPLAY_MESH; pstBitmap: ptr orxBITMAP;
                          eSmoothing: orxDISPLAY_SMOOTHING;
                          eBlendMode: orxDISPLAY_BLEND_MODE): orxSTATUS {.cdecl,
-    importc: "orxDisplay_DrawMesh", dynlib: "liborx.so".}
+    importc: "orxDisplay_DrawMesh", dynlib: "liborxd.so".}
 ## * Has shader support?
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxDisplay_HasShaderSupport*(): orxBOOL {.cdecl,
-    importc: "orxDisplay_HasShaderSupport", dynlib: "liborx.so".}
+    importc: "orxDisplay_HasShaderSupport", dynlib: "liborxd.so".}
 ## * Creates (compiles) a shader
 ##  @param[in]   _azCodeList                           List of shader code to compile, in order
 ##  @param[in]   _u32Size                              Size of the shader code list
@@ -894,27 +894,27 @@ proc orxDisplay_HasShaderSupport*(): orxBOOL {.cdecl,
 proc orxDisplay_CreateShader*(azCodeList: cstringArray; u32Size: orxU32;
                              pstParamList: ptr orxLINKLIST;
                              bUseCustomParam: orxBOOL): orxHANDLE {.cdecl,
-    importc: "orxDisplay_CreateShader", dynlib: "liborx.so".}
+    importc: "orxDisplay_CreateShader", dynlib: "liborxd.so".}
 ## * Deletes a compiled shader
 ##  @param[in]   _hShader                              Shader to delete
 ##
 
 proc orxDisplay_DeleteShader*(hShader: orxHANDLE) {.cdecl,
-    importc: "orxDisplay_DeleteShader", dynlib: "liborx.so".}
+    importc: "orxDisplay_DeleteShader", dynlib: "liborxd.so".}
 ## * Starts a shader rendering
 ##  @param[in]   _hShader                              Shader to start
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxDisplay_StartShader*(hShader: orxHANDLE): orxSTATUS {.cdecl,
-    importc: "orxDisplay_StartShader", dynlib: "liborx.so".}
+    importc: "orxDisplay_StartShader", dynlib: "liborxd.so".}
 ## * Stops a shader rendering
 ##  @param[in]   _hShader                              Shader to stop
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxDisplay_StopShader*(hShader: orxHANDLE): orxSTATUS {.cdecl,
-    importc: "orxDisplay_StopShader", dynlib: "liborx.so".}
+    importc: "orxDisplay_StopShader", dynlib: "liborxd.so".}
 ## * Gets a shader parameter's ID
 ##  @param[in]   _hShader                              Concerned shader
 ##  @param[in]   _zParam                               Parameter name
@@ -925,7 +925,7 @@ proc orxDisplay_StopShader*(hShader: orxHANDLE): orxSTATUS {.cdecl,
 
 proc orxDisplay_GetParameterID*(hShader: orxHANDLE; zParam: cstring;
                                s32Index: orxS32; bIsTexture: orxBOOL): orxS32 {.
-    cdecl, importc: "orxDisplay_GetParameterID", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_GetParameterID", dynlib: "liborxd.so".}
 ## * Sets a shader parameter (orxBITMAP)
 ##  @param[in]   _hShader                              Concerned shader
 ##  @param[in]   _s32ID                                ID of parameter to set
@@ -935,7 +935,7 @@ proc orxDisplay_GetParameterID*(hShader: orxHANDLE; zParam: cstring;
 
 proc orxDisplay_SetShaderBitmap*(hShader: orxHANDLE; s32ID: orxS32;
                                 pstValue: ptr orxBITMAP): orxSTATUS {.cdecl,
-    importc: "orxDisplay_SetShaderBitmap", dynlib: "liborx.so".}
+    importc: "orxDisplay_SetShaderBitmap", dynlib: "liborxd.so".}
 ## * Sets a shader parameter (orxFLOAT)
 ##  @param[in]   _hShader                              Concerned shader
 ##  @param[in]   _s32ID                                ID of parameter to set
@@ -944,7 +944,7 @@ proc orxDisplay_SetShaderBitmap*(hShader: orxHANDLE; s32ID: orxS32;
 ##
 
 proc orxDisplay_SetShaderFloat*(hShader: orxHANDLE; s32ID: orxS32; fValue: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxDisplay_SetShaderFloat", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_SetShaderFloat", dynlib: "liborxd.so".}
 ## * Sets a shader parameter (orxVECTOR)
 ##  @param[in]   _hShader                              Concerned shader
 ##  @param[in]   _s32ID                                ID of parameter to set
@@ -954,40 +954,40 @@ proc orxDisplay_SetShaderFloat*(hShader: orxHANDLE; s32ID: orxS32; fValue: orxFL
 
 proc orxDisplay_SetShaderVector*(hShader: orxHANDLE; s32ID: orxS32;
                                 pvValue: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importc: "orxDisplay_SetShaderVector", dynlib: "liborx.so".}
+    importc: "orxDisplay_SetShaderVector", dynlib: "liborxd.so".}
 ## * Enables / disables vertical synchro
 ##  @param[in]   _bEnable                              Enable / disable
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxDisplay_EnableVSync*(bEnable: orxBOOL): orxSTATUS {.cdecl,
-    importc: "orxDisplay_EnableVSync", dynlib: "liborx.so".}
+    importc: "orxDisplay_EnableVSync", dynlib: "liborxd.so".}
 ## * Is vertical synchro enabled?
 ##  @return orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxDisplay_IsVSyncEnabled*(): orxBOOL {.cdecl,
-    importc: "orxDisplay_IsVSyncEnabled", dynlib: "liborx.so".}
+    importc: "orxDisplay_IsVSyncEnabled", dynlib: "liborxd.so".}
 ## * Sets full screen mode
 ##  @param[in]   _bFullScreen                          orxTRUE / orxFALSE
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxDisplay_SetFullScreen*(bFullScreen: orxBOOL): orxSTATUS {.cdecl,
-    importc: "orxDisplay_SetFullScreen", dynlib: "liborx.so".}
+    importc: "orxDisplay_SetFullScreen", dynlib: "liborxd.so".}
 ## * Is in full screen mode?
 ##  @return orxTRUE if full screen, orxFALSE otherwise
 ##
 
 proc orxDisplay_IsFullScreen*(): orxBOOL {.cdecl,
                                         importc: "orxDisplay_IsFullScreen",
-                                        dynlib: "liborx.so".}
+                                        dynlib: "liborxd.so".}
 ## * Gets available video mode count
 ##  @return Available video mode count
 ##
 
 proc orxDisplay_GetVideoModeCount*(): orxU32 {.cdecl,
-    importc: "orxDisplay_GetVideoModeCount", dynlib: "liborx.so".}
+    importc: "orxDisplay_GetVideoModeCount", dynlib: "liborxd.so".}
 ## * Gets an available video mode
 ##  @param[in]   _u32Index                             Video mode index, pass _u32Index < orxDisplay_GetVideoModeCount() for an available listed mode, orxU32_UNDEFINED for the the default (desktop) mode and any other value for current mode
 ##  @param[out]  _pstVideoMode                         Storage for the video mode
@@ -996,19 +996,19 @@ proc orxDisplay_GetVideoModeCount*(): orxU32 {.cdecl,
 
 proc orxDisplay_GetVideoMode*(u32Index: orxU32;
                              pstVideoMode: ptr orxDISPLAY_VIDEO_MODE): ptr orxDISPLAY_VIDEO_MODE {.
-    cdecl, importc: "orxDisplay_GetVideoMode", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_GetVideoMode", dynlib: "liborxd.so".}
 ## * Gets an available video mode
 ##  @param[in]  _pstVideoMode                          Video mode to set
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxDisplay_SetVideoMode*(pstVideoMode: ptr orxDISPLAY_VIDEO_MODE): orxSTATUS {.
-    cdecl, importc: "orxDisplay_SetVideoMode", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_SetVideoMode", dynlib: "liborxd.so".}
 ## * Is video mode available
 ##  @param[in]  _pstVideoMode                          Video mode to test
 ##  @return orxTRUE is available, orxFALSE otherwise
 ##
 
 proc orxDisplay_IsVideoModeAvailable*(pstVideoMode: ptr orxDISPLAY_VIDEO_MODE): orxBOOL {.
-    cdecl, importc: "orxDisplay_IsVideoModeAvailable", dynlib: "liborx.so".}
+    cdecl, importc: "orxDisplay_IsVideoModeAvailable", dynlib: "liborxd.so".}
 ## * @}

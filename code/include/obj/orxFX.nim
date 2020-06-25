@@ -90,41 +90,41 @@ type
 ## * FX module setup
 ##
 
-proc orxFX_Setup*() {.cdecl, importc: "orxFX_Setup", dynlib: "liborx.so".}
+proc orxFX_Setup*() {.cdecl, importc: "orxFX_Setup", dynlib: "liborxd.so".}
 ## * Inits the FX module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxFX_Init*(): orxSTATUS {.cdecl, importc: "orxFX_Init", dynlib: "liborx.so".}
+proc orxFX_Init*(): orxSTATUS {.cdecl, importc: "orxFX_Init", dynlib: "liborxd.so".}
 ## * Exits from the FX module
 ##
 
-proc orxFX_Exit*() {.cdecl, importc: "orxFX_Exit", dynlib: "liborx.so".}
+proc orxFX_Exit*() {.cdecl, importc: "orxFX_Exit", dynlib: "liborxd.so".}
 ## * Creates an empty FX
 ##  @return orxFX / nil
 ##
 
-proc orxFX_Create*(): ptr orxFX {.cdecl, importc: "orxFX_Create", dynlib: "liborx.so".}
+proc orxFX_Create*(): ptr orxFX {.cdecl, importc: "orxFX_Create", dynlib: "liborxd.so".}
 ## * Creates an FX from config
 ##  @param[in]   _zConfigID    Config ID
 ##  @ return orxFX / nil
 ##
 
 proc orxFX_CreateFromConfig*(zConfigID: cstring): ptr orxFX {.cdecl,
-    importc: "orxFX_CreateFromConfig", dynlib: "liborx.so".}
+    importc: "orxFX_CreateFromConfig", dynlib: "liborxd.so".}
 ## * Deletes an FX
 ##  @param[in] _pstFX            Concerned FX
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxFX_Delete*(pstFX: ptr orxFX): orxSTATUS {.cdecl, importc: "orxFX_Delete",
-    dynlib: "liborx.so".}
+    dynlib: "liborxd.so".}
 ## * Clears cache (if any FX is still in active use, it'll remain in memory until not referenced anymore)
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxFX_ClearCache*(): orxSTATUS {.cdecl, importc: "orxFX_ClearCache",
-                                   dynlib: "liborx.so".}
+                                   dynlib: "liborxd.so".}
 ## * Applies FX on object
 ##  @param[in] _pstFX            FX to apply
 ##  @param[in] _pstObject        Object on which to apply the FX
@@ -135,21 +135,21 @@ proc orxFX_ClearCache*(): orxSTATUS {.cdecl, importc: "orxFX_ClearCache",
 
 proc orxFX_Apply*(pstFX: ptr orxFX; pstObject: ptr orxOBJECT; fStartTime: orxFLOAT;
                  fEndTime: orxFLOAT): orxSTATUS {.cdecl, importc: "orxFX_Apply",
-    dynlib: "liborx.so".}
+    dynlib: "liborxd.so".}
 ## * Enables/disables an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _bEnable        Enable / disable
 ##
 
 proc orxFX_Enable*(pstFX: ptr orxFX; bEnable: orxBOOL) {.cdecl,
-    importc: "orxFX_Enable", dynlib: "liborx.so".}
+    importc: "orxFX_Enable", dynlib: "liborxd.so".}
 ## * Is FX enabled?
 ##  @param[in]   _pstFX          Concerned FX
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxFX_IsEnabled*(pstFX: ptr orxFX): orxBOOL {.cdecl, importc: "orxFX_IsEnabled",
-    dynlib: "liborx.so".}
+    dynlib: "liborxd.so".}
 ## * Adds alpha to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -171,7 +171,7 @@ proc orxFX_AddAlpha*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT;
                     fAmplification: orxFLOAT; fAcceleration: orxFLOAT;
                     fStartAlpha: orxFLOAT; fEndAlpha: orxFLOAT; eCurve: orxFX_CURVE;
                     fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.cdecl,
-    importc: "orxFX_AddAlpha", dynlib: "liborx.so".}
+    importc: "orxFX_AddAlpha", dynlib: "liborxd.so".}
 ## * Adds RGB color to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -193,7 +193,7 @@ proc orxFX_AddRGB*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT;
                   fAmplification: orxFLOAT; fAcceleration: orxFLOAT;
                   pvStartColor: ptr orxVECTOR; pvEndColor: ptr orxVECTOR;
                   eCurve: orxFX_CURVE; fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.
-    cdecl, importc: "orxFX_AddRGB", dynlib: "liborx.so".}
+    cdecl, importc: "orxFX_AddRGB", dynlib: "liborxd.so".}
 ## * Adds HSL color to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -215,7 +215,7 @@ proc orxFX_AddHSL*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT;
                   fAmplification: orxFLOAT; fAcceleration: orxFLOAT;
                   pvStartColor: ptr orxVECTOR; pvEndColor: ptr orxVECTOR;
                   eCurve: orxFX_CURVE; fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.
-    cdecl, importc: "orxFX_AddHSL", dynlib: "liborx.so".}
+    cdecl, importc: "orxFX_AddHSL", dynlib: "liborxd.so".}
 ## * Adds HSV color to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -237,7 +237,7 @@ proc orxFX_AddHSV*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT;
                   fAmplification: orxFLOAT; fAcceleration: orxFLOAT;
                   pvStartColor: ptr orxVECTOR; pvEndColor: ptr orxVECTOR;
                   eCurve: orxFX_CURVE; fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.
-    cdecl, importc: "orxFX_AddHSV", dynlib: "liborx.so".}
+    cdecl, importc: "orxFX_AddHSV", dynlib: "liborxd.so".}
 ## * Adds rotation to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -259,7 +259,7 @@ proc orxFX_AddRotation*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLO
                        fAmplification: orxFLOAT; fAcceleration: orxFLOAT;
                        fStartRotation: orxFLOAT; fEndRotation: orxFLOAT;
                        eCurve: orxFX_CURVE; fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.
-    cdecl, importc: "orxFX_AddRotation", dynlib: "liborx.so".}
+    cdecl, importc: "orxFX_AddRotation", dynlib: "liborxd.so".}
 ## * Adds scale to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -281,7 +281,7 @@ proc orxFX_AddScale*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT;
                     fAmplification: orxFLOAT; fAcceleration: orxFLOAT;
                     pvStartScale: ptr orxVECTOR; pvEndScale: ptr orxVECTOR;
                     eCurve: orxFX_CURVE; fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.
-    cdecl, importc: "orxFX_AddScale", dynlib: "liborx.so".}
+    cdecl, importc: "orxFX_AddScale", dynlib: "liborxd.so".}
 ## * Adds position to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -304,7 +304,7 @@ proc orxFX_AddPosition*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLO
                        pvStartTranslation: ptr orxVECTOR;
                        pvEndTranslation: ptr orxVECTOR; eCurve: orxFX_CURVE;
                        fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.cdecl,
-    importc: "orxFX_AddPosition", dynlib: "liborx.so".}
+    importc: "orxFX_AddPosition", dynlib: "liborxd.so".}
 ## * Adds speed to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -326,7 +326,7 @@ proc orxFX_AddSpeed*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT;
                     fAmplification: orxFLOAT; fAcceleration: orxFLOAT;
                     pvStartSpeed: ptr orxVECTOR; pvEndSpeed: ptr orxVECTOR;
                     eCurve: orxFX_CURVE; fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.
-    cdecl, importc: "orxFX_AddSpeed", dynlib: "liborx.so".}
+    cdecl, importc: "orxFX_AddSpeed", dynlib: "liborxd.so".}
 ## * Adds volume to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -348,7 +348,7 @@ proc orxFX_AddVolume*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT
                      fAmplification: orxFLOAT; fAcceleration: orxFLOAT;
                      fStartVolume: orxFLOAT; fEndVolume: orxFLOAT;
                      eCurve: orxFX_CURVE; fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.
-    cdecl, importc: "orxFX_AddVolume", dynlib: "liborx.so".}
+    cdecl, importc: "orxFX_AddVolume", dynlib: "liborxd.so".}
 ## * Adds pitch to an FX
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _fStartTime     Time start
@@ -370,7 +370,7 @@ proc orxFX_AddPitch*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT;
                     fAmplification: orxFLOAT; fAcceleration: orxFLOAT;
                     fStartPitch: orxFLOAT; fEndPitch: orxFLOAT; eCurve: orxFX_CURVE;
                     fPow: orxFLOAT; u32Flags: orxU32): orxSTATUS {.cdecl,
-    importc: "orxFX_AddPitch", dynlib: "liborx.so".}
+    importc: "orxFX_AddPitch", dynlib: "liborxd.so".}
 ## * Adds a slot to an FX from config
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _zSlotID        Config ID
@@ -378,21 +378,21 @@ proc orxFX_AddPitch*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT;
 ##
 
 proc orxFX_AddSlotFromConfig*(pstFX: ptr orxFX; zSlotID: cstring): orxSTATUS {.
-    cdecl, importc: "orxFX_AddSlotFromConfig", dynlib: "liborx.so".}
+    cdecl, importc: "orxFX_AddSlotFromConfig", dynlib: "liborxd.so".}
 ## * Gets FX duration
 ##  @param[in]   _pstFX          Concerned FX
 ##  @return      orxFLOAT
 ##
 
 proc orxFX_GetDuration*(pstFX: ptr orxFX): orxFLOAT {.cdecl,
-    importc: "orxFX_GetDuration", dynlib: "liborx.so".}
+    importc: "orxFX_GetDuration", dynlib: "liborxd.so".}
 ## * Gets FX name
 ##  @param[in]   _pstFX          Concerned FX
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxFX_GetName*(pstFX: ptr orxFX): cstring {.cdecl, importc: "orxFX_GetName",
-    dynlib: "liborx.so".}
+    dynlib: "liborxd.so".}
 ## * Set FX loop property
 ##  @param[in]   _pstFX          Concerned FX
 ##  @param[in]   _bLoop          Loop / don't loop
@@ -400,12 +400,12 @@ proc orxFX_GetName*(pstFX: ptr orxFX): cstring {.cdecl, importc: "orxFX_GetName"
 ##
 
 proc orxFX_Loop*(pstFX: ptr orxFX; bLoop: orxBOOL): orxSTATUS {.cdecl,
-    importc: "orxFX_Loop", dynlib: "liborx.so".}
+    importc: "orxFX_Loop", dynlib: "liborxd.so".}
 ## * Is FX looping
 ##  @param[in]   _pstFX          Concerned FX
 ##  @return      orxTRUE if looping, orxFALSE otherwise
 ##
 
 proc orxFX_IsLooping*(pstFX: ptr orxFX): orxBOOL {.cdecl, importc: "orxFX_IsLooping",
-    dynlib: "liborx.so".}
+    dynlib: "liborxd.so".}
 ## * @}

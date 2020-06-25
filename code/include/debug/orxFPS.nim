@@ -45,22 +45,22 @@ import
 
 ## * Setups FPS module
 
-proc orxFPS_Setup*() {.cdecl, importc: "orxFPS_Setup", dynlib: "liborx.so".}
+proc orxFPS_Setup*() {.cdecl, importc: "orxFPS_Setup", dynlib: "liborxd.so".}
 ## * Inits the FPS module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxFPS_Init*(): orxSTATUS {.cdecl, importc: "orxFPS_Init", dynlib: "liborx.so".}
+proc orxFPS_Init*(): orxSTATUS {.cdecl, importc: "orxFPS_Init", dynlib: "liborxd.so".}
 ## * Exits from the FPS module
 
-proc orxFPS_Exit*() {.cdecl, importc: "orxFPS_Exit", dynlib: "liborx.so".}
+proc orxFPS_Exit*() {.cdecl, importc: "orxFPS_Exit", dynlib: "liborxd.so".}
 ## * Increases internal frame count
 
 proc orxFPS_IncreaseFrameCount*() {.cdecl, importc: "orxFPS_IncreaseFrameCount",
-                                  dynlib: "liborx.so".}
+                                  dynlib: "liborxd.so".}
 ## * Gets current FTP value
 ##  @return orxU32
 ##
 
-proc orxFPS_GetFPS*(): orxU32 {.cdecl, importc: "orxFPS_GetFPS", dynlib: "liborx.so".}
+proc orxFPS_GetFPS*(): orxU32 {.cdecl, importc: "orxFPS_GetFPS", dynlib: "liborxd.so".}
 ## * @}

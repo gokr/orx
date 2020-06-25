@@ -115,7 +115,7 @@ template orxS2F*(V: untyped): untyped =
 ##
 
 proc orxMath_InitRandom*(u32Seed: orxU32) {.cdecl, importc: "orxMath_InitRandom",
-    dynlib: "liborx.so".}
+    dynlib: "liborxd.so".}
 ## * Gets a random orxFLOAT value
 ##  @param[in]   _fMin                           Minimum boundary (inclusive)
 ##  @param[in]   _fMax                           Maximum boundary (exclusive)
@@ -123,7 +123,7 @@ proc orxMath_InitRandom*(u32Seed: orxU32) {.cdecl, importc: "orxMath_InitRandom"
 ##
 
 proc orxMath_GetRandomFloat*(fMin: orxFLOAT; fMax: orxFLOAT): orxFLOAT {.cdecl,
-    importc: "orxMath_GetRandomFloat", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomFloat", dynlib: "liborxd.so".}
 ## * Gets a random orxFLOAT value using step increments
 ##  @param[in]   _fMin                           Minimum boundary (inclusive)
 ##  @param[in]   _fMax                           Maximum boundary (exclusive)
@@ -132,7 +132,7 @@ proc orxMath_GetRandomFloat*(fMin: orxFLOAT; fMax: orxFLOAT): orxFLOAT {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomFloat*(fMin: orxFLOAT; fMax: orxFLOAT; fStep: orxFLOAT): orxFLOAT {.
-    cdecl, importc: "orxMath_GetSteppedRandomFloat", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomFloat", dynlib: "liborxd.so".}
 ## * Gets a random orxU32 value
 ##  @param[in]   _u32Min                         Minimum boundary (inclusive)
 ##  @param[in]   _u32Max                         Maximum boundary (inclusive)
@@ -140,7 +140,7 @@ proc orxMath_GetSteppedRandomFloat*(fMin: orxFLOAT; fMax: orxFLOAT; fStep: orxFL
 ##
 
 proc orxMath_GetRandomU32*(u32Min: orxU32; u32Max: orxU32): orxU32 {.cdecl,
-    importc: "orxMath_GetRandomU32", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomU32", dynlib: "liborxd.so".}
 ## * Gets a random U32 value using step increments
 ##  @param[in]   _u32Min                         Minimum boundary (inclusive)
 ##  @param[in]   _u32Max                         Maximum boundary (inclusive)
@@ -149,7 +149,7 @@ proc orxMath_GetRandomU32*(u32Min: orxU32; u32Max: orxU32): orxU32 {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomU32*(u32Min: orxU32; u32Max: orxU32; u32Step: orxU32): orxU32 {.
-    cdecl, importc: "orxMath_GetSteppedRandomU32", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomU32", dynlib: "liborxd.so".}
 ## * Gets a random orxS32 value
 ##  @param[in]   _s32Min                         Minimum boundary (inclusive)
 ##  @param[in]   _s32Max                         Maximum boundary (inclusive)
@@ -157,7 +157,7 @@ proc orxMath_GetSteppedRandomU32*(u32Min: orxU32; u32Max: orxU32; u32Step: orxU3
 ##
 
 proc orxMath_GetRandomS32*(s32Min: orxS32; s32Max: orxS32): orxS32 {.cdecl,
-    importc: "orxMath_GetRandomS32", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomS32", dynlib: "liborxd.so".}
 ## * Gets a random S32 value using step increments
 ##  @param[in]   _s32Min                         Minimum boundary (inclusive)
 ##  @param[in]   _s32Max                         Maximum boundary (inclusive)
@@ -166,7 +166,7 @@ proc orxMath_GetRandomS32*(s32Min: orxS32; s32Max: orxS32): orxS32 {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomS32*(s32Min: orxS32; s32Max: orxS32; s32Step: orxS32): orxS32 {.
-    cdecl, importc: "orxMath_GetSteppedRandomS32", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomS32", dynlib: "liborxd.so".}
 ## * Gets a random orxU64 value
 ##  @param[in]   _u64Min                         Minimum boundary (inclusive)
 ##  @param[in]   _u64Max                         Maximum boundary (inclusive)
@@ -174,7 +174,7 @@ proc orxMath_GetSteppedRandomS32*(s32Min: orxS32; s32Max: orxS32; s32Step: orxS3
 ##
 
 proc orxMath_GetRandomU64*(u64Min: orxU64; u64Max: orxU64): orxU64 {.cdecl,
-    importc: "orxMath_GetRandomU64", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomU64", dynlib: "liborxd.so".}
 ## * Gets a random U64 value using step increments
 ##  @param[in]   _u64Min                         Minimum boundary (inclusive)
 ##  @param[in]   _u64Max                         Maximum boundary (inclusive)
@@ -183,7 +183,7 @@ proc orxMath_GetRandomU64*(u64Min: orxU64; u64Max: orxU64): orxU64 {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomU64*(u64Min: orxU64; u64Max: orxU64; u64Step: orxU64): orxU64 {.
-    cdecl, importc: "orxMath_GetSteppedRandomU64", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomU64", dynlib: "liborxd.so".}
 ## * Gets a random orxS64 value
 ##  @param[in]   _s64Min                         Minimum boundary (inclusive)
 ##  @param[in]   _s64Max                         Maximum boundary (inclusive)
@@ -191,7 +191,7 @@ proc orxMath_GetSteppedRandomU64*(u64Min: orxU64; u64Max: orxU64; u64Step: orxU6
 ##
 
 proc orxMath_GetRandomS64*(s64Min: orxS64; s64Max: orxS64): orxS64 {.cdecl,
-    importc: "orxMath_GetRandomS64", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomS64", dynlib: "liborxd.so".}
 ## * Gets a random S64 value using step increments
 ##  @param[in]   _s64Min                         Minimum boundary (inclusive)
 ##  @param[in]   _s64Max                         Maximum boundary (inclusive)
@@ -200,19 +200,19 @@ proc orxMath_GetRandomS64*(s64Min: orxS64; s64Max: orxS64): orxS64 {.cdecl,
 ##
 
 proc orxMath_GetSteppedRandomS64*(s64Min: orxS64; s64Max: orxS64; s64Step: orxS64): orxS64 {.
-    cdecl, importc: "orxMath_GetSteppedRandomS64", dynlib: "liborx.so".}
+    cdecl, importc: "orxMath_GetSteppedRandomS64", dynlib: "liborxd.so".}
 ## * Gets the current random seeds
 ##  @param[out]  _au32Seeds                      Current seeds
 ##
 
 proc orxMath_GetRandomSeeds*(au32Seeds: array[4, orxU32]) {.cdecl,
-    importc: "orxMath_GetRandomSeeds", dynlib: "liborx.so".}
+    importc: "orxMath_GetRandomSeeds", dynlib: "liborxd.so".}
 ## * Sets (replaces) the current random seeds
 ##  @param[in]   _au32Seeds                      Seeds to set
 ##
 
 proc orxMath_SetRandomSeeds*(au32Seeds: array[4, orxU32]) {.cdecl,
-    importc: "orxMath_SetRandomSeeds", dynlib: "liborx.so".}
+    importc: "orxMath_SetRandomSeeds", dynlib: "liborxd.so".}
 ## ** Inlined functions ***
 ## * Gets the count of bit in an orxU32
 ##  @param[in]   _u32Value                       Value to process

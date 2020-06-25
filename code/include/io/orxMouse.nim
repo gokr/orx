@@ -69,7 +69,7 @@ const
 ## * Mouse module setup
 ##
 
-proc orxMouse_Setup*() {.cdecl, importc: "orxMouse_Setup", dynlib: "liborx.so".}
+proc orxMouse_Setup*() {.cdecl, importc: "orxMouse_Setup", dynlib: "liborxd.so".}
 ## **************************************************************************
 ##  Functions extended by plugins
 ## *************************************************************************
@@ -78,51 +78,51 @@ proc orxMouse_Setup*() {.cdecl, importc: "orxMouse_Setup", dynlib: "liborx.so".}
 ##
 
 proc orxMouse_Init*(): orxSTATUS {.cdecl, importc: "orxMouse_Init",
-                                dynlib: "liborx.so".}
+                                dynlib: "liborxd.so".}
 ## * Exits from the mouse module
 ##
 
-proc orxMouse_Exit*() {.cdecl, importc: "orxMouse_Exit", dynlib: "liborx.so".}
+proc orxMouse_Exit*() {.cdecl, importc: "orxMouse_Exit", dynlib: "liborxd.so".}
 ## * Sets mouse position
 ##  @param[in] _pvPosition  Mouse position
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxMouse_SetPosition*(pvPosition: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importc: "orxMouse_SetPosition", dynlib: "liborx.so".}
+    importc: "orxMouse_SetPosition", dynlib: "liborxd.so".}
 ## * Gets mouse position
 ##  @param[out] _pvPosition  Mouse position
 ##  @return orxVECTOR / nil
 ##
 
 proc orxMouse_GetPosition*(pvPosition: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxMouse_GetPosition", dynlib: "liborx.so".}
+    importc: "orxMouse_GetPosition", dynlib: "liborxd.so".}
 ## * Is mouse button pressed?
 ##  @param[in] _eButton          Mouse button to check
 ##  @return orxTRUE if pressed / orxFALSE otherwise
 ##
 
 proc orxMouse_IsButtonPressed*(eButton: orxMOUSE_BUTTON): orxBOOL {.cdecl,
-    importc: "orxMouse_IsButtonPressed", dynlib: "liborx.so".}
+    importc: "orxMouse_IsButtonPressed", dynlib: "liborxd.so".}
 ## * Gets mouse move delta (since last call)
 ##  @param[out] _pvMoveDelta Mouse move delta
 ##  @return orxVECTOR / nil
 ##
 
 proc orxMouse_GetMoveDelta*(pvMoveDelta: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxMouse_GetMoveDelta", dynlib: "liborx.so".}
+    importc: "orxMouse_GetMoveDelta", dynlib: "liborxd.so".}
 ## * Gets mouse wheel delta (since last call)
 ##  @return Mouse wheel delta
 ##
 
 proc orxMouse_GetWheelDelta*(): orxFLOAT {.cdecl, importc: "orxMouse_GetWheelDelta",
-                                        dynlib: "liborx.so".}
+                                        dynlib: "liborxd.so".}
 ## * Shows mouse (hardware) cursor
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxMouse_ShowCursor*(bShow: orxBOOL): orxSTATUS {.cdecl,
-    importc: "orxMouse_ShowCursor", dynlib: "liborx.so".}
+    importc: "orxMouse_ShowCursor", dynlib: "liborxd.so".}
 ## * Sets mouse (hardware) cursor
 ##  @param[in] _zName       Cursor's name can be: a standard name (arrow, ibeam, hand, crosshair, hresize or vresize), a file name or nil to reset the hardware cursor to default
 ##  @param[in] _pvPivot     Cursor's pivot (aka hotspot), nil will default to (0, 0)
@@ -130,19 +130,19 @@ proc orxMouse_ShowCursor*(bShow: orxBOOL): orxSTATUS {.cdecl,
 ##
 
 proc orxMouse_SetCursor*(zName: cstring; pvPivot: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importc: "orxMouse_SetCursor", dynlib: "liborx.so".}
+    importc: "orxMouse_SetCursor", dynlib: "liborxd.so".}
 ## * Gets button literal name
 ##  @param[in] _eButton          Concerned button
 ##  @return Button's name
 ##
 
 proc orxMouse_GetButtonName*(eButton: orxMOUSE_BUTTON): cstring {.cdecl,
-    importc: "orxMouse_GetButtonName", dynlib: "liborx.so".}
+    importc: "orxMouse_GetButtonName", dynlib: "liborxd.so".}
 ## * Gets axis literal name
 ##  @param[in] _eAxis            Concerned axis
 ##  @return Axis's name
 ##
 
 proc orxMouse_GetAxisName*(eAxis: orxMOUSE_AXIS): cstring {.cdecl,
-    importc: "orxMouse_GetAxisName", dynlib: "liborx.so".}
+    importc: "orxMouse_GetAxisName", dynlib: "liborxd.so".}
 ## * @}

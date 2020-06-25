@@ -63,7 +63,7 @@ const
 ## * CRC Tables (slice-by-8)
 ##
 
-var saau32CRCTable* {.importc: "saau32CRCTable", dynlib: "liborx.so".}: array[8,
+var saau32CRCTable* {.importc: "saau32CRCTable", dynlib: "liborxd.so".}: array[8,
     array[256, orxU32]]
 
 #[
@@ -1106,37 +1106,37 @@ proc orxString_GetExtension*(zFileName: cstring): cstring {.inline, cdecl.} =
 ## * Structure module setup
 ##
 
-proc orxString_Setup*() {.cdecl, importc: "orxString_Setup", dynlib: "liborx.so".}
+proc orxString_Setup*() {.cdecl, importc: "orxString_Setup", dynlib: "liborxd.so".}
 ## * Initializess the structure module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxString_Init*(): orxSTATUS {.cdecl, importc: "orxString_Init",
-                                 dynlib: "liborx.so".}
+                                 dynlib: "liborxd.so".}
 ## * Exits from the structure module
 ##
 
-proc orxString_Exit*() {.cdecl, importc: "orxString_Exit", dynlib: "liborx.so".}
+proc orxString_Exit*() {.cdecl, importc: "orxString_Exit", dynlib: "liborxd.so".}
 ## * Gets a string's ID (and stores the string internally to prevent duplication)
 ##  @param[in]   _zString        Concerned string
 ##  @return      String's ID
 ##
 
 proc orxString_GetID*(zString: cstring): orxSTRINGID {.cdecl,
-    importc: "orxString_GetID", dynlib: "liborx.so".}
+    importc: "orxString_GetID", dynlib: "liborxd.so".}
 ## * Gets a string from an ID (it should have already been stored internally with a call to orxString_GetID)
 ##  @param[in]   _u32ID          Concerned string ID
 ##  @return      orxSTRING if ID's found, orxSTRING_EMPTY otherwise
 ##
 
 proc orxString_GetFromID*(u32ID: orxSTRINGID): cstring {.cdecl,
-    importc: "orxString_GetFromID", dynlib: "liborx.so".}
+    importc: "orxString_GetFromID", dynlib: "liborxd.so".}
 ## * Stores a string internally: equivalent to an optimized call to orxString_GetFromID(orxString_GetID(_zString))
 ##  @param[in]   _zString        Concerned string
 ##  @return      Stored orxSTRING
 ##
 
 proc orxString_Store*(zString: cstring): cstring {.cdecl,
-    importc: "orxString_Store", dynlib: "liborx.so".}
+    importc: "orxString_Store", dynlib: "liborxd.so".}
 ## * @}
 ]#

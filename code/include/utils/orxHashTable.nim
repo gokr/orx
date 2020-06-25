@@ -61,21 +61,21 @@ const
 
 proc orxHashTable_Create*(u32NbKey: orxU32; u32Flags: orxU32;
                          eMemType: orxMEMORY_TYPE): ptr orxHASHTABLE {.cdecl,
-    importc: "orxHashTable_Create", dynlib: "liborx.so".}
+    importc: "orxHashTable_Create", dynlib: "liborxd.so".}
 ## * Delete a hash table.
 ##  @param[in] _pstHashTable  Hash table to delete.
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxHashTable_Delete*(pstHashTable: ptr orxHASHTABLE): orxSTATUS {.cdecl,
-    importc: "orxHashTable_Delete", dynlib: "liborx.so".}
+    importc: "orxHashTable_Delete", dynlib: "liborxd.so".}
 ## * Clear a hash table.
 ##  @param[in] _pstHashTable  Hash table to clear.
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxHashTable_Clear*(pstHashTable: ptr orxHASHTABLE): orxSTATUS {.cdecl,
-    importc: "orxHashTable_Clear", dynlib: "liborx.so".}
+    importc: "orxHashTable_Clear", dynlib: "liborxd.so".}
 ## * @}
 ## * Gets a hash table item count
 ##  @param[in] _pstHashTable         Concerned hash table
@@ -83,7 +83,7 @@ proc orxHashTable_Clear*(pstHashTable: ptr orxHASHTABLE): orxSTATUS {.cdecl,
 ##
 
 proc orxHashTable_GetCount*(pstHashTable: ptr orxHASHTABLE): orxU32 {.cdecl,
-    importc: "orxHashTable_GetCount", dynlib: "liborx.so".}
+    importc: "orxHashTable_GetCount", dynlib: "liborxd.so".}
 ## * @name HashTable key manipulation.
 ##  @{
 ## * Find an item in a hash table.
@@ -93,7 +93,7 @@ proc orxHashTable_GetCount*(pstHashTable: ptr orxHASHTABLE): orxU32 {.cdecl,
 ##
 
 proc orxHashTable_Get*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): pointer {.
-    cdecl, importc: "orxHashTable_Get", dynlib: "liborx.so".}
+    cdecl, importc: "orxHashTable_Get", dynlib: "liborxd.so".}
 ## * Retrieves the bucket of an item in a hash table, if the item wasn't present, a new bucket will be created.
 ##  @param[in] _pstHashTable   Concerned hashtable
 ##  @param[in] _u64Key         Key to find
@@ -101,7 +101,7 @@ proc orxHashTable_Get*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): pointer 
 ##
 
 proc orxHashTable_Retrieve*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): ptr pointer {.
-    cdecl, importc: "orxHashTable_Retrieve", dynlib: "liborx.so".}
+    cdecl, importc: "orxHashTable_Retrieve", dynlib: "liborxd.so".}
 ## * Set an item value.
 ##  @param[in] _pstHashTable The hash table where set.
 ##  @param[in] _u64Key      Key to assign.
@@ -110,7 +110,7 @@ proc orxHashTable_Retrieve*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): ptr
 ##
 
 proc orxHashTable_Set*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64; pData: pointer): orxSTATUS {.
-    cdecl, importc: "orxHashTable_Set", dynlib: "liborx.so".}
+    cdecl, importc: "orxHashTable_Set", dynlib: "liborxd.so".}
 ## * Add an item value.
 ##  @param[in] _pstHashTable The hash table where set.
 ##  @param[in] _u64Key      Key to assign.
@@ -119,7 +119,7 @@ proc orxHashTable_Set*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64; pData: po
 ##
 
 proc orxHashTable_Add*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64; pData: pointer): orxSTATUS {.
-    cdecl, importc: "orxHashTable_Add", dynlib: "liborx.so".}
+    cdecl, importc: "orxHashTable_Add", dynlib: "liborxd.so".}
 ## * Remove an item.
 ##  @param[in] _pstHashTable  The hash table where remove.
 ##  @param[in] _u64Key      Key to remove.
@@ -127,7 +127,7 @@ proc orxHashTable_Add*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64; pData: po
 ##
 
 proc orxHashTable_Remove*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): orxSTATUS {.
-    cdecl, importc: "orxHashTable_Remove", dynlib: "liborx.so".}
+    cdecl, importc: "orxHashTable_Remove", dynlib: "liborxd.so".}
 ## * @}
 ## * @name HashTable iteration.
 ##  Used to iterate on all elements of the hashtable.
@@ -142,7 +142,7 @@ proc orxHashTable_Remove*(pstHashTable: ptr orxHASHTABLE; u64Key: orxU64): orxST
 
 proc orxHashTable_GetNext*(pstHashTable: ptr orxHASHTABLE; hIterator: orxHANDLE;
                           pu64Key: ptr orxU64; ppData: ptr pointer): orxHANDLE {.cdecl,
-    importc: "orxHashTable_GetNext", dynlib: "liborx.so".}
+    importc: "orxHashTable_GetNext", dynlib: "liborxd.so".}
 ## * @}
 ## * Optimizes a hashtable for read accesses (minimizes number of cache misses upon collisions)
 ##  @param[in] _pstHashTable HashTable to optimize
@@ -150,5 +150,5 @@ proc orxHashTable_GetNext*(pstHashTable: ptr orxHASHTABLE; hIterator: orxHANDLE;
 ##
 
 proc orxHashTable_Optimize*(pstHashTable: ptr orxHASHTABLE): orxSTATUS {.cdecl,
-    importc: "orxHashTable_Optimize", dynlib: "liborx.so".}
+    importc: "orxHashTable_Optimize", dynlib: "liborxd.so".}
 ## * @}

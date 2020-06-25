@@ -51,20 +51,20 @@ import
 ##
 
 proc registerFunction_DISPLAY*() {.cdecl, importc: "_registerFunction_DISPLAY",
-                                 dynlib: "liborx.so".}
+                                 dynlib: "liborxd.so".}
 proc registerFunction_JOYSTICK*() {.cdecl, importc: "_registerFunction_JOYSTICK",
-                                  dynlib: "liborx.so".}
+                                  dynlib: "liborxd.so".}
 proc registerFunction_KEYBOARD*() {.cdecl, importc: "_registerFunction_KEYBOARD",
-                                  dynlib: "liborx.so".}
+                                  dynlib: "liborxd.so".}
 proc registerFunction_MOUSE*() {.cdecl, importc: "_registerFunction_MOUSE",
-                               dynlib: "liborx.so".}
+                               dynlib: "liborxd.so".}
 proc registerFunction_PHYSICS*() {.cdecl, importc: "_registerFunction_PHYSICS",
-                                 dynlib: "liborx.so".}
+                                 dynlib: "liborxd.so".}
 proc registerFunction_RENDER*() {.cdecl, importc: "_registerFunction_RENDER",
-                                dynlib: "liborx.so".}
+                                dynlib: "liborxd.so".}
 proc registerFunction_SOUNDSYSTEM*() {.cdecl,
                                      importc: "_registerFunction_SOUNDSYSTEM",
-                                     dynlib: "liborx.so".}
+                                     dynlib: "liborxd.so".}
 ##
 ##  Inline core plugin registration function
 ##

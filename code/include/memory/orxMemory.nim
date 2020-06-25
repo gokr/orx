@@ -92,17 +92,17 @@ type
 ## * Setups the memory module
 ##
 
-proc orxMemory_Setup*() {.cdecl, importc: "orxMemory_Setup", dynlib: "liborx.so".}
+proc orxMemory_Setup*() {.cdecl, importc: "orxMemory_Setup", dynlib: "liborxd.so".}
 ## * Inits the memory module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxMemory_Init*(): orxSTATUS {.cdecl, importc: "orxMemory_Init",
-                                 dynlib: "liborx.so".}
+                                 dynlib: "liborxd.so".}
 ## * Exits from the memory module
 ##
 
-proc orxMemory_Exit*() {.cdecl, importc: "orxMemory_Exit", dynlib: "liborx.so".}
+proc orxMemory_Exit*() {.cdecl, importc: "orxMemory_Exit", dynlib: "liborxd.so".}
 ## * Allocates some memory in the system and returns a pointer to it
 ##  @param[in]  _u32Size  Size of the memory to allocate
 ##  @param[in]  _eMemType Memory zone where data will be allocated
@@ -110,7 +110,7 @@ proc orxMemory_Exit*() {.cdecl, importc: "orxMemory_Exit", dynlib: "liborx.so".}
 ##
 
 proc orxMemory_Allocate*(u32Size: orxU32; eMemType: orxMEMORY_TYPE): pointer {.cdecl,
-    importc: "orxMemory_Allocate", dynlib: "liborx.so".}
+    importc: "orxMemory_Allocate", dynlib: "liborxd.so".}
 ## * Reallocates a previously allocated memory block, with the given new size and returns a pointer to it
 ##  If possible, it'll keep the current pointer and extend the memory block, if not it'll allocate a new block,
 ##  copy the data over and deallocates the original block
@@ -120,13 +120,13 @@ proc orxMemory_Allocate*(u32Size: orxU32; eMemType: orxMEMORY_TYPE): pointer {.c
 ##
 
 proc orxMemory_Reallocate*(pMem: pointer; u32Size: orxU32): pointer {.cdecl,
-    importc: "orxMemory_Reallocate", dynlib: "liborx.so".}
+    importc: "orxMemory_Reallocate", dynlib: "liborxd.so".}
 ## * Frees some memory allocated with orxMemory_Allocate
 ##  @param[in]  _pMem     Pointer to the memory allocated by orx
 ##
 
 proc orxMemory_Free*(pMem: pointer) {.cdecl, importc: "orxMemory_Free",
-                                   dynlib: "liborx.so".}
+                                   dynlib: "liborxd.so".}
 ## * Copies a part of memory into another one
 ##  @param[out] _pDest    Destination pointer
 ##  @param[in]  _pSrc     Pointer of memory from where data are read
@@ -205,13 +205,13 @@ proc orxMemory_Zero*(pDest: pointer; u32Size: orxU32): pointer {.inline, cdecl.}
 ##
 
 proc orxMemory_GetTypeName*(eMemType: orxMEMORY_TYPE): cstring {.cdecl,
-    importc: "orxMemory_GetTypeName", dynlib: "liborx.so".}
+    importc: "orxMemory_GetTypeName", dynlib: "liborxd.so".}
 ## * Gets L1 data cache line size
 ##  @return Cache line size
 ##
 
 proc orxMemory_GetCacheLineSize*(): orxU32 {.cdecl,
-    importc: "orxMemory_GetCacheLineSize", dynlib: "liborx.so".}
+    importc: "orxMemory_GetCacheLineSize", dynlib: "liborxd.so".}
 when defined(PROFILER):
   ## * Gets memory usage for a given type
   ##  @param[in] _eMemType               Concerned memory type
@@ -225,7 +225,7 @@ when defined(PROFILER):
   proc orxMemory_GetUsage*(eMemType: orxMEMORY_TYPE; pu32Count: ptr orxU32;
                           pu32PeakCount: ptr orxU32; pu32Size: ptr orxU32;
                           pu32PeakSize: ptr orxU32; pu32OperationCount: ptr orxU32): orxSTATUS {.
-      cdecl, importc: "orxMemory_GetUsage", dynlib: "liborx.so".}
+      cdecl, importc: "orxMemory_GetUsage", dynlib: "liborxd.so".}
   ## * Tracks (external) memory allocation
   ##  @param[in] _eMemType               Concerned memory type
   ##  @param[in] _u32Size                Size to track, in bytes
@@ -233,5 +233,5 @@ when defined(PROFILER):
   ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
   ##
   proc orxMemory_Track*(eMemType: orxMEMORY_TYPE; u32Size: orxU32; bAllocate: orxBOOL): orxSTATUS {.
-      cdecl, importc: "orxMemory_Track", dynlib: "liborx.so".}
+      cdecl, importc: "orxMemory_Track", dynlib: "liborxd.so".}
 ## * @}

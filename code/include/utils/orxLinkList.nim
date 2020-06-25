@@ -98,7 +98,7 @@ type
 ##
 
 proc orxLinkList_Clean*(pstList: ptr orxLINKLIST): orxSTATUS {.cdecl,
-    importc: "orxLinkList_Clean", dynlib: "liborx.so".}
+    importc: "orxLinkList_Clean", dynlib: "liborxd.so".}
 ## * Adds a node at the start of a list
 ##  @param[in]   _pstList                        Concerned list
 ##  @param[in]   _pstNode                        Node to add
@@ -106,7 +106,7 @@ proc orxLinkList_Clean*(pstList: ptr orxLINKLIST): orxSTATUS {.cdecl,
 ##
 
 proc orxLinkList_AddStart*(pstList: ptr orxLINKLIST; pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.
-    cdecl, importc: "orxLinkList_AddStart", dynlib: "liborx.so".}
+    cdecl, importc: "orxLinkList_AddStart", dynlib: "liborxd.so".}
 ## * Adds a node at the end of a list
 ##  @param[in]   _pstList                        Concerned list
 ##  @param[in]   _pstNode                        Node to add
@@ -114,7 +114,7 @@ proc orxLinkList_AddStart*(pstList: ptr orxLINKLIST; pstNode: ptr orxLINKLIST_NO
 ##
 
 proc orxLinkList_AddEnd*(pstList: ptr orxLINKLIST; pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.
-    cdecl, importc: "orxLinkList_AddEnd", dynlib: "liborx.so".}
+    cdecl, importc: "orxLinkList_AddEnd", dynlib: "liborxd.so".}
 ## * Adds a node before another one
 ##  @param[in]   _pstRefNode                     Reference node (add before this one)
 ##  @param[in]   _pstNode                        Node to add
@@ -123,7 +123,7 @@ proc orxLinkList_AddEnd*(pstList: ptr orxLINKLIST; pstNode: ptr orxLINKLIST_NODE
 
 proc orxLinkList_AddBefore*(pstRefNode: ptr orxLINKLIST_NODE;
                            pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.cdecl,
-    importc: "orxLinkList_AddBefore", dynlib: "liborx.so".}
+    importc: "orxLinkList_AddBefore", dynlib: "liborxd.so".}
 ## * Adds a node after another one
 ##  @param[in]   _pstRefNode                     Reference node (add after this one)
 ##  @param[in]   _pstNode                        Node to add
@@ -132,14 +132,14 @@ proc orxLinkList_AddBefore*(pstRefNode: ptr orxLINKLIST_NODE;
 
 proc orxLinkList_AddAfter*(pstRefNode: ptr orxLINKLIST_NODE;
                           pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.cdecl,
-    importc: "orxLinkList_AddAfter", dynlib: "liborx.so".}
+    importc: "orxLinkList_AddAfter", dynlib: "liborxd.so".}
 ## * Removes a node from its list
 ##  @param[in]   _pstNode                        Concerned node
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxLinkList_Remove*(pstNode: ptr orxLINKLIST_NODE): orxSTATUS {.cdecl,
-    importc: "orxLinkList_Remove", dynlib: "liborx.so".}
+    importc: "orxLinkList_Remove", dynlib: "liborxd.so".}
 ##  *** LinkList inlined accessors ***
 ## * Gets a node list
 ##  @param[in]   _pstNode                        Concerned node

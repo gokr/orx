@@ -78,57 +78,57 @@ type orxSPAWNER* = object
 ## * Spawner module setup
 ##
 
-proc orxSpawner_Setup*() {.cdecl, importc: "orxSpawner_Setup", dynlib: "liborx.so".}
+proc orxSpawner_Setup*() {.cdecl, importc: "orxSpawner_Setup", dynlib: "liborxd.so".}
 ## * Inits the spawner module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSpawner_Init*(): orxSTATUS {.cdecl, importc: "orxSpawner_Init",
-                                  dynlib: "liborx.so".}
+                                  dynlib: "liborxd.so".}
 ## * Exits from the spawner module
 ##
 
-proc orxSpawner_Exit*() {.cdecl, importc: "orxSpawner_Exit", dynlib: "liborx.so".}
+proc orxSpawner_Exit*() {.cdecl, importc: "orxSpawner_Exit", dynlib: "liborxd.so".}
 ## * Creates an empty spawner
 ##  @return orxSPAWNER / nil
 ##
 
 proc orxSpawner_Create*(): ptr orxSPAWNER {.cdecl, importc: "orxSpawner_Create",
-                                        dynlib: "liborx.so".}
+                                        dynlib: "liborxd.so".}
 ## * Creates a spawner from config
 ##  @param[in]   _zConfigID    Config ID
 ##  @ return orxSPAWNER / nil
 ##
 
 proc orxSpawner_CreateFromConfig*(zConfigID: cstring): ptr orxSPAWNER {.cdecl,
-    importc: "orxSpawner_CreateFromConfig", dynlib: "liborx.so".}
+    importc: "orxSpawner_CreateFromConfig", dynlib: "liborxd.so".}
 ## * Deletes a spawner
 ##  @param[in] _pstSpawner       Concerned spawner
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxSpawner_Delete*(pstSpawner: ptr orxSPAWNER): orxSTATUS {.cdecl,
-    importc: "orxSpawner_Delete", dynlib: "liborx.so".}
+    importc: "orxSpawner_Delete", dynlib: "liborxd.so".}
 ## * Enables/disables a spawner
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _bEnable      Enable / disable
 ##
 
 proc orxSpawner_Enable*(pstSpawner: ptr orxSPAWNER; bEnable: orxBOOL) {.cdecl,
-    importc: "orxSpawner_Enable", dynlib: "liborx.so".}
+    importc: "orxSpawner_Enable", dynlib: "liborxd.so".}
 ## * Is spawner enabled?
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxSpawner_IsEnabled*(pstSpawner: ptr orxSPAWNER): orxBOOL {.cdecl,
-    importc: "orxSpawner_IsEnabled", dynlib: "liborx.so".}
+    importc: "orxSpawner_IsEnabled", dynlib: "liborxd.so".}
 ## * Resets (and disables) a spawner
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##
 
 proc orxSpawner_Reset*(pstSpawner: ptr orxSPAWNER) {.cdecl,
-    importc: "orxSpawner_Reset", dynlib: "liborx.so".}
+    importc: "orxSpawner_Reset", dynlib: "liborxd.so".}
 ## * Sets spawner total object limit
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _u32TotalObjectLimit Total object limit, 0 for unlimited
@@ -137,7 +137,7 @@ proc orxSpawner_Reset*(pstSpawner: ptr orxSPAWNER) {.cdecl,
 
 proc orxSpawner_SetTotalObjectLimit*(pstSpawner: ptr orxSPAWNER;
                                     u32TotalObjectLimit: orxU32): orxSTATUS {.
-    cdecl, importc: "orxSpawner_SetTotalObjectLimit", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_SetTotalObjectLimit", dynlib: "liborxd.so".}
 ## * Sets spawner active object limit
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _u32ActiveObjectLimit Active object limit, 0 for unlimited
@@ -146,35 +146,35 @@ proc orxSpawner_SetTotalObjectLimit*(pstSpawner: ptr orxSPAWNER;
 
 proc orxSpawner_SetActiveObjectLimit*(pstSpawner: ptr orxSPAWNER;
                                      u32ActiveObjectLimit: orxU32): orxSTATUS {.
-    cdecl, importc: "orxSpawner_SetActiveObjectLimit", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_SetActiveObjectLimit", dynlib: "liborxd.so".}
 ## * Gets spawner total object limit
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      Total object limit, 0 for unlimited
 ##
 
 proc orxSpawner_GetTotalObjectLimit*(pstSpawner: ptr orxSPAWNER): orxU32 {.cdecl,
-    importc: "orxSpawner_GetTotalObjectLimit", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetTotalObjectLimit", dynlib: "liborxd.so".}
 ## * Gets spawner active object limit
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      Active object limit, 0 for unlimited
 ##
 
 proc orxSpawner_GetActiveObjectLimit*(pstSpawner: ptr orxSPAWNER): orxU32 {.cdecl,
-    importc: "orxSpawner_GetActiveObjectLimit", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetActiveObjectLimit", dynlib: "liborxd.so".}
 ## * Gets spawner total object count
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      Total object count
 ##
 
 proc orxSpawner_GetTotalObjectCount*(pstSpawner: ptr orxSPAWNER): orxU32 {.cdecl,
-    importc: "orxSpawner_GetTotalObjectCount", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetTotalObjectCount", dynlib: "liborxd.so".}
 ## * Gets spawner active object count
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      Active object count
 ##
 
 proc orxSpawner_GetActiveObjectCount*(pstSpawner: ptr orxSPAWNER): orxU32 {.cdecl,
-    importc: "orxSpawner_GetActiveObjectCount", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetActiveObjectCount", dynlib: "liborxd.so".}
 ## * Sets spawner wave size
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _u32WaveSize    Number of objects to spawn in a wave / 0 for deactivating wave mode
@@ -182,7 +182,7 @@ proc orxSpawner_GetActiveObjectCount*(pstSpawner: ptr orxSPAWNER): orxU32 {.cdec
 ##
 
 proc orxSpawner_SetWaveSize*(pstSpawner: ptr orxSPAWNER; u32WaveSize: orxU32): orxSTATUS {.
-    cdecl, importc: "orxSpawner_SetWaveSize", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_SetWaveSize", dynlib: "liborxd.so".}
 ## * Sets spawner wave delay
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _fWaveDelay     Delay between two waves / -1 for deactivating wave mode
@@ -190,28 +190,28 @@ proc orxSpawner_SetWaveSize*(pstSpawner: ptr orxSPAWNER; u32WaveSize: orxU32): o
 ##
 
 proc orxSpawner_SetWaveDelay*(pstSpawner: ptr orxSPAWNER; fWaveDelay: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxSpawner_SetWaveDelay", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_SetWaveDelay", dynlib: "liborxd.so".}
 ## * Gets spawner wave size
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      Number of objects spawned in a wave / 0 if not in wave mode
 ##
 
 proc orxSpawner_GetWaveSize*(pstSpawner: ptr orxSPAWNER): orxU32 {.cdecl,
-    importc: "orxSpawner_GetWaveSize", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetWaveSize", dynlib: "liborxd.so".}
 ## * Gets spawner wave delay
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      Delay between two waves / -1 if not in wave mode
 ##
 
 proc orxSpawner_GetWaveDelay*(pstSpawner: ptr orxSPAWNER): orxFLOAT {.cdecl,
-    importc: "orxSpawner_GetWaveDelay", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetWaveDelay", dynlib: "liborxd.so".}
 ## * Gets spawner next wave delay
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      Delay before next wave is spawned / -1 if not in wave mode
 ##
 
 proc orxSpawner_GetNextWaveDelay*(pstSpawner: ptr orxSPAWNER): orxFLOAT {.cdecl,
-    importc: "orxSpawner_GetNextWaveDelay", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetNextWaveDelay", dynlib: "liborxd.so".}
 ## * Sets spawner object speed
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _pvObjectSpeed  Speed to apply to every spawned object / nil to not apply any speed
@@ -220,7 +220,7 @@ proc orxSpawner_GetNextWaveDelay*(pstSpawner: ptr orxSPAWNER): orxFLOAT {.cdecl,
 
 proc orxSpawner_SetObjectSpeed*(pstSpawner: ptr orxSPAWNER;
                                pvObjectSpeed: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importc: "orxSpawner_SetObjectSpeed", dynlib: "liborx.so".}
+    importc: "orxSpawner_SetObjectSpeed", dynlib: "liborxd.so".}
 ## * Gets spawner object speed
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _pvObjectSpeed  Speed applied to every spawned object
@@ -229,7 +229,7 @@ proc orxSpawner_SetObjectSpeed*(pstSpawner: ptr orxSPAWNER;
 
 proc orxSpawner_GetObjectSpeed*(pstSpawner: ptr orxSPAWNER;
                                pvObjectSpeed: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxSpawner_GetObjectSpeed", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetObjectSpeed", dynlib: "liborxd.so".}
 ## * Spawns items
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _u32Number      Number of items to spawn
@@ -237,14 +237,14 @@ proc orxSpawner_GetObjectSpeed*(pstSpawner: ptr orxSPAWNER;
 ##
 
 proc orxSpawner_Spawn*(pstSpawner: ptr orxSPAWNER; u32Number: orxU32): orxU32 {.cdecl,
-    importc: "orxSpawner_Spawn", dynlib: "liborx.so".}
+    importc: "orxSpawner_Spawn", dynlib: "liborxd.so".}
 ## * Gets spawner frame
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      orxFRAME
 ##
 
 proc orxSpawner_GetFrame*(pstSpawner: ptr orxSPAWNER): ptr orxFRAME {.cdecl,
-    importc: "orxSpawner_GetFrame", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetFrame", dynlib: "liborxd.so".}
 ## * Sets spawner position
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _pvPosition     Spawner position
@@ -252,7 +252,7 @@ proc orxSpawner_GetFrame*(pstSpawner: ptr orxSPAWNER): ptr orxFRAME {.cdecl,
 ##
 
 proc orxSpawner_SetPosition*(pstSpawner: ptr orxSPAWNER; pvPosition: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importc: "orxSpawner_SetPosition", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_SetPosition", dynlib: "liborxd.so".}
 ## * Sets spawner rotation
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _fRotation      Spawner rotation (radians)
@@ -260,7 +260,7 @@ proc orxSpawner_SetPosition*(pstSpawner: ptr orxSPAWNER; pvPosition: ptr orxVECT
 ##
 
 proc orxSpawner_SetRotation*(pstSpawner: ptr orxSPAWNER; fRotation: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxSpawner_SetRotation", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_SetRotation", dynlib: "liborxd.so".}
 ## * Sets spawner scale
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _pvScale        Spawner scale vector
@@ -268,7 +268,7 @@ proc orxSpawner_SetRotation*(pstSpawner: ptr orxSPAWNER; fRotation: orxFLOAT): o
 ##
 
 proc orxSpawner_SetScale*(pstSpawner: ptr orxSPAWNER; pvScale: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importc: "orxSpawner_SetScale", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_SetScale", dynlib: "liborxd.so".}
 ## * Get spawner position
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[out]  _pvPosition     Spawner position
@@ -276,7 +276,7 @@ proc orxSpawner_SetScale*(pstSpawner: ptr orxSPAWNER; pvScale: ptr orxVECTOR): o
 ##
 
 proc orxSpawner_GetPosition*(pstSpawner: ptr orxSPAWNER; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxSpawner_GetPosition", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_GetPosition", dynlib: "liborxd.so".}
 ## * Get spawner world position
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[out]  _pvPosition     Spawner world position
@@ -285,21 +285,21 @@ proc orxSpawner_GetPosition*(pstSpawner: ptr orxSPAWNER; pvPosition: ptr orxVECT
 
 proc orxSpawner_GetWorldPosition*(pstSpawner: ptr orxSPAWNER;
                                  pvPosition: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxSpawner_GetWorldPosition", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetWorldPosition", dynlib: "liborxd.so".}
 ## * Get spawner rotation
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      orxFLOAT (radians)
 ##
 
 proc orxSpawner_GetRotation*(pstSpawner: ptr orxSPAWNER): orxFLOAT {.cdecl,
-    importc: "orxSpawner_GetRotation", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetRotation", dynlib: "liborxd.so".}
 ## * Get spawner world rotation
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      orxFLOAT (radians)
 ##
 
 proc orxSpawner_GetWorldRotation*(pstSpawner: ptr orxSPAWNER): orxFLOAT {.cdecl,
-    importc: "orxSpawner_GetWorldRotation", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetWorldRotation", dynlib: "liborxd.so".}
 ## * Get spawner scale
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[out]  _pvScale        Spawner scale vector
@@ -307,7 +307,7 @@ proc orxSpawner_GetWorldRotation*(pstSpawner: ptr orxSPAWNER): orxFLOAT {.cdecl,
 ##
 
 proc orxSpawner_GetScale*(pstSpawner: ptr orxSPAWNER; pvScale: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxSpawner_GetScale", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_GetScale", dynlib: "liborxd.so".}
 ## * Gets spawner world scale
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[out]  _pvScale        Spawner world scale
@@ -315,7 +315,7 @@ proc orxSpawner_GetScale*(pstSpawner: ptr orxSPAWNER; pvScale: ptr orxVECTOR): p
 ##
 
 proc orxSpawner_GetWorldScale*(pstSpawner: ptr orxSPAWNER; pvScale: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxSpawner_GetWorldScale", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_GetWorldScale", dynlib: "liborxd.so".}
 ## * Sets spawner parent
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @param[in]   _pParent        Parent structure to set (object, spawner, camera or frame) / nil
@@ -323,19 +323,19 @@ proc orxSpawner_GetWorldScale*(pstSpawner: ptr orxSPAWNER; pvScale: ptr orxVECTO
 ##
 
 proc orxSpawner_SetParent*(pstSpawner: ptr orxSPAWNER; pParent: pointer): orxSTATUS {.
-    cdecl, importc: "orxSpawner_SetParent", dynlib: "liborx.so".}
+    cdecl, importc: "orxSpawner_SetParent", dynlib: "liborxd.so".}
 ## * Gets spawner parent
 ##  @param[in]   _pstSpawner Concerned spawner
 ##  @return      Parent (object, spawner, camera or frame) / nil
 ##
 
 proc orxSpawner_GetParent*(pstSpawner: ptr orxSPAWNER): ptr orxSTRUCTURE {.cdecl,
-    importc: "orxSpawner_GetParent", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetParent", dynlib: "liborxd.so".}
 ## * Gets spawner name
 ##  @param[in]   _pstSpawner     Concerned spawner
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxSpawner_GetName*(pstSpawner: ptr orxSPAWNER): cstring {.cdecl,
-    importc: "orxSpawner_GetName", dynlib: "liborx.so".}
+    importc: "orxSpawner_GetName", dynlib: "liborxd.so".}
 ## * @}

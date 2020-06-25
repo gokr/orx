@@ -45,17 +45,16 @@ import
 ## * Helper defines
 ##
 
-template orxEVENT_INIT*(EVENT, TYPE, ID, SENDER, RECIPIENT, PAYLOAD: untyped): void =
-  EVENT.eType = (orxEVENT_TYPE)(TYPE)
-  EVENT.eID = (orxENUM)(ID)
-  EVENT.hSender = (orxHANDLE)(SENDER)
-  EVENT.hRecipient = (orxHANDLE)(RECIPIENT)
-  EVENT.pstPayload = cast[pointer]((PAYLOAD))
-
-template orxEVENT_SEND*(TYPE, ID, SENDER, RECIPIENT, PAYLOAD: untyped): void =
+template orxEVENT_SEND_MACRO*(TYPE, ID, SENDER, RECIPIENT, PAYLOAD: untyped): void =
   var stEvent: orxEVENT
-  orxEVENT_INIT(stEvent, TYPE, ID, SENDER, RECIPIENT, PAYLOAD)
-  discard orxEvent_SendInternal(addr(stEvent))
+  stEvent.eType = cast[orxEVENT_TYPE](TYPE)
+  echo "TYPE: " & $TYPE
+  stEvent.eID = cast[orxENUM](ID)
+  echo "ID: " & $ID
+  stEvent.hSender = cast[orxHANDLE](SENDER)
+  stEvent.hRecipient = cast[orxHANDLE](RECIPIENT)
+  stEvent.pstPayload = cast[pointer](PAYLOAD)
+  discard orxEvent_Send(addr(stEvent))
 
 template orxEVENT_GET_FLAG*(ID: untyped): untyped =
   ((orxU32)(1 shl (orxU32)(ID)))
@@ -104,17 +103,17 @@ type
 ## * Event module setup
 ##
 
-proc orxEvent_Setup*() {.cdecl, importc: "orxEvent_Setup", dynlib: "liborx.so".}
+proc orxEvent_Setup*() {.cdecl, importc: "orxEvent_Setup", dynlib: "liborxd.so".}
 ## * Initializes the event Module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxEvent_InitInternal*(): orxSTATUS {.cdecl, importc: "orxEvent_Init",
-                                dynlib: "liborx.so".}
+proc orxEvent_Init*(): orxSTATUS {.cdecl, importc: "orxEvent_Init",
+                                dynlib: "liborxd.so".}
 ## * Exits from the event Module
 ##
 
-proc orxEvent_Exit*() {.cdecl, importc: "orxEvent_Exit", dynlib: "liborx.so".}
+proc orxEvent_Exit*() {.cdecl, importc: "orxEvent_Exit", dynlib: "liborxd.so".}
 ## * Adds an event handler
 ##  @param[in] _eEventType           Concerned type of event
 ##  @param[in] _pfnEventHandler      Event handler to add
@@ -123,7 +122,7 @@ proc orxEvent_Exit*() {.cdecl, importc: "orxEvent_Exit", dynlib: "liborx.so".}
 
 proc orxEvent_AddHandler*(eEventType: orxEVENT_TYPE;
                          pfnEventHandler: orxEVENT_HANDLER): orxSTATUS {.cdecl,
-    importc: "orxEvent_AddHandler", dynlib: "liborx.so".}
+    importc: "orxEvent_AddHandler", dynlib: "liborxd.so".}
 ## * Adds an event handler with user-defined context
 ##  @param[in] _eEventType           Concerned type of event
 ##  @param[in] _pfnEventHandler      Event handler to add
@@ -134,7 +133,7 @@ proc orxEvent_AddHandler*(eEventType: orxEVENT_TYPE;
 proc orxEvent_AddHandlerWithContext*(eEventType: orxEVENT_TYPE;
                                     pfnEventHandler: orxEVENT_HANDLER;
                                     pContext: pointer): orxSTATUS {.cdecl,
-    importc: "orxEvent_AddHandlerWithContext", dynlib: "liborx.so".}
+    importc: "orxEvent_AddHandlerWithContext", dynlib: "liborxd.so".}
 ## * Removes an event handler
 ##  @param[in] _eEventType           Concerned type of event
 ##  @param[in] _pfnEventHandler      Event handler to remove
@@ -143,7 +142,7 @@ proc orxEvent_AddHandlerWithContext*(eEventType: orxEVENT_TYPE;
 
 proc orxEvent_RemoveHandler*(eEventType: orxEVENT_TYPE;
                             pfnEventHandler: orxEVENT_HANDLER): orxSTATUS {.cdecl,
-    importc: "orxEvent_RemoveHandler", dynlib: "liborx.so".}
+    importc: "orxEvent_RemoveHandler", dynlib: "liborxd.so".}
 ## * Removes an event handler which matches given context
 ##  @param[in] _eEventType           Concerned type of event
 ##  @param[in] _pfnEventHandler      Event handler to remove
@@ -154,7 +153,7 @@ proc orxEvent_RemoveHandler*(eEventType: orxEVENT_TYPE;
 proc orxEvent_RemoveHandlerWithContext*(eEventType: orxEVENT_TYPE;
                                        pfnEventHandler: orxEVENT_HANDLER;
                                        pContext: pointer): orxSTATUS {.cdecl,
-    importc: "orxEvent_RemoveHandlerWithContext", dynlib: "liborx.so".}
+    importc: "orxEvent_RemoveHandlerWithContext", dynlib: "liborxd.so".}
 ## * Sets an event handler's ID flags (use orxEVENT_GET_FLAG(ID) in order to get the flag that matches an ID)
 ##  @param[in] _pfnEventHandler      Concerned event handler, must have been previously added for the given type
 ##  @param[in] _eEventType           Concerned type of event
@@ -167,14 +166,14 @@ proc orxEvent_RemoveHandlerWithContext*(eEventType: orxEVENT_TYPE;
 proc orxEvent_SetHandlerIDFlags*(pfnEventHandler: orxEVENT_HANDLER;
                                 eEventType: orxEVENT_TYPE; pContext: pointer;
                                 u32AddIDFlags: orxU32; u32RemoveIDFlags: orxU32): orxSTATUS {.
-    cdecl, importc: "orxEvent_SetHandlerIDFlags", dynlib: "liborx.so".}
+    cdecl, importc: "orxEvent_SetHandlerIDFlags", dynlib: "liborxd.so".}
 ## * Sends an event
 ##  @param[in] _pstEvent             Event to send
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxEvent_SendInternal*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl,
-    importc: "orxEvent_Send", dynlib: "liborx.so".}
+proc orxEvent_Send*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl,
+    importc: "orxEvent_Send", dynlib: "liborxd.so".}
 ## * Sends a simple event
 ##  @param[in] _eEventType           Event type
 ##  @param[in] _eEventID             Event ID
@@ -182,11 +181,11 @@ proc orxEvent_SendInternal*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl,
 ##
 
 proc orxEvent_SendShort*(eEventType: orxEVENT_TYPE; eEventID: orxENUM): orxSTATUS {.
-    cdecl, importc: "orxEvent_SendShort", dynlib: "liborx.so".}
+    cdecl, importc: "orxEvent_SendShort", dynlib: "liborxd.so".}
 ## * Is currently sending an event?
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxEvent_IsSending*(): orxBOOL {.cdecl, importc: "orxEvent_IsSending",
-                                   dynlib: "liborx.so".}
+                                   dynlib: "liborxd.so".}
 ## * @}

@@ -83,108 +83,108 @@ const
 
 ## * Setups Profiler module
 
-proc orxProfiler_Setup*() {.cdecl, importc: "orxProfiler_Setup", dynlib: "liborx.so".}
+proc orxProfiler_Setup*() {.cdecl, importc: "orxProfiler_Setup", dynlib: "liborxd.so".}
 ## * Inits the Profiler module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxProfiler_Init*(): orxSTATUS {.cdecl, importc: "orxProfiler_Init",
-                                   dynlib: "liborx.so".}
+                                   dynlib: "liborxd.so".}
 ## * Exits from the Profiler module
 
-proc orxProfiler_Exit*() {.cdecl, importc: "orxProfiler_Exit", dynlib: "liborx.so".}
+proc orxProfiler_Exit*() {.cdecl, importc: "orxProfiler_Exit", dynlib: "liborxd.so".}
 ## * Gets a marker ID given a name
 ##  @param[in] _zName            Name of the marker
 ##  @return Marker's ID / orxPROFILER_KS32_MARKER_ID_NONE
 ##
 
 proc orxProfiler_GetIDFromName*(zName: cstring): orxS32 {.cdecl,
-    importc: "orxProfiler_GetIDFromName", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetIDFromName", dynlib: "liborxd.so".}
 ## * Is the given marker valid? (Useful when storing markers in static variables and still allow normal hot restart)
 ##  @param[in] _s32MarkerID      ID of the marker to test
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxProfiler_IsMarkerIDValid*(s32MarkerID: orxS32): orxBOOL {.cdecl,
-    importc: "orxProfiler_IsMarkerIDValid", dynlib: "liborx.so".}
+    importc: "orxProfiler_IsMarkerIDValid", dynlib: "liborxd.so".}
 ## * Pushes a marker (on a stack) and starts a timer for it
 ##  @param[in] _s32MarkerID      ID of the marker to push
 ##
 
 proc orxProfiler_PushMarker*(s32MarkerID: orxS32) {.cdecl,
-    importc: "orxProfiler_PushMarker", dynlib: "liborx.so".}
+    importc: "orxProfiler_PushMarker", dynlib: "liborxd.so".}
 ## * Pops a marker (from the stack) and updates its cumulated time (using the last marker push time)
 ##
 
 proc orxProfiler_PopMarker*() {.cdecl, importc: "orxProfiler_PopMarker",
-                              dynlib: "liborx.so".}
+                              dynlib: "liborxd.so".}
 ## * Enables marker push/pop operations
 ##  @param[in] _bEnable          Enable
 ##
 
 proc orxProfiler_EnableMarkerOperations*(bEnable: orxBOOL) {.cdecl,
-    importc: "orxProfiler_EnableMarkerOperations", dynlib: "liborx.so".}
+    importc: "orxProfiler_EnableMarkerOperations", dynlib: "liborxd.so".}
 ## * Are marker push/pop operations enabled?
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxProfiler_AreMarkerOperationsEnabled*(): orxBOOL {.cdecl,
-    importc: "orxProfiler_AreMarkerOperationsEnabled", dynlib: "liborx.so".}
+    importc: "orxProfiler_AreMarkerOperationsEnabled", dynlib: "liborxd.so".}
 ## * Pauses/unpauses the profiler
 ##  @param[in] _bPause           Pause
 ##
 
 proc orxProfiler_Pause*(bPause: orxBOOL) {.cdecl, importc: "orxProfiler_Pause",
-                                        dynlib: "liborx.so".}
+                                        dynlib: "liborxd.so".}
 ## * Is profiler paused?
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxProfiler_IsPaused*(): orxBOOL {.cdecl, importc: "orxProfiler_IsPaused",
-                                     dynlib: "liborx.so".}
+                                     dynlib: "liborxd.so".}
 ## * Resets all markers (usually called at the end of the frame)
 ##
 
 proc orxProfiler_ResetAllMarkers*() {.cdecl,
                                     importc: "orxProfiler_ResetAllMarkers",
-                                    dynlib: "liborx.so".}
+                                    dynlib: "liborxd.so".}
 ## * Resets all maxima (usually called at a regular interval)
 ##
 
 proc orxProfiler_ResetAllMaxima*() {.cdecl, importc: "orxProfiler_ResetAllMaxima",
-                                   dynlib: "liborx.so".}
+                                   dynlib: "liborxd.so".}
 ## * Gets the time elapsed since last reset
 ##  @return Time elapsed since the last reset, in seconds
 ##
 
 proc orxProfiler_GetResetTime*(): orxDOUBLE {.cdecl,
-    importc: "orxProfiler_GetResetTime", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetResetTime", dynlib: "liborxd.so".}
 ## * Gets the maximum reset time
 ##  @return Max reset time, in seconds
 ##
 
 proc orxProfiler_GetMaxResetTime*(): orxDOUBLE {.cdecl,
-    importc: "orxProfiler_GetMaxResetTime", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetMaxResetTime", dynlib: "liborxd.so".}
 ## * Gets the number of registered markers used on the queried thread
 ##  @return Number of registered markers
 ##
 
 proc orxProfiler_GetMarkerCount*(): orxS32 {.cdecl,
-    importc: "orxProfiler_GetMarkerCount", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetMarkerCount", dynlib: "liborxd.so".}
 ## * Gets the next registered marker ID
 ##  @param[in] _s32MarkerID      ID of the current marker, orxPROFILER_KS32_MARKER_ID_NONE to get the first one
 ##  @return Next registered marker's ID / orxPROFILER_KS32_MARKER_ID_NONE if the current marker was the last one
 ##
 
 proc orxProfiler_GetNextMarkerID*(s32MarkerID: orxS32): orxS32 {.cdecl,
-    importc: "orxProfiler_GetNextMarkerID", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetNextMarkerID", dynlib: "liborxd.so".}
 ## * Gets the ID of the next marker, sorted by their push time
 ##  @param[in] _s32MarkerID      ID of the current pushed marker, orxPROFILER_KS32_MARKER_ID_NONE to get the first one
 ##  @return Next registered marker's ID / orxPROFILER_KS32_MARKER_ID_NONE if the current marker was the last one
 ##
 
 proc orxProfiler_GetNextSortedMarkerID*(s32MarkerID: orxS32): orxS32 {.cdecl,
-    importc: "orxProfiler_GetNextSortedMarkerID", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetNextSortedMarkerID", dynlib: "liborxd.so".}
 ## * Selects the query frame for all GetMarker* functions below, in number of frame elapsed from the last one
 ##  @param[in] _u32QueryFrame    Query frame, in number of frame elapsed since the last one (ie. 0 -> last frame, 1 -> frame before last, ...)
 ##  @param[in] _u32ThreadID      Concerned thread ID, if no data is found for this thread, orxSTATUS_FAILURE is returned
@@ -192,54 +192,54 @@ proc orxProfiler_GetNextSortedMarkerID*(s32MarkerID: orxS32): orxS32 {.cdecl,
 ##
 
 proc orxProfiler_SelectQueryFrame*(u32QueryFrame: orxU32; u32ThreadID: orxU32): orxSTATUS {.
-    cdecl, importc: "orxProfiler_SelectQueryFrame", dynlib: "liborx.so".}
+    cdecl, importc: "orxProfiler_SelectQueryFrame", dynlib: "liborxd.so".}
 ## * Gets the marker's cumulated time
 ##  @param[in] _s32MarkerID      Concerned marker ID
 ##  @return Marker's cumulated time
 ##
 
 proc orxProfiler_GetMarkerTime*(s32MarkerID: orxS32): orxDOUBLE {.cdecl,
-    importc: "orxProfiler_GetMarkerTime", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetMarkerTime", dynlib: "liborxd.so".}
 ## * Gets the marker's maximum cumulated time
 ##  @param[in] _s32MarkerID      Concerned marker ID
 ##  @return Marker's max cumulated time
 ##
 
 proc orxProfiler_GetMarkerMaxTime*(s32MarkerID: orxS32): orxDOUBLE {.cdecl,
-    importc: "orxProfiler_GetMarkerMaxTime", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetMarkerMaxTime", dynlib: "liborxd.so".}
 ## * Gets the marker's name
 ##  @param[in] _s32MarkerID      Concerned marker ID
 ##  @return Marker's name
 ##
 
 proc orxProfiler_GetMarkerName*(s32MarkerID: orxS32): cstring {.cdecl,
-    importc: "orxProfiler_GetMarkerName", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetMarkerName", dynlib: "liborxd.so".}
 ## * Gets the marker's push count
 ##  @param[in] _s32MarkerID      Concerned marker ID
 ##  @return Number of time the marker has been pushed since last reset
 ##
 
 proc orxProfiler_GetMarkerPushCount*(s32MarkerID: orxS32): orxU32 {.cdecl,
-    importc: "orxProfiler_GetMarkerPushCount", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetMarkerPushCount", dynlib: "liborxd.so".}
 ## * Has the marker been pushed by a unique parent?
 ##  @param[in] _s32MarkerID      Concerned marker ID
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxProfiler_IsUniqueMarker*(s32MarkerID: orxS32): orxBOOL {.cdecl,
-    importc: "orxProfiler_IsUniqueMarker", dynlib: "liborx.so".}
+    importc: "orxProfiler_IsUniqueMarker", dynlib: "liborxd.so".}
 ## * Gets the uniquely pushed marker's start time
 ##  @param[in] _s32MarkerID      Concerned marker ID
 ##  @return Marker's start time / 0.0
 ##
 
 proc orxProfiler_GetUniqueMarkerStartTime*(s32MarkerID: orxS32): orxDOUBLE {.cdecl,
-    importc: "orxProfiler_GetUniqueMarkerStartTime", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetUniqueMarkerStartTime", dynlib: "liborxd.so".}
 ## * Gets the uniquely pushed marker's depth, 1 being the depth of the top level
 ##  @param[in] _s32MarkerID      Concerned marker ID
 ##  @return Marker's push depth / 0 if this marker hasn't been uniquely pushed
 ##
 
 proc orxProfiler_GetUniqueMarkerDepth*(s32MarkerID: orxS32): orxU32 {.cdecl,
-    importc: "orxProfiler_GetUniqueMarkerDepth", dynlib: "liborx.so".}
+    importc: "orxProfiler_GetUniqueMarkerDepth", dynlib: "liborxd.so".}
 ## * @}

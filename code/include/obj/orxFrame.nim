@@ -101,77 +101,77 @@ type orxFRAME* = object
 ##
 
 proc orxFrame_GetIgnoreFlagValues*(zFlags: cstring): orxU32 {.cdecl,
-    importc: "orxFrame_GetIgnoreFlagValues", dynlib: "liborx.so".}
+    importc: "orxFrame_GetIgnoreFlagValues", dynlib: "liborxd.so".}
 ## * Get ignore flag names (beware: result won't persist from one call to the other)
 ##  @param[in]   _zFlags         Literal ignore flags
 ##  @return Ignore flags names
 ##
 
 proc orxFrame_GetIgnoreFlagNames*(u32Flags: orxU32): cstring {.cdecl,
-    importc: "orxFrame_GetIgnoreFlagNames", dynlib: "liborx.so".}
+    importc: "orxFrame_GetIgnoreFlagNames", dynlib: "liborxd.so".}
 ## * Setups the frame module
 ##
 
-proc orxFrame_Setup*() {.cdecl, importc: "orxFrame_Setup", dynlib: "liborx.so".}
+proc orxFrame_Setup*() {.cdecl, importc: "orxFrame_Setup", dynlib: "liborxd.so".}
 ## * Inits the frame module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxFrame_Init*(): orxSTATUS {.cdecl, importc: "orxFrame_Init",
-                                dynlib: "liborx.so".}
+                                dynlib: "liborxd.so".}
 ## * Exits from the frame module
 ##
 
-proc orxFrame_Exit*() {.cdecl, importc: "orxFrame_Exit", dynlib: "liborx.so".}
+proc orxFrame_Exit*() {.cdecl, importc: "orxFrame_Exit", dynlib: "liborxd.so".}
 ## * Creates a frame
 ##  @param[in]   _u32Flags       Flags for created animation
 ##  @return      Created orxFRAME / nil
 ##
 
 proc orxFrame_Create*(u32Flags: orxU32): ptr orxFRAME {.cdecl,
-    importc: "orxFrame_Create", dynlib: "liborx.so".}
+    importc: "orxFrame_Create", dynlib: "liborxd.so".}
 ## * Deletes a frame
 ##  @param[in]   _pstFrame       Frame to delete
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxFrame_Delete*(pstFrame: ptr orxFRAME): orxSTATUS {.cdecl,
-    importc: "orxFrame_Delete", dynlib: "liborx.so".}
+    importc: "orxFrame_Delete", dynlib: "liborxd.so".}
 ## * Sets frame parent
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _pstParent      Parent frame to set
 ##
 
 proc orxFrame_SetParent*(pstFrame: ptr orxFRAME; pstParent: ptr orxFRAME) {.cdecl,
-    importc: "orxFrame_SetParent", dynlib: "liborx.so".}
+    importc: "orxFrame_SetParent", dynlib: "liborxd.so".}
 ## * Get frame parent
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @return orxFRAME / nil
 ##
 
 proc orxFrame_GetParent*(pstFrame: ptr orxFRAME): ptr orxFRAME {.cdecl,
-    importc: "orxFrame_GetParent", dynlib: "liborx.so".}
+    importc: "orxFrame_GetParent", dynlib: "liborxd.so".}
 ## * Gets frame first child
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @return orxFRAME / nil
 ##
 
 proc orxFrame_GetChild*(pstFrame: ptr orxFRAME): ptr orxFRAME {.cdecl,
-    importc: "orxFrame_GetChild", dynlib: "liborx.so".}
+    importc: "orxFrame_GetChild", dynlib: "liborxd.so".}
 ## * Gets frame next sibling
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @return orxFRAME / nil
 ##
 
 proc orxFrame_GetSibling*(pstFrame: ptr orxFRAME): ptr orxFRAME {.cdecl,
-    importc: "orxFrame_GetSibling", dynlib: "liborx.so".}
+    importc: "orxFrame_GetSibling", dynlib: "liborxd.so".}
 ## * Is a root child?
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @return orxTRUE if its parent is root, orxFALSE otherwise
 ##
 
 proc orxFrame_IsRootChild*(pstFrame: ptr orxFRAME): orxBOOL {.cdecl,
-    importc: "orxFrame_IsRootChild", dynlib: "liborx.so".}
+    importc: "orxFrame_IsRootChild", dynlib: "liborxd.so".}
 ## * Sets frame position
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Coordinate space system to use
@@ -180,7 +180,7 @@ proc orxFrame_IsRootChild*(pstFrame: ptr orxFRAME): orxBOOL {.cdecl,
 
 proc orxFrame_SetPosition*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
                           pvPos: ptr orxVECTOR) {.cdecl,
-    importc: "orxFrame_SetPosition", dynlib: "liborx.so".}
+    importc: "orxFrame_SetPosition", dynlib: "liborxd.so".}
 ## * Sets frame rotation
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Coordinate space system to use
@@ -189,7 +189,7 @@ proc orxFrame_SetPosition*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 
 proc orxFrame_SetRotation*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
                           fRotation: orxFLOAT) {.cdecl,
-    importc: "orxFrame_SetRotation", dynlib: "liborx.so".}
+    importc: "orxFrame_SetRotation", dynlib: "liborxd.so".}
 ## * Sets frame scale
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Coordinate space system to use
@@ -198,7 +198,7 @@ proc orxFrame_SetRotation*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 
 proc orxFrame_SetScale*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
                        pvScale: ptr orxVECTOR) {.cdecl,
-    importc: "orxFrame_SetScale", dynlib: "liborx.so".}
+    importc: "orxFrame_SetScale", dynlib: "liborxd.so".}
 ## * Gets frame position
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Coordinate space system to use
@@ -208,7 +208,7 @@ proc orxFrame_SetScale*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 
 proc orxFrame_GetPosition*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
                           pvPos: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxFrame_GetPosition", dynlib: "liborx.so".}
+    importc: "orxFrame_GetPosition", dynlib: "liborxd.so".}
 ## * Gets frame rotation
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Coordinate space system to use
@@ -216,7 +216,7 @@ proc orxFrame_GetPosition*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 ##
 
 proc orxFrame_GetRotation*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE): orxFLOAT {.
-    cdecl, importc: "orxFrame_GetRotation", dynlib: "liborx.so".}
+    cdecl, importc: "orxFrame_GetRotation", dynlib: "liborxd.so".}
 ## * Gets frame scale
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Coordinate space system to use
@@ -226,7 +226,7 @@ proc orxFrame_GetRotation*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE): orxF
 
 proc orxFrame_GetScale*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
                        pvScale: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxFrame_GetScale", dynlib: "liborx.so".}
+    importc: "orxFrame_GetScale", dynlib: "liborxd.so".}
 ## * Transforms a position given its input space (local -> global or global -> local)
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Input coordinate space system to use
@@ -236,7 +236,7 @@ proc orxFrame_GetScale*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 
 proc orxFrame_TransformPosition*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
                                 pvPos: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxFrame_TransformPosition", dynlib: "liborx.so".}
+    importc: "orxFrame_TransformPosition", dynlib: "liborxd.so".}
 ## * Transforms a rotation given its input space (local -> global or global -> local)
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Input coordinate space system to use
@@ -246,7 +246,7 @@ proc orxFrame_TransformPosition*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 
 proc orxFrame_TransformRotation*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
                                 fRotation: orxFLOAT): orxFLOAT {.cdecl,
-    importc: "orxFrame_TransformRotation", dynlib: "liborx.so".}
+    importc: "orxFrame_TransformRotation", dynlib: "liborxd.so".}
 ## * Transforms a scale given its input space (local -> global or global -> local)
 ##  @param[in]   _pstFrame       Concerned frame
 ##  @param[in]   _eSpace         Input coordinate space system to use
@@ -256,5 +256,5 @@ proc orxFrame_TransformRotation*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
 
 proc orxFrame_TransformScale*(pstFrame: ptr orxFRAME; eSpace: orxFRAME_SPACE;
                              pvScale: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxFrame_TransformScale", dynlib: "liborx.so".}
+    importc: "orxFrame_TransformScale", dynlib: "liborxd.so".}
 ## * @}

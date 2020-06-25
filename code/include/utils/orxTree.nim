@@ -59,7 +59,7 @@ type
 ##
 
 proc orxTree_Clean*(pstTree: ptr orxTREE): orxSTATUS {.cdecl,
-    importc: "orxTree_Clean", dynlib: "liborx.so".}
+    importc: "orxTree_Clean", dynlib: "liborxd.so".}
 ## * Adds a node at the root of a tree
 ##  @param[in]   _pstTree                        Concerned tree
 ##  @param[in]   _pstNode                        Node to add
@@ -67,7 +67,7 @@ proc orxTree_Clean*(pstTree: ptr orxTREE): orxSTATUS {.cdecl,
 ##
 
 proc orxTree_AddRoot*(pstTree: ptr orxTREE; pstNode: ptr orxTREE_NODE): orxSTATUS {.
-    cdecl, importc: "orxTree_AddRoot", dynlib: "liborx.so".}
+    cdecl, importc: "orxTree_AddRoot", dynlib: "liborxd.so".}
 ## * Adds a node as a parent of another one
 ##  @param[in]   _pstRefNode                     Reference node (add as a parent of this one)
 ##  @param[in]   _pstNode                        Node to add
@@ -75,7 +75,7 @@ proc orxTree_AddRoot*(pstTree: ptr orxTREE; pstNode: ptr orxTREE_NODE): orxSTATU
 ##
 
 proc orxTree_AddParent*(pstRefNode: ptr orxTREE_NODE; pstNode: ptr orxTREE_NODE): orxSTATUS {.
-    cdecl, importc: "orxTree_AddParent", dynlib: "liborx.so".}
+    cdecl, importc: "orxTree_AddParent", dynlib: "liborxd.so".}
 ## * Adds a node as a sibling of another one
 ##  @param[in]   _pstRefNode                     Reference node (add as a sibling of this one)
 ##  @param[in]   _pstNode                        Node to add
@@ -83,7 +83,7 @@ proc orxTree_AddParent*(pstRefNode: ptr orxTREE_NODE; pstNode: ptr orxTREE_NODE)
 ##
 
 proc orxTree_AddSibling*(pstRefNode: ptr orxTREE_NODE; pstNode: ptr orxTREE_NODE): orxSTATUS {.
-    cdecl, importc: "orxTree_AddSibling", dynlib: "liborx.so".}
+    cdecl, importc: "orxTree_AddSibling", dynlib: "liborxd.so".}
 ## * Adds a node as a child of another one
 ##  @param[in]   _pstRefNode                     Reference node (add as a child of this one)
 ##  @param[in]   _pstNode                        Node to add
@@ -91,7 +91,7 @@ proc orxTree_AddSibling*(pstRefNode: ptr orxTREE_NODE; pstNode: ptr orxTREE_NODE
 ##
 
 proc orxTree_AddChild*(pstRefNode: ptr orxTREE_NODE; pstNode: ptr orxTREE_NODE): orxSTATUS {.
-    cdecl, importc: "orxTree_AddChild", dynlib: "liborx.so".}
+    cdecl, importc: "orxTree_AddChild", dynlib: "liborxd.so".}
 ## * Moves a node as a child of another one of the same tree
 ##  @param[in]   _pstRefNode                     Reference node (move as a child of this one)
 ##  @param[in]   _pstNode                        Node to move
@@ -99,14 +99,14 @@ proc orxTree_AddChild*(pstRefNode: ptr orxTREE_NODE; pstNode: ptr orxTREE_NODE):
 ##
 
 proc orxTree_MoveAsChild*(pstRefNode: ptr orxTREE_NODE; pstNode: ptr orxTREE_NODE): orxSTATUS {.
-    cdecl, importc: "orxTree_MoveAsChild", dynlib: "liborx.so".}
+    cdecl, importc: "orxTree_MoveAsChild", dynlib: "liborxd.so".}
 ## * Removes a node from its tree
 ##  @param[in]   _pstNode                        Concerned node
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxTree_Remove*(pstNode: ptr orxTREE_NODE): orxSTATUS {.cdecl,
-    importc: "orxTree_Remove", dynlib: "liborx.so".}
+    importc: "orxTree_Remove", dynlib: "liborxd.so".}
 ##  *** Tree inlined accessors ***
 ## * Gets a node tree
 ##  @param[in]   _pstNode                        Concerned node

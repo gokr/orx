@@ -90,14 +90,14 @@ proc orxModule_Register*(eModuleID: orxMODULE_ID; zModuleName: cstring;
                         pfnSetup: orxMODULE_SETUP_FUNCTION;
                         pfnInit: orxMODULE_INIT_FUNCTION;
                         pfnExit: orxMODULE_EXIT_FUNCTION) {.cdecl,
-    importc: "orxModule_Register", dynlib: "liborx.so".}
+    importc: "orxModule_Register", dynlib: "liborxd.so".}
 ## * Adds dependencies between 2 modules
 ##  @param[in]   _eModuleID                Concerned module ID
 ##  @param[in]   _eDependID                Module ID of the needed module
 ##
 
 proc orxModule_AddDependency*(eModuleID: orxMODULE_ID; eDependID: orxMODULE_ID) {.
-    cdecl, importc: "orxModule_AddDependency", dynlib: "liborx.so".}
+    cdecl, importc: "orxModule_AddDependency", dynlib: "liborxd.so".}
 ## * Adds optional dependencies between 2 modules
 ##  @param[in]   _eModuleID                Concerned module ID
 ##  @param[in]   _eDependID                Module ID of the optionally needed module
@@ -105,32 +105,32 @@ proc orxModule_AddDependency*(eModuleID: orxMODULE_ID; eDependID: orxMODULE_ID) 
 
 proc orxModule_AddOptionalDependency*(eModuleID: orxMODULE_ID;
                                      eDependID: orxMODULE_ID) {.cdecl,
-    importc: "orxModule_AddOptionalDependency", dynlib: "liborx.so".}
+    importc: "orxModule_AddOptionalDependency", dynlib: "liborxd.so".}
 ## * Inits a module
 ##  @param[in]   _eModuleID                Concerned module ID
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxModule_Init*(eModuleID: orxMODULE_ID): orxSTATUS {.cdecl,
-    importc: "orxModule_Init", dynlib: "liborx.so".}
+    importc: "orxModule_Init", dynlib: "liborxd.so".}
 ## * Exits from a module
 ##  @param[in]   _eModuleID                Concerned module ID
 ##
 
 proc orxModule_Exit*(eModuleID: orxMODULE_ID) {.cdecl, importc: "orxModule_Exit",
-    dynlib: "liborx.so".}
+    dynlib: "liborxd.so".}
 ## * Is module initialized?
 ##  @param[in]   _eModuleID                Concerned module ID
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxModule_IsInitialized*(eModuleID: orxMODULE_ID): orxBOOL {.cdecl,
-    importc: "orxModule_IsInitialized", dynlib: "liborx.so".}
+    importc: "orxModule_IsInitialized", dynlib: "liborxd.so".}
 ## * Gets module name
 ##  @param[in]   _eModuleID                Concerned module ID
 ##  @return Module name / orxSTRING_EMPTY
 ##
 
 proc orxModule_GetName*(eModuleID: orxMODULE_ID): cstring {.cdecl,
-    importc: "orxModule_GetName", dynlib: "liborx.so".}
+    importc: "orxModule_GetName", dynlib: "liborxd.so".}
 ## * @}

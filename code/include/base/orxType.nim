@@ -132,46 +132,46 @@ const
 
 ##  *** Float constants ***
 
-#var orxFLOAT_0* {.importc: "orxFLOAT_0", dynlib: "liborx.so".}: orxFLOAT
+#var orxFLOAT_0* {.importc: "orxFLOAT_0", dynlib: "liborxd.so".}: orxFLOAT
 const orxFLOAT_0* = 0.0f
 
-#var orxFLOAT_1* {.importc: "orxFLOAT_1", dynlib: "liborx.so".}: orxFLOAT
+#var orxFLOAT_1* {.importc: "orxFLOAT_1", dynlib: "liborxd.so".}: orxFLOAT
 const orxFLOAT_1* = 1.0f
 
-#var orxFLOAT_MAX* {.importc: "orxFLOAT_MAX", dynlib: "liborx.so".}: orxFLOAT
+#var orxFLOAT_MAX* {.importc: "orxFLOAT_MAX", dynlib: "liborxd.so".}: orxFLOAT
 const orxFLOAT_MAX* = 3.402823466e+38f
 
 ##  *** Double constants ***
 
-#var orxDOUBLE_0* {.importc: "orxDOUBLE_0", dynlib: "liborx.so".}: orxDOUBLE
+#var orxDOUBLE_0* {.importc: "orxDOUBLE_0", dynlib: "liborxd.so".}: orxDOUBLE
 
-#var orxDOUBLE_1* {.importc: "orxDOUBLE_1", dynlib: "liborx.so".}: orxDOUBLE
+#var orxDOUBLE_1* {.importc: "orxDOUBLE_1", dynlib: "liborxd.so".}: orxDOUBLE
 
-#var orxDOUBLE_MAX* {.importc: "orxDOUBLE_MAX", dynlib: "liborx.so".}: orxDOUBLE
+#var orxDOUBLE_MAX* {.importc: "orxDOUBLE_MAX", dynlib: "liborxd.so".}: orxDOUBLE
 
 ##  *** Undefined constants ***
 
-#var orxU64_UNDEFINED* {.importc: "orxU64_UNDEFINED", dynlib: "liborx.so".}: orxU64
+#var orxU64_UNDEFINED* {.importc: "orxU64_UNDEFINED", dynlib: "liborxd.so".}: orxU64
 
-#var orxU32_UNDEFINED* {.importc: "orxU32_UNDEFINED", dynlib: "liborx.so".}: orxU32
+#var orxU32_UNDEFINED* {.importc: "orxU32_UNDEFINED", dynlib: "liborxd.so".}: orxU32
 
-#var orxU16_UNDEFINED* {.importc: "orxU16_UNDEFINED", dynlib: "liborx.so".}: orxU16
+#var orxU16_UNDEFINED* {.importc: "orxU16_UNDEFINED", dynlib: "liborxd.so".}: orxU16
 
-#var orxU8_UNDEFINED* {.importc: "orxU8_UNDEFINED", dynlib: "liborx.so".}: orxU8
+#var orxU8_UNDEFINED* {.importc: "orxU8_UNDEFINED", dynlib: "liborxd.so".}: orxU8
 
-#var orxHANDLE_UNDEFINED* {.importc: "orxHANDLE_UNDEFINED", dynlib: "liborx.so".}: orxHANDLE
+#var orxHANDLE_UNDEFINED* {.importc: "orxHANDLE_UNDEFINED", dynlib: "liborxd.so".}: orxHANDLE
 
-#var orxSTRINGID_UNDEFINED* {.importc: "orxSTRINGID_UNDEFINED", dynlib: "liborx.so".}: orxSTRINGID
+#var orxSTRINGID_UNDEFINED* {.importc: "orxSTRINGID_UNDEFINED", dynlib: "liborxd.so".}: orxSTRINGID
 
 ##  *** String & character constants ***
 
-var orxSTRING_EMPTY* {.importc: "orxSTRING_EMPTY", dynlib: "liborx.so".}: cstring
+var orxSTRING_EMPTY* {.importc: "orxSTRING_EMPTY", dynlib: "liborxd.so".}: cstring
 
-var orxSTRING_TRUE* {.importc: "orxSTRING_TRUE", dynlib: "liborx.so".}: cstring
+var orxSTRING_TRUE* {.importc: "orxSTRING_TRUE", dynlib: "liborxd.so".}: cstring
 
-var orxSTRING_FALSE* {.importc: "orxSTRING_FALSE", dynlib: "liborx.so".}: cstring
+var orxSTRING_FALSE* {.importc: "orxSTRING_FALSE", dynlib: "liborxd.so".}: cstring
 
-var orxSTRING_EOL* {.importc: "orxSTRING_EOL", dynlib: "liborx.so".}: cstring
+var orxSTRING_EOL* {.importc: "orxSTRING_EOL", dynlib: "liborxd.so".}: cstring
 
 const
   orxCHAR_NULL* = '\x00'
@@ -182,7 +182,7 @@ const
 
 ##  *** Directory separators ***
 var orxSTRING_DIRECTORY_SEPARATOR* {.importc: "orxSTRING_DIRECTORY_SEPARATOR",
-                                   dynlib: "liborx.so".}: cstring
+                                   dynlib: "liborxd.so".}: cstring
 
 const
   orxCHAR_DIRECTORY_SEPARATOR_WINDOWS* = '\b'

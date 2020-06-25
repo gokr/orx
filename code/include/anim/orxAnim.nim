@@ -121,15 +121,15 @@ type
 ## * Anim module setup
 ##
 
-proc orxAnim_Setup*() {.cdecl, importc: "orxAnim_Setup", dynlib: "liborx.so".}
+proc orxAnim_Setup*() {.cdecl, importc: "orxAnim_Setup", dynlib: "liborxd.so".}
 ## * Inits the Anim module
 ##
 
-proc orxAnim_Init*(): orxSTATUS {.cdecl, importc: "orxAnim_Init", dynlib: "liborx.so".}
+proc orxAnim_Init*(): orxSTATUS {.cdecl, importc: "orxAnim_Init", dynlib: "liborxd.so".}
 ## * Exits from the Anim module
 ##
 
-proc orxAnim_Exit*() {.cdecl, importc: "orxAnim_Exit", dynlib: "liborx.so".}
+proc orxAnim_Exit*() {.cdecl, importc: "orxAnim_Exit", dynlib: "liborxd.so".}
 ## * Creates an empty animation
 ##  @param[in]   _u32Flags       Flags for created animation
 ##  @param[in]   _u32KeyNumber   Number of keys for this animation
@@ -138,14 +138,14 @@ proc orxAnim_Exit*() {.cdecl, importc: "orxAnim_Exit", dynlib: "liborx.so".}
 ##
 
 proc orxAnim_Create*(u32Flags: orxU32; u32KeyNumber: orxU32; u32EventNumber: orxU32): ptr orxANIM {.
-    cdecl, importc: "orxAnim_Create", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnim_Create", dynlib: "liborxd.so".}
 ## * Deletes an animation
 ##  @param[in]   _pstAnim        Anim to delete
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxAnim_Delete*(pstAnim: ptr orxANIM): orxSTATUS {.cdecl,
-    importc: "orxAnim_Delete", dynlib: "liborx.so".}
+    importc: "orxAnim_Delete", dynlib: "liborxd.so".}
 ## * Adds a key to an animation
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @param[in]   _pstData        Key data to add
@@ -155,20 +155,20 @@ proc orxAnim_Delete*(pstAnim: ptr orxANIM): orxSTATUS {.cdecl,
 
 proc orxAnim_AddKey*(pstAnim: ptr orxANIM; pstData: ptr orxSTRUCTURE;
                     fTimeStamp: orxFLOAT): orxSTATUS {.cdecl,
-    importc: "orxAnim_AddKey", dynlib: "liborx.so".}
+    importc: "orxAnim_AddKey", dynlib: "liborxd.so".}
 ## * Removes last added key from an animation
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxAnim_RemoveLastKey*(pstAnim: ptr orxANIM): orxSTATUS {.cdecl,
-    importc: "orxAnim_RemoveLastKey", dynlib: "liborx.so".}
+    importc: "orxAnim_RemoveLastKey", dynlib: "liborxd.so".}
 ## * Removes all keys from an animation
 ##  @param[in]   _pstAnim        Concerned animation
 ##
 
 proc orxAnim_RemoveAllKeys*(pstAnim: ptr orxANIM) {.cdecl,
-    importc: "orxAnim_RemoveAllKeys", dynlib: "liborx.so".}
+    importc: "orxAnim_RemoveAllKeys", dynlib: "liborxd.so".}
 ## * Adds an event to an animation
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @param[in]   _zEventName     Event name to add
@@ -179,20 +179,20 @@ proc orxAnim_RemoveAllKeys*(pstAnim: ptr orxANIM) {.cdecl,
 
 proc orxAnim_AddEvent*(pstAnim: ptr orxANIM; zEventName: cstring;
                       fTimeStamp: orxFLOAT; fValue: orxFLOAT): orxSTATUS {.cdecl,
-    importc: "orxAnim_AddEvent", dynlib: "liborx.so".}
+    importc: "orxAnim_AddEvent", dynlib: "liborxd.so".}
 ## * Removes last added event from an animation
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxAnim_RemoveLastEvent*(pstAnim: ptr orxANIM): orxSTATUS {.cdecl,
-    importc: "orxAnim_RemoveLastEvent", dynlib: "liborx.so".}
+    importc: "orxAnim_RemoveLastEvent", dynlib: "liborxd.so".}
 ## * Removes all events from an animation
 ##  @param[in]   _pstAnim        Concerned animation
 ##
 
 proc orxAnim_RemoveAllEvents*(pstAnim: ptr orxANIM) {.cdecl,
-    importc: "orxAnim_RemoveAllEvents", dynlib: "liborx.so".}
+    importc: "orxAnim_RemoveAllEvents", dynlib: "liborxd.so".}
 ## * Gets next event after given timestamp
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @param[in]   _fTimeStamp     Time stamp, excluded
@@ -200,7 +200,7 @@ proc orxAnim_RemoveAllEvents*(pstAnim: ptr orxANIM) {.cdecl,
 ##
 
 proc orxAnim_GetNextEvent*(pstAnim: ptr orxANIM; fTimeStamp: orxFLOAT): ptr orxANIM_CUSTOM_EVENT {.
-    cdecl, importc: "orxAnim_GetNextEvent", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnim_GetNextEvent", dynlib: "liborxd.so".}
 ## * Gets animation's key index from a time stamp
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @param[in]   _fTimeStamp     TimeStamp of the desired animation key
@@ -208,7 +208,7 @@ proc orxAnim_GetNextEvent*(pstAnim: ptr orxANIM; fTimeStamp: orxFLOAT): ptr orxA
 ##
 
 proc orxAnim_GetKey*(pstAnim: ptr orxANIM; fTimeStamp: orxFLOAT): orxU32 {.cdecl,
-    importc: "orxAnim_GetKey", dynlib: "liborx.so".}
+    importc: "orxAnim_GetKey", dynlib: "liborxd.so".}
 ## * Anim key data accessor
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @param[in]   _u32Index       Index of desired key data
@@ -216,47 +216,47 @@ proc orxAnim_GetKey*(pstAnim: ptr orxANIM; fTimeStamp: orxFLOAT): orxU32 {.cdecl
 ##
 
 proc orxAnim_GetKeyData*(pstAnim: ptr orxANIM; u32Index: orxU32): ptr orxSTRUCTURE {.
-    cdecl, importc: "orxAnim_GetKeyData", dynlib: "liborx.so".}
+    cdecl, importc: "orxAnim_GetKeyData", dynlib: "liborxd.so".}
 ## * Anim key storage size accessor
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @return      Anim key storage size
 ##
 
 proc orxAnim_GetKeyStorageSize*(pstAnim: ptr orxANIM): orxU32 {.cdecl,
-    importc: "orxAnim_GetKeyStorageSize", dynlib: "liborx.so".}
+    importc: "orxAnim_GetKeyStorageSize", dynlib: "liborxd.so".}
 ## * Anim key count accessor
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @return      Anim key count
 ##
 
 proc orxAnim_GetKeyCount*(pstAnim: ptr orxANIM): orxU32 {.cdecl,
-    importc: "orxAnim_GetKeyCount", dynlib: "liborx.so".}
+    importc: "orxAnim_GetKeyCount", dynlib: "liborxd.so".}
 ## * Anim event storage size accessor
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @return      Anim event storage size
 ##
 
 proc orxAnim_GetEventStorageSize*(pstAnim: ptr orxANIM): orxU32 {.cdecl,
-    importc: "orxAnim_GetEventStorageSize", dynlib: "liborx.so".}
+    importc: "orxAnim_GetEventStorageSize", dynlib: "liborxd.so".}
 ## * Anim event count accessor
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @return      Anim event count
 ##
 
 proc orxAnim_GetEventCount*(pstAnim: ptr orxANIM): orxU32 {.cdecl,
-    importc: "orxAnim_GetEventCount", dynlib: "liborx.so".}
+    importc: "orxAnim_GetEventCount", dynlib: "liborxd.so".}
 ## * Anim time length accessor
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @return      Anim time length
 ##
 
 proc orxAnim_GetLength*(pstAnim: ptr orxANIM): orxFLOAT {.cdecl,
-    importc: "orxAnim_GetLength", dynlib: "liborx.so".}
+    importc: "orxAnim_GetLength", dynlib: "liborxd.so".}
 ## * Anim name get accessor
 ##  @param[in]   _pstAnim        Concerned animation
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxAnim_GetName*(pstAnim: ptr orxANIM): cstring {.cdecl,
-    importc: "orxAnim_GetName", dynlib: "liborx.so".}
+    importc: "orxAnim_GetName", dynlib: "liborxd.so".}
 ## * @}

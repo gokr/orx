@@ -733,7 +733,7 @@ proc orxVector_Cross*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orx
 proc orxVector_Bezier*(pvRes: ptr orxVECTOR; pvPoint1: ptr orxVECTOR;
                       pvPoint2: ptr orxVECTOR; pvPoint3: ptr orxVECTOR;
                       pvPoint4: ptr orxVECTOR; fT: orxFLOAT): ptr orxVECTOR {.cdecl,
-    importc: "orxVector_Bezier", dynlib: "liborx.so".}
+    importc: "orxVector_Bezier", dynlib: "liborxd.so".}
 ## * Computes an interpolated point on a Catmull-Rom curve segment for a given parameter
 ##  @param[out]  _pvRes                      Vector where to store result
 ##  @param[in]   _pvPoint1                   First control point for this curve segment
@@ -747,58 +747,58 @@ proc orxVector_Bezier*(pvRes: ptr orxVECTOR; pvPoint1: ptr orxVECTOR;
 proc orxVector_CatmullRom*(pvRes: ptr orxVECTOR; pvPoint1: ptr orxVECTOR;
                           pvPoint2: ptr orxVECTOR; pvPoint3: ptr orxVECTOR;
                           pvPoint4: ptr orxVECTOR; fT: orxFLOAT): ptr orxVECTOR {.
-    cdecl, importc: "orxVector_CatmullRom", dynlib: "liborx.so".}
+    cdecl, importc: "orxVector_CatmullRom", dynlib: "liborxd.so".}
 ##  *** Vector constants ***
 
-var orxVECTOR_X* {.importc: "orxVECTOR_X", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_X* {.importc: "orxVECTOR_X", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< X-Axis unit vector
 
-var orxVECTOR_Y* {.importc: "orxVECTOR_Y", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_Y* {.importc: "orxVECTOR_Y", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Y-Axis unit vector
 
-var orxVECTOR_Z* {.importc: "orxVECTOR_Z", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_Z* {.importc: "orxVECTOR_Z", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Z-Axis unit vector
 
-var orxVECTOR_0* {.importc: "orxVECTOR_0", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_0* {.importc: "orxVECTOR_0", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Null vector
 
-var orxVECTOR_1* {.importc: "orxVECTOR_1", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_1* {.importc: "orxVECTOR_1", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Vector filled with 1s
 
-var orxVECTOR_RED* {.importc: "orxVECTOR_RED", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_RED* {.importc: "orxVECTOR_RED", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Red color vector
 
-var orxVECTOR_GREEN* {.importc: "orxVECTOR_GREEN", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_GREEN* {.importc: "orxVECTOR_GREEN", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Green color vector
 
-var orxVECTOR_BLUE* {.importc: "orxVECTOR_BLUE", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_BLUE* {.importc: "orxVECTOR_BLUE", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Blue color vector
 
-var orxVECTOR_YELLOW* {.importc: "orxVECTOR_YELLOW", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_YELLOW* {.importc: "orxVECTOR_YELLOW", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Yellow color vector
 
-var orxVECTOR_CYAN* {.importc: "orxVECTOR_CYAN", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_CYAN* {.importc: "orxVECTOR_CYAN", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Cyan color vector
 
-var orxVECTOR_MAGENTA* {.importc: "orxVECTOR_MAGENTA", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_MAGENTA* {.importc: "orxVECTOR_MAGENTA", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Magenta color vector
 
-var orxVECTOR_BLACK* {.importc: "orxVECTOR_BLACK", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_BLACK* {.importc: "orxVECTOR_BLACK", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< Black color vector
 
-var orxVECTOR_WHITE* {.importc: "orxVECTOR_WHITE", dynlib: "liborx.so".}: orxVECTOR
+var orxVECTOR_WHITE* {.importc: "orxVECTOR_WHITE", dynlib: "liborxd.so".}: orxVECTOR
 
 ## *< White color vector
 

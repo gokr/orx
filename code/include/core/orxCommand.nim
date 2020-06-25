@@ -102,17 +102,17 @@ type
 ## * Command module setup
 ##
 
-proc orxCommand_Setup*() {.cdecl, importc: "orxCommand_Setup", dynlib: "liborx.so".}
+proc orxCommand_Setup*() {.cdecl, importc: "orxCommand_Setup", dynlib: "liborxd.so".}
 ## * Inits the command module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxCommand_Init*(): orxSTATUS {.cdecl, importc: "orxCommand_Init",
-                                  dynlib: "liborx.so".}
+                                  dynlib: "liborxd.so".}
 ## * Exits from the command module
 ##
 
-proc orxCommand_Exit*() {.cdecl, importc: "orxCommand_Exit", dynlib: "liborx.so".}
+proc orxCommand_Exit*() {.cdecl, importc: "orxCommand_Exit", dynlib: "liborxd.so".}
 ## * Registers a command
 ##  @param[in]   _zCommand      Command name
 ##  @param[in]   _pfnFunction   Associated function
@@ -128,21 +128,21 @@ proc orxCommand_Register*(zCommand: cstring; pfnFunction: orxCOMMAND_FUNCTION;
                          u32OptionalParamNumber: orxU32;
                          astParamList: ptr orxCOMMAND_VAR_DEF;
                          pstResult: ptr orxCOMMAND_VAR_DEF): orxSTATUS {.cdecl,
-    importc: "orxCommand_Register", dynlib: "liborx.so".}
+    importc: "orxCommand_Register", dynlib: "liborxd.so".}
 ## * Unregisters a command
 ##  @param[in]   _zCommand      Command name
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxCommand_Unregister*(zCommand: cstring): orxSTATUS {.cdecl,
-    importc: "orxCommand_Unregister", dynlib: "liborx.so".}
+    importc: "orxCommand_Unregister", dynlib: "liborxd.so".}
 ## * Is a command registered?
 ##  @param[in]   _zCommand      Command name
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxCommand_IsRegistered*(zCommand: cstring): orxBOOL {.cdecl,
-    importc: "orxCommand_IsRegistered", dynlib: "liborx.so".}
+    importc: "orxCommand_IsRegistered", dynlib: "liborxd.so".}
 ## * Adds a command alias
 ##  @param[in]   _zAlias        Command alias
 ##  @param[in]   _zCommand      Command name
@@ -152,28 +152,28 @@ proc orxCommand_IsRegistered*(zCommand: cstring): orxBOOL {.cdecl,
 
 proc orxCommand_AddAlias*(zAlias: cstring; zCommand: cstring;
                          zArgs: cstring): orxSTATUS {.cdecl,
-    importc: "orxCommand_AddAlias", dynlib: "liborx.so".}
+    importc: "orxCommand_AddAlias", dynlib: "liborxd.so".}
 ## * Removes a command alias
 ##  @param[in]   _zAlias        Command alias
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxCommand_RemoveAlias*(zAlias: cstring): orxSTATUS {.cdecl,
-    importc: "orxCommand_RemoveAlias", dynlib: "liborx.so".}
+    importc: "orxCommand_RemoveAlias", dynlib: "liborxd.so".}
 ## * Is a command alias?
 ##  @param[in]   _zAlias        Command alias
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxCommand_IsAlias*(zAlias: cstring): orxBOOL {.cdecl,
-    importc: "orxCommand_IsAlias", dynlib: "liborx.so".}
+    importc: "orxCommand_IsAlias", dynlib: "liborxd.so".}
 ## * Gets a command's (text) prototype (beware: result won't persist from one call to the other)
 ##  @param[in]   _zCommand      Command name
 ##  @return      Command prototype / orxSTRING_EMPTY
 ##
 
 proc orxCommand_GetPrototype*(zCommand: cstring): cstring {.cdecl,
-    importc: "orxCommand_GetPrototype", dynlib: "liborx.so".}
+    importc: "orxCommand_GetPrototype", dynlib: "liborxd.so".}
 ## * Gets next command using an optional base
 ##  @param[in]   _zBase             Base name, can be set to nil for no base
 ##  @param[in]   _zPrevious         Previous command, nil to get the first command
@@ -183,7 +183,7 @@ proc orxCommand_GetPrototype*(zCommand: cstring): cstring {.cdecl,
 
 proc orxCommand_GetNext*(zBase: cstring; zPrevious: cstring;
                         pu32CommonLength: ptr orxU32): cstring {.cdecl,
-    importc: "orxCommand_GetNext", dynlib: "liborx.so".}
+    importc: "orxCommand_GetNext", dynlib: "liborxd.so".}
 ## * Evaluates a command
 ##  @param[in]   _zCommandLine  Command name + arguments
 ##  @param[out]  _pstResult     Variable that will contain the result
@@ -191,7 +191,7 @@ proc orxCommand_GetNext*(zBase: cstring; zPrevious: cstring;
 ##
 
 proc orxCommand_Evaluate*(zCommandLine: cstring; pstResult: ptr orxCOMMAND_VAR): ptr orxCOMMAND_VAR {.
-    cdecl, importc: "orxCommand_Evaluate", dynlib: "liborx.so".}
+    cdecl, importc: "orxCommand_Evaluate", dynlib: "liborxd.so".}
 ## * Evaluates a command with a specific GUID
 ##  @param[in]   _zCommandLine  Command name + arguments
 ##  @param[in]   _u64GUID       GUID to use in place of the GUID markers in the command
@@ -201,7 +201,7 @@ proc orxCommand_Evaluate*(zCommandLine: cstring; pstResult: ptr orxCOMMAND_VAR):
 
 proc orxCommand_EvaluateWithGUID*(zCommandLine: cstring; u64GUID: orxU64;
                                  pstResult: ptr orxCOMMAND_VAR): ptr orxCOMMAND_VAR {.
-    cdecl, importc: "orxCommand_EvaluateWithGUID", dynlib: "liborx.so".}
+    cdecl, importc: "orxCommand_EvaluateWithGUID", dynlib: "liborxd.so".}
 ## * Executes a command
 ##  @param[in]   _zCommand      Command name
 ##  @param[in]   _u32ArgNumber  Number of arguments sent to the command
@@ -213,7 +213,7 @@ proc orxCommand_EvaluateWithGUID*(zCommandLine: cstring; u64GUID: orxU64;
 proc orxCommand_Execute*(zCommand: cstring; u32ArgNumber: orxU32;
                         astArgList: ptr orxCOMMAND_VAR;
                         pstResult: ptr orxCOMMAND_VAR): ptr orxCOMMAND_VAR {.cdecl,
-    importc: "orxCommand_Execute", dynlib: "liborx.so".}
+    importc: "orxCommand_Execute", dynlib: "liborxd.so".}
 ## * Parses numerical arguments, string arguments will be evaluated to vectors or float when possible
 ##  @param[in]   _u32ArgNumber  Number of arguments to parse
 ##  @param[in]   _astArgList    List of arguments to parse
@@ -224,7 +224,7 @@ proc orxCommand_Execute*(zCommand: cstring; u32ArgNumber: orxU32;
 proc orxCommand_ParseNumericalArguments*(u32ArgNumber: orxU32;
                                         astArgList: ptr orxCOMMAND_VAR;
                                         astOperandList: ptr orxCOMMAND_VAR): orxSTATUS {.
-    cdecl, importc: "orxCommand_ParseNumericalArguments", dynlib: "liborx.so".}
+    cdecl, importc: "orxCommand_ParseNumericalArguments", dynlib: "liborxd.so".}
 ## * Prints a variable to a buffer, according to its type (and ignoring any bloc/special character)
 ##  @param[out]  _zDstString    Destination string
 ##  @param[in]   _u32Size       String available size
@@ -234,5 +234,5 @@ proc orxCommand_ParseNumericalArguments*(u32ArgNumber: orxU32;
 
 proc orxCommand_PrintVar*(zDstString: cstring; u32Size: orxU32;
                          pstVar: ptr orxCOMMAND_VAR): orxU32 {.cdecl,
-    importc: "orxCommand_PrintVar", dynlib: "liborx.so".}
+    importc: "orxCommand_PrintVar", dynlib: "liborxd.so".}
 ## * @}

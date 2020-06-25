@@ -99,43 +99,43 @@ type
 ## * Shader module setup
 ##
 
-proc orxShader_Setup*() {.cdecl, importc: "orxShader_Setup", dynlib: "liborx.so".}
+proc orxShader_Setup*() {.cdecl, importc: "orxShader_Setup", dynlib: "liborxd.so".}
 ## * Inits the shader module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxShader_Init*(): orxSTATUS {.cdecl, importc: "orxShader_Init",
-                                 dynlib: "liborx.so".}
+                                 dynlib: "liborxd.so".}
 ## * Exits from the shader module
 ##
 
-proc orxShader_Exit*() {.cdecl, importc: "orxShader_Exit", dynlib: "liborx.so".}
+proc orxShader_Exit*() {.cdecl, importc: "orxShader_Exit", dynlib: "liborxd.so".}
 ## * Creates an empty shader
 ##  @return orxSHADER / nil
 ##
 
 proc orxShader_Create*(): ptr orxSHADER {.cdecl, importc: "orxShader_Create",
-                                      dynlib: "liborx.so".}
+                                      dynlib: "liborxd.so".}
 ## * Creates a shader from config
 ##  @param[in]   _zConfigID            Config ID
 ##  @ return orxSHADER / nil
 ##
 
 proc orxShader_CreateFromConfig*(zConfigID: cstring): ptr orxSHADER {.cdecl,
-    importc: "orxShader_CreateFromConfig", dynlib: "liborx.so".}
+    importc: "orxShader_CreateFromConfig", dynlib: "liborxd.so".}
 ## * Deletes a shader
 ##  @param[in] _pstShader              Concerned Shader
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxShader_Delete*(pstShader: ptr orxSHADER): orxSTATUS {.cdecl,
-    importc: "orxShader_Delete", dynlib: "liborx.so".}
+    importc: "orxShader_Delete", dynlib: "liborxd.so".}
 ## * Clears cache (if any shader is still in active use, it'll remain in memory until not referenced anymore)
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxShader_ClearCache*(): orxSTATUS {.cdecl, importc: "orxShader_ClearCache",
-                                       dynlib: "liborx.so".}
+                                       dynlib: "liborxd.so".}
 ## * Starts a shader
 ##  @param[in] _pstShader              Concerned Shader
 ##  @param[in] _pstOwner               Owner structure (orxOBJECT / orxVIEWPORT / nil)
@@ -143,14 +143,14 @@ proc orxShader_ClearCache*(): orxSTATUS {.cdecl, importc: "orxShader_ClearCache"
 ##
 
 proc orxShader_Start*(pstShader: ptr orxSHADER; pstOwner: ptr orxSTRUCTURE): orxSTATUS {.
-    cdecl, importc: "orxShader_Start", dynlib: "liborx.so".}
+    cdecl, importc: "orxShader_Start", dynlib: "liborxd.so".}
 ## * Stops a shader
 ##  @param[in] _pstShader              Concerned Shader
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxShader_Stop*(pstShader: ptr orxSHADER): orxSTATUS {.cdecl,
-    importc: "orxShader_Stop", dynlib: "liborx.so".}
+    importc: "orxShader_Stop", dynlib: "liborxd.so".}
 ## * Adds a float parameter definition to a shader (parameters need to be set before compiling the shader code)
 ##  @param[in] _pstShader              Concerned Shader
 ##  @param[in] _zName                  Parameter's literal name
@@ -161,7 +161,7 @@ proc orxShader_Stop*(pstShader: ptr orxSHADER): orxSTATUS {.cdecl,
 
 proc orxShader_AddFloatParam*(pstShader: ptr orxSHADER; zName: cstring;
                              u32ArraySize: orxU32; afValueList: ptr orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxShader_AddFloatParam", dynlib: "liborx.so".}
+    cdecl, importc: "orxShader_AddFloatParam", dynlib: "liborxd.so".}
 ## * Adds a texture parameter definition to a shader (parameters need to be set before compiling the shader code)
 ##  @param[in] _pstShader              Concerned Shader
 ##  @param[in] _zName                  Parameter's literal name
@@ -173,7 +173,7 @@ proc orxShader_AddFloatParam*(pstShader: ptr orxSHADER; zName: cstring;
 proc orxShader_AddTextureParam*(pstShader: ptr orxSHADER; zName: cstring;
                                u32ArraySize: orxU32;
                                apstValueList: ptr ptr orxTEXTURE): orxSTATUS {.cdecl,
-    importc: "orxShader_AddTextureParam", dynlib: "liborx.so".}
+    importc: "orxShader_AddTextureParam", dynlib: "liborxd.so".}
 ## * Adds a vector parameter definition to a shader (parameters need to be set before compiling the shader code)
 ##  @param[in] _pstShader              Concerned Shader
 ##  @param[in] _zName                  Parameter's literal name
@@ -184,7 +184,7 @@ proc orxShader_AddTextureParam*(pstShader: ptr orxSHADER; zName: cstring;
 
 proc orxShader_AddVectorParam*(pstShader: ptr orxSHADER; zName: cstring;
                               u32ArraySize: orxU32; avValueList: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importc: "orxShader_AddVectorParam", dynlib: "liborx.so".}
+    cdecl, importc: "orxShader_AddVectorParam", dynlib: "liborxd.so".}
 ## * Adds a time parameter definition to a shader (parameters need to be set before compiling the shader code)
 ##  @param[in] _pstShader              Concerned Shader
 ##  @param[in] _zName                  Parameter's literal name
@@ -192,7 +192,7 @@ proc orxShader_AddVectorParam*(pstShader: ptr orxSHADER; zName: cstring;
 ##
 
 proc orxShader_AddTimeParam*(pstShader: ptr orxSHADER; zName: cstring): orxSTATUS {.
-    cdecl, importc: "orxShader_AddTimeParam", dynlib: "liborx.so".}
+    cdecl, importc: "orxShader_AddTimeParam", dynlib: "liborxd.so".}
 ## * Sets the default value for a given float parameter in a shader (parameters need to be added beforehand)
 ##  @param[in] _pstShader              Concerned Shader
 ##  @param[in] _zName                  Parameter's literal name
@@ -203,7 +203,7 @@ proc orxShader_AddTimeParam*(pstShader: ptr orxSHADER; zName: cstring): orxSTATU
 
 proc orxShader_SetFloatParam*(pstShader: ptr orxSHADER; zName: cstring;
                              u32ArraySize: orxU32; afValueList: ptr orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxShader_SetFloatParam", dynlib: "liborx.so".}
+    cdecl, importc: "orxShader_SetFloatParam", dynlib: "liborxd.so".}
 ## * Sets the default value for a given float parameter in a shader (parameters need to be added beforehand)
 ##  @param[in] _pstShader              Concerned Shader
 ##  @param[in] _zName                  Parameter's literal name
@@ -215,7 +215,7 @@ proc orxShader_SetFloatParam*(pstShader: ptr orxSHADER; zName: cstring;
 proc orxShader_SetTextureParam*(pstShader: ptr orxSHADER; zName: cstring;
                                u32ArraySize: orxU32;
                                apstValueList: ptr ptr orxTEXTURE): orxSTATUS {.cdecl,
-    importc: "orxShader_SetTextureParam", dynlib: "liborx.so".}
+    importc: "orxShader_SetTextureParam", dynlib: "liborxd.so".}
 ## * Sets the default value for a given float parameter in a shader (parameters need to be added beforehand)
 ##  @param[in] _pstShader              Concerned Shader
 ##  @param[in] _zName                  Parameter's literal name
@@ -226,7 +226,7 @@ proc orxShader_SetTextureParam*(pstShader: ptr orxSHADER; zName: cstring;
 
 proc orxShader_SetVectorParam*(pstShader: ptr orxSHADER; zName: cstring;
                               u32ArraySize: orxU32; avValueList: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importc: "orxShader_SetVectorParam", dynlib: "liborx.so".}
+    cdecl, importc: "orxShader_SetVectorParam", dynlib: "liborxd.so".}
 ## * Sets shader code & compiles it (parameters need to be set before compiling the shader code)
 ##  @param[in] _pstShader              Concerned Shader
 ##  @param[in] _azCodeList             List of shader codes to compile (parameters need to be set beforehand), will be processed in order
@@ -236,26 +236,26 @@ proc orxShader_SetVectorParam*(pstShader: ptr orxSHADER; zName: cstring;
 
 proc orxShader_CompileCode*(pstShader: ptr orxSHADER; azCodeList: cstringArray;
                            u32Size: orxU32): orxSTATUS {.cdecl,
-    importc: "orxShader_CompileCode", dynlib: "liborx.so".}
+    importc: "orxShader_CompileCode", dynlib: "liborxd.so".}
 ## * Enables/disables a shader
 ##  @param[in]   _pstShader            Concerned Shader
 ##  @param[in]   _bEnable              Enable / disable
 ##
 
 proc orxShader_Enable*(pstShader: ptr orxSHADER; bEnable: orxBOOL) {.cdecl,
-    importc: "orxShader_Enable", dynlib: "liborx.so".}
+    importc: "orxShader_Enable", dynlib: "liborxd.so".}
 ## * Is shader enabled?
 ##  @param[in]   _pstShader            Concerned Shader
 ##  @return      orxTRUE if enabled, orxFALSE otherwise
 ##
 
 proc orxShader_IsEnabled*(pstShader: ptr orxSHADER): orxBOOL {.cdecl,
-    importc: "orxShader_IsEnabled", dynlib: "liborx.so".}
+    importc: "orxShader_IsEnabled", dynlib: "liborxd.so".}
 ## * Gets shader name
 ##  @param[in]   _pstShader            Concerned Shader
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxShader_GetName*(pstShader: ptr orxSHADER): cstring {.cdecl,
-    importc: "orxShader_GetName", dynlib: "liborx.so".}
+    importc: "orxShader_GetName", dynlib: "liborxd.so".}
 ## * @}

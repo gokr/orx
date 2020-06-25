@@ -66,63 +66,63 @@ type
 ## * Locale module setup
 ##
 
-proc orxLocale_Setup*() {.cdecl, importc: "orxLocale_Setup", dynlib: "liborx.so".}
+proc orxLocale_Setup*() {.cdecl, importc: "orxLocale_Setup", dynlib: "liborxd.so".}
 ## * Initializes the Locale Module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxLocale_Init*(): orxSTATUS {.cdecl, importc: "orxLocale_Init",
-                                 dynlib: "liborx.so".}
+                                 dynlib: "liborxd.so".}
 ## * Exits from the Locale Module
 ##
 
-proc orxLocale_Exit*() {.cdecl, importc: "orxLocale_Exit", dynlib: "liborx.so".}
+proc orxLocale_Exit*() {.cdecl, importc: "orxLocale_Exit", dynlib: "liborxd.so".}
 ## * Selects current working language
 ##  @param[in] _zLanguage        Language to select
 ##
 
 proc orxLocale_SelectLanguage*(zLanguage: cstring): orxSTATUS {.cdecl,
-    importc: "orxLocale_SelectLanguage", dynlib: "liborx.so".}
+    importc: "orxLocale_SelectLanguage", dynlib: "liborxd.so".}
 ## * Gets current language
 ##  @return Current selected language
 ##
 
 proc orxLocale_GetCurrentLanguage*(): cstring {.cdecl,
-    importc: "orxLocale_GetCurrentLanguage", dynlib: "liborx.so".}
+    importc: "orxLocale_GetCurrentLanguage", dynlib: "liborxd.so".}
 ## * Has given language? (if not correctly defined, false will be returned)
 ##  @param[in] _zLanguage        Concerned language
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxLocale_HasLanguage*(zLanguage: cstring): orxBOOL {.cdecl,
-    importc: "orxLocale_HasLanguage", dynlib: "liborx.so".}
+    importc: "orxLocale_HasLanguage", dynlib: "liborxd.so".}
 ## * Gets language count
 ##  @return Number of languages defined
 ##
 
 proc orxLocale_GetLanguageCount*(): orxU32 {.cdecl,
-    importc: "orxLocale_GetLanguageCount", dynlib: "liborx.so".}
+    importc: "orxLocale_GetLanguageCount", dynlib: "liborxd.so".}
 ## * Gets language at the given index
 ##  @param[in] _u32LanguageIndex Index of the desired language
 ##  @return orxSTRING if exist, orxSTRING_EMPTY otherwise
 ##
 
 proc orxLocale_GetLanguage*(u32LanguageIndex: orxU32): cstring {.cdecl,
-    importc: "orxLocale_GetLanguage", dynlib: "liborx.so".}
+    importc: "orxLocale_GetLanguage", dynlib: "liborxd.so".}
 ## * Has string for the given key?
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
 proc orxLocale_HasString*(zKey: cstring): orxBOOL {.cdecl,
-    importc: "orxLocale_HasString", dynlib: "liborx.so".}
+    importc: "orxLocale_HasString", dynlib: "liborxd.so".}
 ## * Reads a string in the current language for the given key
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
 proc orxLocale_GetString*(zKey: cstring): cstring {.cdecl,
-    importc: "orxLocale_GetString", dynlib: "liborx.so".}
+    importc: "orxLocale_GetString", dynlib: "liborxd.so".}
 ## * Writes a string in the current language for the given key
 ##  @param[in] _zKey             Key name
 ##  @param[in] _zValue           Value
@@ -130,18 +130,18 @@ proc orxLocale_GetString*(zKey: cstring): cstring {.cdecl,
 ##
 
 proc orxLocale_SetString*(zKey: cstring; zValue: cstring): orxSTATUS {.cdecl,
-    importc: "orxLocale_SetString", dynlib: "liborx.so".}
+    importc: "orxLocale_SetString", dynlib: "liborxd.so".}
 ## * Gets key count for the current language
 ##  @return Key count the current language if valid, 0 otherwise
 ##
 
 proc orxLocale_GetKeyCount*(): orxU32 {.cdecl, importc: "orxLocale_GetKeyCount",
-                                     dynlib: "liborx.so".}
+                                     dynlib: "liborxd.so".}
 ## * Gets key for the current language at the given index
 ##  @param[in] _u32KeyIndex      Index of the desired key
 ##  @return orxSTRING if exist, nil otherwise
 ##
 
 proc orxLocale_GetKey*(u32KeyIndex: orxU32): cstring {.cdecl,
-    importc: "orxLocale_GetKey", dynlib: "liborx.so".}
+    importc: "orxLocale_GetKey", dynlib: "liborxd.so".}
 ## * @}

@@ -68,22 +68,22 @@ else:
 ##
 
 proc orxScreenshot_Setup*() {.cdecl, importc: "orxScreenshot_Setup",
-                            dynlib: "liborx.so".}
+                            dynlib: "liborxd.so".}
 ## * Inits the screenshot module
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxScreenshot_Init*(): orxSTATUS {.cdecl, importc: "orxScreenshot_Init",
-                                     dynlib: "liborx.so".}
+                                     dynlib: "liborxd.so".}
 ## * Exits from the screenshot module
 ##
 
 proc orxScreenshot_Exit*() {.cdecl, importc: "orxScreenshot_Exit",
-                           dynlib: "liborx.so".}
+                           dynlib: "liborxd.so".}
 ## * Captures a screenshot
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxScreenshot_Capture*(): orxSTATUS {.cdecl, importc: "orxScreenshot_Capture",
-                                        dynlib: "liborx.so".}
+                                        dynlib: "liborxd.so".}
 ## * @}

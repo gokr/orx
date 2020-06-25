@@ -61,15 +61,15 @@ type orxBODY_JOINT* = object
 ## * Body module setup
 ##
 
-proc orxBody_Setup*() {.cdecl, importc: "orxBody_Setup", dynlib: "liborx.so".}
+proc orxBody_Setup*() {.cdecl, importc: "orxBody_Setup", dynlib: "liborxd.so".}
 ## * Inits the Body module
 ##
 
-proc orxBody_Init*(): orxSTATUS {.cdecl, importc: "orxBody_Init", dynlib: "liborx.so".}
+proc orxBody_Init*(): orxSTATUS {.cdecl, importc: "orxBody_Init", dynlib: "liborxd.so".}
 ## * Exits from the Body module
 ##
 
-proc orxBody_Exit*() {.cdecl, importc: "orxBody_Exit", dynlib: "liborx.so".}
+proc orxBody_Exit*() {.cdecl, importc: "orxBody_Exit", dynlib: "liborxd.so".}
 ## * Creates an empty body
 ##  @param[in]   _pstOwner                     Body's owner used for collision callbacks (usually an orxOBJECT)
 ##  @param[in]   _pstBodyDef                   Body definition
@@ -77,7 +77,7 @@ proc orxBody_Exit*() {.cdecl, importc: "orxBody_Exit", dynlib: "liborx.so".}
 ##
 
 proc orxBody_Create*(pstOwner: ptr orxSTRUCTURE; pstBodyDef: ptr orxBODY_DEF): ptr orxBODY {.
-    cdecl, importc: "orxBody_Create", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_Create", dynlib: "liborxd.so".}
 ## * Creates a body from config
 ##  @param[in]   _pstOwner                     Body's owner used for collision callbacks (usually an orxOBJECT)
 ##  @param[in]   _zConfigID                    Body config ID
@@ -85,21 +85,21 @@ proc orxBody_Create*(pstOwner: ptr orxSTRUCTURE; pstBodyDef: ptr orxBODY_DEF): p
 ##
 
 proc orxBody_CreateFromConfig*(pstOwner: ptr orxSTRUCTURE; zConfigID: cstring): ptr orxBODY {.
-    cdecl, importc: "orxBody_CreateFromConfig", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_CreateFromConfig", dynlib: "liborxd.so".}
 ## * Deletes a body
 ##  @param[in]   _pstBody        Concerned body
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxBody_Delete*(pstBody: ptr orxBODY): orxSTATUS {.cdecl,
-    importc: "orxBody_Delete", dynlib: "liborx.so".}
+    importc: "orxBody_Delete", dynlib: "liborxd.so".}
 ## * Gets body config name
 ##  @param[in]   _pstBody        Concerned body
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
 proc orxBody_GetName*(pstBody: ptr orxBODY): cstring {.cdecl,
-    importc: "orxBody_GetName", dynlib: "liborx.so".}
+    importc: "orxBody_GetName", dynlib: "liborxd.so".}
 ## * Tests flags against body definition ones
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _u32Flags       Flags to test
@@ -107,7 +107,7 @@ proc orxBody_GetName*(pstBody: ptr orxBODY): cstring {.cdecl,
 ##
 
 proc orxBody_TestDefFlags*(pstBody: ptr orxBODY; u32Flags: orxU32): orxBOOL {.cdecl,
-    importc: "orxBody_TestDefFlags", dynlib: "liborx.so".}
+    importc: "orxBody_TestDefFlags", dynlib: "liborxd.so".}
 ## * Tests all flags against body definition ones
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _u32Flags       Flags to test
@@ -115,7 +115,7 @@ proc orxBody_TestDefFlags*(pstBody: ptr orxBODY; u32Flags: orxU32): orxBOOL {.cd
 ##
 
 proc orxBody_TestAllDefFlags*(pstBody: ptr orxBODY; u32Flags: orxU32): orxBOOL {.cdecl,
-    importc: "orxBody_TestAllDefFlags", dynlib: "liborx.so".}
+    importc: "orxBody_TestAllDefFlags", dynlib: "liborxd.so".}
 ## * Gets body definition flags
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _u32Mask        Mask to use for getting flags
@@ -123,7 +123,7 @@ proc orxBody_TestAllDefFlags*(pstBody: ptr orxBODY; u32Flags: orxU32): orxBOOL {
 ##
 
 proc orxBody_GetDefFlags*(pstBody: ptr orxBODY; u32Mask: orxU32): orxU32 {.cdecl,
-    importc: "orxBody_GetDefFlags", dynlib: "liborx.so".}
+    importc: "orxBody_GetDefFlags", dynlib: "liborxd.so".}
 ## * Adds a part to body
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pstBodyPartDef Body part definition
@@ -131,7 +131,7 @@ proc orxBody_GetDefFlags*(pstBody: ptr orxBODY; u32Mask: orxU32): orxU32 {.cdecl
 ##
 
 proc orxBody_AddPart*(pstBody: ptr orxBODY; pstBodyPartDef: ptr orxBODY_PART_DEF): ptr orxBODY_PART {.
-    cdecl, importc: "orxBody_AddPart", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_AddPart", dynlib: "liborxd.so".}
 ## * Adds a part to body from config
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _zConfigID      Body part config ID
@@ -139,7 +139,7 @@ proc orxBody_AddPart*(pstBody: ptr orxBODY; pstBodyPartDef: ptr orxBODY_PART_DEF
 ##
 
 proc orxBody_AddPartFromConfig*(pstBody: ptr orxBODY; zConfigID: cstring): ptr orxBODY_PART {.
-    cdecl, importc: "orxBody_AddPartFromConfig", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_AddPartFromConfig", dynlib: "liborxd.so".}
 ## * Removes a part using its config ID
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _zConfigID      Config ID of the part to remove
@@ -147,7 +147,7 @@ proc orxBody_AddPartFromConfig*(pstBody: ptr orxBODY; zConfigID: cstring): ptr o
 ##
 
 proc orxBody_RemovePartFromConfig*(pstBody: ptr orxBODY; zConfigID: cstring): orxSTATUS {.
-    cdecl, importc: "orxBody_RemovePartFromConfig", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_RemovePartFromConfig", dynlib: "liborxd.so".}
 ## * Gets next body part
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pstBodyPart    Current body part (nil to get the first one)
@@ -155,35 +155,35 @@ proc orxBody_RemovePartFromConfig*(pstBody: ptr orxBODY; zConfigID: cstring): or
 ##
 
 proc orxBody_GetNextPart*(pstBody: ptr orxBODY; pstBodyPart: ptr orxBODY_PART): ptr orxBODY_PART {.
-    cdecl, importc: "orxBody_GetNextPart", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_GetNextPart", dynlib: "liborxd.so".}
 ## * Gets a body part name
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return      orxSTRING / nil
 ##
 
 proc orxBody_GetPartName*(pstBodyPart: ptr orxBODY_PART): cstring {.cdecl,
-    importc: "orxBody_GetPartName", dynlib: "liborx.so".}
+    importc: "orxBody_GetPartName", dynlib: "liborxd.so".}
 ## * Gets a body part definition (matching current part status)
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return      orxBODY_PART_DEF / nil
 ##
 
 proc orxBody_GetPartDef*(pstBodyPart: ptr orxBODY_PART): ptr orxBODY_PART_DEF {.cdecl,
-    importc: "orxBody_GetPartDef", dynlib: "liborx.so".}
+    importc: "orxBody_GetPartDef", dynlib: "liborxd.so".}
 ## * Gets a body part body (ie. owner)
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return      orxBODY / nil
 ##
 
 proc orxBody_GetPartBody*(pstBodyPart: ptr orxBODY_PART): ptr orxBODY {.cdecl,
-    importc: "orxBody_GetPartBody", dynlib: "liborx.so".}
+    importc: "orxBody_GetPartBody", dynlib: "liborxd.so".}
 ## * Removes a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxBody_RemovePart*(pstBodyPart: ptr orxBODY_PART): orxSTATUS {.cdecl,
-    importc: "orxBody_RemovePart", dynlib: "liborx.so".}
+    importc: "orxBody_RemovePart", dynlib: "liborxd.so".}
 ## * Adds a joint to link two bodies together
 ##  @param[in]   _pstSrcBody       Concerned source body
 ##  @param[in]   _pstDstBody       Concerned destination body
@@ -193,7 +193,7 @@ proc orxBody_RemovePart*(pstBodyPart: ptr orxBODY_PART): orxSTATUS {.cdecl,
 
 proc orxBody_AddJoint*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBODY;
                       pstBodyJointDef: ptr orxBODY_JOINT_DEF): ptr orxBODY_JOINT {.
-    cdecl, importc: "orxBody_AddJoint", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_AddJoint", dynlib: "liborxd.so".}
 ## * Adds a joint from config to link two bodies together
 ##  @param[in]   _pstSrcBody     Concerned source body
 ##  @param[in]   _pstDstBody     Concerned destination body
@@ -203,7 +203,7 @@ proc orxBody_AddJoint*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBODY;
 
 proc orxBody_AddJointFromConfig*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBODY;
                                 zConfigID: cstring): ptr orxBODY_JOINT {.cdecl,
-    importc: "orxBody_AddJointFromConfig", dynlib: "liborx.so".}
+    importc: "orxBody_AddJointFromConfig", dynlib: "liborxd.so".}
 ## * Gets next body joint
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pstBodyJoint   Current body joint (nil to get the first one)
@@ -211,21 +211,21 @@ proc orxBody_AddJointFromConfig*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBOD
 ##
 
 proc orxBody_GetNextJoint*(pstBody: ptr orxBODY; pstBodyJoint: ptr orxBODY_JOINT): ptr orxBODY_JOINT {.
-    cdecl, importc: "orxBody_GetNextJoint", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_GetNextJoint", dynlib: "liborxd.so".}
 ## * Gets a body joint name
 ##  @param[in]   _pstBodyJoint   Concerned body joint
 ##  @return      orxSTRING / nil
 ##
 
 proc orxBody_GetJointName*(pstBodyJoint: ptr orxBODY_JOINT): cstring {.cdecl,
-    importc: "orxBody_GetJointName", dynlib: "liborx.so".}
+    importc: "orxBody_GetJointName", dynlib: "liborxd.so".}
 ## * Removes a body joint
 ##  @param[in]   _pstBodyJoint   Concerned body joint
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
 proc orxBody_RemoveJoint*(pstBodyJoint: ptr orxBODY_JOINT): orxSTATUS {.cdecl,
-    importc: "orxBody_RemoveJoint", dynlib: "liborx.so".}
+    importc: "orxBody_RemoveJoint", dynlib: "liborxd.so".}
 ## * Sets a body position
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pvPosition     Position to set
@@ -233,7 +233,7 @@ proc orxBody_RemoveJoint*(pstBodyJoint: ptr orxBODY_JOINT): orxSTATUS {.cdecl,
 ##
 
 proc orxBody_SetPosition*(pstBody: ptr orxBODY; pvPosition: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importc: "orxBody_SetPosition", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetPosition", dynlib: "liborxd.so".}
 ## * Sets a body rotation
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _fRotation      Rotation to set (radians)
@@ -241,7 +241,7 @@ proc orxBody_SetPosition*(pstBody: ptr orxBODY; pvPosition: ptr orxVECTOR): orxS
 ##
 
 proc orxBody_SetRotation*(pstBody: ptr orxBODY; fRotation: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxBody_SetRotation", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetRotation", dynlib: "liborxd.so".}
 ## * Sets a body scale
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pvScale        Scale to set
@@ -249,7 +249,7 @@ proc orxBody_SetRotation*(pstBody: ptr orxBODY; fRotation: orxFLOAT): orxSTATUS 
 ##
 
 proc orxBody_SetScale*(pstBody: ptr orxBODY; pvScale: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importc: "orxBody_SetScale", dynlib: "liborx.so".}
+    importc: "orxBody_SetScale", dynlib: "liborxd.so".}
 ## * Sets a body speed
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pvSpeed        Speed to set
@@ -257,7 +257,7 @@ proc orxBody_SetScale*(pstBody: ptr orxBODY; pvScale: ptr orxVECTOR): orxSTATUS 
 ##
 
 proc orxBody_SetSpeed*(pstBody: ptr orxBODY; pvSpeed: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importc: "orxBody_SetSpeed", dynlib: "liborx.so".}
+    importc: "orxBody_SetSpeed", dynlib: "liborxd.so".}
 ## * Sets a body angular velocity
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _fVelocity      Angular velocity to set (radians/seconds)
@@ -265,7 +265,7 @@ proc orxBody_SetSpeed*(pstBody: ptr orxBODY; pvSpeed: ptr orxVECTOR): orxSTATUS 
 ##
 
 proc orxBody_SetAngularVelocity*(pstBody: ptr orxBODY; fVelocity: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxBody_SetAngularVelocity", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetAngularVelocity", dynlib: "liborxd.so".}
 ## * Sets a body custom gravity
 ##  @param[in]   _pstBody          Concerned body
 ##  @param[in]   _pvCustomGravity  Custom gravity to set / nil to remove it
@@ -273,7 +273,7 @@ proc orxBody_SetAngularVelocity*(pstBody: ptr orxBODY; fVelocity: orxFLOAT): orx
 ##
 
 proc orxBody_SetCustomGravity*(pstBody: ptr orxBODY; pvCustomGravity: ptr orxVECTOR): orxSTATUS {.
-    cdecl, importc: "orxBody_SetCustomGravity", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetCustomGravity", dynlib: "liborxd.so".}
 ## * Sets a body fixed rotation
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _bFixed         Fixed / not fixed
@@ -281,7 +281,7 @@ proc orxBody_SetCustomGravity*(pstBody: ptr orxBODY; pvCustomGravity: ptr orxVEC
 ##
 
 proc orxBody_SetFixedRotation*(pstBody: ptr orxBODY; bFixed: orxBOOL): orxSTATUS {.
-    cdecl, importc: "orxBody_SetFixedRotation", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetFixedRotation", dynlib: "liborxd.so".}
 ## * Sets the dynamic property of a body
 ##  @param[in]   _pstBody        Concerned physical body
 ##  @param[in]   _bDynamic       Dynamic / Static (or Kinematic depending on the "allow moving" property)
@@ -289,7 +289,7 @@ proc orxBody_SetFixedRotation*(pstBody: ptr orxBODY; bFixed: orxBOOL): orxSTATUS
 ##
 
 proc orxBody_SetDynamic*(pstBody: ptr orxBODY; bDynamic: orxBOOL): orxSTATUS {.cdecl,
-    importc: "orxBody_SetDynamic", dynlib: "liborx.so".}
+    importc: "orxBody_SetDynamic", dynlib: "liborxd.so".}
 ## * Sets the "allow moving" property of a body
 ##  @param[in]   _pstBody        Concerned physical body
 ##  @param[in]   _bAllowMoving   Only used for non-dynamic bodies, Kinematic / Static
@@ -297,7 +297,7 @@ proc orxBody_SetDynamic*(pstBody: ptr orxBODY; bDynamic: orxBOOL): orxSTATUS {.c
 ##
 
 proc orxBody_SetAllowMoving*(pstBody: ptr orxBODY; bAllowMoving: orxBOOL): orxSTATUS {.
-    cdecl, importc: "orxBody_SetAllowMoving", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetAllowMoving", dynlib: "liborxd.so".}
 ## * Gets a body position
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[out]  _pvPosition     Position to get
@@ -305,14 +305,14 @@ proc orxBody_SetAllowMoving*(pstBody: ptr orxBODY; bAllowMoving: orxBOOL): orxST
 ##
 
 proc orxBody_GetPosition*(pstBody: ptr orxBODY; pvPosition: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxBody_GetPosition", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_GetPosition", dynlib: "liborxd.so".}
 ## * Gets a body rotation
 ##  @param[in]   _pstBody        Concerned body
 ##  @return      Body rotation (radians)
 ##
 
 proc orxBody_GetRotation*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
-    importc: "orxBody_GetRotation", dynlib: "liborx.so".}
+    importc: "orxBody_GetRotation", dynlib: "liborxd.so".}
 ## * Gets a body speed
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[out]  _pvSpeed        Speed to get
@@ -320,7 +320,7 @@ proc orxBody_GetRotation*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
 ##
 
 proc orxBody_GetSpeed*(pstBody: ptr orxBODY; pvSpeed: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxBody_GetSpeed", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_GetSpeed", dynlib: "liborxd.so".}
 ## * Gets a body speed at a specified world position
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pvPosition     Concerned world position
@@ -331,14 +331,14 @@ proc orxBody_GetSpeed*(pstBody: ptr orxBODY; pvSpeed: ptr orxVECTOR): ptr orxVEC
 proc orxBody_GetSpeedAtWorldPosition*(pstBody: ptr orxBODY;
                                      pvPosition: ptr orxVECTOR;
                                      pvSpeed: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxBody_GetSpeedAtWorldPosition", dynlib: "liborx.so".}
+    importc: "orxBody_GetSpeedAtWorldPosition", dynlib: "liborxd.so".}
 ## * Gets a body angular velocity
 ##  @param[in]   _pstBody        Concerned body
 ##  @return      Body angular velocity (radians/seconds)
 ##
 
 proc orxBody_GetAngularVelocity*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
-    importc: "orxBody_GetAngularVelocity", dynlib: "liborx.so".}
+    importc: "orxBody_GetAngularVelocity", dynlib: "liborxd.so".}
 ## * Gets a body custom gravity
 ##  @param[in]   _pstBody          Concerned body
 ##  @param[out]  _pvCustomGravity  Custom gravity to get
@@ -346,35 +346,35 @@ proc orxBody_GetAngularVelocity*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
 ##
 
 proc orxBody_GetCustomGravity*(pstBody: ptr orxBODY; pvCustomGravity: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxBody_GetCustomGravity", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_GetCustomGravity", dynlib: "liborxd.so".}
 ## * Is a body using a fixed rotation
 ##  @param[in]   _pstBody        Concerned body
 ##  @return      orxTRUE if fixed rotation, orxFALSE otherwise
 ##
 
 proc orxBody_IsFixedRotation*(pstBody: ptr orxBODY): orxBOOL {.cdecl,
-    importc: "orxBody_IsFixedRotation", dynlib: "liborx.so".}
+    importc: "orxBody_IsFixedRotation", dynlib: "liborxd.so".}
 ## * Gets the dynamic property of a body
 ##  @param[in]   _pstBody        Concerned physical body
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxBody_IsDynamic*(pstBody: ptr orxBODY): orxBOOL {.cdecl,
-    importc: "orxBody_IsDynamic", dynlib: "liborx.so".}
+    importc: "orxBody_IsDynamic", dynlib: "liborxd.so".}
 ## * Gets the "allow moving" property of a body, only relevant for non-dynamic bodies
 ##  @param[in]   _pstBody        Concerned physical body
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxBody_GetAllowMoving*(pstBody: ptr orxBODY): orxBOOL {.cdecl,
-    importc: "orxBody_GetAllowMoving", dynlib: "liborx.so".}
+    importc: "orxBody_GetAllowMoving", dynlib: "liborxd.so".}
 ## * Gets a body mass
 ##  @param[in]   _pstBody        Concerned body
 ##  @return      Body mass
 ##
 
 proc orxBody_GetMass*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
-    importc: "orxBody_GetMass", dynlib: "liborx.so".}
+    importc: "orxBody_GetMass", dynlib: "liborxd.so".}
 ## * Gets a body center of mass (object space)
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[out]  _pvMassCenter   Mass center to get
@@ -382,7 +382,7 @@ proc orxBody_GetMass*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
 ##
 
 proc orxBody_GetMassCenter*(pstBody: ptr orxBODY; pvMassCenter: ptr orxVECTOR): ptr orxVECTOR {.
-    cdecl, importc: "orxBody_GetMassCenter", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_GetMassCenter", dynlib: "liborxd.so".}
 ## * Sets a body linear damping
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _fDamping       Linear damping to set
@@ -390,7 +390,7 @@ proc orxBody_GetMassCenter*(pstBody: ptr orxBODY; pvMassCenter: ptr orxVECTOR): 
 ##
 
 proc orxBody_SetLinearDamping*(pstBody: ptr orxBODY; fDamping: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxBody_SetLinearDamping", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetLinearDamping", dynlib: "liborxd.so".}
 ## * Sets a body angular damping
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _fDamping       Angular damping to set
@@ -398,21 +398,21 @@ proc orxBody_SetLinearDamping*(pstBody: ptr orxBODY; fDamping: orxFLOAT): orxSTA
 ##
 
 proc orxBody_SetAngularDamping*(pstBody: ptr orxBODY; fDamping: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxBody_SetAngularDamping", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetAngularDamping", dynlib: "liborxd.so".}
 ## * Gets a body linear damping
 ##  @param[in]   _pstBody        Concerned body
 ##  @return      Body's linear damping
 ##
 
 proc orxBody_GetLinearDamping*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
-    importc: "orxBody_GetLinearDamping", dynlib: "liborx.so".}
+    importc: "orxBody_GetLinearDamping", dynlib: "liborxd.so".}
 ## * Gets a body angular damping
 ##  @param[in]   _pstBody        Concerned body
 ##  @return      Body's angular damping
 ##
 
 proc orxBody_GetAngularDamping*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
-    importc: "orxBody_GetAngularDamping", dynlib: "liborx.so".}
+    importc: "orxBody_GetAngularDamping", dynlib: "liborxd.so".}
 ## * Is point inside body? (Using world coordinates)
 ##  @param[in]   _pstBody        Concerned physical body
 ##  @param[in]   _pvPosition     Position to test (world coordinates)
@@ -420,7 +420,7 @@ proc orxBody_GetAngularDamping*(pstBody: ptr orxBODY): orxFLOAT {.cdecl,
 ##
 
 proc orxBody_IsInside*(pstBody: ptr orxBODY; pvPosition: ptr orxVECTOR): orxBOOL {.
-    cdecl, importc: "orxBody_IsInside", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_IsInside", dynlib: "liborxd.so".}
 ## * Applies a torque
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _fTorque        Torque to apply
@@ -428,7 +428,7 @@ proc orxBody_IsInside*(pstBody: ptr orxBODY; pvPosition: ptr orxVECTOR): orxBOOL
 ##
 
 proc orxBody_ApplyTorque*(pstBody: ptr orxBODY; fTorque: orxFLOAT): orxSTATUS {.cdecl,
-    importc: "orxBody_ApplyTorque", dynlib: "liborx.so".}
+    importc: "orxBody_ApplyTorque", dynlib: "liborxd.so".}
 ## * Applies a force
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pvForce        Force to apply
@@ -438,7 +438,7 @@ proc orxBody_ApplyTorque*(pstBody: ptr orxBODY; fTorque: orxFLOAT): orxSTATUS {.
 
 proc orxBody_ApplyForce*(pstBody: ptr orxBODY; pvForce: ptr orxVECTOR;
                         pvPoint: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importc: "orxBody_ApplyForce", dynlib: "liborx.so".}
+    importc: "orxBody_ApplyForce", dynlib: "liborxd.so".}
 ## * Applies an impulse
 ##  @param[in]   _pstBody        Concerned body
 ##  @param[in]   _pvImpulse      Impulse to apply
@@ -448,7 +448,7 @@ proc orxBody_ApplyForce*(pstBody: ptr orxBODY; pvForce: ptr orxVECTOR;
 
 proc orxBody_ApplyImpulse*(pstBody: ptr orxBODY; pvImpulse: ptr orxVECTOR;
                           pvPoint: ptr orxVECTOR): orxSTATUS {.cdecl,
-    importc: "orxBody_ApplyImpulse", dynlib: "liborx.so".}
+    importc: "orxBody_ApplyImpulse", dynlib: "liborxd.so".}
 ## * Sets self flags of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @param[in]   _u16SelfFlags   Self flags to set
@@ -456,7 +456,7 @@ proc orxBody_ApplyImpulse*(pstBody: ptr orxBODY; pvImpulse: ptr orxVECTOR;
 ##
 
 proc orxBody_SetPartSelfFlags*(pstBodyPart: ptr orxBODY_PART; u16SelfFlags: orxU16): orxSTATUS {.
-    cdecl, importc: "orxBody_SetPartSelfFlags", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetPartSelfFlags", dynlib: "liborxd.so".}
 ## * Sets check mask of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @param[in]   _u16CheckMask   Check mask to set
@@ -464,21 +464,21 @@ proc orxBody_SetPartSelfFlags*(pstBodyPart: ptr orxBODY_PART; u16SelfFlags: orxU
 ##
 
 proc orxBody_SetPartCheckMask*(pstBodyPart: ptr orxBODY_PART; u16CheckMask: orxU16): orxSTATUS {.
-    cdecl, importc: "orxBody_SetPartCheckMask", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetPartCheckMask", dynlib: "liborxd.so".}
 ## * Gets self flags of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return Self flags of the body part
 ##
 
 proc orxBody_GetPartSelfFlags*(pstBodyPart: ptr orxBODY_PART): orxU16 {.cdecl,
-    importc: "orxBody_GetPartSelfFlags", dynlib: "liborx.so".}
+    importc: "orxBody_GetPartSelfFlags", dynlib: "liborxd.so".}
 ## * Gets check mask of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return Check mask of the body part
 ##
 
 proc orxBody_GetPartCheckMask*(pstBodyPart: ptr orxBODY_PART): orxU16 {.cdecl,
-    importc: "orxBody_GetPartCheckMask", dynlib: "liborx.so".}
+    importc: "orxBody_GetPartCheckMask", dynlib: "liborxd.so".}
 ## * Sets a body part solid
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @param[in]   _bSolid         Solid or sensor?
@@ -486,14 +486,14 @@ proc orxBody_GetPartCheckMask*(pstBodyPart: ptr orxBODY_PART): orxU16 {.cdecl,
 ##
 
 proc orxBody_SetPartSolid*(pstBodyPart: ptr orxBODY_PART; bSolid: orxBOOL): orxSTATUS {.
-    cdecl, importc: "orxBody_SetPartSolid", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetPartSolid", dynlib: "liborxd.so".}
 ## * Is a body part solid?
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return      orxTRUE / orxFALSE
 ##
 
 proc orxBody_IsPartSolid*(pstBodyPart: ptr orxBODY_PART): orxBOOL {.cdecl,
-    importc: "orxBody_IsPartSolid", dynlib: "liborx.so".}
+    importc: "orxBody_IsPartSolid", dynlib: "liborxd.so".}
 ## * Sets friction of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @param[in]   _fFriction      Friction
@@ -501,14 +501,14 @@ proc orxBody_IsPartSolid*(pstBodyPart: ptr orxBODY_PART): orxBOOL {.cdecl,
 ##
 
 proc orxBody_SetPartFriction*(pstBodyPart: ptr orxBODY_PART; fFriction: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxBody_SetPartFriction", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetPartFriction", dynlib: "liborxd.so".}
 ## * Gets friction of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return      Friction
 ##
 
 proc orxBody_GetPartFriction*(pstBodyPart: ptr orxBODY_PART): orxFLOAT {.cdecl,
-    importc: "orxBody_GetPartFriction", dynlib: "liborx.so".}
+    importc: "orxBody_GetPartFriction", dynlib: "liborxd.so".}
 ## * Sets restitution of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @param[in]   _fRestitution   Restitution
@@ -517,14 +517,14 @@ proc orxBody_GetPartFriction*(pstBodyPart: ptr orxBODY_PART): orxFLOAT {.cdecl,
 
 proc orxBody_SetPartRestitution*(pstBodyPart: ptr orxBODY_PART;
                                 fRestitution: orxFLOAT): orxSTATUS {.cdecl,
-    importc: "orxBody_SetPartRestitution", dynlib: "liborx.so".}
+    importc: "orxBody_SetPartRestitution", dynlib: "liborxd.so".}
 ## * Gets restitution of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return      Restitution
 ##
 
 proc orxBody_GetPartRestitution*(pstBodyPart: ptr orxBODY_PART): orxFLOAT {.cdecl,
-    importc: "orxBody_GetPartRestitution", dynlib: "liborx.so".}
+    importc: "orxBody_GetPartRestitution", dynlib: "liborxd.so".}
 ## * Sets density of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @param[in]   _fDensity       Density
@@ -532,14 +532,14 @@ proc orxBody_GetPartRestitution*(pstBodyPart: ptr orxBODY_PART): orxFLOAT {.cdec
 ##
 
 proc orxBody_SetPartDensity*(pstBodyPart: ptr orxBODY_PART; fDensity: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxBody_SetPartDensity", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetPartDensity", dynlib: "liborxd.so".}
 ## * Gets density of a body part
 ##  @param[in]   _pstBodyPart    Concerned body part
 ##  @return      Density
 ##
 
 proc orxBody_GetPartDensity*(pstBodyPart: ptr orxBODY_PART): orxFLOAT {.cdecl,
-    importc: "orxBody_GetPartDensity", dynlib: "liborx.so".}
+    importc: "orxBody_GetPartDensity", dynlib: "liborxd.so".}
 ## * Is point inside part? (Using world coordinates)
 ##  @param[in]   _pstBodyPart    Concerned physical body part
 ##  @param[in]   _pvPosition     Position to test (world coordinates)
@@ -547,7 +547,7 @@ proc orxBody_GetPartDensity*(pstBodyPart: ptr orxBODY_PART): orxFLOAT {.cdecl,
 ##
 
 proc orxBody_IsInsidePart*(pstBodyPart: ptr orxBODY_PART; pvPosition: ptr orxVECTOR): orxBOOL {.
-    cdecl, importc: "orxBody_IsInsidePart", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_IsInsidePart", dynlib: "liborxd.so".}
 ## * Enables a (revolute) body joint motor
 ##  @param[in]   _pstBodyJoint   Concerned body joint
 ##  @param[in]   _bEnable        Enable / Disable
@@ -555,7 +555,7 @@ proc orxBody_IsInsidePart*(pstBodyPart: ptr orxBODY_PART; pvPosition: ptr orxVEC
 ##
 
 proc orxBody_EnableMotor*(pstBodyJoint: ptr orxBODY_JOINT; bEnable: orxBOOL): orxSTATUS {.
-    cdecl, importc: "orxBody_EnableMotor", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_EnableMotor", dynlib: "liborxd.so".}
 ## * Sets a (revolute) body joint motor speed
 ##  @param[in]   _pstBodyJoint   Concerned body joint
 ##  @param[in]   _fSpeed         Speed
@@ -563,7 +563,7 @@ proc orxBody_EnableMotor*(pstBodyJoint: ptr orxBODY_JOINT; bEnable: orxBOOL): or
 ##
 
 proc orxBody_SetJointMotorSpeed*(pstBodyJoint: ptr orxBODY_JOINT; fSpeed: orxFLOAT): orxSTATUS {.
-    cdecl, importc: "orxBody_SetJointMotorSpeed", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_SetJointMotorSpeed", dynlib: "liborxd.so".}
 ## * Sets a (revolute) body joint maximum motor torque
 ##  @param[in]   _pstBodyJoint   Concerned body joint
 ##  @param[in]   _fMaxTorque     Maximum motor torque
@@ -572,7 +572,7 @@ proc orxBody_SetJointMotorSpeed*(pstBodyJoint: ptr orxBODY_JOINT; fSpeed: orxFLO
 
 proc orxBody_SetJointMaxMotorTorque*(pstBodyJoint: ptr orxBODY_JOINT;
                                     fMaxTorque: orxFLOAT): orxSTATUS {.cdecl,
-    importc: "orxBody_SetJointMaxMotorTorque", dynlib: "liborx.so".}
+    importc: "orxBody_SetJointMaxMotorTorque", dynlib: "liborxd.so".}
 ## * Gets the reaction force on the attached body at the joint anchor
 ##  @param[in]   _pstBodyJoint   Concerned body joint
 ##  @param[out]  _pvForce        Reaction force
@@ -581,14 +581,14 @@ proc orxBody_SetJointMaxMotorTorque*(pstBodyJoint: ptr orxBODY_JOINT;
 
 proc orxBody_GetJointReactionForce*(pstBodyJoint: ptr orxBODY_JOINT;
                                    pvForce: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
-    importc: "orxBody_GetJointReactionForce", dynlib: "liborx.so".}
+    importc: "orxBody_GetJointReactionForce", dynlib: "liborxd.so".}
 ## * Gets the reaction torque on the attached body
 ##  @param[in]   _pstBodyJoint   Concerned body joint
 ##  @return      Reaction torque
 ##
 
 proc orxBody_GetJointReactionTorque*(pstBodyJoint: ptr orxBODY_JOINT): orxFLOAT {.
-    cdecl, importc: "orxBody_GetJointReactionTorque", dynlib: "liborx.so".}
+    cdecl, importc: "orxBody_GetJointReactionTorque", dynlib: "liborxd.so".}
 ## * Issues a raycast to test for potential bodies in the way
 ##  @param[in]   _pvBegin        Beginning of raycast
 ##  @param[in]   _pvEnd          End of raycast
@@ -604,7 +604,7 @@ proc orxBody_Raycast*(pvBegin: ptr orxVECTOR; pvEnd: ptr orxVECTOR;
                      u16SelfFlags: orxU16; u16CheckMask: orxU16;
                      bEarlyExit: orxBOOL; pvContact: ptr orxVECTOR;
                      pvNormal: ptr orxVECTOR): ptr orxBODY {.cdecl,
-    importc: "orxBody_Raycast", dynlib: "liborx.so".}
+    importc: "orxBody_Raycast", dynlib: "liborxd.so".}
 ## * Picks bodies in contact with the given axis aligned box.
 ##  @param[in]   _pstBox                               Box used for picking
 ##  @param[in]   _u16SelfFlags                         Selfs flags used for filtering (0xFFFF for no filtering)
@@ -617,5 +617,5 @@ proc orxBody_Raycast*(pvBegin: ptr orxVECTOR; pvEnd: ptr orxVECTOR;
 proc orxBody_BoxPick*(pstBox: ptr orxAABOX; u16SelfFlags: orxU16;
                      u16CheckMask: orxU16; apstBodyList: ptr ptr orxBODY;
                      u32Number: orxU32): orxU32 {.cdecl, importc: "orxBody_BoxPick",
-    dynlib: "liborx.so".}
+    dynlib: "liborxd.so".}
 ## * @}
