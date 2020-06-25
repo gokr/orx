@@ -77,7 +77,7 @@ else:
       defined(ANDROID_NATIVE):
     type
       orxHANDLE* = pointer
-    when defined(orx64):
+    when orx64:
       type
         orxU64* = culonglong
         orxU32* = cuint
