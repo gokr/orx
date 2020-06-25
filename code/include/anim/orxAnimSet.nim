@@ -105,7 +105,7 @@ proc orxAnimSet_Create*(u32Size: orxU32): ptr orxANIMSET {.cdecl,
 ##  @return      orxANIMSET / nil
 ##
 
-proc orxAnimSet_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxANIMSET {.cdecl,
+proc orxAnimSet_CreateFromConfig*(zConfigID: cstring): ptr orxANIMSET {.cdecl,
     importc: "orxAnimSet_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes an AnimSet
 ##  @param[in]   _pstAnimSet                         AnimSet to delete
@@ -271,13 +271,13 @@ proc orxAnimSet_GetAnimCount*(pstAnimSet: ptr orxANIMSET): orxU32 {.cdecl,
 ##
 
 proc orxAnimSet_GetAnimIDFromName*(pstAnimSet: ptr orxANIMSET;
-                                  zAnimName: ptr orxCHAR): orxU32 {.cdecl,
+                                  zAnimName: cstring): orxU32 {.cdecl,
     importc: "orxAnimSet_GetAnimIDFromName", dynlib: "liborx.so".}
 ## * AnimSet name get accessor
 ##  @param[in]   _pstAnimSet                         Concerned AnimSet
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxAnimSet_GetName*(pstAnimSet: ptr orxANIMSET): ptr orxCHAR {.cdecl,
+proc orxAnimSet_GetName*(pstAnimSet: ptr orxANIMSET): cstring {.cdecl,
     importc: "orxAnimSet_GetName", dynlib: "liborx.so".}
 ## * @}

@@ -67,8 +67,8 @@ type
 type
   orxTIMELINE_EVENT_PAYLOAD* {.bycopy.} = object
     pstTimeLine*: ptr orxTIMELINE ## *< TimeLine reference : 4
-    zTrackName*: ptr orxCHAR    ## *< Track name : 8
-    zEvent*: ptr orxCHAR        ## *< Event text : 12
+    zTrackName*: cstring    ## *< Track name : 8
+    zEvent*: cstring        ## *< Event text : 12
     fTimeStamp*: orxFLOAT      ## *< Event time : 16
 
 
@@ -126,7 +126,7 @@ proc orxTimeLine_IsEnabled*(pstTimeLine: ptr orxTIMELINE): orxBOOL {.cdecl,
 ##
 
 proc orxTimeLine_AddTrackFromConfig*(pstTimeLine: ptr orxTIMELINE;
-                                    zTrackID: ptr orxCHAR): orxSTATUS {.cdecl,
+                                    zTrackID: cstring): orxSTATUS {.cdecl,
     importc: "orxTimeLine_AddTrackFromConfig", dynlib: "liborx.so".}
 ## * Removes a track using its config ID
 ##  @param[in]   _pstTimeLine          Concerned TimeLine
@@ -135,7 +135,7 @@ proc orxTimeLine_AddTrackFromConfig*(pstTimeLine: ptr orxTIMELINE;
 ##
 
 proc orxTimeLine_RemoveTrackFromConfig*(pstTimeLine: ptr orxTIMELINE;
-                                       zTrackID: ptr orxCHAR): orxSTATUS {.cdecl,
+                                       zTrackID: cstring): orxSTATUS {.cdecl,
     importc: "orxTimeLine_RemoveTrackFromConfig", dynlib: "liborx.so".}
 ## * Gets how many tracks are currently in use
 ##  @param[in]   _pstTimeLine          Concerned TimeLine
@@ -149,6 +149,6 @@ proc orxTimeLine_GetCount*(pstTimeLine: ptr orxTIMELINE): orxU32 {.cdecl,
 ##  @return      Duration if found, -orxFLOAT_1 otherwise
 ##
 
-proc orxTimeLine_GetTrackDuration*(zTrackID: ptr orxCHAR): orxFLOAT {.cdecl,
+proc orxTimeLine_GetTrackDuration*(zTrackID: cstring): orxFLOAT {.cdecl,
     importc: "orxTimeLine_GetTrackDuration", dynlib: "liborx.so".}
 ## * @}

@@ -98,7 +98,7 @@ proc orxViewport_Create*(): ptr orxVIEWPORT {.cdecl, importc: "orxViewport_Creat
 ##  @ return orxVIEWPORT / nil
 ##
 
-proc orxViewport_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxVIEWPORT {.cdecl,
+proc orxViewport_CreateFromConfig*(zConfigID: cstring): ptr orxVIEWPORT {.cdecl,
     importc: "orxViewport_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a viewport
 ##  @param[in]   _pstViewport    Viewport to delete
@@ -202,7 +202,7 @@ proc orxViewport_GetCamera*(pstViewport: ptr orxVIEWPORT): ptr orxCAMERA {.cdecl
 ##
 
 proc orxViewport_AddShader*(pstViewport: ptr orxVIEWPORT;
-                           zShaderConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
+                           zShaderConfigID: cstring): orxSTATUS {.cdecl,
     importc: "orxViewport_AddShader", dynlib: "liborx.so".}
 ## * Removes a shader using its config ID
 ##  @param[in]   _pstViewport      Concerned viewport
@@ -211,7 +211,7 @@ proc orxViewport_AddShader*(pstViewport: ptr orxVIEWPORT;
 ##
 
 proc orxViewport_RemoveShader*(pstViewport: ptr orxVIEWPORT;
-                              zShaderConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
+                              zShaderConfigID: cstring): orxSTATUS {.cdecl,
     importc: "orxViewport_RemoveShader", dynlib: "liborx.so".}
 ## * Enables a viewport's shader
 ##  @param[in]   _pstViewport      Concerned viewport
@@ -332,13 +332,13 @@ proc orxViewport_GetCorrectionRatio*(pstViewport: ptr orxVIEWPORT): orxFLOAT {.c
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxViewport_GetName*(pstViewport: ptr orxVIEWPORT): ptr orxCHAR {.cdecl,
+proc orxViewport_GetName*(pstViewport: ptr orxVIEWPORT): cstring {.cdecl,
     importc: "orxViewport_GetName", dynlib: "liborx.so".}
 ## * Gets viewport given its name
 ##  @param[in]   _zName          Camera name
 ##  @return      orxVIEWPORT / nil
 ##
 
-proc orxViewport_Get*(zName: ptr orxCHAR): ptr orxVIEWPORT {.cdecl,
+proc orxViewport_Get*(zName: cstring): ptr orxVIEWPORT {.cdecl,
     importc: "orxViewport_Get", dynlib: "liborx.so".}
 ## * @}

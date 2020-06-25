@@ -68,7 +68,7 @@ proc orxPlugin_Exit*() {.cdecl, importc: "orxPlugin_Exit", dynlib: "liborx.so".}
 ##  @return The plugin handle on success, orxHANDLE_UNDEFINED on failure
 ##
 
-proc orxPlugin_Load*(zPluginFileName: ptr orxCHAR; zPluginName: ptr orxCHAR): orxHANDLE {.
+proc orxPlugin_Load*(zPluginFileName: cstring; zPluginName: cstring): orxHANDLE {.
     cdecl, importc: "orxPlugin_Load", dynlib: "liborx.so".}
 ## * Loads a plugin using OS common library extension + release/debug suffixes
 ##  @param[in] _zPluginFileName  The complete path of the plugin file, without its library extension
@@ -76,7 +76,7 @@ proc orxPlugin_Load*(zPluginFileName: ptr orxCHAR; zPluginName: ptr orxCHAR): or
 ##  @return The plugin handle on success, orxHANDLE_UNDEFINED on failure
 ##
 
-proc orxPlugin_LoadUsingExt*(zPluginFileName: ptr orxCHAR; zPluginName: ptr orxCHAR): orxHANDLE {.
+proc orxPlugin_LoadUsingExt*(zPluginFileName: cstring; zPluginName: cstring): orxHANDLE {.
     cdecl, importc: "orxPlugin_LoadUsingExt", dynlib: "liborx.so".}
 ## * Unloads a plugin
 ##  @param[in] _hPluginHandle The handle of the plugin to unload
@@ -91,20 +91,20 @@ proc orxPlugin_Unload*(hPluginHandle: orxHANDLE): orxSTATUS {.cdecl,
 ##  @return orxPLUGIN_FUNCTION / nil
 ##
 
-proc orxPlugin_GetFunction*(hPluginHandle: orxHANDLE; zFunctionName: ptr orxCHAR): orxPLUGIN_FUNCTION {.
+proc orxPlugin_GetFunction*(hPluginHandle: orxHANDLE; zFunctionName: cstring): orxPLUGIN_FUNCTION {.
     cdecl, importc: "orxPlugin_GetFunction", dynlib: "liborx.so".}
 ## * Gets the handle of a plugin given its name
 ##  @param[in] _zPluginName The plugin name
 ##  @return Its orxHANDLE / orxHANDLE_UNDEFINED
 ##
 
-proc orxPlugin_GetHandle*(zPluginName: ptr orxCHAR): orxHANDLE {.cdecl,
+proc orxPlugin_GetHandle*(zPluginName: cstring): orxHANDLE {.cdecl,
     importc: "orxPlugin_GetHandle", dynlib: "liborx.so".}
 ## * Gets the name of a plugin given its handle
 ##  @param[in] _hPluginHandle The plugin handle
 ##  @return The plugin name / orxSTRING_EMPTY
 ##
 
-proc orxPlugin_GetName*(hPluginHandle: orxHANDLE): ptr orxCHAR {.cdecl,
+proc orxPlugin_GetName*(hPluginHandle: orxHANDLE): cstring {.cdecl,
     importc: "orxPlugin_GetName", dynlib: "liborx.so".}
 ## * @}

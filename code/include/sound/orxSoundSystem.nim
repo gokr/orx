@@ -107,7 +107,7 @@ proc orxSoundSystem_CreateSample*(u32ChannelNumber: orxU32; u32FrameNumber: orxU
 ##  @return orxSOUNDSYSTEM_SAMPLE / nil
 ##
 
-proc orxSoundSystem_LoadSample*(zFilename: ptr orxCHAR): ptr orxSOUNDSYSTEM_SAMPLE {.
+proc orxSoundSystem_LoadSample*(zFilename: cstring): ptr orxSOUNDSYSTEM_SAMPLE {.
     cdecl, importc: "orxSoundSystem_LoadSample", dynlib: "liborx.so".}
 ## * Deletes a sound sample
 ##  @param[in]   _pstSample                            Concerned sample
@@ -154,7 +154,7 @@ proc orxSoundSystem_CreateFromSample*(pstSample: ptr orxSOUNDSYSTEM_SAMPLE): ptr
 ##
 
 proc orxSoundSystem_CreateStream*(u32ChannelNumber: orxU32; u32SampleRate: orxU32;
-                                 zReference: ptr orxCHAR): ptr orxSOUNDSYSTEM_SOUND {.
+                                 zReference: cstring): ptr orxSOUNDSYSTEM_SOUND {.
     cdecl, importc: "orxSoundSystem_CreateStream", dynlib: "liborx.so".}
 ## * Creates a streamed sound from file (can be played directly)
 ##  @param[in]   _zFilename                            Name of the file to load as a stream (won't be completely loaded in memory, useful for musics)
@@ -162,8 +162,8 @@ proc orxSoundSystem_CreateStream*(u32ChannelNumber: orxU32; u32SampleRate: orxU3
 ##  @return orxSOUNDSYSTEM_SOUND / nil
 ##
 
-proc orxSoundSystem_CreateStreamFromFile*(zFilename: ptr orxCHAR;
-    zReference: ptr orxCHAR): ptr orxSOUNDSYSTEM_SOUND {.cdecl,
+proc orxSoundSystem_CreateStreamFromFile*(zFilename: cstring;
+    zReference: cstring): ptr orxSOUNDSYSTEM_SOUND {.cdecl,
     importc: "orxSoundSystem_CreateStreamFromFile", dynlib: "liborx.so".}
 ## * Deletes a sound
 ##  @param[in]   _pstSound                             Concerned sound
@@ -200,7 +200,7 @@ proc orxSoundSystem_Stop*(pstSound: ptr orxSOUNDSYSTEM_SOUND): orxSTATUS {.cdecl
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSoundSystem_StartRecording*(zName: ptr orxCHAR; bWriteToFile: orxBOOL;
+proc orxSoundSystem_StartRecording*(zName: cstring; bWriteToFile: orxBOOL;
                                    u32SampleRate: orxU32; u32ChannelNumber: orxU32): orxSTATUS {.
     cdecl, importc: "orxSoundSystem_StartRecording", dynlib: "liborx.so".}
 ## * Stops recording

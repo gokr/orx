@@ -60,10 +60,10 @@ type
 ##
 
 type
-  orxRESOURCE_FUNCTION_LOCATE* = proc (zStorage: ptr orxCHAR; zName: ptr orxCHAR;
-                                    bRequireExistence: orxBOOL): ptr orxCHAR {.cdecl.}
-  orxRESOURCE_FUNCTION_GET_TIME* = proc (zLocation: ptr orxCHAR): orxS64 {.cdecl.}
-  orxRESOURCE_FUNCTION_OPEN* = proc (zLocation: ptr orxCHAR; bEraseMode: orxBOOL): orxHANDLE {.
+  orxRESOURCE_FUNCTION_LOCATE* = proc (zStorage: cstring; zName: cstring;
+                                    bRequireExistence: orxBOOL): cstring {.cdecl.}
+  orxRESOURCE_FUNCTION_GET_TIME* = proc (zLocation: cstring): orxS64 {.cdecl.}
+  orxRESOURCE_FUNCTION_OPEN* = proc (zLocation: cstring; bEraseMode: orxBOOL): orxHANDLE {.
       cdecl.}
   orxRESOURCE_FUNCTION_CLOSE* = proc (hResource: orxHANDLE) {.cdecl.}
   orxRESOURCE_FUNCTION_GET_SIZE* = proc (hResource: orxHANDLE): orxS64 {.cdecl.}
@@ -74,14 +74,14 @@ type
                                   pBuffer: pointer): orxS64 {.cdecl.}
   orxRESOURCE_FUNCTION_WRITE* = proc (hResource: orxHANDLE; s64Size: orxS64;
                                    pBuffer: pointer): orxS64 {.cdecl.}
-  orxRESOURCE_FUNCTION_DELETE* = proc (zLocation: ptr orxCHAR): orxSTATUS {.cdecl.}
+  orxRESOURCE_FUNCTION_DELETE* = proc (zLocation: cstring): orxSTATUS {.cdecl.}
 
 ## * Resource type info
 ##
 
 type
   orxRESOURCE_TYPE_INFO* {.bycopy.} = object
-    zTag*: ptr orxCHAR          ## *< Unique tag, mandatory
+    zTag*: cstring          ## *< Unique tag, mandatory
     pfnLocate*: orxRESOURCE_FUNCTION_LOCATE ## *< Locate function, mandatory
     pfnGetTime*: orxRESOURCE_FUNCTION_GET_TIME ## *< GetTime function, optional, for hotload support
     pfnOpen*: orxRESOURCE_FUNCTION_OPEN ## *< Open function, mandatory
@@ -109,7 +109,7 @@ type
 type
   orxRESOURCE_EVENT_PAYLOAD* {.bycopy.} = object
     s64Time*: orxS64           ## *< New resource time : 8
-    zLocation*: ptr orxCHAR     ## *< Resource location : 12 / 16
+    zLocation*: cstring     ## *< Resource location : 12 / 16
     pstTypeInfo*: ptr orxRESOURCE_TYPE_INFO ## *< Type info : 16 / 24
     stGroupID*: orxSTRINGID    ## *< Group ID : 20 / 28
     stNameID*: orxSTRINGID     ## *< Name ID : 24 / 32
@@ -140,7 +140,7 @@ proc orxResource_GetGroupCount*(): orxU32 {.cdecl,
 ##  @return Resource group if index is valid, nil otherwise
 ##
 
-proc orxResource_GetGroup*(u32Index: orxU32): ptr orxCHAR {.cdecl,
+proc orxResource_GetGroup*(u32Index: orxU32): cstring {.cdecl,
     importc: "orxResource_GetGroup", dynlib: "liborx.so".}
 ## * Adds a storage for a given resource group
 ##  @param[in] _zGroup           Concerned resource group
@@ -149,7 +149,7 @@ proc orxResource_GetGroup*(u32Index: orxU32): ptr orxCHAR {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxResource_AddStorage*(zGroup: ptr orxCHAR; zStorage: ptr orxCHAR;
+proc orxResource_AddStorage*(zGroup: cstring; zStorage: cstring;
                             bAddFirst: orxBOOL): orxSTATUS {.cdecl,
     importc: "orxResource_AddStorage", dynlib: "liborx.so".}
 ## * Removes a storage for a given resource group
@@ -158,14 +158,14 @@ proc orxResource_AddStorage*(zGroup: ptr orxCHAR; zStorage: ptr orxCHAR;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxResource_RemoveStorage*(zGroup: ptr orxCHAR; zStorage: ptr orxCHAR): orxSTATUS {.
+proc orxResource_RemoveStorage*(zGroup: cstring; zStorage: cstring): orxSTATUS {.
     cdecl, importc: "orxResource_RemoveStorage", dynlib: "liborx.so".}
 ## * Gets number of storages for a given resource group
 ##  @param[in] _zGroup           Concerned resource group
 ##  @return Number of storages for this resource group
 ##
 
-proc orxResource_GetStorageCount*(zGroup: ptr orxCHAR): orxU32 {.cdecl,
+proc orxResource_GetStorageCount*(zGroup: cstring): orxU32 {.cdecl,
     importc: "orxResource_GetStorageCount", dynlib: "liborx.so".}
 ## * Gets storage at given index for a given resource group
 ##  @param[in] _zGroup           Concerned resource group
@@ -173,7 +173,7 @@ proc orxResource_GetStorageCount*(zGroup: ptr orxCHAR): orxU32 {.cdecl,
 ##  @return Storage if index is valid, nil otherwise
 ##
 
-proc orxResource_GetStorage*(zGroup: ptr orxCHAR; u32Index: orxU32): ptr orxCHAR {.
+proc orxResource_GetStorage*(zGroup: cstring; u32Index: orxU32): cstring {.
     cdecl, importc: "orxResource_GetStorage", dynlib: "liborx.so".}
 ## * Reloads storage from config
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
@@ -187,7 +187,7 @@ proc orxResource_ReloadStorage*(): orxSTATUS {.cdecl,
 ##  @return Location string if found, nil otherwise
 ##
 
-proc orxResource_Locate*(zGroup: ptr orxCHAR; zName: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxResource_Locate*(zGroup: cstring; zName: cstring): cstring {.cdecl,
     importc: "orxResource_Locate", dynlib: "liborx.so".}
 ## * Gets the location for a resource (existing or not) in a *specific storage*, for a given group. The location doesn't get cached and thus needs to be copied by the caller before the next call
 ##  @param[in] _zGroup           Concerned resource group
@@ -196,29 +196,29 @@ proc orxResource_Locate*(zGroup: ptr orxCHAR; zName: ptr orxCHAR): ptr orxCHAR {
 ##  @return Location string if found, nil otherwise
 ##
 
-proc orxResource_LocateInStorage*(zGroup: ptr orxCHAR; zStorage: ptr orxCHAR;
-                                 zName: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxResource_LocateInStorage*(zGroup: cstring; zStorage: cstring;
+                                 zName: cstring): cstring {.cdecl,
     importc: "orxResource_LocateInStorage", dynlib: "liborx.so".}
 ## * Gets the resource path from a location
 ##  @param[in] _zLocation        Location of the concerned resource
 ##  @return Path string if valid, orxSTRING_EMPTY otherwise
 ##
 
-proc orxResource_GetPath*(zLocation: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxResource_GetPath*(zLocation: cstring): cstring {.cdecl,
     importc: "orxResource_GetPath", dynlib: "liborx.so".}
 ## * Gets the resource type from a location
 ##  @param[in] _zLocation        Location of the concerned resource
 ##  @return orxRESOURCE_TYPE_INFO if valid, nil otherwise
 ##
 
-proc orxResource_GetType*(zLocation: ptr orxCHAR): ptr orxRESOURCE_TYPE_INFO {.cdecl,
+proc orxResource_GetType*(zLocation: cstring): ptr orxRESOURCE_TYPE_INFO {.cdecl,
     importc: "orxResource_GetType", dynlib: "liborx.so".}
 ## * Gets the time of last modification of a resource
 ##  @param[in] _zLocation        Location of the concerned resource
 ##  @return Time of last modification, in seconds since epoch, if found, 0 otherwise
 ##
 
-proc orxResource_GetTime*(zLocation: ptr orxCHAR): orxS64 {.cdecl,
+proc orxResource_GetTime*(zLocation: cstring): orxS64 {.cdecl,
     importc: "orxResource_GetTime", dynlib: "liborx.so".}
 ## * Opens the resource at the given location
 ##  @param[in] _zLocation        Location of the resource to open
@@ -226,7 +226,7 @@ proc orxResource_GetTime*(zLocation: ptr orxCHAR): orxS64 {.cdecl,
 ##  @return Handle to the open location, orxHANDLE_UNDEFINED otherwise
 ##
 
-proc orxResource_Open*(zLocation: ptr orxCHAR; bEraseMode: orxBOOL): orxHANDLE {.cdecl,
+proc orxResource_Open*(zLocation: cstring; bEraseMode: orxBOOL): orxHANDLE {.cdecl,
     importc: "orxResource_Open", dynlib: "liborx.so".}
 ## * Closes a resource
 ##  @param[in] _hResource        Concerned resource
@@ -239,7 +239,7 @@ proc orxResource_Close*(hResource: orxHANDLE) {.cdecl, importc: "orxResource_Clo
 ##  @return Literal location string
 ##
 
-proc orxResource_GetLocation*(hResource: orxHANDLE): ptr orxCHAR {.cdecl,
+proc orxResource_GetLocation*(hResource: orxHANDLE): cstring {.cdecl,
     importc: "orxResource_GetLocation", dynlib: "liborx.so".}
 ## * Gets the size, in bytes, of a resource
 ##  @param[in] _hResource        Concerned resource
@@ -294,7 +294,7 @@ proc orxResource_Write*(hResource: orxHANDLE; s64Size: orxS64; pBuffer: pointer;
 ##  @return orxSTATUS_SUCCESS upon success, orxSTATUS_FAILURE otherwise
 ##
 
-proc orxResource_Delete*(zLocation: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxResource_Delete*(zLocation: cstring): orxSTATUS {.cdecl,
     importc: "orxResource_Delete", dynlib: "liborx.so".}
 ## * Gets pending operation count for a given resource
 ##  @param[in] _hResource        Concerned resource
@@ -328,7 +328,7 @@ proc orxResource_GetTypeCount*(): orxU32 {.cdecl,
 ##  @return Type tag string if index is valid, nil otherwise
 ##
 
-proc orxResource_GetTypeTag*(u32Index: orxU32): ptr orxCHAR {.cdecl,
+proc orxResource_GetTypeTag*(u32Index: orxU32): cstring {.cdecl,
     importc: "orxResource_GetTypeTag", dynlib: "liborx.so".}
 ## * Clears cache
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE

@@ -146,7 +146,7 @@ proc orxClock_Create*(fTickSize: orxFLOAT; eType: orxCLOCK_TYPE): ptr orxCLOCK {
 ##  @ return orxCLOCK / nil
 ##
 
-proc orxClock_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxCLOCK {.cdecl,
+proc orxClock_CreateFromConfig*(zConfigID: cstring): ptr orxCLOCK {.cdecl,
     importc: "orxClock_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a clock
 ##  @param[in]   _pstClock                             Concerned clock
@@ -293,14 +293,14 @@ proc orxClock_GetNext*(pstClock: ptr orxCLOCK): ptr orxCLOCK {.cdecl,
 ##  @return      orxCLOCK / nil
 ##
 
-proc orxClock_Get*(zName: ptr orxCHAR): ptr orxCLOCK {.cdecl, importc: "orxClock_Get",
+proc orxClock_Get*(zName: cstring): ptr orxCLOCK {.cdecl, importc: "orxClock_Get",
     dynlib: "liborx.so".}
 ## * Gets clock config name
 ##  @param[in]   _pstClock       Concerned clock
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxClock_GetName*(pstClock: ptr orxCLOCK): ptr orxCHAR {.cdecl,
+proc orxClock_GetName*(pstClock: ptr orxCLOCK): cstring {.cdecl,
     importc: "orxClock_GetName", dynlib: "liborx.so".}
 ## * Adds a timer function to a clock
 ##  @param[in]   _pstClock                             Concerned clock

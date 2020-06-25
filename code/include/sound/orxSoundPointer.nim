@@ -166,7 +166,7 @@ proc orxSoundPointer_RemoveAllSounds*(pstSoundPointer: ptr orxSOUNDPOINTER): orx
 ##
 
 proc orxSoundPointer_AddSoundFromConfig*(pstSoundPointer: ptr orxSOUNDPOINTER;
-                                        zSoundConfigID: ptr orxCHAR): orxSTATUS {.
+                                        zSoundConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxSoundPointer_AddSoundFromConfig", dynlib: "liborx.so".}
 ## * Removes a sound using its config ID
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer
@@ -175,7 +175,7 @@ proc orxSoundPointer_AddSoundFromConfig*(pstSoundPointer: ptr orxSOUNDPOINTER;
 ##
 
 proc orxSoundPointer_RemoveSoundFromConfig*(pstSoundPointer: ptr orxSOUNDPOINTER;
-    zSoundConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
+    zSoundConfigID: cstring): orxSTATUS {.cdecl,
     importc: "orxSoundPointer_RemoveSoundFromConfig", dynlib: "liborx.so".}
 ## * Gets last added sound (Do *NOT* destroy it directly before removing it!!!)
 ##  @param[in]   _pstSoundPointer    Concerned SoundPointer

@@ -109,7 +109,7 @@ proc orxEvent_Setup*() {.cdecl, importc: "orxEvent_Setup", dynlib: "liborx.so".}
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxEvent_Init*(): orxSTATUS {.cdecl, importc: "orxEvent_Init",
+proc orxEvent_InitInternal*(): orxSTATUS {.cdecl, importc: "orxEvent_Init",
                                 dynlib: "liborx.so".}
 ## * Exits from the event Module
 ##

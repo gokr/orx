@@ -100,14 +100,14 @@ type orxFRAME* = object
 ##  @return Ignore flags
 ##
 
-proc orxFrame_GetIgnoreFlagValues*(zFlags: ptr orxCHAR): orxU32 {.cdecl,
+proc orxFrame_GetIgnoreFlagValues*(zFlags: cstring): orxU32 {.cdecl,
     importc: "orxFrame_GetIgnoreFlagValues", dynlib: "liborx.so".}
 ## * Get ignore flag names (beware: result won't persist from one call to the other)
 ##  @param[in]   _zFlags         Literal ignore flags
 ##  @return Ignore flags names
 ##
 
-proc orxFrame_GetIgnoreFlagNames*(u32Flags: orxU32): ptr orxCHAR {.cdecl,
+proc orxFrame_GetIgnoreFlagNames*(u32Flags: orxU32): cstring {.cdecl,
     importc: "orxFrame_GetIgnoreFlagNames", dynlib: "liborx.so".}
 ## * Setups the frame module
 ##

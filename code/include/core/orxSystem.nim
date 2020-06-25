@@ -74,11 +74,11 @@ type
     vAcceleration*: orxVECTOR
 
   INNER_C_STRUCT_orxSystem_109* {.bycopy.} = object
-    azValueList*: ptr ptr orxCHAR
+    azValueList*: cstringArray
     u32Number*: orxU32
 
   INNER_C_STRUCT_orxSystem_117* {.bycopy.} = object
-    zValue*: ptr orxCHAR
+    zValue*: cstring
 
   orxSYSTEM_EVENT_PAYLOAD* {.bycopy.} = object {.union.}
     u32FrameCount*: orxU32     ##  Touch event
@@ -136,13 +136,13 @@ proc orxSystem_GetVersion*(pstVersion: ptr orxVERSION): ptr orxVERSION {.cdecl,
 ##  @return Compiled version literal
 ##
 
-proc orxSystem_GetVersionString*(): ptr orxCHAR {.cdecl,
+proc orxSystem_GetVersionString*(): cstring {.cdecl,
     importc: "orxSystem_GetVersionString", dynlib: "liborx.so".}
 ## * Gets orx version literal (compiled), including build number
 ##  @return Compiled version literal
 ##
 
-proc orxSystem_GetVersionFullString*(): ptr orxCHAR {.cdecl,
+proc orxSystem_GetVersionFullString*(): cstring {.cdecl,
     importc: "orxSystem_GetVersionFullString", dynlib: "liborx.so".}
 ## * Gets orx version absolute numeric value (compiled)
 ##  @return Absolute numeric value of compiled version
@@ -154,13 +154,13 @@ proc orxSystem_GetVersionNumeric*(): orxU32 {.cdecl,
 ##  @return Clipboard's content / nil, valid until next call to orxSystem_GetClipboard/orxSystem_SetClipboard
 ##
 
-proc orxSystem_GetClipboard*(): ptr orxCHAR {.cdecl,
+proc orxSystem_GetClipboard*(): cstring {.cdecl,
     importc: "orxSystem_GetClipboard", dynlib: "liborx.so".}
 ## * Sets clipboard's content
 ##  @param[in] _zValue               Value to set in the clipboard, nil to clear
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSystem_SetClipboard*(zValue: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxSystem_SetClipboard*(zValue: cstring): orxSTATUS {.cdecl,
     importc: "orxSystem_SetClipboard", dynlib: "liborx.so".}
 ## * @}

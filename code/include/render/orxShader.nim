@@ -60,7 +60,7 @@ type
 type
   orxSHADER_PARAM* {.bycopy.} = object
     stNode*: orxLINKLIST_NODE  ## *< Linklist node : 12
-    zName*: ptr orxCHAR         ## *< Parameter literal name : 26
+    zName*: cstring         ## *< Parameter literal name : 26
     eType*: orxSHADER_PARAM_TYPE ## *< Parameter type : 20
     u32ArraySize*: orxU32      ## *< Parameter array size : 24
 
@@ -89,8 +89,8 @@ type
 
   orxSHADER_EVENT_PAYLOAD* {.bycopy.} = object
     pstShader*: ptr orxSHADER   ## *< Shader reference : 4
-    zShaderName*: ptr orxCHAR   ## *< Shader name : 8
-    zParamName*: ptr orxCHAR    ## *< Parameter name : 12
+    zShaderName*: cstring   ## *< Shader name : 8
+    zParamName*: cstring    ## *< Parameter name : 12
     eParamType*: orxSHADER_PARAM_TYPE ## *< Parameter type : 16
     s32ParamIndex*: orxS32     ## *< Parameter index : 20
     ano_orxShader_127*: INNER_C_UNION_orxShader_124
@@ -121,7 +121,7 @@ proc orxShader_Create*(): ptr orxSHADER {.cdecl, importc: "orxShader_Create",
 ##  @ return orxSHADER / nil
 ##
 
-proc orxShader_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSHADER {.cdecl,
+proc orxShader_CreateFromConfig*(zConfigID: cstring): ptr orxSHADER {.cdecl,
     importc: "orxShader_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a shader
 ##  @param[in] _pstShader              Concerned Shader
@@ -159,7 +159,7 @@ proc orxShader_Stop*(pstShader: ptr orxSHADER): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxShader_AddFloatParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
+proc orxShader_AddFloatParam*(pstShader: ptr orxSHADER; zName: cstring;
                              u32ArraySize: orxU32; afValueList: ptr orxFLOAT): orxSTATUS {.
     cdecl, importc: "orxShader_AddFloatParam", dynlib: "liborx.so".}
 ## * Adds a texture parameter definition to a shader (parameters need to be set before compiling the shader code)
@@ -170,7 +170,7 @@ proc orxShader_AddFloatParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxShader_AddTextureParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
+proc orxShader_AddTextureParam*(pstShader: ptr orxSHADER; zName: cstring;
                                u32ArraySize: orxU32;
                                apstValueList: ptr ptr orxTEXTURE): orxSTATUS {.cdecl,
     importc: "orxShader_AddTextureParam", dynlib: "liborx.so".}
@@ -182,7 +182,7 @@ proc orxShader_AddTextureParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxShader_AddVectorParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
+proc orxShader_AddVectorParam*(pstShader: ptr orxSHADER; zName: cstring;
                               u32ArraySize: orxU32; avValueList: ptr orxVECTOR): orxSTATUS {.
     cdecl, importc: "orxShader_AddVectorParam", dynlib: "liborx.so".}
 ## * Adds a time parameter definition to a shader (parameters need to be set before compiling the shader code)
@@ -191,7 +191,7 @@ proc orxShader_AddVectorParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxShader_AddTimeParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR): orxSTATUS {.
+proc orxShader_AddTimeParam*(pstShader: ptr orxSHADER; zName: cstring): orxSTATUS {.
     cdecl, importc: "orxShader_AddTimeParam", dynlib: "liborx.so".}
 ## * Sets the default value for a given float parameter in a shader (parameters need to be added beforehand)
 ##  @param[in] _pstShader              Concerned Shader
@@ -201,7 +201,7 @@ proc orxShader_AddTimeParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR): orxS
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxShader_SetFloatParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
+proc orxShader_SetFloatParam*(pstShader: ptr orxSHADER; zName: cstring;
                              u32ArraySize: orxU32; afValueList: ptr orxFLOAT): orxSTATUS {.
     cdecl, importc: "orxShader_SetFloatParam", dynlib: "liborx.so".}
 ## * Sets the default value for a given float parameter in a shader (parameters need to be added beforehand)
@@ -212,7 +212,7 @@ proc orxShader_SetFloatParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxShader_SetTextureParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
+proc orxShader_SetTextureParam*(pstShader: ptr orxSHADER; zName: cstring;
                                u32ArraySize: orxU32;
                                apstValueList: ptr ptr orxTEXTURE): orxSTATUS {.cdecl,
     importc: "orxShader_SetTextureParam", dynlib: "liborx.so".}
@@ -224,7 +224,7 @@ proc orxShader_SetTextureParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxShader_SetVectorParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
+proc orxShader_SetVectorParam*(pstShader: ptr orxSHADER; zName: cstring;
                               u32ArraySize: orxU32; avValueList: ptr orxVECTOR): orxSTATUS {.
     cdecl, importc: "orxShader_SetVectorParam", dynlib: "liborx.so".}
 ## * Sets shader code & compiles it (parameters need to be set before compiling the shader code)
@@ -234,7 +234,7 @@ proc orxShader_SetVectorParam*(pstShader: ptr orxSHADER; zName: ptr orxCHAR;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxShader_CompileCode*(pstShader: ptr orxSHADER; azCodeList: ptr ptr orxCHAR;
+proc orxShader_CompileCode*(pstShader: ptr orxSHADER; azCodeList: cstringArray;
                            u32Size: orxU32): orxSTATUS {.cdecl,
     importc: "orxShader_CompileCode", dynlib: "liborx.so".}
 ## * Enables/disables a shader
@@ -256,6 +256,6 @@ proc orxShader_IsEnabled*(pstShader: ptr orxSHADER): orxBOOL {.cdecl,
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxShader_GetName*(pstShader: ptr orxSHADER): ptr orxCHAR {.cdecl,
+proc orxShader_GetName*(pstShader: ptr orxSHADER): cstring {.cdecl,
     importc: "orxShader_GetName", dynlib: "liborx.so".}
 ## * @}

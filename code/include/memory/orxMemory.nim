@@ -204,7 +204,7 @@ proc orxMemory_Zero*(pDest: pointer; u32Size: orxU32): pointer {.inline, cdecl.}
 ##  @return Memory type name / orxSTRING_EMPTY
 ##
 
-proc orxMemory_GetTypeName*(eMemType: orxMEMORY_TYPE): ptr orxCHAR {.cdecl,
+proc orxMemory_GetTypeName*(eMemType: orxMEMORY_TYPE): cstring {.cdecl,
     importc: "orxMemory_GetTypeName", dynlib: "liborx.so".}
 ## * Gets L1 data cache line size
 ##  @return Cache line size

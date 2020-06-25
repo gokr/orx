@@ -84,7 +84,7 @@ type
 type
   orxFX_EVENT_PAYLOAD* {.bycopy.} = object
     pstFX*: ptr orxFX           ## *< FX reference : 4
-    zFXName*: ptr orxCHAR       ## *< FX name : 8
+    zFXName*: cstring       ## *< FX name : 8
 
 
 ## * FX module setup
@@ -110,7 +110,7 @@ proc orxFX_Create*(): ptr orxFX {.cdecl, importc: "orxFX_Create", dynlib: "libor
 ##  @ return orxFX / nil
 ##
 
-proc orxFX_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxFX {.cdecl,
+proc orxFX_CreateFromConfig*(zConfigID: cstring): ptr orxFX {.cdecl,
     importc: "orxFX_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes an FX
 ##  @param[in] _pstFX            Concerned FX
@@ -377,7 +377,7 @@ proc orxFX_AddPitch*(pstFX: ptr orxFX; fStartTime: orxFLOAT; fEndTime: orxFLOAT;
 ##  return       orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxFX_AddSlotFromConfig*(pstFX: ptr orxFX; zSlotID: ptr orxCHAR): orxSTATUS {.
+proc orxFX_AddSlotFromConfig*(pstFX: ptr orxFX; zSlotID: cstring): orxSTATUS {.
     cdecl, importc: "orxFX_AddSlotFromConfig", dynlib: "liborx.so".}
 ## * Gets FX duration
 ##  @param[in]   _pstFX          Concerned FX
@@ -391,7 +391,7 @@ proc orxFX_GetDuration*(pstFX: ptr orxFX): orxFLOAT {.cdecl,
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxFX_GetName*(pstFX: ptr orxFX): ptr orxCHAR {.cdecl, importc: "orxFX_GetName",
+proc orxFX_GetName*(pstFX: ptr orxFX): cstring {.cdecl, importc: "orxFX_GetName",
     dynlib: "liborx.so".}
 ## * Set FX loop property
 ##  @param[in]   _pstFX          Concerned FX

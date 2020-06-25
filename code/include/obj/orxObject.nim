@@ -95,7 +95,7 @@ proc orxObject_Create*(): ptr orxOBJECT {.cdecl, importc: "orxObject_Create",
 ##  @ return orxOBJECT / nil
 ##
 
-proc orxObject_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxOBJECT {.cdecl,
+proc orxObject_CreateFromConfig*(zConfigID: cstring): ptr orxOBJECT {.cdecl,
     importc: "orxObject_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes an object, *unsafe* when called from an event handler: call orxObject_SetLifeTime(orxFLOAT_0) instead
 ##  @param[in] _pstObject        Concerned object
@@ -569,7 +569,7 @@ proc orxObject_GetAnimFrequency*(pstObject: ptr orxOBJECT): orxFLOAT {.cdecl,
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_SetCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR): orxSTATUS {.
+proc orxObject_SetCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_SetCurrentAnim", dynlib: "liborx.so".}
 ## * Sets current animation for an object and its children.
 ##  @param[in]   _pstObject      Concerned object
@@ -578,7 +578,7 @@ proc orxObject_SetCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR)
 ##
 
 proc orxObject_SetCurrentAnimRecursive*(pstObject: ptr orxOBJECT;
-                                       zAnimName: ptr orxCHAR) {.cdecl,
+                                       zAnimName: cstring) {.cdecl,
     importc: "orxObject_SetCurrentAnimRecursive", dynlib: "liborx.so".}
 ## * Sets target animation for an object. The animations are sequenced on an object according to the animation link graph
 ##  defined by its AnimationSet. The sequence follows the graph and tries to reach the target animation. Use
@@ -588,7 +588,7 @@ proc orxObject_SetCurrentAnimRecursive*(pstObject: ptr orxOBJECT;
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_SetTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR): orxSTATUS {.
+proc orxObject_SetTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_SetTargetAnim", dynlib: "liborx.so".}
 ## * Sets target animation for an object and its children.
 ##  @param[in]   _pstObject      Concerned object
@@ -597,21 +597,21 @@ proc orxObject_SetTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR):
 ##
 
 proc orxObject_SetTargetAnimRecursive*(pstObject: ptr orxOBJECT;
-                                      zAnimName: ptr orxCHAR) {.cdecl,
+                                      zAnimName: cstring) {.cdecl,
     importc: "orxObject_SetTargetAnimRecursive", dynlib: "liborx.so".}
 ## * Gets current animation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      Current animation / orxSTRING_EMPTY
 ##
 
-proc orxObject_GetCurrentAnim*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
+proc orxObject_GetCurrentAnim*(pstObject: ptr orxOBJECT): cstring {.cdecl,
     importc: "orxObject_GetCurrentAnim", dynlib: "liborx.so".}
 ## * Gets target animation.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      Target animation / orxSTRING_EMPTY
 ##
 
-proc orxObject_GetTargetAnim*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
+proc orxObject_GetTargetAnim*(pstObject: ptr orxOBJECT): cstring {.cdecl,
     importc: "orxObject_GetTargetAnim", dynlib: "liborx.so".}
 ## * Is current animation test.
 ##  @param[in]   _pstObject      Concerned object
@@ -619,7 +619,7 @@ proc orxObject_GetTargetAnim*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
 ##  @return      orxTRUE / orxFALSE
 ##
 
-proc orxObject_IsCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR): orxBOOL {.
+proc orxObject_IsCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: cstring): orxBOOL {.
     cdecl, importc: "orxObject_IsCurrentAnim", dynlib: "liborx.so".}
 ## * Is target animation test.
 ##  @param[in]   _pstObject      Concerned object
@@ -627,7 +627,7 @@ proc orxObject_IsCurrentAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR):
 ##  @return      orxTRUE / orxFALSE
 ##
 
-proc orxObject_IsTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: ptr orxCHAR): orxBOOL {.
+proc orxObject_IsTargetAnim*(pstObject: ptr orxOBJECT; zAnimName: cstring): orxBOOL {.
     cdecl, importc: "orxObject_IsTargetAnim", dynlib: "liborx.so".}
 ## * @}
 ## * @name Physics / dynamics
@@ -767,14 +767,14 @@ proc orxObject_Raycast*(pvBegin: ptr orxVECTOR; pvEnd: ptr orxVECTOR;
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_SetTextString*(pstObject: ptr orxOBJECT; zString: ptr orxCHAR): orxSTATUS {.
+proc orxObject_SetTextString*(pstObject: ptr orxOBJECT; zString: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_SetTextString", dynlib: "liborx.so".}
 ## * Gets object text string, if object is associated to a text.
 ##  @param[in]   _pstObject      Concerned object
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxObject_GetTextString*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
+proc orxObject_GetTextString*(pstObject: ptr orxOBJECT): cstring {.cdecl,
     importc: "orxObject_GetTextString", dynlib: "liborx.so".}
 ## * @}
 ## * @name Bounding box
@@ -796,7 +796,7 @@ proc orxObject_GetBoundingBox*(pstObject: ptr orxOBJECT; pstBoundingBox: ptr orx
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_AddFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR): orxSTATUS {.
+proc orxObject_AddFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_AddFX", dynlib: "liborx.so".}
 ## * Adds a unique FX using its config ID. Refer to orxObject_AddUniqueDelayedFX() for details, since this
 ##  function is the same as it with the delay argument set to 0.
@@ -805,7 +805,7 @@ proc orxObject_AddFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR): orxST
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_AddUniqueFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR): orxSTATUS {.
+proc orxObject_AddUniqueFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_AddUniqueFX", dynlib: "liborx.so".}
 ## * Adds a delayed FX using its config ID.
 ##  @param[in]   _pstObject      Concerned object
@@ -814,7 +814,7 @@ proc orxObject_AddUniqueFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR):
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_AddDelayedFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR;
+proc orxObject_AddDelayedFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring;
                             fDelay: orxFLOAT): orxSTATUS {.cdecl,
     importc: "orxObject_AddDelayedFX", dynlib: "liborx.so".}
 ## * Adds a unique delayed FX using its config ID. The difference between this function and orxObject_AddDelayedFX()
@@ -828,7 +828,7 @@ proc orxObject_AddDelayedFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR;
 ##
 
 proc orxObject_AddUniqueDelayedFX*(pstObject: ptr orxOBJECT;
-                                  zFXConfigID: ptr orxCHAR; fDelay: orxFLOAT): orxSTATUS {.
+                                  zFXConfigID: cstring; fDelay: orxFLOAT): orxSTATUS {.
     cdecl, importc: "orxObject_AddUniqueDelayedFX", dynlib: "liborx.so".}
 ## * Removes an FX using its config ID.
 ##  @param[in]   _pstObject      Concerned object
@@ -836,7 +836,7 @@ proc orxObject_AddUniqueDelayedFX*(pstObject: ptr orxOBJECT;
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_RemoveFX*(pstObject: ptr orxOBJECT; zFXConfigID: ptr orxCHAR): orxSTATUS {.
+proc orxObject_RemoveFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_RemoveFX", dynlib: "liborx.so".}
 ## * Synchronizes FXs with another object's ones (if FXs are not matching on both objects the behavior is undefined).
 ##  @param[in]   _pstObject      Concerned object
@@ -855,7 +855,7 @@ proc orxObject_SynchronizeFX*(pstObject: ptr orxOBJECT; pstModel: ptr orxOBJECT)
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_AddSound*(pstObject: ptr orxOBJECT; zSoundConfigID: ptr orxCHAR): orxSTATUS {.
+proc orxObject_AddSound*(pstObject: ptr orxOBJECT; zSoundConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_AddSound", dynlib: "liborx.so".}
 ## * Removes a sound using its config ID.
 ##  @param[in]   _pstObject      Concerned object
@@ -863,7 +863,7 @@ proc orxObject_AddSound*(pstObject: ptr orxOBJECT; zSoundConfigID: ptr orxCHAR):
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_RemoveSound*(pstObject: ptr orxOBJECT; zSoundConfigID: ptr orxCHAR): orxSTATUS {.
+proc orxObject_RemoveSound*(pstObject: ptr orxOBJECT; zSoundConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_RemoveSound", dynlib: "liborx.so".}
 ## * Gets last added sound (Do *NOT* destroy it directly before removing it!!!).
 ##  @param[in]   _pstObject      Concerned object
@@ -911,7 +911,7 @@ proc orxObject_Stop*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_AddShader*(pstObject: ptr orxOBJECT; zShaderConfigID: ptr orxCHAR): orxSTATUS {.
+proc orxObject_AddShader*(pstObject: ptr orxOBJECT; zShaderConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_AddShader", dynlib: "liborx.so".}
 ## * Removes a shader using its config ID.
 ##  @param[in]   _pstObject      Concerned object
@@ -919,7 +919,7 @@ proc orxObject_AddShader*(pstObject: ptr orxOBJECT; zShaderConfigID: ptr orxCHAR
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxObject_RemoveShader*(pstObject: ptr orxOBJECT; zShaderConfigID: ptr orxCHAR): orxSTATUS {.
+proc orxObject_RemoveShader*(pstObject: ptr orxOBJECT; zShaderConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_RemoveShader", dynlib: "liborx.so".}
 ## * Enables an object's shader.
 ##  @param[in]   _pstObject        Concerned object
@@ -945,7 +945,7 @@ proc orxObject_IsShaderEnabled*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
 ##
 
 proc orxObject_AddTimeLineTrack*(pstObject: ptr orxOBJECT;
-                                zTrackConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
+                                zTrackConfigID: cstring): orxSTATUS {.cdecl,
     importc: "orxObject_AddTimeLineTrack", dynlib: "liborx.so".}
 ## * Removes a timeline track using its config ID
 ##  @param[in]   _pstObject      Concerned object
@@ -954,7 +954,7 @@ proc orxObject_AddTimeLineTrack*(pstObject: ptr orxOBJECT;
 ##
 
 proc orxObject_RemoveTimeLineTrack*(pstObject: ptr orxOBJECT;
-                                   zTrackConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
+                                   zTrackConfigID: cstring): orxSTATUS {.cdecl,
     importc: "orxObject_RemoveTimeLineTrack", dynlib: "liborx.so".}
 ## * Enables an object's timeline.
 ##  @param[in]   _pstObject        Concerned object
@@ -978,7 +978,7 @@ proc orxObject_IsTimeLineEnabled*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxObject_GetName*(pstObject: ptr orxOBJECT): ptr orxCHAR {.cdecl,
+proc orxObject_GetName*(pstObject: ptr orxOBJECT): cstring {.cdecl,
     importc: "orxObject_GetName", dynlib: "liborx.so".}
 ## * @}
 ## * @name Neighboring

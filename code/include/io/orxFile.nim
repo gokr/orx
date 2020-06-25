@@ -87,21 +87,21 @@ proc orxFile_Exit*() {.cdecl, importc: "orxFile_Exit", dynlib: "liborx.so".}
 ##  @return Current user's home directory, use it immediately or copy it as will be modified by the next call to orxFile_GetHomeDirectory() or orxFile_GetApplicationSaveDirectory()
 ##
 
-proc orxFile_GetHomeDirectory*(zSubPath: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxFile_GetHomeDirectory*(zSubPath: cstring): cstring {.cdecl,
     importc: "orxFile_GetHomeDirectory", dynlib: "liborx.so".}
 ## * Gets current user's application save directory using linux separators (without trailing separator)
 ##  @param[in] _zSubPath                     Sub-path to append to the application save directory, nil for none
 ##  @return Current user's application save directory, use it immediately or copy it as it will be modified by the next call to orxFile_GetHomeDirectory() or orxFile_GetApplicationSaveDirectory()
 ##
 
-proc orxFile_GetApplicationSaveDirectory*(zSubPath: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxFile_GetApplicationSaveDirectory*(zSubPath: cstring): cstring {.cdecl,
     importc: "orxFile_GetApplicationSaveDirectory", dynlib: "liborx.so".}
 ## * Checks if a file/directory exists
 ##  @param[in] _zFileName           Concerned file/directory
 ##  @return orxFALSE if _zFileName doesn't exist, orxTRUE otherwise
 ##
 
-proc orxFile_Exists*(zFileName: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxFile_Exists*(zFileName: cstring): orxBOOL {.cdecl,
     importc: "orxFile_Exists", dynlib: "liborx.so".}
 ## * Starts a new file search: finds the first file/directory that will match to the given pattern (ex: /bin/foo*)
 ##  @param[in] _zSearchPattern      Pattern used for file/directory search
@@ -109,7 +109,7 @@ proc orxFile_Exists*(zFileName: ptr orxCHAR): orxBOOL {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxFile_FindFirst*(zSearchPattern: ptr orxCHAR; pstFileInfo: ptr orxFILE_INFO): orxSTATUS {.
+proc orxFile_FindFirst*(zSearchPattern: cstring; pstFileInfo: ptr orxFILE_INFO): orxSTATUS {.
     cdecl, importc: "orxFile_FindFirst", dynlib: "liborx.so".}
 ## * Continues a file search: finds the next occurrence of a pattern, the search has to be started with orxFile_FindFirst
 ##  @param[in,out] _pstFileInfo      Information about the last found file/directory
@@ -130,21 +130,21 @@ proc orxFile_FindClose*(pstFileInfo: ptr orxFILE_INFO) {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxFile_GetInfo*(zFileName: ptr orxCHAR; pstFileInfo: ptr orxFILE_INFO): orxSTATUS {.
+proc orxFile_GetInfo*(zFileName: cstring; pstFileInfo: ptr orxFILE_INFO): orxSTATUS {.
     cdecl, importc: "orxFile_GetInfo", dynlib: "liborx.so".}
 ## * Removes a file or an empty directory
 ##  @param[in] _zFileName            Concerned file / directory
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxFile_Remove*(zFileName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxFile_Remove*(zFileName: cstring): orxSTATUS {.cdecl,
     importc: "orxFile_Remove", dynlib: "liborx.so".}
 ## * Makes a directory, works recursively if needed
 ##  @param[in] _zName                Name of the directory to make
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxFile_MakeDirectory*(zName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxFile_MakeDirectory*(zName: cstring): orxSTATUS {.cdecl,
     importc: "orxFile_MakeDirectory", dynlib: "liborx.so".}
 ## * Opens a file for later read or write operation
 ##  @param[in] _zFileName           Full file's path to open
@@ -152,7 +152,7 @@ proc orxFile_MakeDirectory*(zName: ptr orxCHAR): orxSTATUS {.cdecl,
 ##  @return a File pointer (or nil if an error has occurred)
 ##
 
-proc orxFile_Open*(zFileName: ptr orxCHAR; u32OpenFlags: orxU32): ptr orxFILE {.cdecl,
+proc orxFile_Open*(zFileName: cstring; u32OpenFlags: orxU32): ptr orxFILE {.cdecl,
     importc: "orxFile_Open", dynlib: "liborx.so".}
 ## * Reads data from a file
 ##  @param[out] _pReadData          Buffer that will contain read data
@@ -181,7 +181,7 @@ proc orxFile_Write*(pDataToWrite: pointer; s64ElemSize: orxS64; s64NbElem: orxS6
 ##  @return orxSTATUS_SUCCESS upon success, orxSTATUS_FAILURE otherwise
 ##
 
-proc orxFile_Delete*(zFileName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxFile_Delete*(zFileName: cstring): orxSTATUS {.cdecl,
     importc: "orxFile_Delete", dynlib: "liborx.so".}
 ## * Seeks to a position in the given file
 ##  @param[in] _pstFile              Concerned file
@@ -220,7 +220,7 @@ proc orxFile_GetTime*(pstFile: ptr orxFILE): orxS64 {.cdecl,
 ##  @return Returns the number of written characters
 ##
 
-proc orxFile_Print*(pstFile: ptr orxFILE; zString: ptr orxCHAR): orxS32 {.varargs, cdecl,
+proc orxFile_Print*(pstFile: ptr orxFILE; zString: cstring): orxS32 {.varargs, cdecl,
     importc: "orxFile_Print", dynlib: "liborx.so".}
 ## * Closes an oppened file
 ##  @param[in] _pstFile             File's pointer to close

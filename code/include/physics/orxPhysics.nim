@@ -211,8 +211,8 @@ type
     fMaxTorque*: orxFLOAT      ## *< Max torque : 60
 
   INNER_C_STRUCT_orxPhysics_269* {.bycopy.} = object
-    zSrcJointName*: ptr orxCHAR ## *< Source joint name : 56
-    zDstJointName*: ptr orxCHAR ## *< Destination joint name : 60
+    zSrcJointName*: cstring ## *< Source joint name : 56
+    zDstJointName*: cstring ## *< Destination joint name : 60
     fJointRatio*: orxFLOAT     ## *< Joint ratio : 64
 
   INNER_C_UNION_orxPhysics_197* {.bycopy.} = object {.union.}
@@ -251,8 +251,8 @@ type
   orxPHYSICS_EVENT_PAYLOAD* {.bycopy.} = object
     vPosition*: orxVECTOR      ## *< Contact position : 12
     vNormal*: orxVECTOR        ## *< Contact normal : 24
-    zSenderPartName*: ptr orxCHAR ## *< Sender part name : 28
-    zRecipientPartName*: ptr orxCHAR ## *< Recipient part name : 32
+    zSenderPartName*: cstring ## *< Sender part name : 28
+    zRecipientPartName*: cstring ## *< Recipient part name : 32
 
 
 ## * Internal physics body structure
@@ -293,14 +293,14 @@ proc orxPhysics_Setup*() {.cdecl, importc: "orxPhysics_Setup", dynlib: "liborx.s
 ##  @return Flag's name
 ##
 
-proc orxPhysics_GetCollisionFlagName*(u32Flag: orxU32): ptr orxCHAR {.cdecl,
+proc orxPhysics_GetCollisionFlagName*(u32Flag: orxU32): cstring {.cdecl,
     importc: "orxPhysics_GetCollisionFlagName", dynlib: "liborx.so".}
 ## * Gets collision flag numerical value
 ##  @param[in] _zFlag        Concerned collision flag literal name
 ##  @return Flag's value
 ##
 
-proc orxPhysics_GetCollisionFlagValue*(zFlag: ptr orxCHAR): orxU32 {.cdecl,
+proc orxPhysics_GetCollisionFlagValue*(zFlag: cstring): orxU32 {.cdecl,
     importc: "orxPhysics_GetCollisionFlagValue", dynlib: "liborx.so".}
 ## **************************************************************************
 ##  Functions extended by plugins

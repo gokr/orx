@@ -48,7 +48,7 @@ when not defined(PLUGIN):
   ## *************************************************************************
   ## * Should stop execution by default event handling?
   ##
-  var sbStopByEvent* {.importc: "sbStopByEvent", dynlib: "liborx.so".}: orxBOOL
+  var sbStopByEvent* = false
   ## **************************************************************************
   ##  Public functions                                                        *
   ## *************************************************************************
@@ -64,7 +64,8 @@ when not defined(PLUGIN):
     case pstEvent.eID          ##  Close event
     of orxSYSTEM_EVENT_CLOSE.uint:
       ##  Updates status
-      sbStopByEvent = orxTRUE
+      echo "Got system event CLOSE"
+      sbStopByEvent = true
     else:
       discard
     ##  Done!
@@ -103,7 +104,7 @@ when not defined(PLUGIN):
       ##  @param[in]   _pfnRun                       Main run function (will be called once per frame, should return orxSTATUS_SUCCESS to continue processing)
       ##  @param[in]   _pfnExit                      Main exit function (should clean all the main stuff)
       ##
-      proc orx_Execute*(u32NbParams: orxU32; azParams: ptr ptr orxCHAR;
+      proc orx_Execute*(u32NbParams: orxU32; azParams: cstringArray;
                        pfnInit: orxMODULE_INIT_FUNCTION;
                        pfnRun: orxMODULE_RUN_FUNCTION;
                        pfnExit: orxMODULE_EXIT_FUNCTION) {.inline, cdecl.} =
@@ -124,15 +125,14 @@ when not defined(PLUGIN):
             var
               eClockStatus: orxSTATUS
               eMainStatus: orxSTATUS
-            var bStop: orxBOOL
             ##  Registers default event handler
             orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
             ##  Clears payload
             orxMemory_Zero(addr(stPayload), sizeof((orxSYSTEM_EVENT_PAYLOAD)))
             ##  Main loop
-            bStop = orxFALSE
-            sbStopByEvent = orxFALSE
-            while bStop == orxFALSE:
+            var bStop = false
+            sbStopByEvent = false
+            while not bStop:
               orxAndroid_PumpEvents()
               ##  Sends frame start event
               orxEVENT_SEND(orxEVENT_TYPE_SYSTEM,
@@ -147,9 +147,7 @@ when not defined(PLUGIN):
                             nil, nil, addr(stPayload))
               ##  Updates frame count
               inc(stPayload.u32FrameCount)
-              bStop = if ((sbStopByEvent != orxFALSE) or
-                  (eMainStatus == orxSTATUS_FAILURE) or
-                  (eClockStatus == orxSTATUS_FAILURE)): orxTRUE else: orxFALSE
+              bStop = (sbStopByEvent or (eMainStatus == orxSTATUS_FAILURE) or (eClockStatus == orxSTATUS_FAILURE))
           orxEvent_RemoveHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
           ##  Exits from engine
           orxModule_Exit(orxMODULE_ID_MAIN)
@@ -163,7 +161,7 @@ when not defined(PLUGIN):
       ##  @param[in]   _pfnRun                       Main run function (will be called once per frame, should return orxSTATUS_SUCCESS to continue processing)
       ##  @param[in]   _pfnExit                      Main exit function (should clean all the main stuff)
       ##
-      proc orx_Execute*(u32NbParams: orxU32; azParams: ptr ptr orxCHAR;
+      proc orx_Execute*(u32NbParams: orxU32; azParams: cstringArray;
                        pfnInit: orxMODULE_INIT_FUNCTION;
                        pfnRun: orxMODULE_RUN_FUNCTION;
                        pfnExit: orxMODULE_EXIT_FUNCTION) {.inline, cdecl.} =
@@ -184,15 +182,14 @@ when not defined(PLUGIN):
             var
               eClockStatus: orxSTATUS
               eMainStatus: orxSTATUS
-            var bStop: orxBOOL
             ##  Registers default event handler
             discard orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
             ##  Clears payload
             discard orxMemory_Zero(addr(stPayload), sizeof(orxSYSTEM_EVENT_PAYLOAD).orxU32)
             ##  Main loop
-            bStop = orxFALSE
-            sbStopByEvent = orxFALSE
-            while bStop == orxFALSE:
+            var bStop = false
+            sbStopByEvent = false
+            while not bStop:
               ##  Sends frame start event
               orxEVENT_SEND(orxEVENT_TYPE_SYSTEM, orxSYSTEM_EVENT_GAME_LOOP_START, nil, nil, addr(stPayload))
               ##  Runs the engine
@@ -204,9 +201,7 @@ when not defined(PLUGIN):
                             nil, nil, addr(stPayload))
               ##  Updates frame count
               inc(stPayload.u32FrameCount)
-              bStop = if ((sbStopByEvent != orxFALSE) or
-                  (eMainStatus == orxSTATUS_FAILURE) or
-                  (eClockStatus == orxSTATUS_FAILURE)): orxTRUE else: orxFALSE
+              bStop = (sbStopByEvent or (eMainStatus == orxSTATUS_FAILURE) or (eClockStatus == orxSTATUS_FAILURE))
           discard orxEvent_RemoveHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
           ##  Exits from engine
           orxModule_Exit(orxMODULE_ID_MAIN)

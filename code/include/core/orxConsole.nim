@@ -110,7 +110,7 @@ proc orxConsole_SetToggle*(eInputType: orxINPUT_TYPE; eInputID: orxENUM;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConsole_Log*(zText: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConsole_Log*(zText: cstring): orxSTATUS {.cdecl,
     importc: "orxConsole_Log", dynlib: "liborx.so".}
 ## * Sets the console font
 ##  @param[in]   _pstFont      Font to use
@@ -151,14 +151,14 @@ proc orxConsole_GetCompletionCount*(pu32MaxLength: ptr orxU32): orxU32 {.cdecl,
 ##  @return Completion string if found, orxSTRING_EMPTY otherwise
 ##
 
-proc orxConsole_GetCompletion*(u32Index: orxU32; pbActive: ptr orxBOOL): ptr orxCHAR {.
+proc orxConsole_GetCompletion*(u32Index: orxU32; pbActive: ptr orxBOOL): cstring {.
     cdecl, importc: "orxConsole_GetCompletion", dynlib: "liborx.so".}
 ## * Gets log line from the end (trail), using internal offset
 ##  @param[in]   _u32TrailLineIndex Index of the line starting from end
 ##  @return orxTRING / orxSTRING_EMPTY
 ##
 
-proc orxConsole_GetTrailLogLine*(u32TrailLineIndex: orxU32): ptr orxCHAR {.cdecl,
+proc orxConsole_GetTrailLogLine*(u32TrailLineIndex: orxU32): cstring {.cdecl,
     importc: "orxConsole_GetTrailLogLine", dynlib: "liborx.so".}
 ## * Gets log line offset from the end
 ##  @return Log line offset from the end
@@ -171,6 +171,6 @@ proc orxConsole_GetTrailLogLineOffset*(): orxU32 {.cdecl,
 ##  @return orxTRING / orxSTRING_EMPTY
 ##
 
-proc orxConsole_GetInput*(pu32CursorIndex: ptr orxU32): ptr orxCHAR {.cdecl,
+proc orxConsole_GetInput*(pu32CursorIndex: ptr orxU32): cstring {.cdecl,
     importc: "orxConsole_GetInput", dynlib: "liborx.so".}
 ## * @}

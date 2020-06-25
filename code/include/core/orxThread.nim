@@ -82,7 +82,7 @@ proc orxThread_Exit*() {.cdecl, importc: "orxThread_Exit", dynlib: "liborx.so".}
 ##  @return      Thread ID if successful, orxU32_UNDEFINED otherwise
 ##
 
-proc orxThread_Start*(pfnRun: orxTHREAD_FUNCTION; zName: ptr orxCHAR;
+proc orxThread_Start*(pfnRun: orxTHREAD_FUNCTION; zName: cstring;
                      pContext: pointer): orxU32 {.cdecl, importc: "orxThread_Start",
     dynlib: "liborx.so".}
 ## * Joins a thread (blocks & waits until the other thread finishes)
@@ -103,7 +103,7 @@ proc orxThread_JoinAll*(): orxSTATUS {.cdecl, importc: "orxThread_JoinAll",
 ##  @return      Thread name
 ##
 
-proc orxThread_GetName*(u32ThreadID: orxU32): ptr orxCHAR {.cdecl,
+proc orxThread_GetName*(u32ThreadID: orxU32): cstring {.cdecl,
     importc: "orxThread_GetName", dynlib: "liborx.so".}
 ## * Enables / disables threads
 ##  @param[in]   _u32EnableThreads   Mask of threads to enable (1 << ThreadID)

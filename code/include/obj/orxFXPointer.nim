@@ -127,7 +127,7 @@ proc orxFXPointer_RemoveFX*(pstFXPointer: ptr orxFXPOINTER; pstFX: ptr orxFX): o
 ##
 
 proc orxFXPointer_AddFXFromConfig*(pstFXPointer: ptr orxFXPOINTER;
-                                  zFXConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
+                                  zFXConfigID: cstring): orxSTATUS {.cdecl,
     importc: "orxFXPointer_AddFXFromConfig", dynlib: "liborx.so".}
 ## * Adds a unique FX using its config ID
 ##  @param[in]   _pstFXPointer Concerned FXPointer
@@ -136,7 +136,7 @@ proc orxFXPointer_AddFXFromConfig*(pstFXPointer: ptr orxFXPOINTER;
 ##
 
 proc orxFXPointer_AddUniqueFXFromConfig*(pstFXPointer: ptr orxFXPOINTER;
-                                        zFXConfigID: ptr orxCHAR): orxSTATUS {.
+                                        zFXConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxFXPointer_AddUniqueFXFromConfig", dynlib: "liborx.so".}
 ## * Adds a delayed FX using its config ID
 ##  @param[in]   _pstFXPointer Concerned FXPointer
@@ -146,7 +146,7 @@ proc orxFXPointer_AddUniqueFXFromConfig*(pstFXPointer: ptr orxFXPOINTER;
 ##
 
 proc orxFXPointer_AddDelayedFXFromConfig*(pstFXPointer: ptr orxFXPOINTER;
-    zFXConfigID: ptr orxCHAR; fDelay: orxFLOAT): orxSTATUS {.cdecl,
+    zFXConfigID: cstring; fDelay: orxFLOAT): orxSTATUS {.cdecl,
     importc: "orxFXPointer_AddDelayedFXFromConfig", dynlib: "liborx.so".}
 ## * Adds a unique delayed FX using its config ID
 ##  @param[in]   _pstFXPointer Concerned FXPointer
@@ -156,7 +156,7 @@ proc orxFXPointer_AddDelayedFXFromConfig*(pstFXPointer: ptr orxFXPOINTER;
 ##
 
 proc orxFXPointer_AddUniqueDelayedFXFromConfig*(pstFXPointer: ptr orxFXPOINTER;
-    zFXConfigID: ptr orxCHAR; fDelay: orxFLOAT): orxSTATUS {.cdecl,
+    zFXConfigID: cstring; fDelay: orxFLOAT): orxSTATUS {.cdecl,
     importc: "orxFXPointer_AddUniqueDelayedFXFromConfig", dynlib: "liborx.so".}
 ## * Removes an FX using its config ID
 ##  @param[in]   _pstFXPointer Concerned FXPointer
@@ -165,7 +165,7 @@ proc orxFXPointer_AddUniqueDelayedFXFromConfig*(pstFXPointer: ptr orxFXPOINTER;
 ##
 
 proc orxFXPointer_RemoveFXFromConfig*(pstFXPointer: ptr orxFXPOINTER;
-                                     zFXConfigID: ptr orxCHAR): orxSTATUS {.cdecl,
+                                     zFXConfigID: cstring): orxSTATUS {.cdecl,
     importc: "orxFXPointer_RemoveFXFromConfig", dynlib: "liborx.so".}
 ## * Synchronizes FX times with an other orxFXPointer if they share common FXs
 ##  @param[in]   _pstFXPointer Concerned FXPointer

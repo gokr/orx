@@ -66,7 +66,7 @@ type
     eFunctionID*: orxPLUGIN_FUNCTION_ID ## *< Function ID
     pfnFunction*: orxPLUGIN_FUNCTION ## *< Function Address
     zFunctionArgs*: array[orxPLUGIN_KU32_FUNCTION_ARG_SIZE, orxCHAR] ## *< Function Argument Types
-    zFunctionName*: ptr orxCHAR ## *< Function Name
+    zFunctionName*: cstring ## *< Function Name
 
 
 ## * Plugin init function prototype
@@ -105,7 +105,7 @@ when defined(EMBEDDED):
 ##  Needs to be referenced by all core functions at module init.
 ##
 
-proc orxPlugin_DefaultCoreFunction*(zFunctionName: ptr orxCHAR;
-                                   zFileName: ptr orxCHAR; u32Line: orxU32): pointer {.
+proc orxPlugin_DefaultCoreFunction*(zFunctionName: cstring;
+                                   zFileName: cstring; u32Line: orxU32): pointer {.
     cdecl, importc: "orxPlugin_DefaultCoreFunction", dynlib: "liborx.so".}
 ## * @}

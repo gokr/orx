@@ -62,14 +62,14 @@ type
 ## * Config callback function type to use with save function
 
 type
-  orxCONFIG_SAVE_FUNCTION* = proc (zSectionName: ptr orxCHAR; zKeyName: ptr orxCHAR;
-                                zFileName: ptr orxCHAR; bUseEncryption: orxBOOL): orxBOOL {.
+  orxCONFIG_SAVE_FUNCTION* = proc (zSectionName: cstring; zKeyName: cstring;
+                                zFileName: cstring; bUseEncryption: orxBOOL): orxBOOL {.
       cdecl.}
 
 ## * Config callback function type to use with clear function
 
 type
-  orxCONFIG_CLEAR_FUNCTION* = proc (zSectionName: ptr orxCHAR; zKeyName: ptr orxCHAR): orxBOOL {.
+  orxCONFIG_CLEAR_FUNCTION* = proc (zSectionName: cstring; zKeyName: cstring): orxBOOL {.
       cdecl.}
   orxCONFIG_BOOTSTRAP_FUNCTION* = proc (): orxSTATUS {.cdecl.}
 
@@ -92,13 +92,13 @@ proc orxConfig_Exit*() {.cdecl, importc: "orxConfig_Exit", dynlib: "liborx.so".}
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetEncryptionKey*(zEncryptionKey: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_SetEncryptionKey*(zEncryptionKey: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_SetEncryptionKey", dynlib: "liborx.so".}
 ## * Gets encryption key
 ##  @return Current encryption key / orxSTRING_EMPTY
 ##
 
-proc orxConfig_GetEncryptionKey*(): ptr orxCHAR {.cdecl,
+proc orxConfig_GetEncryptionKey*(): cstring {.cdecl,
     importc: "orxConfig_GetEncryptionKey", dynlib: "liborx.so".}
 ## * Sets config bootstrap function: this function will get called when the config menu is initialized, before any config file is loaded.
 ##   The only available APIs within the bootstrap function are those of orxConfig and its dependencies (orxMemory, orxString, orxFile, orxEvent, orxResource, ...)
@@ -114,20 +114,20 @@ proc orxConfig_SetBootstrap*(pfnBootstrap: orxCONFIG_BOOTSTRAP_FUNCTION): orxSTA
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetBaseName*(zBaseName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_SetBaseName*(zBaseName: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_SetBaseName", dynlib: "liborx.so".}
 ## * Gets config main file name
 ##  @return Config main file name / orxSTRING_EMPTY
 ##
 
-proc orxConfig_GetMainFileName*(): ptr orxCHAR {.cdecl,
+proc orxConfig_GetMainFileName*(): cstring {.cdecl,
     importc: "orxConfig_GetMainFileName", dynlib: "liborx.so".}
 ## * Loads config file from source
 ##  @param[in] _zFileName        File name
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_Load*(zFileName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_Load*(zFileName: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_Load", dynlib: "liborx.so".}
 ## * Loads config data from a memory buffer. NB: the buffer will be modified during processing!
 ##  @param[in] _acBuffer         Buffer to process, will be modified during processing
@@ -135,7 +135,7 @@ proc orxConfig_Load*(zFileName: ptr orxCHAR): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_LoadFromMemory*(acBuffer: ptr orxCHAR; u32BufferSize: orxU32): orxSTATUS {.
+proc orxConfig_LoadFromMemory*(acBuffer: cstring; u32BufferSize: orxU32): orxSTATUS {.
     cdecl, importc: "orxConfig_LoadFromMemory", dynlib: "liborx.so".}
 ## * Reloads config files from history
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
@@ -150,7 +150,7 @@ proc orxConfig_ReloadHistory*(): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_Save*(zFileName: ptr orxCHAR; bUseEncryption: orxBOOL;
+proc orxConfig_Save*(zFileName: cstring; bUseEncryption: orxBOOL;
                     pfnSaveCallback: orxCONFIG_SAVE_FUNCTION): orxSTATUS {.cdecl,
     importc: "orxConfig_Save", dynlib: "liborx.so".}
 ## * Copies a file with optional encryption
@@ -160,8 +160,8 @@ proc orxConfig_Save*(zFileName: ptr orxCHAR; bUseEncryption: orxBOOL;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_CopyFile*(zDstFileName: ptr orxCHAR; zSrcFileName: ptr orxCHAR;
-                        zEncryptionKey: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_CopyFile*(zDstFileName: cstring; zSrcFileName: cstring;
+                        zEncryptionKey: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_CopyFile", dynlib: "liborx.so".}
 ## * Merges multiple files into a single one, with optional encryption
 ##  @param[in] _zDstFileName     Name of the destination file
@@ -171,16 +171,16 @@ proc orxConfig_CopyFile*(zDstFileName: ptr orxCHAR; zSrcFileName: ptr orxCHAR;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_MergeFiles*(zDstFileName: ptr orxCHAR;
-                          azSrcFileName: ptr ptr orxCHAR; u32Number: orxU32;
-                          zEncryptionKey: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_MergeFiles*(zDstFileName: cstring;
+                          azSrcFileName: cstringArray; u32Number: orxU32;
+                          zEncryptionKey: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_MergeFiles", dynlib: "liborx.so".}
 ## * Selects current working section
 ##  @param[in] _zSectionName     Section name to select
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SelectSection*(zSectionName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_SelectSection*(zSectionName: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_SelectSection", dynlib: "liborx.so".}
 ## * Renames a section
 ##  @param[in] _zSectionName     Section to rename
@@ -188,22 +188,22 @@ proc orxConfig_SelectSection*(zSectionName: ptr orxCHAR): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_RenameSection*(zSectionName: ptr orxCHAR;
-                             zNewSectionName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_RenameSection*(zSectionName: cstring;
+                             zNewSectionName: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_RenameSection", dynlib: "liborx.so".}
 ## * Gets section origin (ie. the file where it was defined for the first time or orxSTRING_EMPTY if not defined via a file)
 ##  @param[in] _zSectionName     Concerned section name
 ##  @return orxSTRING if found, orxSTRING_EMPTY otherwise
 ##
 
-proc orxConfig_GetOrigin*(zSectionName: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxConfig_GetOrigin*(zSectionName: cstring): cstring {.cdecl,
     importc: "orxConfig_GetOrigin", dynlib: "liborx.so".}
 ## * Gets section origin ID (ie. the file where it was defined for the first time or orxSTRING_EMPTY if not defined via a file)
 ##  @param[in] _zSectionName     Concerned section name
 ##  @return String ID if found, orxSTRINGID_UNDEFINED otherwise
 ##
 
-proc orxConfig_GetOriginID*(zSectionName: ptr orxCHAR): orxSTRINGID {.cdecl,
+proc orxConfig_GetOriginID*(zSectionName: cstring): orxSTRINGID {.cdecl,
     importc: "orxConfig_GetOriginID", dynlib: "liborx.so".}
 ## * Sets a section's parent
 ##  @param[in] _zSectionName     Concerned section, if the section doesn't exist, it will be created
@@ -211,34 +211,34 @@ proc orxConfig_GetOriginID*(zSectionName: ptr orxCHAR): orxSTRINGID {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetParent*(zSectionName: ptr orxCHAR; zParentName: ptr orxCHAR): orxSTATUS {.
+proc orxConfig_SetParent*(zSectionName: cstring; zParentName: cstring): orxSTATUS {.
     cdecl, importc: "orxConfig_SetParent", dynlib: "liborx.so".}
 ## * Gets a section's parent
 ##  @param[in] _zSectionName     Concerned section
 ##  @return Section's parent name if set or orxSTRING_EMPTY if no parent has been forced, nil otherwise
 ##
 
-proc orxConfig_GetParent*(zSectionName: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxConfig_GetParent*(zSectionName: cstring): cstring {.cdecl,
     importc: "orxConfig_GetParent", dynlib: "liborx.so".}
 ## * Sets default parent for all sections
 ##  @param[in] _zSectionName     Section name that will be used as an implicit default parent section for all config sections, if nil is provided, default parent will be removed
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetDefaultParent*(zSectionName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_SetDefaultParent*(zSectionName: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_SetDefaultParent", dynlib: "liborx.so".}
 ## * Gets current working section
 ##  @return Current selected section
 ##
 
-proc orxConfig_GetCurrentSection*(): ptr orxCHAR {.cdecl,
+proc orxConfig_GetCurrentSection*(): cstring {.cdecl,
     importc: "orxConfig_GetCurrentSection", dynlib: "liborx.so".}
 ## * Pushes a section (storing the current one on section stack)
 ##  @param[in] _zSectionName     Section name to push
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_PushSection*(zSectionName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_PushSection*(zSectionName: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_PushSection", dynlib: "liborx.so".}
 ## * Pops last section from section stack
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
@@ -251,7 +251,7 @@ proc orxConfig_PopSection*(): orxSTATUS {.cdecl, importc: "orxConfig_PopSection"
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxConfig_HasSection*(zSectionName: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxConfig_HasSection*(zSectionName: cstring): orxBOOL {.cdecl,
     importc: "orxConfig_HasSection", dynlib: "liborx.so".}
 ## * Protects/unprotects a section from deletion (content might still be changed or deleted, but the section itself will resist delete/clear calls)
 ##  @param[in] _zSectionName     Section name to protect
@@ -259,7 +259,7 @@ proc orxConfig_HasSection*(zSectionName: ptr orxCHAR): orxBOOL {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_ProtectSection*(zSectionName: ptr orxCHAR; bProtect: orxBOOL): orxSTATUS {.
+proc orxConfig_ProtectSection*(zSectionName: cstring; bProtect: orxBOOL): orxSTATUS {.
     cdecl, importc: "orxConfig_ProtectSection", dynlib: "liborx.so".}
 ## * Gets section count
 ##  @return Section count
@@ -272,7 +272,7 @@ proc orxConfig_GetSectionCount*(): orxU32 {.cdecl,
 ##  @return orxSTRING if exist, orxSTRING_EMPTY otherwise
 ##
 
-proc orxConfig_GetSection*(u32SectionIndex: orxU32): ptr orxCHAR {.cdecl,
+proc orxConfig_GetSection*(u32SectionIndex: orxU32): cstring {.cdecl,
     importc: "orxConfig_GetSection", dynlib: "liborx.so".}
 ## * Clears all config info
 ##  @param[in] _pfnClearCallback Callback used to filter sections/keys to clear. If null, all sections/keys will be cleared
@@ -285,112 +285,112 @@ proc orxConfig_Clear*(pfnClearCallback: orxCONFIG_CLEAR_FUNCTION): orxSTATUS {.
 ##  @param[in] _zSectionName     Section name to clear
 ##
 
-proc orxConfig_ClearSection*(zSectionName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_ClearSection*(zSectionName: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_ClearSection", dynlib: "liborx.so".}
 ## * Clears a value from current selected section
 ##  @param[in] _zKey             Key name
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_ClearValue*(zKey: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_ClearValue*(zKey: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_ClearValue", dynlib: "liborx.so".}
 ## * Is this value locally inherited from another one (ie. with a Value = @... syntax)?
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxConfig_IsLocallyInheritedValue*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxConfig_IsLocallyInheritedValue*(zKey: cstring): orxBOOL {.cdecl,
     importc: "orxConfig_IsLocallyInheritedValue", dynlib: "liborx.so".}
 ## * Is this value inherited from another one (either locally or at section level)?
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxConfig_IsInheritedValue*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxConfig_IsInheritedValue*(zKey: cstring): orxBOOL {.cdecl,
     importc: "orxConfig_IsInheritedValue", dynlib: "liborx.so".}
 ## * Is this value random? (ie. using '~' character, within or without a list)
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxConfig_IsRandomValue*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxConfig_IsRandomValue*(zKey: cstring): orxBOOL {.cdecl,
     importc: "orxConfig_IsRandomValue", dynlib: "liborx.so".}
 ## * Is this value dynamic? (ie. random and/or a list or command)
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxConfig_IsDynamicValue*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxConfig_IsDynamicValue*(zKey: cstring): orxBOOL {.cdecl,
     importc: "orxConfig_IsDynamicValue", dynlib: "liborx.so".}
 ## * Is this a command value? (ie. lazily evaluated command: %...)
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxConfig_IsCommandValue*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxConfig_IsCommandValue*(zKey: cstring): orxBOOL {.cdecl,
     importc: "orxConfig_IsCommandValue", dynlib: "liborx.so".}
 ## * Has specified value for the given key?
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxConfig_HasValue*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxConfig_HasValue*(zKey: cstring): orxBOOL {.cdecl,
     importc: "orxConfig_HasValue", dynlib: "liborx.so".}
 ## * Gets a value's source section (ie. the section where the value is explicitly defined), only considering section inheritance, not local one
 ##  @param[in] _zKey             Key name
 ##  @return Name of the section that explicitly contains the value, orxSTRING_EMPTY if not found
 ##
 
-proc orxConfig_GetValueSource*(zKey: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxConfig_GetValueSource*(zKey: cstring): cstring {.cdecl,
     importc: "orxConfig_GetValueSource", dynlib: "liborx.so".}
 ## * Reads a signed integer value from config (will take a random value if a list is provided for this key)
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
-proc orxConfig_GetS32*(zKey: ptr orxCHAR): orxS32 {.cdecl,
+proc orxConfig_GetS32*(zKey: cstring): orxS32 {.cdecl,
     importc: "orxConfig_GetS32", dynlib: "liborx.so".}
 ## * Reads an unsigned integer value from config (will take a random value if a list is provided for this key)
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
-proc orxConfig_GetU32*(zKey: ptr orxCHAR): orxU32 {.cdecl,
+proc orxConfig_GetU32*(zKey: cstring): orxU32 {.cdecl,
     importc: "orxConfig_GetU32", dynlib: "liborx.so".}
 ## * Reads a signed integer value from config (will take a random value if a list is provided for this key)
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
-proc orxConfig_GetS64*(zKey: ptr orxCHAR): orxS64 {.cdecl,
+proc orxConfig_GetS64*(zKey: cstring): orxS64 {.cdecl,
     importc: "orxConfig_GetS64", dynlib: "liborx.so".}
 ## * Reads an unsigned integer value from config (will take a random value if a list is provided for this key)
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
-proc orxConfig_GetU64*(zKey: ptr orxCHAR): orxU64 {.cdecl,
+proc orxConfig_GetU64*(zKey: cstring): orxU64 {.cdecl,
     importc: "orxConfig_GetU64", dynlib: "liborx.so".}
 ## * Reads a float value from config (will take a random value if a list is provided for this key)
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
-proc orxConfig_GetFloat*(zKey: ptr orxCHAR): orxFLOAT {.cdecl,
+proc orxConfig_GetFloat*(zKey: cstring): orxFLOAT {.cdecl,
     importc: "orxConfig_GetFloat", dynlib: "liborx.so".}
 ## * Reads a string value from config (will take a random value if a list is provided for this key)
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
-proc orxConfig_GetString*(zKey: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxConfig_GetString*(zKey: cstring): cstring {.cdecl,
     importc: "orxConfig_GetString", dynlib: "liborx.so".}
 ## * Reads a boolean value from config (will take a random value if a list is provided for this key)
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
-proc orxConfig_GetBool*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxConfig_GetBool*(zKey: cstring): orxBOOL {.cdecl,
     importc: "orxConfig_GetBool", dynlib: "liborx.so".}
 ## * Reads a vector value from config (will take a random value if a list is provided for this key)
 ##  @param[in]   _zKey             Key name
@@ -398,14 +398,14 @@ proc orxConfig_GetBool*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
 ##  @return The value
 ##
 
-proc orxConfig_GetVector*(zKey: ptr orxCHAR; pvVector: ptr orxVECTOR): ptr orxVECTOR {.
+proc orxConfig_GetVector*(zKey: cstring; pvVector: ptr orxVECTOR): ptr orxVECTOR {.
     cdecl, importc: "orxConfig_GetVector", dynlib: "liborx.so".}
 ## * Duplicates a raw value (string) from config
 ##  @param[in] _zKey             Key name
 ##  @return The value. If non-null, needs to be deleted by the caller with orxString_Delete()
 ##
 
-proc orxConfig_DuplicateRawValue*(zKey: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxConfig_DuplicateRawValue*(zKey: cstring): cstring {.cdecl,
     importc: "orxConfig_DuplicateRawValue", dynlib: "liborx.so".}
 ## * Writes a signed integer value to config
 ##  @param[in] _zKey             Key name
@@ -413,7 +413,7 @@ proc orxConfig_DuplicateRawValue*(zKey: ptr orxCHAR): ptr orxCHAR {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetS32*(zKey: ptr orxCHAR; s32Value: orxS32): orxSTATUS {.cdecl,
+proc orxConfig_SetS32*(zKey: cstring; s32Value: orxS32): orxSTATUS {.cdecl,
     importc: "orxConfig_SetS32", dynlib: "liborx.so".}
 ## * Writes an unsigned integer value to config
 ##  @param[in] _zKey             Key name
@@ -421,7 +421,7 @@ proc orxConfig_SetS32*(zKey: ptr orxCHAR; s32Value: orxS32): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetU32*(zKey: ptr orxCHAR; u32Value: orxU32): orxSTATUS {.cdecl,
+proc orxConfig_SetU32*(zKey: cstring; u32Value: orxU32): orxSTATUS {.cdecl,
     importc: "orxConfig_SetU32", dynlib: "liborx.so".}
 ## * Writes a signed integer value to config
 ##  @param[in] _zKey             Key name
@@ -429,7 +429,7 @@ proc orxConfig_SetU32*(zKey: ptr orxCHAR; u32Value: orxU32): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetS64*(zKey: ptr orxCHAR; s64Value: orxS64): orxSTATUS {.cdecl,
+proc orxConfig_SetS64*(zKey: cstring; s64Value: orxS64): orxSTATUS {.cdecl,
     importc: "orxConfig_SetS64", dynlib: "liborx.so".}
 ## * Writes an unsigned integer value to config
 ##  @param[in] _zKey             Key name
@@ -437,7 +437,7 @@ proc orxConfig_SetS64*(zKey: ptr orxCHAR; s64Value: orxS64): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetU64*(zKey: ptr orxCHAR; u64Value: orxU64): orxSTATUS {.cdecl,
+proc orxConfig_SetU64*(zKey: cstring; u64Value: orxU64): orxSTATUS {.cdecl,
     importc: "orxConfig_SetU64", dynlib: "liborx.so".}
 ## * Writes a float value to config
 ##  @param[in] _zKey             Key name
@@ -445,7 +445,7 @@ proc orxConfig_SetU64*(zKey: ptr orxCHAR; u64Value: orxU64): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetFloat*(zKey: ptr orxCHAR; fValue: orxFLOAT): orxSTATUS {.cdecl,
+proc orxConfig_SetFloat*(zKey: cstring; fValue: orxFLOAT): orxSTATUS {.cdecl,
     importc: "orxConfig_SetFloat", dynlib: "liborx.so".}
 ## * Writes a string value to config
 ##  @param[in] _zKey             Key name
@@ -453,7 +453,7 @@ proc orxConfig_SetFloat*(zKey: ptr orxCHAR; fValue: orxFLOAT): orxSTATUS {.cdecl
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetString*(zKey: ptr orxCHAR; zValue: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxConfig_SetString*(zKey: cstring; zValue: cstring): orxSTATUS {.cdecl,
     importc: "orxConfig_SetString", dynlib: "liborx.so".}
 ## * Writes a string value to config, in block mode
 ##  @param[in] _zKey             Key name
@@ -461,7 +461,7 @@ proc orxConfig_SetString*(zKey: ptr orxCHAR; zValue: ptr orxCHAR): orxSTATUS {.c
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetStringBlock*(zKey: ptr orxCHAR; zValue: ptr orxCHAR): orxSTATUS {.
+proc orxConfig_SetStringBlock*(zKey: cstring; zValue: cstring): orxSTATUS {.
     cdecl, importc: "orxConfig_SetStringBlock", dynlib: "liborx.so".}
 ## * Writes a boolean value to config
 ##  @param[in] _zKey             Key name
@@ -469,7 +469,7 @@ proc orxConfig_SetStringBlock*(zKey: ptr orxCHAR; zValue: ptr orxCHAR): orxSTATU
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetBool*(zKey: ptr orxCHAR; bValue: orxBOOL): orxSTATUS {.cdecl,
+proc orxConfig_SetBool*(zKey: cstring; bValue: orxBOOL): orxSTATUS {.cdecl,
     importc: "orxConfig_SetBool", dynlib: "liborx.so".}
 ## * Writes a vector value to config
 ##  @param[in] _zKey             Key name
@@ -477,21 +477,21 @@ proc orxConfig_SetBool*(zKey: ptr orxCHAR; bValue: orxBOOL): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetVector*(zKey: ptr orxCHAR; pvValue: ptr orxVECTOR): orxSTATUS {.cdecl,
+proc orxConfig_SetVector*(zKey: cstring; pvValue: ptr orxVECTOR): orxSTATUS {.cdecl,
     importc: "orxConfig_SetVector", dynlib: "liborx.so".}
 ## * Is value a list for the given key?
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxConfig_IsList*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxConfig_IsList*(zKey: cstring): orxBOOL {.cdecl,
     importc: "orxConfig_IsList", dynlib: "liborx.so".}
 ## * Gets list count for a given key
 ##  @param[in] _zKey             Key name
 ##  @return List count if it's a valid list, 0 otherwise
 ##
 
-proc orxConfig_GetListCount*(zKey: ptr orxCHAR): orxS32 {.cdecl,
+proc orxConfig_GetListCount*(zKey: cstring): orxS32 {.cdecl,
     importc: "orxConfig_GetListCount", dynlib: "liborx.so".}
 ## * Reads a signed integer value from config list
 ##  @param[in] _zKey             Key name
@@ -499,7 +499,7 @@ proc orxConfig_GetListCount*(zKey: ptr orxCHAR): orxS32 {.cdecl,
 ##  @return The value
 ##
 
-proc orxConfig_GetListS32*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxS32 {.cdecl,
+proc orxConfig_GetListS32*(zKey: cstring; s32ListIndex: orxS32): orxS32 {.cdecl,
     importc: "orxConfig_GetListS32", dynlib: "liborx.so".}
 ## * Reads an unsigned integer value from config list
 ##  @param[in] _zKey             Key name
@@ -507,7 +507,7 @@ proc orxConfig_GetListS32*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxS32 {.cd
 ##  @return The value
 ##
 
-proc orxConfig_GetListU32*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxU32 {.cdecl,
+proc orxConfig_GetListU32*(zKey: cstring; s32ListIndex: orxS32): orxU32 {.cdecl,
     importc: "orxConfig_GetListU32", dynlib: "liborx.so".}
 ## * Reads a signed integer value from config list
 ##  @param[in] _zKey             Key name
@@ -515,7 +515,7 @@ proc orxConfig_GetListU32*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxU32 {.cd
 ##  @return The value
 ##
 
-proc orxConfig_GetListS64*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxS64 {.cdecl,
+proc orxConfig_GetListS64*(zKey: cstring; s32ListIndex: orxS32): orxS64 {.cdecl,
     importc: "orxConfig_GetListS64", dynlib: "liborx.so".}
 ## * Reads an unsigned integer value from config list
 ##  @param[in] _zKey             Key name
@@ -523,7 +523,7 @@ proc orxConfig_GetListS64*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxS64 {.cd
 ##  @return The value
 ##
 
-proc orxConfig_GetListU64*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxU64 {.cdecl,
+proc orxConfig_GetListU64*(zKey: cstring; s32ListIndex: orxS32): orxU64 {.cdecl,
     importc: "orxConfig_GetListU64", dynlib: "liborx.so".}
 ## * Reads a float value from config list
 ##  @param[in] _zKey             Key name
@@ -531,7 +531,7 @@ proc orxConfig_GetListU64*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxU64 {.cd
 ##  @return The value
 ##
 
-proc orxConfig_GetListFloat*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxFLOAT {.
+proc orxConfig_GetListFloat*(zKey: cstring; s32ListIndex: orxS32): orxFLOAT {.
     cdecl, importc: "orxConfig_GetListFloat", dynlib: "liborx.so".}
 ## * Reads a string value from config list
 ##  @param[in] _zKey             Key name
@@ -539,7 +539,7 @@ proc orxConfig_GetListFloat*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxFLOAT 
 ##  @return The value
 ##
 
-proc orxConfig_GetListString*(zKey: ptr orxCHAR; s32ListIndex: orxS32): ptr orxCHAR {.
+proc orxConfig_GetListString*(zKey: cstring; s32ListIndex: orxS32): cstring {.
     cdecl, importc: "orxConfig_GetListString", dynlib: "liborx.so".}
 ## * Reads a boolean value from config list
 ##  @param[in] _zKey             Key name
@@ -547,7 +547,7 @@ proc orxConfig_GetListString*(zKey: ptr orxCHAR; s32ListIndex: orxS32): ptr orxC
 ##  @return The value
 ##
 
-proc orxConfig_GetListBool*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxBOOL {.cdecl,
+proc orxConfig_GetListBool*(zKey: cstring; s32ListIndex: orxS32): orxBOOL {.cdecl,
     importc: "orxConfig_GetListBool", dynlib: "liborx.so".}
 ## * Reads a vector value from config list
 ##  @param[in]   _zKey             Key name
@@ -556,7 +556,7 @@ proc orxConfig_GetListBool*(zKey: ptr orxCHAR; s32ListIndex: orxS32): orxBOOL {.
 ##  @return The value
 ##
 
-proc orxConfig_GetListVector*(zKey: ptr orxCHAR; s32ListIndex: orxS32;
+proc orxConfig_GetListVector*(zKey: cstring; s32ListIndex: orxS32;
                              pvVector: ptr orxVECTOR): ptr orxVECTOR {.cdecl,
     importc: "orxConfig_GetListVector", dynlib: "liborx.so".}
 ## * Writes a list of string values to config
@@ -566,7 +566,7 @@ proc orxConfig_GetListVector*(zKey: ptr orxCHAR; s32ListIndex: orxS32;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_SetListString*(zKey: ptr orxCHAR; azValue: ptr ptr orxCHAR;
+proc orxConfig_SetListString*(zKey: cstring; azValue: cstringArray;
                              u32Number: orxU32): orxSTATUS {.cdecl,
     importc: "orxConfig_SetListString", dynlib: "liborx.so".}
 ## * Appends string values to a config list (will create a new entry if not already present)
@@ -576,7 +576,7 @@ proc orxConfig_SetListString*(zKey: ptr orxCHAR; azValue: ptr ptr orxCHAR;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxConfig_AppendListString*(zKey: ptr orxCHAR; azValue: ptr ptr orxCHAR;
+proc orxConfig_AppendListString*(zKey: cstring; azValue: cstringArray;
                                 u32Number: orxU32): orxSTATUS {.cdecl,
     importc: "orxConfig_AppendListString", dynlib: "liborx.so".}
 ## * Gets key count of the current section
@@ -590,6 +590,6 @@ proc orxConfig_GetKeyCount*(): orxU32 {.cdecl, importc: "orxConfig_GetKeyCount",
 ##  @return orxSTRING if exist, orxSTRING_EMPTY otherwise
 ##
 
-proc orxConfig_GetKey*(u32KeyIndex: orxU32): ptr orxCHAR {.cdecl,
+proc orxConfig_GetKey*(u32KeyIndex: orxU32): cstring {.cdecl,
     importc: "orxConfig_GetKey", dynlib: "liborx.so".}
 ## * @}

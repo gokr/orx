@@ -106,7 +106,7 @@ type
 
 type
   INNER_C_STRUCT_orxSound_139* {.bycopy.} = object
-    zSoundName*: ptr orxCHAR    ## *< Sound name : 4
+    zSoundName*: cstring    ## *< Sound name : 4
     stInfo*: orxSOUND_STREAM_INFO ## *< Sound record info : 12
     stPacket*: orxSOUND_STREAM_PACKET ## *< Sound record packet : 32
 
@@ -143,7 +143,7 @@ proc orxSound_Create*(): ptr orxSOUND {.cdecl, importc: "orxSound_Create",
 ##  @ return orxSOUND / nil
 ##
 
-proc orxSound_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSOUND {.cdecl,
+proc orxSound_CreateFromConfig*(zConfigID: cstring): ptr orxSOUND {.cdecl,
     importc: "orxSound_CreateFromConfig", dynlib: "liborx.so".}
 ## * Creates a sound with an empty stream (ie. you'll need to provide actual sound data for each packet sent to the sound card using the event system)
 ##  @param[in] _u32ChannelNumber Number of channels of the stream
@@ -153,7 +153,7 @@ proc orxSound_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSOUND {.cdecl,
 ##
 
 proc orxSound_CreateWithEmptyStream*(u32ChannelNumber: orxU32;
-                                    u32SampleRate: orxU32; zName: ptr orxCHAR): ptr orxSOUND {.
+                                    u32SampleRate: orxU32; zName: cstring): ptr orxSOUND {.
     cdecl, importc: "orxSound_CreateWithEmptyStream", dynlib: "liborx.so".}
 ## * Deletes sound
 ##  @param[in] _pstSound       Concerned Sound
@@ -177,21 +177,21 @@ proc orxSound_ClearCache*(): orxSTATUS {.cdecl, importc: "orxSound_ClearCache",
 ##
 
 proc orxSound_CreateSample*(u32ChannelNumber: orxU32; u32FrameNumber: orxU32;
-                           u32SampleRate: orxU32; zName: ptr orxCHAR): ptr orxSOUNDSYSTEM_SAMPLE {.
+                           u32SampleRate: orxU32; zName: cstring): ptr orxSOUNDSYSTEM_SAMPLE {.
     cdecl, importc: "orxSound_CreateSample", dynlib: "liborx.so".}
 ## * Gets a sample
 ##  @param[in] _zName            Sample's name
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSound_GetSample*(zName: ptr orxCHAR): ptr orxSOUNDSYSTEM_SAMPLE {.cdecl,
+proc orxSound_GetSample*(zName: cstring): ptr orxSOUNDSYSTEM_SAMPLE {.cdecl,
     importc: "orxSound_GetSample", dynlib: "liborx.so".}
 ## * Deletes a sample
 ##  @param[in] _zName            Sample's name
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSound_DeleteSample*(zName: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxSound_DeleteSample*(zName: cstring): orxSTATUS {.cdecl,
     importc: "orxSound_DeleteSample", dynlib: "liborx.so".}
 ## * Links a sample
 ##  @param[in]   _pstSound     Concerned sound
@@ -199,7 +199,7 @@ proc orxSound_DeleteSample*(zName: ptr orxCHAR): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSound_LinkSample*(pstSound: ptr orxSOUND; zSampleName: ptr orxCHAR): orxSTATUS {.
+proc orxSound_LinkSample*(pstSound: ptr orxSOUND; zSampleName: cstring): orxSTATUS {.
     cdecl, importc: "orxSound_LinkSample", dynlib: "liborx.so".}
 ## * Unlinks (and deletes if not used anymore) a sample
 ##  @param[in]   _pstSound     Concerned sound
@@ -244,7 +244,7 @@ proc orxSound_Stop*(pstSound: ptr orxSOUND): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxSound_StartRecording*(zName: ptr orxCHAR; bWriteToFile: orxBOOL;
+proc orxSound_StartRecording*(zName: cstring; bWriteToFile: orxBOOL;
                              u32SampleRate: orxU32; u32ChannelNumber: orxU32): orxSTATUS {.
     cdecl, importc: "orxSound_StartRecording", dynlib: "liborx.so".}
 ## * Stops recording
@@ -384,7 +384,7 @@ proc orxSound_GetStatus*(pstSound: ptr orxSOUND): orxSOUND_STATUS {.cdecl,
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxSound_GetName*(pstSound: ptr orxSOUND): ptr orxCHAR {.cdecl,
+proc orxSound_GetName*(pstSound: ptr orxSOUND): cstring {.cdecl,
     importc: "orxSound_GetName", dynlib: "liborx.so".}
 ## * Gets master bus ID
 ##  @return      Master bus ID

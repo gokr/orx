@@ -144,7 +144,7 @@ proc orxShaderPointer_GetShader*(pstShaderPointer: ptr orxSHADERPOINTER;
 ##
 
 proc orxShaderPointer_AddShaderFromConfig*(
-    pstShaderPointer: ptr orxSHADERPOINTER; zShaderConfigID: ptr orxCHAR): orxSTATUS {.
+    pstShaderPointer: ptr orxSHADERPOINTER; zShaderConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxShaderPointer_AddShaderFromConfig", dynlib: "liborx.so".}
 ## * Removes a shader using its config ID
 ##  @param[in]   _pstShaderPointer Concerned ShaderPointer
@@ -153,6 +153,6 @@ proc orxShaderPointer_AddShaderFromConfig*(
 ##
 
 proc orxShaderPointer_RemoveShaderFromConfig*(
-    pstShaderPointer: ptr orxSHADERPOINTER; zShaderConfigID: ptr orxCHAR): orxSTATUS {.
+    pstShaderPointer: ptr orxSHADERPOINTER; zShaderConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxShaderPointer_RemoveShaderFromConfig", dynlib: "liborx.so".}
 ## * @}

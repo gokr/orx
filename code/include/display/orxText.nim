@@ -70,7 +70,7 @@ proc orxText_Create*(): ptr orxTEXT {.cdecl, importc: "orxText_Create",
 ##  @return      orxTEXT / nil
 ##
 
-proc orxText_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxTEXT {.cdecl,
+proc orxText_CreateFromConfig*(zConfigID: cstring): ptr orxTEXT {.cdecl,
     importc: "orxText_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a text
 ##  @param[in]   _pstText      Concerned text
@@ -84,7 +84,7 @@ proc orxText_Delete*(pstText: ptr orxTEXT): orxSTATUS {.cdecl,
 ##  @return      Text name / nil
 ##
 
-proc orxText_GetName*(pstText: ptr orxTEXT): ptr orxCHAR {.cdecl,
+proc orxText_GetName*(pstText: ptr orxTEXT): cstring {.cdecl,
     importc: "orxText_GetName", dynlib: "liborx.so".}
 ## * Gets text's line count
 ##  @param[in]   _pstText      Concerned text
@@ -126,7 +126,7 @@ proc orxText_GetSize*(pstText: ptr orxTEXT; pfWidth: ptr orxFLOAT;
 ##  @return      Text string / orxSTRING_EMPTY
 ##
 
-proc orxText_GetString*(pstText: ptr orxTEXT): ptr orxCHAR {.cdecl,
+proc orxText_GetString*(pstText: ptr orxTEXT): cstring {.cdecl,
     importc: "orxText_GetString", dynlib: "liborx.so".}
 ## * Gets text font
 ##  @param[in]   _pstText      Concerned text
@@ -144,7 +144,7 @@ proc orxText_GetFont*(pstText: ptr orxTEXT): ptr orxFONT {.cdecl,
 ##
 
 proc orxText_SetSize*(pstText: ptr orxTEXT; fWidth: orxFLOAT; fHeight: orxFLOAT;
-                     pzExtra: ptr ptr orxCHAR): orxSTATUS {.cdecl,
+                     pzExtra: cstringArray): orxSTATUS {.cdecl,
     importc: "orxText_SetSize", dynlib: "liborx.so".}
 ## * Sets text string
 ##  @param[in]   _pstText      Concerned text
@@ -152,7 +152,7 @@ proc orxText_SetSize*(pstText: ptr orxTEXT; fWidth: orxFLOAT; fHeight: orxFLOAT;
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxText_SetString*(pstText: ptr orxTEXT; zString: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxText_SetString*(pstText: ptr orxTEXT; zString: cstring): orxSTATUS {.cdecl,
     importc: "orxText_SetString", dynlib: "liborx.so".}
 ## * Sets text font
 ##  @param[in]   _pstText      Concerned text

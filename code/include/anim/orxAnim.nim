@@ -92,7 +92,7 @@ type
     fTime*: orxFLOAT           ## *< Anim time when cut: 12
 
   INNER_C_STRUCT_orxAnim_127* {.bycopy.} = object
-    zName*: ptr orxCHAR         ## *< Custom event name : 12
+    zName*: cstring         ## *< Custom event name : 12
     fValue*: orxFLOAT          ## *< Custom event value : 16
     fTime*: orxFLOAT           ## *< Custom event time : 20
 
@@ -104,7 +104,7 @@ type
 
   orxANIM_EVENT_PAYLOAD* {.bycopy.} = object
     pstAnim*: ptr orxANIM       ## *< Animation reference : 4
-    zAnimName*: ptr orxCHAR     ## *< Animation name : 8
+    zAnimName*: cstring     ## *< Animation name : 8
     ano_orxAnim_131*: INNER_C_UNION_orxAnim_113
 
 
@@ -113,7 +113,7 @@ type
 
 type
   orxANIM_CUSTOM_EVENT* {.bycopy.} = object
-    zName*: ptr orxCHAR         ## *< Event name : 4
+    zName*: cstring         ## *< Event name : 4
     fValue*: orxFLOAT          ## *< Event value : 8
     fTimeStamp*: orxFLOAT      ## *< Timestamp : 12
 
@@ -177,7 +177,7 @@ proc orxAnim_RemoveAllKeys*(pstAnim: ptr orxANIM) {.cdecl,
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxAnim_AddEvent*(pstAnim: ptr orxANIM; zEventName: ptr orxCHAR;
+proc orxAnim_AddEvent*(pstAnim: ptr orxANIM; zEventName: cstring;
                       fTimeStamp: orxFLOAT; fValue: orxFLOAT): orxSTATUS {.cdecl,
     importc: "orxAnim_AddEvent", dynlib: "liborx.so".}
 ## * Removes last added event from an animation
@@ -257,6 +257,6 @@ proc orxAnim_GetLength*(pstAnim: ptr orxANIM): orxFLOAT {.cdecl,
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxAnim_GetName*(pstAnim: ptr orxANIM): ptr orxCHAR {.cdecl,
+proc orxAnim_GetName*(pstAnim: ptr orxANIM): cstring {.cdecl,
     importc: "orxAnim_GetName", dynlib: "liborx.so".}
 ## * @}

@@ -58,7 +58,7 @@ const
 ##
 
 type
-  orxPARAM_INIT_FUNCTION* = proc (u32NbParam: orxU32; azParams: ptr ptr orxCHAR): orxSTATUS {.
+  orxPARAM_INIT_FUNCTION* = proc (u32NbParam: orxU32; azParams: cstringArray): orxSTATUS {.
       cdecl.}
 
 ##  Parameter's info
@@ -67,11 +67,11 @@ type
   orxPARAM* {.bycopy.} = object
     u32Flags*: orxU32          ##  Flags associated to the parameters' parser
     ##  Short parameter name (ex: "h" for help (will be -h))
-    zShortName*: ptr orxCHAR    ##  Long parameter name (ex: "help" for help (will be --help))
-    zLongName*: ptr orxCHAR     ##  Short description (ex: "shows params' list")
-    zShortDesc*: ptr orxCHAR ##  Long description (ex: "Display the list of parameters.
+    zShortName*: cstring    ##  Long parameter name (ex: "help" for help (will be --help))
+    zLongName*: cstring     ##  Short description (ex: "shows params' list")
+    zShortDesc*: cstring ##  Long description (ex: "Display the list of parameters.
                           ##  -help <param> displays the <param> long description")
-    zLongDesc*: ptr orxCHAR     ##  Function called when the parameter is detected in the command line
+    zLongDesc*: cstring     ##  Function called when the parameter is detected in the command line
     pfnParser*: orxPARAM_INIT_FUNCTION
 
 
@@ -108,6 +108,6 @@ proc orxParam_DisplayHelp*(): orxSTATUS {.cdecl, importc: "orxParam_DisplayHelp"
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxParam_SetArgs*(u32NbParams: orxU32; azParams: ptr ptr orxCHAR): orxSTATUS {.
+proc orxParam_SetArgs*(u32NbParams: orxU32; azParams: cstringArray): orxSTATUS {.
     cdecl, importc: "orxParam_SetArgs", dynlib: "liborx.so".}
 ## * @}

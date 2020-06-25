@@ -264,7 +264,7 @@ type
     bFullScreen*: orxBOOL      ## *< FullScreen? : 36
 
   INNER_C_STRUCT_orxDisplay_298* {.bycopy.} = object
-    zLocation*: ptr orxCHAR     ## *< File location : 40
+    zLocation*: cstring     ## *< File location : 40
     stFilenameID*: orxSTRINGID ## *< File name ID : 44
     u32ID*: orxU32             ## *< Bitmap (hardware texture) ID : 48
 
@@ -618,7 +618,7 @@ proc orxColor_FromHSVToRGB*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
 ##  @return orxDISPLAY_BLEND_MODE
 ##
 
-proc orxDisplay_GetBlendModeFromString*(zBlendMode: ptr orxCHAR): orxDISPLAY_BLEND_MODE {.
+proc orxDisplay_GetBlendModeFromString*(zBlendMode: cstring): orxDISPLAY_BLEND_MODE {.
     cdecl, importc: "orxDisplay_GetBlendModeFromString", dynlib: "liborx.so".}
 ## **************************************************************************
 ##  Functions extended by plugins
@@ -672,7 +672,7 @@ proc orxDisplay_DeleteBitmap*(pstBitmap: ptr orxBITMAP) {.cdecl,
 ##  @return orxBITMAP * / nil
 ##
 
-proc orxDisplay_LoadBitmap*(zFileName: ptr orxCHAR): ptr orxBITMAP {.cdecl,
+proc orxDisplay_LoadBitmap*(zFileName: cstring): ptr orxBITMAP {.cdecl,
     importc: "orxDisplay_LoadBitmap", dynlib: "liborx.so".}
 ## * Saves a bitmap to file
 ##  @param[in]   _pstBitmap                            Concerned bitmap
@@ -680,7 +680,7 @@ proc orxDisplay_LoadBitmap*(zFileName: ptr orxCHAR): ptr orxBITMAP {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxDisplay_SaveBitmap*(pstBitmap: ptr orxBITMAP; zFileName: ptr orxCHAR): orxSTATUS {.
+proc orxDisplay_SaveBitmap*(pstBitmap: ptr orxBITMAP; zFileName: cstring): orxSTATUS {.
     cdecl, importc: "orxDisplay_SaveBitmap", dynlib: "liborx.so".}
 ## * Sets temp bitmap, if a valid temp bitmap is given, load operations will be asynchronous
 ##  @param[in]   _pstBitmap                            Concerned bitmap, nil for forcing synchronous load operations
@@ -808,7 +808,7 @@ proc orxDisplay_TransformBitmap*(pstSrc: ptr orxBITMAP;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxDisplay_TransformText*(zString: ptr orxCHAR; pstFont: ptr orxBITMAP;
+proc orxDisplay_TransformText*(zString: cstring; pstFont: ptr orxBITMAP;
                               pstMap: ptr orxCHARACTER_MAP;
                               pstTransform: ptr orxDISPLAY_TRANSFORM;
                               stColor: orxRGBA; eSmoothing: orxDISPLAY_SMOOTHING;
@@ -891,7 +891,7 @@ proc orxDisplay_HasShaderSupport*(): orxBOOL {.cdecl,
 ##  @return orxHANDLE of the compiled shader is successful, orxHANDLE_UNDEFINED otherwise
 ##
 
-proc orxDisplay_CreateShader*(azCodeList: ptr ptr orxCHAR; u32Size: orxU32;
+proc orxDisplay_CreateShader*(azCodeList: cstringArray; u32Size: orxU32;
                              pstParamList: ptr orxLINKLIST;
                              bUseCustomParam: orxBOOL): orxHANDLE {.cdecl,
     importc: "orxDisplay_CreateShader", dynlib: "liborx.so".}
@@ -923,7 +923,7 @@ proc orxDisplay_StopShader*(hShader: orxHANDLE): orxSTATUS {.cdecl,
 ##  @return Parameter ID
 ##
 
-proc orxDisplay_GetParameterID*(hShader: orxHANDLE; zParam: ptr orxCHAR;
+proc orxDisplay_GetParameterID*(hShader: orxHANDLE; zParam: cstring;
                                s32Index: orxS32; bIsTexture: orxBOOL): orxS32 {.
     cdecl, importc: "orxDisplay_GetParameterID", dynlib: "liborx.so".}
 ## * Sets a shader parameter (orxBITMAP)

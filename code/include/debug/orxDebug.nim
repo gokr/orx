@@ -102,15 +102,15 @@ type
 
 
 # Hack to get orxLOG to compile
-proc orxLOG(s: string) =
+proc orxLOG*(s: string) =
   echo(s)
 
 ##  Log callback function
 
 type
-  orxDEBUG_CALLBACK_FUNCTION* = proc (eLevel: orxDEBUG_LEVEL; zFunction: ptr orxCHAR;
-                                   zFile: ptr orxCHAR; u32Line: orxU32;
-                                   zLog: ptr orxCHAR): orxSTATUS {.cdecl.}
+  orxDEBUG_CALLBACK_FUNCTION* = proc (eLevel: orxDEBUG_LEVEL; zFunction: cstring;
+                                   zFile: cstring; u32Line: orxU32;
+                                   zLog: cstring): orxSTATUS {.cdecl.}
 
 ##  *** Debug Macros ***
 
@@ -213,8 +213,8 @@ proc orxDebug_ExitInternal*() {.cdecl, importc: "_orxDebug_Exit", dynlib: "libor
 ##  @param[in]   _zFormat                      Printf formatted text
 ##
 
-proc orxDebug_Log*(eLevel: orxDEBUG_LEVEL; zFunction: ptr orxCHAR; zFile: ptr orxCHAR;
-                  u32Line: orxU32; zFormat: ptr orxCHAR) {.varargs, cdecl,
+proc orxDebug_Log*(eLevel: orxDEBUG_LEVEL; zFunction: cstring; zFile: cstring;
+                  u32Line: orxU32; zFormat: cstring) {.varargs, cdecl,
     importc: "_orxDebug_Log", dynlib: "liborx.so".}
 ## * Enables/disables a given log level
 ##  @param[in]   _eLevel                       Debug level to enable/disable
@@ -249,13 +249,13 @@ proc orxDebug_Break*() {.cdecl, importc: "_orxDebug_Break", dynlib: "liborx.so".
 ##  @param[in]   _zFileName                    Debug file name
 ##
 
-proc orxDebug_SetDebugFile*(zFileName: ptr orxCHAR) {.cdecl,
+proc orxDebug_SetDebugFile*(zFileName: cstring) {.cdecl,
     importc: "_orxDebug_SetDebugFile", dynlib: "liborx.so".}
 ## * Sets log file name
 ##  @param[in]   _zFileName                    Log file name
 ##
 
-proc orxDebug_SetLogFile*(zFileName: ptr orxCHAR) {.cdecl,
+proc orxDebug_SetLogFile*(zFileName: cstring) {.cdecl,
     importc: "_orxDebug_SetLogFile", dynlib: "liborx.so".}
 ## * Sets log callback function, if the callback returns orxSTATUS_FAILURE, the log entry will be entirely inhibited
 ##  @param[in]   _pfnLogCallback                Log callback function, nil to remove it

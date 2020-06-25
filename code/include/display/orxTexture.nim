@@ -89,7 +89,7 @@ proc orxTexture_Create*(): ptr orxTEXTURE {.cdecl, importc: "orxTexture_Create",
 ##  @return      orxTEXTURE / nil
 ##
 
-proc orxTexture_CreateFromFile*(zFileName: ptr orxCHAR; bKeepInCache: orxBOOL): ptr orxTEXTURE {.
+proc orxTexture_CreateFromFile*(zFileName: cstring; bKeepInCache: orxBOOL): ptr orxTEXTURE {.
     cdecl, importc: "orxTexture_CreateFromFile", dynlib: "liborx.so".}
 ## * Deletes a texture (and its referenced bitmap)
 ##  @param[in]   _pstTexture     Concerned texture
@@ -113,7 +113,7 @@ proc orxTexture_ClearCache*(): orxSTATUS {.cdecl, importc: "orxTexture_ClearCach
 ##
 
 proc orxTexture_LinkBitmap*(pstTexture: ptr orxTEXTURE; pstBitmap: ptr orxBITMAP;
-                           zDataName: ptr orxCHAR; bTransferOwnership: orxBOOL): orxSTATUS {.
+                           zDataName: cstring; bTransferOwnership: orxBOOL): orxSTATUS {.
     cdecl, importc: "orxTexture_LinkBitmap", dynlib: "liborx.so".}
 ## * Unlinks (and deletes if not used anymore) a bitmap
 ##  @param[in]   _pstTexture     Concerned texture
@@ -144,7 +144,7 @@ proc orxTexture_GetSize*(pstTexture: ptr orxTEXTURE; pfWidth: ptr orxFLOAT;
 ##  @return      Texture name / orxSTRING_EMPTY
 ##
 
-proc orxTexture_GetName*(pstTexture: ptr orxTEXTURE): ptr orxCHAR {.cdecl,
+proc orxTexture_GetName*(pstTexture: ptr orxTEXTURE): cstring {.cdecl,
     importc: "orxTexture_GetName", dynlib: "liborx.so".}
 ## * Gets screen texture
 ##  @return      Screen texture / nil

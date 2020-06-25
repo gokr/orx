@@ -58,9 +58,9 @@ type
 
 type
   orxLOCALE_EVENT_PAYLOAD* {.bycopy.} = object
-    zLanguage*: ptr orxCHAR     ## *< Current language : 4
-    zStringKey*: ptr orxCHAR    ## *< String key : 8
-    zStringValue*: ptr orxCHAR  ## *< String value : 12
+    zLanguage*: cstring     ## *< Current language : 4
+    zStringKey*: cstring    ## *< String key : 8
+    zStringValue*: cstring  ## *< String value : 12
 
 
 ## * Locale module setup
@@ -81,20 +81,20 @@ proc orxLocale_Exit*() {.cdecl, importc: "orxLocale_Exit", dynlib: "liborx.so".}
 ##  @param[in] _zLanguage        Language to select
 ##
 
-proc orxLocale_SelectLanguage*(zLanguage: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxLocale_SelectLanguage*(zLanguage: cstring): orxSTATUS {.cdecl,
     importc: "orxLocale_SelectLanguage", dynlib: "liborx.so".}
 ## * Gets current language
 ##  @return Current selected language
 ##
 
-proc orxLocale_GetCurrentLanguage*(): ptr orxCHAR {.cdecl,
+proc orxLocale_GetCurrentLanguage*(): cstring {.cdecl,
     importc: "orxLocale_GetCurrentLanguage", dynlib: "liborx.so".}
 ## * Has given language? (if not correctly defined, false will be returned)
 ##  @param[in] _zLanguage        Concerned language
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxLocale_HasLanguage*(zLanguage: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxLocale_HasLanguage*(zLanguage: cstring): orxBOOL {.cdecl,
     importc: "orxLocale_HasLanguage", dynlib: "liborx.so".}
 ## * Gets language count
 ##  @return Number of languages defined
@@ -107,21 +107,21 @@ proc orxLocale_GetLanguageCount*(): orxU32 {.cdecl,
 ##  @return orxSTRING if exist, orxSTRING_EMPTY otherwise
 ##
 
-proc orxLocale_GetLanguage*(u32LanguageIndex: orxU32): ptr orxCHAR {.cdecl,
+proc orxLocale_GetLanguage*(u32LanguageIndex: orxU32): cstring {.cdecl,
     importc: "orxLocale_GetLanguage", dynlib: "liborx.so".}
 ## * Has string for the given key?
 ##  @param[in] _zKey             Key name
 ##  @return orxTRUE / orxFALSE
 ##
 
-proc orxLocale_HasString*(zKey: ptr orxCHAR): orxBOOL {.cdecl,
+proc orxLocale_HasString*(zKey: cstring): orxBOOL {.cdecl,
     importc: "orxLocale_HasString", dynlib: "liborx.so".}
 ## * Reads a string in the current language for the given key
 ##  @param[in] _zKey             Key name
 ##  @return The value
 ##
 
-proc orxLocale_GetString*(zKey: ptr orxCHAR): ptr orxCHAR {.cdecl,
+proc orxLocale_GetString*(zKey: cstring): cstring {.cdecl,
     importc: "orxLocale_GetString", dynlib: "liborx.so".}
 ## * Writes a string in the current language for the given key
 ##  @param[in] _zKey             Key name
@@ -129,7 +129,7 @@ proc orxLocale_GetString*(zKey: ptr orxCHAR): ptr orxCHAR {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxLocale_SetString*(zKey: ptr orxCHAR; zValue: ptr orxCHAR): orxSTATUS {.cdecl,
+proc orxLocale_SetString*(zKey: cstring; zValue: cstring): orxSTATUS {.cdecl,
     importc: "orxLocale_SetString", dynlib: "liborx.so".}
 ## * Gets key count for the current language
 ##  @return Key count the current language if valid, 0 otherwise
@@ -142,6 +142,6 @@ proc orxLocale_GetKeyCount*(): orxU32 {.cdecl, importc: "orxLocale_GetKeyCount",
 ##  @return orxSTRING if exist, nil otherwise
 ##
 
-proc orxLocale_GetKey*(u32KeyIndex: orxU32): ptr orxCHAR {.cdecl,
+proc orxLocale_GetKey*(u32KeyIndex: orxU32): cstring {.cdecl,
     importc: "orxLocale_GetKey", dynlib: "liborx.so".}
 ## * @}

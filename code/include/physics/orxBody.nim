@@ -84,7 +84,7 @@ proc orxBody_Create*(pstOwner: ptr orxSTRUCTURE; pstBodyDef: ptr orxBODY_DEF): p
 ##  @return      Created orxGRAPHIC / nil
 ##
 
-proc orxBody_CreateFromConfig*(pstOwner: ptr orxSTRUCTURE; zConfigID: ptr orxCHAR): ptr orxBODY {.
+proc orxBody_CreateFromConfig*(pstOwner: ptr orxSTRUCTURE; zConfigID: cstring): ptr orxBODY {.
     cdecl, importc: "orxBody_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a body
 ##  @param[in]   _pstBody        Concerned body
@@ -98,7 +98,7 @@ proc orxBody_Delete*(pstBody: ptr orxBODY): orxSTATUS {.cdecl,
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxBody_GetName*(pstBody: ptr orxBODY): ptr orxCHAR {.cdecl,
+proc orxBody_GetName*(pstBody: ptr orxBODY): cstring {.cdecl,
     importc: "orxBody_GetName", dynlib: "liborx.so".}
 ## * Tests flags against body definition ones
 ##  @param[in]   _pstBody        Concerned body
@@ -138,7 +138,7 @@ proc orxBody_AddPart*(pstBody: ptr orxBODY; pstBodyPartDef: ptr orxBODY_PART_DEF
 ##  @return      orxBODY_PART / nil
 ##
 
-proc orxBody_AddPartFromConfig*(pstBody: ptr orxBODY; zConfigID: ptr orxCHAR): ptr orxBODY_PART {.
+proc orxBody_AddPartFromConfig*(pstBody: ptr orxBODY; zConfigID: cstring): ptr orxBODY_PART {.
     cdecl, importc: "orxBody_AddPartFromConfig", dynlib: "liborx.so".}
 ## * Removes a part using its config ID
 ##  @param[in]   _pstBody        Concerned body
@@ -146,7 +146,7 @@ proc orxBody_AddPartFromConfig*(pstBody: ptr orxBODY; zConfigID: ptr orxCHAR): p
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxBody_RemovePartFromConfig*(pstBody: ptr orxBODY; zConfigID: ptr orxCHAR): orxSTATUS {.
+proc orxBody_RemovePartFromConfig*(pstBody: ptr orxBODY; zConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxBody_RemovePartFromConfig", dynlib: "liborx.so".}
 ## * Gets next body part
 ##  @param[in]   _pstBody        Concerned body
@@ -161,7 +161,7 @@ proc orxBody_GetNextPart*(pstBody: ptr orxBODY; pstBodyPart: ptr orxBODY_PART): 
 ##  @return      orxSTRING / nil
 ##
 
-proc orxBody_GetPartName*(pstBodyPart: ptr orxBODY_PART): ptr orxCHAR {.cdecl,
+proc orxBody_GetPartName*(pstBodyPart: ptr orxBODY_PART): cstring {.cdecl,
     importc: "orxBody_GetPartName", dynlib: "liborx.so".}
 ## * Gets a body part definition (matching current part status)
 ##  @param[in]   _pstBodyPart    Concerned body part
@@ -202,7 +202,7 @@ proc orxBody_AddJoint*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBODY;
 ##
 
 proc orxBody_AddJointFromConfig*(pstSrcBody: ptr orxBODY; pstDstBody: ptr orxBODY;
-                                zConfigID: ptr orxCHAR): ptr orxBODY_JOINT {.cdecl,
+                                zConfigID: cstring): ptr orxBODY_JOINT {.cdecl,
     importc: "orxBody_AddJointFromConfig", dynlib: "liborx.so".}
 ## * Gets next body joint
 ##  @param[in]   _pstBody        Concerned body
@@ -217,7 +217,7 @@ proc orxBody_GetNextJoint*(pstBody: ptr orxBODY; pstBodyJoint: ptr orxBODY_JOINT
 ##  @return      orxSTRING / nil
 ##
 
-proc orxBody_GetJointName*(pstBodyJoint: ptr orxBODY_JOINT): ptr orxCHAR {.cdecl,
+proc orxBody_GetJointName*(pstBodyJoint: ptr orxBODY_JOINT): cstring {.cdecl,
     importc: "orxBody_GetJointName", dynlib: "liborx.so".}
 ## * Removes a body joint
 ##  @param[in]   _pstBodyJoint   Concerned body joint

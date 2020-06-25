@@ -98,7 +98,7 @@ proc orxProfiler_Exit*() {.cdecl, importc: "orxProfiler_Exit", dynlib: "liborx.s
 ##  @return Marker's ID / orxPROFILER_KS32_MARKER_ID_NONE
 ##
 
-proc orxProfiler_GetIDFromName*(zName: ptr orxCHAR): orxS32 {.cdecl,
+proc orxProfiler_GetIDFromName*(zName: cstring): orxS32 {.cdecl,
     importc: "orxProfiler_GetIDFromName", dynlib: "liborx.so".}
 ## * Is the given marker valid? (Useful when storing markers in static variables and still allow normal hot restart)
 ##  @param[in] _s32MarkerID      ID of the marker to test
@@ -212,7 +212,7 @@ proc orxProfiler_GetMarkerMaxTime*(s32MarkerID: orxS32): orxDOUBLE {.cdecl,
 ##  @return Marker's name
 ##
 
-proc orxProfiler_GetMarkerName*(s32MarkerID: orxS32): ptr orxCHAR {.cdecl,
+proc orxProfiler_GetMarkerName*(s32MarkerID: orxS32): cstring {.cdecl,
     importc: "orxProfiler_GetMarkerName", dynlib: "liborx.so".}
 ## * Gets the marker's push count
 ##  @param[in] _s32MarkerID      Concerned marker ID

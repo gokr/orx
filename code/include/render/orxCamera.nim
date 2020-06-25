@@ -88,7 +88,7 @@ proc orxCamera_Create*(u32Flags: orxU32): ptr orxCAMERA {.cdecl,
 ##  @ return orxCAMERA / nil
 ##
 
-proc orxCamera_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxCAMERA {.cdecl,
+proc orxCamera_CreateFromConfig*(zConfigID: cstring): ptr orxCAMERA {.cdecl,
     importc: "orxCamera_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a camera
 ##  @param[in]   _pstCamera      Camera to delete
@@ -201,14 +201,14 @@ proc orxCamera_GetZoom*(pstCamera: ptr orxCAMERA): orxFLOAT {.cdecl,
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxCamera_GetName*(pstCamera: ptr orxCAMERA): ptr orxCHAR {.cdecl,
+proc orxCamera_GetName*(pstCamera: ptr orxCAMERA): cstring {.cdecl,
     importc: "orxCamera_GetName", dynlib: "liborx.so".}
 ## * Gets camera given its name
 ##  @param[in]   _zName          Camera name
 ##  @return      orxCAMERA / nil
 ##
 
-proc orxCamera_Get*(zName: ptr orxCHAR): ptr orxCAMERA {.cdecl,
+proc orxCamera_Get*(zName: cstring): ptr orxCAMERA {.cdecl,
     importc: "orxCamera_Get", dynlib: "liborx.so".}
 ## * Gets camera frame
 ##  @param[in]   _pstCamera      Concerned camera

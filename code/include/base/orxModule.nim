@@ -73,10 +73,10 @@ const
 ##  *** setup/init/exit/run function prototypes ***
 
 type
-  orxMODULE_INIT_FUNCTION* = proc (): orxSTATUS {.cdecl.}
-  orxMODULE_EXIT_FUNCTION* = proc () {.cdecl.}
-  orxMODULE_RUN_FUNCTION* = proc (): orxSTATUS {.cdecl.}
-  orxMODULE_SETUP_FUNCTION* = proc () {.cdecl.}
+  orxMODULE_INIT_FUNCTION* = proc(): orxSTATUS {.cdecl.}
+  orxMODULE_EXIT_FUNCTION* = proc() {.cdecl.}
+  orxMODULE_RUN_FUNCTION* = proc(): orxSTATUS {.cdecl.}
+  orxMODULE_SETUP_FUNCTION* = proc() {.cdecl.}
 
 ## * Registers a module
 ##  @param[in]   _eModuleID                Concerned module ID
@@ -131,6 +131,6 @@ proc orxModule_IsInitialized*(eModuleID: orxMODULE_ID): orxBOOL {.cdecl,
 ##  @return Module name / orxSTRING_EMPTY
 ##
 
-proc orxModule_GetName*(eModuleID: orxMODULE_ID): ptr orxCHAR {.cdecl,
+proc orxModule_GetName*(eModuleID: orxMODULE_ID): cstring {.cdecl,
     importc: "orxModule_GetName", dynlib: "liborx.so".}
 ## * @}

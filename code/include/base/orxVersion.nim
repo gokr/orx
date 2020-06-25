@@ -74,7 +74,7 @@ const
 
 type
   orxVERSION* {.bycopy.} = object
-    zRelease*: ptr orxCHAR
+    zRelease*: cstring
     u32Major*: orxU32
     u32Minor*: orxU32
     u32Build*: orxU32

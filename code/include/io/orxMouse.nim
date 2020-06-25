@@ -129,20 +129,20 @@ proc orxMouse_ShowCursor*(bShow: orxBOOL): orxSTATUS {.cdecl,
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxMouse_SetCursor*(zName: ptr orxCHAR; pvPivot: ptr orxVECTOR): orxSTATUS {.cdecl,
+proc orxMouse_SetCursor*(zName: cstring; pvPivot: ptr orxVECTOR): orxSTATUS {.cdecl,
     importc: "orxMouse_SetCursor", dynlib: "liborx.so".}
 ## * Gets button literal name
 ##  @param[in] _eButton          Concerned button
 ##  @return Button's name
 ##
 
-proc orxMouse_GetButtonName*(eButton: orxMOUSE_BUTTON): ptr orxCHAR {.cdecl,
+proc orxMouse_GetButtonName*(eButton: orxMOUSE_BUTTON): cstring {.cdecl,
     importc: "orxMouse_GetButtonName", dynlib: "liborx.so".}
 ## * Gets axis literal name
 ##  @param[in] _eAxis            Concerned axis
 ##  @return Axis's name
 ##
 
-proc orxMouse_GetAxisName*(eAxis: orxMOUSE_AXIS): ptr orxCHAR {.cdecl,
+proc orxMouse_GetAxisName*(eAxis: orxMOUSE_AXIS): cstring {.cdecl,
     importc: "orxMouse_GetAxisName", dynlib: "liborx.so".}
 ## * @}

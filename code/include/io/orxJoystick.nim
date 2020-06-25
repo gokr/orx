@@ -181,14 +181,14 @@ proc orxJoystick_IsButtonPressed*(eButton: orxJOYSTICK_BUTTON): orxBOOL {.cdecl,
 ##  @return Button's name
 ##
 
-proc orxJoystick_GetButtonName*(eButton: orxJOYSTICK_BUTTON): ptr orxCHAR {.cdecl,
+proc orxJoystick_GetButtonName*(eButton: orxJOYSTICK_BUTTON): cstring {.cdecl,
     importc: "orxJoystick_GetButtonName", dynlib: "liborx.so".}
 ## * Gets axis literal name
 ##  @param[in] _eAxis        Concerned axis
 ##  @return Axis's name
 ##
 
-proc orxJoystick_GetAxisName*(eAxis: orxJOYSTICK_AXIS): ptr orxCHAR {.cdecl,
+proc orxJoystick_GetAxisName*(eAxis: orxJOYSTICK_AXIS): cstring {.cdecl,
     importc: "orxJoystick_GetAxisName", dynlib: "liborx.so".}
 ## * Is joystick connected?
 ##  @param[in] _u32ID        ID of the joystick, 1-based index

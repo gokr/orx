@@ -79,7 +79,7 @@ proc orxAnimPointer_Create*(pstAnimSet: ptr orxANIMSET): ptr orxANIMPOINTER {.cd
 ##  @return      orxANIMPOINTER / nil
 ##
 
-proc orxAnimPointer_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxANIMPOINTER {.
+proc orxAnimPointer_CreateFromConfig*(zConfigID: cstring): ptr orxANIMPOINTER {.
     cdecl, importc: "orxAnimPointer_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes an AnimPointer
 ##  @param[in]   _pstAnimPointer               AnimPointer to delete
@@ -114,14 +114,14 @@ proc orxAnimPointer_GetTargetAnim*(pstAnimPointer: ptr orxANIMPOINTER): orxU32 {
 ##  @return      Current Animation name / orxSTRING_EMPTY
 ##
 
-proc orxAnimPointer_GetCurrentAnimName*(pstAnimPointer: ptr orxANIMPOINTER): ptr orxCHAR {.
+proc orxAnimPointer_GetCurrentAnimName*(pstAnimPointer: ptr orxANIMPOINTER): cstring {.
     cdecl, importc: "orxAnimPointer_GetCurrentAnimName", dynlib: "liborx.so".}
 ## * AnimPointer target Animation ID get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
 ##  @return      Target Animation name / orxSTRING_EMPTY
 ##
 
-proc orxAnimPointer_GetTargetAnimName*(pstAnimPointer: ptr orxANIMPOINTER): ptr orxCHAR {.
+proc orxAnimPointer_GetTargetAnimName*(pstAnimPointer: ptr orxANIMPOINTER): cstring {.
     cdecl, importc: "orxAnimPointer_GetTargetAnimName", dynlib: "liborx.so".}
 ## * AnimPointer current anim data get accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
@@ -169,7 +169,7 @@ proc orxAnimPointer_SetTargetAnim*(pstAnimPointer: ptr orxANIMPOINTER;
 ##
 
 proc orxAnimPointer_SetCurrentAnimFromName*(pstAnimPointer: ptr orxANIMPOINTER;
-    zAnimName: ptr orxCHAR): orxSTATUS {.cdecl, importc: "orxAnimPointer_SetCurrentAnimFromName",
+    zAnimName: cstring): orxSTATUS {.cdecl, importc: "orxAnimPointer_SetCurrentAnimFromName",
                                      dynlib: "liborx.so".}
 ## * AnimPointer target Animation set accessor using name
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer
@@ -178,7 +178,7 @@ proc orxAnimPointer_SetCurrentAnimFromName*(pstAnimPointer: ptr orxANIMPOINTER;
 ##
 
 proc orxAnimPointer_SetTargetAnimFromName*(pstAnimPointer: ptr orxANIMPOINTER;
-    zAnimName: ptr orxCHAR): orxSTATUS {.cdecl, importc: "orxAnimPointer_SetTargetAnimFromName",
+    zAnimName: cstring): orxSTATUS {.cdecl, importc: "orxAnimPointer_SetTargetAnimFromName",
                                      dynlib: "liborx.so".}
 ## * AnimPointer current time set accessor
 ##  @param[in]   _pstAnimPointer               Concerned AnimPointer

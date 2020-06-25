@@ -115,7 +115,7 @@ proc orxGraphic_Create*(): ptr orxGRAPHIC {.cdecl, importc: "orxGraphic_Create",
 ##  @ return orxGRAPHIC / nil
 ##
 
-proc orxGraphic_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxGRAPHIC {.cdecl,
+proc orxGraphic_CreateFromConfig*(zConfigID: cstring): ptr orxGRAPHIC {.cdecl,
     importc: "orxGraphic_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a graphic
 ##  @param[in]   _pstGraphic     Graphic to delete
@@ -129,7 +129,7 @@ proc orxGraphic_Delete*(pstGraphic: ptr orxGRAPHIC): orxSTATUS {.cdecl,
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxGraphic_GetName*(pstGraphic: ptr orxGRAPHIC): ptr orxCHAR {.cdecl,
+proc orxGraphic_GetName*(pstGraphic: ptr orxGRAPHIC): cstring {.cdecl,
     importc: "orxGraphic_GetName", dynlib: "liborx.so".}
 ## * Sets graphic data
 ##  @param[in]   _pstGraphic     Concerned graphic

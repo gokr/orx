@@ -121,7 +121,7 @@ proc orxKeyboard_IsKeyPressed*(eKey: orxKEYBOARD_KEY): orxBOOL {.cdecl,
 ##  @return UTF-8 encoded key's name if valid, orxSTRING_EMPTY otherwise
 ##
 
-proc orxKeyboard_GetKeyDisplayName*(eKey: orxKEYBOARD_KEY): ptr orxCHAR {.cdecl,
+proc orxKeyboard_GetKeyDisplayName*(eKey: orxKEYBOARD_KEY): cstring {.cdecl,
     importc: "orxKeyboard_GetKeyDisplayName", dynlib: "liborx.so".}
 ## * Gets the next key from the keyboard buffer and removes it from there
 ##  @return orxKEYBOARD_KEY, orxKEYBOARD_KEY_NONE if the buffer is empty
@@ -133,7 +133,7 @@ proc orxKeyboard_ReadKey*(): orxKEYBOARD_KEY {.cdecl,
 ##  @return UTF-8 encoded string
 ##
 
-proc orxKeyboard_ReadString*(): ptr orxCHAR {.cdecl,
+proc orxKeyboard_ReadString*(): cstring {.cdecl,
     importc: "orxKeyboard_ReadString", dynlib: "liborx.so".}
 ## * Empties the keyboard buffer (both keys and chars)
 ##
@@ -145,7 +145,7 @@ proc orxKeyboard_ClearBuffer*() {.cdecl, importc: "orxKeyboard_ClearBuffer",
 ##  @return Key's name
 ##
 
-proc orxKeyboard_GetKeyName*(eKey: orxKEYBOARD_KEY): ptr orxCHAR {.cdecl,
+proc orxKeyboard_GetKeyName*(eKey: orxKEYBOARD_KEY): cstring {.cdecl,
     importc: "orxKeyboard_GetKeyName", dynlib: "liborx.so".}
 ## * Show/Hide the virtual keyboard
 ##  @param[in]   _bShow          Show/hide virtual keyboard

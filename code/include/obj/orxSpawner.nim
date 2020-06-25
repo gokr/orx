@@ -100,7 +100,7 @@ proc orxSpawner_Create*(): ptr orxSPAWNER {.cdecl, importc: "orxSpawner_Create",
 ##  @ return orxSPAWNER / nil
 ##
 
-proc orxSpawner_CreateFromConfig*(zConfigID: ptr orxCHAR): ptr orxSPAWNER {.cdecl,
+proc orxSpawner_CreateFromConfig*(zConfigID: cstring): ptr orxSPAWNER {.cdecl,
     importc: "orxSpawner_CreateFromConfig", dynlib: "liborx.so".}
 ## * Deletes a spawner
 ##  @param[in] _pstSpawner       Concerned spawner
@@ -336,6 +336,6 @@ proc orxSpawner_GetParent*(pstSpawner: ptr orxSPAWNER): ptr orxSTRUCTURE {.cdecl
 ##  @return      orxSTRING / orxSTRING_EMPTY
 ##
 
-proc orxSpawner_GetName*(pstSpawner: ptr orxSPAWNER): ptr orxCHAR {.cdecl,
+proc orxSpawner_GetName*(pstSpawner: ptr orxSPAWNER): cstring {.cdecl,
     importc: "orxSpawner_GetName", dynlib: "liborx.so".}
 ## * @}
