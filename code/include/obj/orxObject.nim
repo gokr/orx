@@ -81,27 +81,27 @@ proc orxObject_Init*(): orxSTATUS {.cdecl, importc: "orxObject_Init",
 ##
 
 proc orxObject_Exit*() {.cdecl, importc: "orxObject_Exit", dynlib: "liborx.so".}
+
 ## * @}
 ## * @name Basic handling
 ##  @{
 ## * Creates an empty object.
 ##  @return orxOBJECT / nil
 ##
-
 proc orxObject_Create*(): ptr orxOBJECT {.cdecl, importc: "orxObject_Create",
                                       dynlib: "liborx.so".}
+
 ## * Creates an object from config.
 ##  @param[in]   _zConfigID    Config ID
 ##  @ return orxOBJECT / nil
 ##
-
 proc orxObject_CreateFromConfig*(zConfigID: cstring): ptr orxOBJECT {.cdecl,
     importc: "orxObject_CreateFromConfig", dynlib: "liborx.so".}
+
 ## * Deletes an object, *unsafe* when called from an event handler: call orxObject_SetLifeTime(orxFLOAT_0) instead
 ##  @param[in] _pstObject        Concerned object
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
-
 proc orxObject_Delete*(pstObject: ptr orxOBJECT): orxSTATUS {.cdecl,
     importc: "orxObject_Delete", dynlib: "liborx.so".}
 ## * Updates an object.

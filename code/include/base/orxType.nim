@@ -20,30 +20,12 @@
 ##
 ##     3. This notice may not be removed or altered from any source
 ##     distribution.
-##
-## *
-##  @file orxType.h
-##  @date 12/04/2005
-##  @author iarwain@orx-project.org
-##
-##  @todo
-##
-## *
-##  @addtogroup orxType
-##
-##  Base types
-##
-##  @{
-##
 
-##  *** Uses orx declarations ***
 
 import
   base/orxDecl
 
-##  *** Platform dependent base types
 ##  Windows
-
 when defined(WINDOWS):
   type
     orxHANDLE* = pointer
@@ -132,9 +114,10 @@ else:
 
     const
       orxENUM_NONE* = 0xFFFFFFFF
-##  *** Misc constants ***
-##  *** Seek offset constants ***
 
+##  *** Misc constants ***
+
+##  *** Seek offset constants ***
 type
   orxSEEK_OFFSET_WHENCE* {.size: sizeof(cint).} = enum
     orxSEEK_OFFSET_WHENCE_START = 0, orxSEEK_OFFSET_WHENCE_CURRENT,
@@ -143,7 +126,6 @@ type
 
 
 ##  *** Boolean constants ***
-
 const
   orxFALSE* = ((orxBOOL)(1 != 1))
   orxTRUE* = ((orxBOOL)(1 == 1))
@@ -199,7 +181,6 @@ const
   orxCHAR_ASCII_NUMBER* = 128
 
 ##  *** Directory separators ***
-
 var orxSTRING_DIRECTORY_SEPARATOR* {.importc: "orxSTRING_DIRECTORY_SEPARATOR",
                                    dynlib: "liborx.so".}: cstring
 
@@ -214,14 +195,11 @@ elif defined(LINUX) or defined(MAC) or defined(IOS) or defined(ANDROID) or
     defined(ANDROID_NATIVE):
   const
     orxCHAR_DIRECTORY_SEPARATOR* = '/'
-##  *** Status defines ***
 
+##  *** Status defines ***
 type
   orxSTATUS* {.size: sizeof(cint).} = enum
     orxSTATUS_FAILURE = 0,      ## *< Failure status, the operation has failed
     orxSTATUS_SUCCESS,        ## *< Success status, the operation has worked has expected
     orxSTATUS_NUMBER,         ## *< Sentinel : Number of status
     orxSTATUS_NONE = orxENUM_NONE
-
-
-## * @}

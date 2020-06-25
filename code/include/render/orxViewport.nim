@@ -93,26 +93,26 @@ proc orxViewport_Exit*() {.cdecl, importc: "orxViewport_Exit", dynlib: "liborx.s
 
 proc orxViewport_Create*(): ptr orxVIEWPORT {.cdecl, importc: "orxViewport_Create",
     dynlib: "liborx.so".}
+
 ## * Creates a viewport from config
 ##  @param[in]   _zConfigID    Config ID
 ##  @ return orxVIEWPORT / nil
 ##
-
 proc orxViewport_CreateFromConfig*(zConfigID: cstring): ptr orxVIEWPORT {.cdecl,
     importc: "orxViewport_CreateFromConfig", dynlib: "liborx.so".}
+
 ## * Deletes a viewport
 ##  @param[in]   _pstViewport    Viewport to delete
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
-
 proc orxViewport_Delete*(pstViewport: ptr orxVIEWPORT): orxSTATUS {.cdecl,
     importc: "orxViewport_Delete", dynlib: "liborx.so".}
+
 ## * Sets a viewport texture list
 ##  @param[in]   _pstViewport    Concerned viewport
 ##  @param[in]   _u32TextureNumber Number of textures to associate with the viewport
 ##  @param[in]   _apstTextureList List of textures to associate with the viewport
 ##
-
 proc orxViewport_SetTextureList*(pstViewport: ptr orxVIEWPORT;
                                 u32TextureNumber: orxU32;
                                 apstTextureList: ptr ptr orxTEXTURE) {.cdecl,
