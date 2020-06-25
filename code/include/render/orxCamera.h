@@ -47,8 +47,8 @@
 
 
 #include "orxInclude.h"
-#include "obj/orxStructure.h"
-#include "obj/orxFrame.h"
+#include "object/orxStructure.h"
+#include "object/orxFrame.h"
 #include "math/orxAABox.h"
 
 #ifdef C2NIM

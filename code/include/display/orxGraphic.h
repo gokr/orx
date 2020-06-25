@@ -49,7 +49,7 @@
 
 #include "orxInclude.h"
 
-#include "obj/orxStructure.h"
+#include "object/orxStructure.h"
 #include "display/orxDisplay.h"
 
 #ifdef C2NIM // ENUM_NONE is in orxType.h

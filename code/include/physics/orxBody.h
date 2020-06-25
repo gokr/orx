@@ -48,7 +48,7 @@
 
 #include "orxInclude.h"
 
-#include "obj/orxStructure.h"
+#include "object/orxStructure.h"
 #include "physics/orxPhysics.h"
 
 #ifdef C2NIM

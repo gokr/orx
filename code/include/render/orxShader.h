@@ -47,8 +47,8 @@
 #include "orxInclude.h"
 #include "math/orxVector.h"
 #include "display/orxTexture.h"
-#include "obj/orxObject.h"
-#include "obj/orxStructure.h"
+#include "object/orxObject.h"
+#include "object/orxStructure.h"
 #include "utils/orxLinkList.h"
 
 #ifdef C2NIM

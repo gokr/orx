@@ -46,7 +46,7 @@
 
 #include "orxInclude.h"
 #include "render/orxShader.h"
-#include "obj/orxStructure.h"
+#include "object/orxStructure.h"
 
 #ifdef C2NIM
 #include "base/orxType.h"

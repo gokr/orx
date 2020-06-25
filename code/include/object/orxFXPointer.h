@@ -45,8 +45,8 @@
 
 
 #include "orxInclude.h"
-#include "obj/orxStructure.h"
-#include "obj/orxFX.h"
+#include "object/orxStructure.h"
+#include "object/orxFX.h"
 #ifdef C2NIM
 #include "base/orxType.h"
 #endif

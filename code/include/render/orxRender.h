@@ -48,8 +48,8 @@
 #include "plugin/orxPluginCore.h"
 
 #include "display/orxDisplay.h"
-#include "obj/orxObject.h"
-#include "obj/orxFrame.h"
+#include "object/orxObject.h"
+#include "object/orxFrame.h"
 #include "render/orxViewport.h"
 
 #ifdef C2NIM

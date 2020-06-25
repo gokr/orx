@@ -54,7 +54,7 @@
 #include "display/orxTexture.h"
 #include "math/orxOBox.h"
 #include "memory/orxBank.h"
-#include "obj/orxStructure.h"
+#include "object/orxStructure.h"
 #include "sound/orxSound.h"
 
 #ifdef C2NIM // ENUM_NONE is in orxType.h

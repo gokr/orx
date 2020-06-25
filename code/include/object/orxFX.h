@@ -46,7 +46,7 @@
 
 #include "orxInclude.h"
 #include "math/orxVector.h"
-#include "obj/orxObject.h"
+#include "object/orxObject.h"
 #ifdef C2NIM
 #include "base/orxType.h"
 #endif
