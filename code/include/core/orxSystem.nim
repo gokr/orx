@@ -80,16 +80,12 @@ type
   INNER_C_STRUCT_orxSystem_117* {.bycopy.} = object
     zValue*: ptr orxCHAR
 
-  INNER_C_UNION_orxSystem_89* {.bycopy.} = object {.union.}
+  orxSYSTEM_EVENT_PAYLOAD* {.bycopy.} = object {.union.}
     u32FrameCount*: orxU32     ##  Touch event
     stTouch*: INNER_C_STRUCT_orxSystem_94 ##  Accelerometer event
     stAccelerometer*: INNER_C_STRUCT_orxSystem_102 ##  Drop event
     stDrop*: INNER_C_STRUCT_orxSystem_109 ##  Clipboard event
     stClipboard*: INNER_C_STRUCT_orxSystem_117
-
-  orxSYSTEM_EVENT_PAYLOAD* {.bycopy.} = object
-    ano_orxSystem_120*: INNER_C_UNION_orxSystem_89
-
 
 ## * System module setup
 ##

@@ -46,22 +46,16 @@ import
 ##
 
 template orxEVENT_INIT*(EVENT, TYPE, ID, SENDER, RECIPIENT, PAYLOAD: untyped): void =
-  while true:
-    EVENT.eType = (orxEVENT_TYPE)(TYPE)
-    EVENT.eID = (orxENUM)(ID)
-    EVENT.hSender = (orxHANDLE)(SENDER)
-    EVENT.hRecipient = (orxHANDLE)(RECIPIENT)
-    EVENT.pstPayload = cast[pointer]((PAYLOAD))
-    if not orxFALSE:
-      break
+  EVENT.eType = (orxEVENT_TYPE)(TYPE)
+  EVENT.eID = (orxENUM)(ID)
+  EVENT.hSender = (orxHANDLE)(SENDER)
+  EVENT.hRecipient = (orxHANDLE)(RECIPIENT)
+  EVENT.pstPayload = cast[pointer]((PAYLOAD))
 
 template orxEVENT_SEND*(TYPE, ID, SENDER, RECIPIENT, PAYLOAD: untyped): void =
-  while true:
-    var stEvent: orxEVENT
-    orxEVENT_INIT(stEvent, TYPE, ID, SENDER, RECIPIENT, PAYLOAD)
-    orxEvent_Send(addr(stEvent))
-    if not orxFALSE:
-      break
+  var stEvent: orxEVENT
+  orxEVENT_INIT(stEvent, TYPE, ID, SENDER, RECIPIENT, PAYLOAD)
+  discard orxEvent_SendInternal(addr(stEvent))
 
 template orxEVENT_GET_FLAG*(ID: untyped): untyped =
   ((orxU32)(1 shl (orxU32)(ID)))
@@ -179,7 +173,7 @@ proc orxEvent_SetHandlerIDFlags*(pfnEventHandler: orxEVENT_HANDLER;
 ##  @return orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxEvent_Send*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl,
+proc orxEvent_SendInternal*(pstEvent: ptr orxEVENT): orxSTATUS {.cdecl,
     importc: "orxEvent_Send", dynlib: "liborx.so".}
 ## * Sends a simple event
 ##  @param[in] _eEventType           Event type

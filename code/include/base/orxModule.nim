@@ -86,7 +86,7 @@ type
 ##  @param[in]   _pfnExit                  Module exit callback
 ##
 
-proc orxModule_Register*(eModuleID: orxMODULE_ID; zModuleName: ptr orxCHAR;
+proc orxModule_Register*(eModuleID: orxMODULE_ID; zModuleName: cstring;
                         pfnSetup: orxMODULE_SETUP_FUNCTION;
                         pfnInit: orxMODULE_INIT_FUNCTION;
                         pfnExit: orxMODULE_EXIT_FUNCTION) {.cdecl,

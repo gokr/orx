@@ -52,14 +52,11 @@ type
     vBR*: orxVECTOR            ## *< Bottom right corner vector : 24
 
 
-##  *** AABox inlined functions ***
-## * Reorders AABox corners
-##  @param[in]   _pstBox                       Box to reorder
-##  @return      Reordered AABox
-##
 
 proc orxAABox_Reorder*(pstBox: ptr orxAABOX): ptr orxAABOX {.inline, cdecl.} =
-  ##  Checks
+  ##  Reorders AABox corners
+  ##  @param[in]   pstBox                       Box to reorder
+  ##  @return      Reordered AABox
   assert(pstBox != nil)
   ##  Reorders coordinates so as to have upper left & bottom right box corners
   ##  X coord
@@ -101,8 +98,6 @@ proc orxAABox_Set*(pstRes: ptr orxAABOX; pvTL: ptr orxVECTOR; pvBR: ptr orxVECTO
   orxVector_Copy(addr((pstRes.vBR)), pvBR)
   ##  Reorders corners
   orxAABox_Reorder(pstRes)
-  ##  Done!
-  return pstRes
 
 ## * Is position inside axis aligned box test
 ##  @param[in]   _pstBox                       Box to test against position

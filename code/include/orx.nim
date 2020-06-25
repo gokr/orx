@@ -37,10 +37,10 @@
 ##
 
 import
-  orxInclude, orxKernel, orxUtils
+  orxInclude, orxKernel, orxUtils, main/orxParam
 
 import
-  base/orxType, base/orxModule, core/orxEvent
+  base/[orxType, orxModule], core/[orxEvent, orxClock], memory/orxMemory
 
 when not defined(PLUGIN):
   ## **************************************************************************
@@ -62,12 +62,11 @@ when not defined(PLUGIN):
     assert(pstEvent.eType == orxEVENT_TYPE_SYSTEM)
     ##  Depending on event ID
     case pstEvent.eID          ##  Close event
-    of orxSYSTEM_EVENT_CLOSE:
+    of orxSYSTEM_EVENT_CLOSE.uint:
       ##  Updates status
       sbStopByEvent = orxTRUE
-      break
     else:
-      break
+      discard
     ##  Done!
     return eResult
 
@@ -187,17 +186,15 @@ when not defined(PLUGIN):
               eMainStatus: orxSTATUS
             var bStop: orxBOOL
             ##  Registers default event handler
-            orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
+            discard orxEvent_AddHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
             ##  Clears payload
-            orxMemory_Zero(addr(stPayload), sizeof((orxSYSTEM_EVENT_PAYLOAD)))
+            discard orxMemory_Zero(addr(stPayload), sizeof(orxSYSTEM_EVENT_PAYLOAD).orxU32)
             ##  Main loop
             bStop = orxFALSE
             sbStopByEvent = orxFALSE
             while bStop == orxFALSE:
               ##  Sends frame start event
-              orxEVENT_SEND(orxEVENT_TYPE_SYSTEM,
-                            orxSYSTEM_EVENT_GAME_LOOP_START, nil, nil,
-                            addr(stPayload))
+              orxEVENT_SEND(orxEVENT_TYPE_SYSTEM, orxSYSTEM_EVENT_GAME_LOOP_START, nil, nil, addr(stPayload))
               ##  Runs the engine
               eMainStatus = pfnRun()
               ##  Updates clock system
@@ -210,9 +207,7 @@ when not defined(PLUGIN):
               bStop = if ((sbStopByEvent != orxFALSE) or
                   (eMainStatus == orxSTATUS_FAILURE) or
                   (eClockStatus == orxSTATUS_FAILURE)): orxTRUE else: orxFALSE
-          orxEvent_RemoveHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
+          discard orxEvent_RemoveHandler(orxEVENT_TYPE_SYSTEM, orx_DefaultEventHandler)
           ##  Exits from engine
           orxModule_Exit(orxMODULE_ID_MAIN)
         orxDEBUG_EXIT()
-
-## * @}

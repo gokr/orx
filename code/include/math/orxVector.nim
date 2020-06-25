@@ -73,9 +73,9 @@ type
 
   orxVECTOR* {.bycopy.} = tuple[fX: orxFLOAT, fY: orxFLOAT, fZ: orxFLOAT]
   orxSPVECTOR* {.bycopy.} = tuple[fRho: orxFLOAT, fTheta: orxFLOAT, fPhi: orxFLOAT]
-  orxRGB* {.bycopy.} = tuple[fR: orxFLOAT, fG: orxFLOAT, fB: orxFLOAT]
-  orxHSL* {.bycopy.} = tuple[fH: orxFLOAT, fS: orxFLOAT, fL: orxFLOAT]
-  orxHSV* {.bycopy.} = tuple[fH: orxFLOAT, fS: orxFLOAT, fV: orxFLOAT]
+  orxRGBVECTOR* {.bycopy.} = tuple[fR: orxFLOAT, fG: orxFLOAT, fB: orxFLOAT]
+  orxHSLVECTOR* {.bycopy.} = tuple[fH: orxFLOAT, fS: orxFLOAT, fL: orxFLOAT]
+  orxHSVVECTOR* {.bycopy.} = tuple[fH: orxFLOAT, fS: orxFLOAT, fV: orxFLOAT]
 
 
 ##  *** Vector inlined functions ***
@@ -318,7 +318,7 @@ proc orxVector_Max*(pvRes: ptr orxVECTOR; pvOp1: ptr orxVECTOR; pvOp2: ptr orxVE
 ##
 
 proc orxVector_Clamp*(pvRes: ptr orxVECTOR; pvOp: ptr orxVECTOR; pvMin: ptr orxVECTOR;
-                     pvMax: ptr orxVECTOR): ptr orxVECTOR {.inline, cdecl.} =
+                     pvMax: ptr orxVECTOR): ptr orxVECTOR {.inline, discardable, cdecl.} =
   ##  Checks
   assert(pvRes != nil)
   assert(pvOp != nil)

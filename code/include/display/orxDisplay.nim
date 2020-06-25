@@ -38,7 +38,7 @@
 ##
 
 import
-  orxInclude, plugin/orxPluginCore, math/orxVector, math/orxOBox, memory/orxBank,
+  orxInclude, plugin/orxPluginCore, math/[orxVector, orxOBox, orxMath], memory/orxBank, memory/orxMemory,
   utils/orxHashTable, utils/orxString, utils/orxLinkList
 
 import
@@ -48,19 +48,22 @@ import
 ##
 
 type
-  INNER_C_STRUCT_orxDisplay_68* {.bycopy.} = object
+  #INNER_C_STRUCT_orxDisplay_68* {.bycopy.} = object
+  #  u8R*: orxU8
+  #  u8G*: orxU8
+  #  u8B*: orxU8
+  #  u8A*: orxU8
+  # 
+  #INNER_C_UNION_orxDisplay_66* {.bycopy.} = object {.union.}
+  #  ano_orxDisplay_69*: INNER_C_STRUCT_orxDisplay_68
+  #  u32RGBA*: orxU32
+
+  # TODO: Skipped union member u32RGBA*: orxU32 for now
+  orxRGBA* {.bycopy.} = object
     u8R*: orxU8
     u8G*: orxU8
     u8B*: orxU8
     u8A*: orxU8
-
-  INNER_C_UNION_orxDisplay_66* {.bycopy.} = object {.union.}
-    ano_orxDisplay_69*: INNER_C_STRUCT_orxDisplay_68
-    u32RGBA*: orxU32
-
-  orxRGBA* {.bycopy.} = object
-    ano_orxDisplay_72*: INNER_C_UNION_orxDisplay_66
-
 
 template orx2RGBA*(R, G, B, A: untyped): untyped =
   orxRGBA_Set((orxU8)(R), (orxU8)(G), (orxU8)(B), (orxU8)(A))
@@ -190,15 +193,9 @@ type
 ##
 
 type
-  INNER_C_UNION_orxDisplay_215* {.bycopy.} = object {.union.}
-    vRGB*: orxVECTOR           ## *< RGB components: 12
-    vHSL*: orxVECTOR           ## *< HSL components: 12
-    vHSV*: orxVECTOR           ## *< HSV components: 12
-
-  orxCOLOR* {.bycopy.} = object
-    ano_orxDisplay_218*: INNER_C_UNION_orxDisplay_215
-    fAlpha*: orxFLOAT          ## *< Alpha component: 16
-
+  orxCOLOR* {.bycopy.} = tuple[vRGB: orxRGBVECTOR, fAlpha: orxFLOAT]
+  orxHSLCOLOR* {.bycopy.} = tuple[vHSL: orxHSLVECTOR, fAlpha: orxFLOAT]
+  orxHSVCOLOR* {.bycopy.} = tuple[vHSV: orxHSVVECTOR, fAlpha: orxFLOAT]
 
 ## * Config parameters
 ##
@@ -316,12 +313,13 @@ proc orxColor_SetRGBA*(pstColor: ptr orxCOLOR; stRGBA: orxRGBA): ptr orxCOLOR {.
   ##  Checks
   assert(pstColor != nil)
   ##  Stores RGB
-  orxVector_Set(addr((pstColor.vRGB)),
+  let v: orxVECTOR = cast[orxVECTOR](pstColor.vRGB)
+  orxVector_Set(unsafeaddr(v),
                 orxCOLOR_NORMALIZER * orxU2F(orxRGBA_R(stRGBA)),
                 orxCOLOR_NORMALIZER * orxU2F(orxRGBA_G(stRGBA)),
                 orxCOLOR_NORMALIZER * orxU2F(orxRGBA_B(stRGBA)))
   ##  Stores alpha
-  pstColor.fAlpha = orxCOLOR_NORMALIZER * orxRGBA_A(stRGBA)
+  pstColor.fAlpha = orxCOLOR_NORMALIZER * orxU2F(orxRGBA_A(stRGBA))
   ##  Done!
   return pstResult
 
@@ -338,7 +336,8 @@ proc orxColor_Set*(pstColor: ptr orxCOLOR; pvRGB: ptr orxVECTOR; fAlpha: orxFLOA
   ##  Checks
   assert(pstColor != nil)
   ##  Stores RGB
-  orxVector_Copy(addr((pstColor.vRGB)), pvRGB)
+  let v: orxVECTOR = cast[orxVECTOR](pstColor.vRGB)
+  orxVector_Copy(unsafeaddr(v), pvRGB)
   ##  Stores alpha
   pstColor.fAlpha = fAlpha
   ##  Done!
@@ -357,7 +356,8 @@ proc orxColor_SetRGB*(pstColor: ptr orxCOLOR; pvRGB: ptr orxVECTOR): ptr orxCOLO
   assert(pstColor != nil)
   assert(pvRGB != nil)
   ##  Stores components
-  orxVector_Copy(addr((pstColor.vRGB)), pvRGB)
+  let v: orxVECTOR = cast[orxVECTOR](pstColor.vRGB)
+  orxVector_Copy(unsafeaddr(v), pvRGB)
   ##  Done!
   return pstResult
 
@@ -383,23 +383,21 @@ proc orxColor_SetAlpha*(pstColor: ptr orxCOLOR; fAlpha: orxFLOAT): ptr orxCOLOR 
 ##
 
 proc orxColor_ToRGBA*(pstColor: ptr orxCOLOR): orxRGBA {.inline, cdecl.} =
-  var stResult: orxRGBA
   var vColor: orxVECTOR
   var fAlpha: orxFLOAT
   ##  Checks
   assert(pstColor != nil)
   ##  Clamps RGB components
-  orxVector_Clamp(addr(vColor), addr((pstColor.vRGB)), addr(orxVECTOR_BLACK),
+  let v: orxVECTOR = cast[orxVECTOR](pstColor.vRGB)
+  orxVector_Clamp(addr(vColor), unsafeaddr(v), addr(orxVECTOR_BLACK),
                   addr(orxVECTOR_WHITE))
   ##  De-normalizes vector
   orxVector_Mulf(addr(vColor), addr(vColor), orxCOLOR_DENORMALIZER)
   ##  Clamps alpha
   fAlpha = orxCLAMP(pstColor.fAlpha, orxFLOAT_0, orxFLOAT_1)
   ##  Updates result
-  stResult = orx2RGBA(orxF2U(vColor.fR), orxF2U(vColor.fG), orxF2U(vColor.fB),
+  return orx2RGBA(orxF2U(vColor.fX), orxF2U(vColor.fY), orxF2U(vColor.fZ),
                     orxF2U(orxCOLOR_DENORMALIZER * fAlpha))
-  ##  Done!
-  return stResult
 
 ## * Copies an orxCOLOR into another one
 ##  @param[in]   _pstDst         Destination color
@@ -413,7 +411,7 @@ proc orxColor_Copy*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orxCOLOR {.
   assert(pstDst != nil)
   assert(pstSrc != nil)
   ##  Copies it
-  orxMemory_Copy(pstDst, pstSrc, sizeof((orxCOLOR)))
+  orxMemory_Copy(pstDst, pstSrc, sizeof((orxCOLOR)).orxU32)
   ##  Done!
   return pstDst
 
@@ -425,7 +423,7 @@ proc orxColor_Copy*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orxCOLOR {.
 
 proc orxColor_FromRGBToHSL*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orxCOLOR {.
     cdecl.} =
-  var pstResult: ptr orxCOLOR
+  var pstResult: ptr orxHSLCOLOR
   var
     fMin: orxFLOAT
     fMax: orxFLOAT
@@ -449,39 +447,41 @@ proc orxColor_FromRGBToHSL*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
   ##  Gray?
   if fDelta == orxFLOAT_0:
     ##  Gets hue & saturation
-    pstResult.vHSL.fH = pstResult.vHSL.fS = orxFLOAT_0
+    pstResult.vHSL.fH = orxFLOAT_0
+    pstResult.vHSL.fS = orxFLOAT_0
   else:
     ##  Updates saturation
-    pstResult.vHSL.fS = if (pstResult.vHSL.fL < orx2F(0.5)): fDelta div
-        (fMax + fMin) else: fDelta div (orx2F(2.0) - fMax - fMin)
+    pstResult.vHSL.fS = if (pstResult.vHSL.fL < orx2F(0.5)): fDelta /
+        (fMax + fMin) else: fDelta / (orx2F(2.0) - fMax - fMin)
     ##  Red tone?
     if fR == fMax:
       ##  Updates hue
-      pstResult.vHSL.fH = orx2F(1.0 div 6.0) * (fG - fB) div fDelta
+      pstResult.vHSL.fH = orx2F(1.0 / 6.0) * (fG - fB) / fDelta
     elif fG == fMax:             ##  Blue tone
       ##  Updates hue
-      pstResult.vHSL.fH = orx2F(1.0 div 3.0) +
-          (orx2F(1.0 div 6.0) * (fB - fR) div fDelta)
+      pstResult.vHSL.fH = orx2F(1.0 / 3.0) +
+          (orx2F(1.0 / 6.0) * (fB - fR) / fDelta)
     else:
       ##  Updates hue
-      pstResult.vHSL.fH = orx2F(2.0 div 3.0) +
-          (orx2F(1.0 div 6.0) * (fR - fG) div fDelta)
+      pstResult.vHSL.fH = orx2F(2.0 / 3.0) +
+          (orx2F(1.0 / 6.0) * (fR - fG) / fDelta)
     ##  Clamps hue
     if pstResult.vHSL.fH < orxFLOAT_0:
-      inc(pstResult.vHSL.fH, orxFLOAT_1)
+      pstResult.vHSL.fH += orxFLOAT_1
     elif pstResult.vHSL.fH > orxFLOAT_1:
-      dec(pstResult.vHSL.fH, orxFLOAT_1)
+      pstResult.vHSL.fH -= orxFLOAT_1
   ##  Updates alpha
   pstResult.fAlpha = pstSrc.fAlpha
   ##  Done!
-  return pstResult
+  return cast[ptr orxCOLOR](pstResult)
 
 ## * Converts from HSL color space to RGB one
 ##  @param[in]   _pstDst         Destination color
 ##  @param[in]   _pstSrc         Source color
 ##  @return      orxCOLOR
 ##
-
+# TODO: Fix these too!
+#[ 
 proc orxColor_FromHSLToRGB*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orxCOLOR {.
     cdecl.} =
   var pstResult: ptr orxCOLOR
@@ -491,12 +491,12 @@ proc orxColor_FromHSLToRGB*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
     fL: orxFLOAT
   template orxCOLOR_GET_RGB_COMPONENT(RESULT, ALT, CHROMA, HUE: untyped): void =
     while true:
-      if HUE < orx2F(1.0 div 6.0):
+      if HUE < orx2F(1.0 / 6.0):
         RESULT = ALT + (orx2F(6.0) * HUE * (CHROMA - ALT))
-      elif HUE < orx2F(1.0 div 2.0):
+      elif HUE < orx2F(1.0 / 2.0):
         RESULT = CHROMA
-      elif HUE < orx2F(2.0 div 3.0):
-        RESULT = ALT + (orx2F(6.0) * (CHROMA - ALT) * (orx2F(2.0 div 3.0) - HUE))
+      elif HUE < orx2F(2.0 / 3.0):
+        RESULT = ALT + (orx2F(6.0) * (CHROMA - ALT) * (orx2F(2.0 / 3.0) - HUE))
       else:
         RESULT = ALT
       if RESULT < orxMATH_KF_EPSILON:
@@ -510,9 +510,9 @@ proc orxColor_FromHSLToRGB*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
   assert(pstDst != nil)
   assert(pstSrc != nil)
   ##  Gets source hue, saturation and lightness components
-  fH = pstSrc.vRGB.fH
-  fS = pstSrc.vRGB.fS
-  fL = pstSrc.vRGB.fL
+  fH = pstSrc.vRGB.fR
+  fS = pstSrc.vRGB.fG
+  fL = pstSrc.vRGB.fB
   ##  Gray?
   if fS == orxFLOAT_0:
     ##  Updates result
@@ -526,19 +526,19 @@ proc orxColor_FromHSLToRGB*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
     ##  Gets intermediate value
     fIntermediate = (orx2F(2.0) * fL) - fChroma
     ##  Gets RGB components
-    if fH > orx2F(2.0 div 3.0):
+    if fH > orx2F(2.0 / 3.0):
       orxCOLOR_GET_RGB_COMPONENT(pstResult.vRGB.fR, fIntermediate, fChroma,
-                                 (fH - orx2F(2.0 div 3.0)))
+                                 (fH - orx2F(2.0 / 3.0)))
     else:
       orxCOLOR_GET_RGB_COMPONENT(pstResult.vRGB.fR, fIntermediate, fChroma,
-                                 (fH + orx2F(1.0 div 3.0)))
+                                 (fH + orx2F(1.0 / 3.0)))
     orxCOLOR_GET_RGB_COMPONENT(pstResult.vRGB.fG, fIntermediate, fChroma, fH)
-    if fH < orx2F(1.0 div 3.0):
+    if fH < orx2F(1.0 / 3.0):
       orxCOLOR_GET_RGB_COMPONENT(pstResult.vRGB.fB, fIntermediate, fChroma,
-                                 (fH + orx2F(2.0 div 3.0)))
+                                 (fH + orx2F(2.0 / 3.0)))
     else:
       orxCOLOR_GET_RGB_COMPONENT(pstResult.vRGB.fB, fIntermediate, fChroma,
-                                 (fH - orx2F(1.0 div 3.0)))
+                                 (fH - orx2F(1.0 / 3.0)))
   ##  Updates alpha
   pstResult.fAlpha = pstSrc.fAlpha
   ##  Done!
@@ -576,22 +576,23 @@ proc orxColor_FromRGBToHSV*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
   ##  Gray?
   if fDelta == orxFLOAT_0:
     ##  Gets hue & saturation
-    pstResult.vHSL.fH = pstResult.vHSL.fS = orxFLOAT_0
+    pstResult.vHSL.fH = orxFLOAT_0
+    pstResult.vHSL.fS = orxFLOAT_0
   else:
     ##  Updates saturation
-    pstResult.vHSL.fS = fDelta div fMax
+    pstResult.vHSL.fS = fDelta / fMax
     ##  Red tone?
     if fR == fMax:
       ##  Updates hue
-      pstResult.vHSL.fH = orx2F(1.0 div 6.0) * (fG - fB) div fDelta
+      pstResult.vHSL.fH = orx2F(1.0 / 6.0) * (fG - fB) / fDelta
     elif fG == fMax:             ##  Blue tone
       ##  Updates hue
-      pstResult.vHSL.fH = orx2F(1.0 div 3.0) +
-          (orx2F(1.0 div 6.0) * (fB - fR) div fDelta)
+      pstResult.vHSL.fH = orx2F(1.0 / 3.0) +
+          (orx2F(1.0 / 6.0) * (fB - fR) / fDelta)
     else:
       ##  Updates hue
-      pstResult.vHSL.fH = orx2F(2.0 div 3.0) +
-          (orx2F(1.0 div 6.0) * (fR - fG) div fDelta)
+      pstResult.vHSL.fH = orx2F(2.0 / 3.0) +
+          (orx2F(1.0 / 6.0) * (fR - fG) / fDelta)
     ##  Clamps hue
     if pstResult.vHSL.fH < orxFLOAT_0:
       inc(pstResult.vHSL.fH, orxFLOAT_1)
@@ -601,7 +602,7 @@ proc orxColor_FromRGBToHSV*(pstDst: ptr orxCOLOR; pstSrc: ptr orxCOLOR): ptr orx
   pstResult.fAlpha = pstSrc.fAlpha
   ##  Done!
   return pstResult
-
+]#
 ## * Converts from HSV color space to RGB one
 ##  @param[in]   _pstDst         Destination color
 ##  @param[in]   _pstSrc         Source color

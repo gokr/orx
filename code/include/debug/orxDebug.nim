@@ -39,11 +39,11 @@
 ##  @{
 ##
 
-import
-  orxInclude
+#import
+#  orxInclude
 
 import
-  base/orxType
+  base/[orxType, orxVersion, orxDecl]
 
 ##  *** orxDEBUG flags ***
 
@@ -100,6 +100,11 @@ type
     orxDEBUG_LEVEL_NONE = orxENUM_NONE
 
 
+
+# Hack to get orxLOG to compile
+proc orxLOG(s: string) =
+  echo(s)
+
 ##  Log callback function
 
 type
@@ -108,40 +113,6 @@ type
                                    zLog: ptr orxCHAR): orxSTATUS {.cdecl.}
 
 ##  *** Debug Macros ***
-
-template orxDEBUG_INIT*(): void =
-  while true:
-    var u32DebugFlags: orxU32
-    orxDebug_Init()
-    u32DebugFlags = orxDebug_GetFlags()
-    orxDebug_SetFlags(orxDEBUG_KU32_STATIC_MASK_DEBUG,
-                      orxDEBUG_KU32_STATIC_MASK_USER_ALL)
-    if orxSystem_GetVersionNumeric() < VERSION:
-      orxLOG("The version of the runtime library [", orxANSI_KZ_COLOR_FG_GREEN,
-             "%s", orxANSI_KZ_COLOR_FG_DEFAULT, "] is ", orxANSI_KZ_COLOR_FG_RED,
-             orxANSI_KZ_COLOR_BLINK_ON, "older", orxANSI_KZ_COLOR_FG_DEFAULT,
-             orxANSI_KZ_COLOR_BLINK_OFF,
-             " than the version used when compiling this program [",
-             orxANSI_KZ_COLOR_FG_GREEN, "%s", orxANSI_KZ_COLOR_FG_DEFAULT, "].",
-             orxANSI_KZ_COLOR_FG_RED, orxANSI_KZ_COLOR_BLINK_ON,
-             " Problems will likely ensue!", orxSystem_GetVersionFullString(),
-             VERSION_FULL_STRING)
-    elif orxSystem_GetVersionNumeric() > VERSION:
-      orxLOG("The version of the runtime library [", orxANSI_KZ_COLOR_FG_GREEN,
-             "%s", orxANSI_KZ_COLOR_FG_DEFAULT, "] is ",
-             orxANSI_KZ_COLOR_FG_YELLOW, orxANSI_KZ_COLOR_BLINK_ON, "more recent",
-             orxANSI_KZ_COLOR_FG_DEFAULT, orxANSI_KZ_COLOR_BLINK_OFF,
-             " than the version used when compiling this program [",
-             orxANSI_KZ_COLOR_FG_GREEN, "%s", orxANSI_KZ_COLOR_FG_DEFAULT, "].",
-             orxANSI_KZ_COLOR_FG_YELLOW, orxANSI_KZ_COLOR_BLINK_ON,
-             " Problems may arise due to possible incompatibilities!",
-             orxSystem_GetVersionFullString(), VERSION_FULL_STRING)
-    orxDebug_SetFlags(u32DebugFlags, orxDEBUG_KU32_STATIC_MASK_USER_ALL)
-    if not orxFALSE:
-      break
-
-template orxDEBUG_EXIT*(): untyped =
-  orxDebug_Exit()
 
 when defined(DEBUG):
   ##  End platform specific
@@ -152,10 +123,10 @@ when defined(DEBUG):
     orxDebug_IsLevelEnabled(LEVEL)
 
   template orxDEBUG_SET_FLAGS*(SET, UNSET: untyped): untyped =
-    orxDebug_SetFlags(SET, UNSET)
+    orxDebug_SetFlagsInternal(SET, UNSET)
 
   template orxDEBUG_GET_FLAGS*(): untyped =
-    orxDebug_GetFlags()
+    orxDebug_GetFlagsInternal()
 
   template orxDEBUG_SET_LOG_CALLBACK*(CALLBACK: untyped): untyped =
     orxDebug_SetLogCallback(CALLBACK)
@@ -172,17 +143,14 @@ when defined(DEBUG):
     orxDebug_SetLogFile(FILE)
 
   template orxDEBUG_SETBASEFILENAME*(FILE: untyped): void =
-    while true:
-      var zBuffer: array[512, orxCHAR]
-      zBuffer[511] = orxCHAR_NULL
-      strncpy(zBuffer, FILE, 256)
-      strncat(zBuffer, orxDEBUG_KZ_DEFAULT_DEBUG_SUFFIX, 255)
-      orxDebug_SetDebugFile(zBuffer)
-      strncpy(zBuffer, FILE, 256)
-      strncat(zBuffer, orxDEBUG_KZ_DEFAULT_LOG_SUFFIX, 255)
-      orxDebug_SetLogFile(zBuffer)
-      if not orxFALSE:
-        break
+    var zBuffer: array[512, orxCHAR]
+    zBuffer[511] = orxCHAR_NULL
+    strncpy(zBuffer, FILE, 256)
+    strncat(zBuffer, orxDEBUG_KZ_DEFAULT_DEBUG_SUFFIX, 255)
+    orxDebug_SetDebugFile(zBuffer)
+    strncpy(zBuffer, FILE, 256)
+    strncat(zBuffer, orxDEBUG_KZ_DEFAULT_LOG_SUFFIX, 255)
+    orxDebug_SetLogFile(zBuffer)
 
   ##  Assert
 else:
@@ -193,10 +161,10 @@ else:
     orxDebug_IsLevelEnabled(LEVEL)
 
   template orxDEBUG_SET_FLAGS*(SET, UNSET: untyped): untyped =
-    orxDebug_SetFlags(SET, UNSET)
+    orxDebug_SetFlagsInternal(SET, UNSET)
 
   template orxDEBUG_GET_FLAGS*(): untyped =
-    orxDebug_GetFlags()
+    orxDebug_GetFlagsInternal()
 
   template orxDEBUG_SET_LOG_CALLBACK*(CALLBACK: untyped): untyped =
     orxDebug_SetLogCallback(CALLBACK)
@@ -213,14 +181,12 @@ else:
     orxDebug_SetLogFile(FILE)
 
   template orxDEBUG_SETBASEFILENAME*(FILE: untyped): void =
-    while true:
-      var zBuffer: array[512, orxCHAR]
-      zBuffer[511] = orxCHAR_NULL
-      strncpy(zBuffer, FILE, 256)
-      strncat(zBuffer, orxDEBUG_KZ_DEFAULT_LOG_SUFFIX, 255)
-      orxDebug_SetLogFile(zBuffer)
-      if not orxFALSE:
-        break
+    var zBuffer: array[512, orxCHAR]
+    zBuffer[511] = orxCHAR_NULL
+    strncpy(zBuffer, FILE, 256)
+    strncat(zBuffer, orxDEBUG_KZ_DEFAULT_LOG_SUFFIX, 255)
+    orxDebug_SetLogFile(zBuffer)
+
 
 ## ***************************************************************************
 ##  *** Debug defines. ***
@@ -234,11 +200,11 @@ const
 ##  @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
 ##
 
-proc orxDebug_Init*(): orxSTATUS {.cdecl, importc: "_orxDebug_Init",
+proc orxDebug_InitInternal*(): orxSTATUS {.cdecl, importc: "_orxDebug_Init",
                                 dynlib: "liborx.so".}
 ## * Exits from the debug module
 
-proc orxDebug_Exit*() {.cdecl, importc: "_orxDebug_Exit", dynlib: "liborx.so".}
+proc orxDebug_ExitInternal*() {.cdecl, importc: "_orxDebug_Exit", dynlib: "liborx.so".}
 ## * Logs given debug text
 ##  @param[in]   _eLevel                       Debug level associated with this output
 ##  @param[in]   _zFunction                    Calling function name
@@ -268,13 +234,13 @@ proc orxDebug_IsLevelEnabled*(eLevel: orxDEBUG_LEVEL): orxBOOL {.cdecl,
 ##  @param[in]   _u32Remove                    Flags to remove
 ##
 
-proc orxDebug_SetFlags*(u32Add: orxU32; u32Remove: orxU32) {.cdecl,
+proc orxDebug_SetFlagsInternal*(u32Add: orxU32; u32Remove: orxU32) {.cdecl,
     importc: "_orxDebug_SetFlags", dynlib: "liborx.so".}
 ## * Gets current debug flags
 ##  @return Current debug flags
 ##
 
-proc orxDebug_GetFlags*(): orxU32 {.cdecl, importc: "_orxDebug_GetFlags",
+proc orxDebug_GetFlagsInternal*(): orxU32 {.cdecl, importc: "_orxDebug_GetFlags",
                                  dynlib: "liborx.so".}
 ## * Software break function
 
@@ -298,3 +264,22 @@ proc orxDebug_SetLogFile*(zFileName: ptr orxCHAR) {.cdecl,
 proc orxDebug_SetLogCallback*(pfnLogCallback: orxDEBUG_CALLBACK_FUNCTION) {.cdecl,
     importc: "_orxDebug_SetLogCallback", dynlib: "liborx.so".}
 ## * @}
+
+
+
+template orxDEBUG_INIT*(): void =
+  var u32DebugFlags: orxU32
+  discard orxDebug_InitInternal()
+  u32DebugFlags = orxDebug_GetFlagsInternal()
+  orxDebug_SetFlagsInternal(orxDEBUG_KU32_STATIC_MASK_DEBUG, orxDEBUG_KU32_STATIC_MASK_USER_ALL)
+  if orxSystem_GetVersionNumeric().int64 < VERSION:
+    orxLOG("The version of the runtime library [" & $orxSystem_GetVersionFullString() &
+      "] is older than the version used when compiling this program [" & VERSION_FULL_STRING & "].\n\nProblems will likely ensue!")
+  elif orxSystem_GetVersionNumeric().int64 > VERSION:
+    orxLOG("The version of the runtime library [" & $orxSystem_GetVersionFullString() &
+      "] is more recent than the version used when compiling this program [" & VERSION_FULL_STRING & "].\n\nProblems may arise due to possible incompatibilities!")
+  orxDebug_SetFlagsInternal(u32DebugFlags, orxDEBUG_KU32_STATIC_MASK_USER_ALL)
+
+template orxDEBUG_EXIT*(): untyped =
+  orxDebug_ExitInternal()
+
