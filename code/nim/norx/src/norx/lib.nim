@@ -1,9 +1,16 @@
+when defined(release):
+  const suffix = ""
+elif defined(profile):
+  const suffix = "p"
+else:
+  const suffix = "d"
+
 when defined(windows):
   const
-    libORX* = "liborxd.dll"
+    libORX* = "liborx" & suffix & ".dll"
 elif defined(macosx):
   const
-    libORX* = "liborxd.dylib"
+    libORX* = "liborx" & suffix & ".dylib"
 else:
   const
-    libORX* = "liborxd.so"
+    libORX* = "liborx" & suffix & ".so"
