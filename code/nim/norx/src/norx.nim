@@ -21,7 +21,7 @@
 ##     3. This notice may not be removed or altered from any source
 ##     distribution.
 
-import norx/[incl, utils, param, module, event, clock, memory]
+import norx/[incl, param, module, event, clock, memory]
 
 when not defined(PLUGIN):
   ## Should stop execution by default event handling?

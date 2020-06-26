@@ -22,7 +22,7 @@
 ##     distribution.
 
 
-import pure/math, lib, typ, debug, system
+import pure/math, lib, typ, system
 
 ## * Lerps between two values given a parameter T [0, 1]
 ##  @param[in]   A                               First value (will be selected for T = 0)

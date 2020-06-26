@@ -22,7 +22,7 @@
 ##     distribution.
 
 
-import incl, system, string, module
+import incl, system, module
 
 const
   orxCLOCK_KU32_CLOCK_BANK_SIZE* = 16

@@ -76,7 +76,7 @@ type
   INNER_C_STRUCT_orxSystem_117* {.bycopy.} = object
     zValue*: cstring
 
-  orxSYSTEM_EVENT_PAYLOAD* {.bycopy.} = object {.union.}
+  orxSYSTEM_EVENT_PAYLOAD* {.bycopy, union.} = object
     u32FrameCount*: orxU32     ##  Touch event
     stTouch*: INNER_C_STRUCT_orxSystem_94 ##  Accelerometer event
     stAccelerometer*: INNER_C_STRUCT_orxSystem_102 ##  Drop event
