@@ -5,3 +5,6 @@ This is just a trivial port of the original ORX sample with a spinning logo.
 First install Norx by running `nimble install` in `../norx`. Also **make sure you have `liborx[d|p].so` in a proper place, like /usr/lib/** (working dir doesn't work for me).
 
 Then run `nimble install` in this directory. After that you can run `norxsample`.
+
+# Compiling
+A Nim debug build will use `liborxd.so`, a release build will use `liborx.so` and if you build with `nim c -d:profile` it will use `liborxp.so`.

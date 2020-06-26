@@ -15,3 +15,4 @@ tutorial/bin/
 tutorial/build/
 tutorial/lib/
 code/include/convert
+code/nim/samples/norxsample/norxsample
