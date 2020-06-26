@@ -755,6 +755,12 @@ extern orxDLLAPI orxOBOX *orxFASTCALL       orxObject_GetBoundingBox(const orxOB
  */
 extern orxDLLAPI orxSTATUS orxFASTCALL      orxObject_AddFX(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID);
 
+/** Adds an FX to an object and its children.
+ * @param[in]   _pstObject      Concerned object
+ * @param[in]   _zFXConfigID    Config ID of the FX to add
+ */
+extern orxDLLAPI void  orxFASTCALL          orxObject_AddFXRecursive(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID);
+
 /** Adds a unique FX using its config ID. Refer to orxObject_AddUniqueDelayedFX() for details, since this
  * function is the same as it with the delay argument set to 0.
  * @param[in]   _pstObject      Concerned object
@@ -763,6 +769,12 @@ extern orxDLLAPI orxSTATUS orxFASTCALL      orxObject_AddFX(orxOBJECT *_pstObjec
  */
 extern orxDLLAPI orxSTATUS orxFASTCALL      orxObject_AddUniqueFX(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID);
 
+/** Adds a unique FX to an object and its children.
+ * @param[in]   _pstObject      Concerned object
+ * @param[in]   _zFXConfigID    Config ID of the FX to add
+ */
+extern orxDLLAPI void orxFASTCALL           orxObject_AddUniqueFXRecursive(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID);
+
 /** Adds a delayed FX using its config ID.
  * @param[in]   _pstObject      Concerned object
  * @param[in]   _zFXConfigID    Config ID of the FX to add
@@ -770,6 +782,14 @@ extern orxDLLAPI orxSTATUS orxFASTCALL      orxObject_AddUniqueFX(orxOBJECT *_ps
  * @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
  */
 extern orxDLLAPI orxSTATUS orxFASTCALL      orxObject_AddDelayedFX(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID, orxFLOAT _fDelay);
+
+/** Adds a delayed FX to an object and its children.
+ * @param[in]   _pstObject      Concerned object
+ * @param[in]   _zFXConfigID    Config ID of the FX to add
+ * @param[in]   _fDelay         Delay time
+ * @param[in]   _bPropagate    Should the delay be incremented with each child application?
+ */
+extern orxDLLAPI void orxFASTCALL           orxObject_AddDelayedFXRecursive(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID, orxFLOAT _fDelay, orxBOOL _bPropagate);
 
 /** Adds a unique delayed FX using its config ID. The difference between this function and orxObject_AddDelayedFX()
  * is that this one does not add the specified FX, if the object already has an FX with the same config ID attached.
@@ -781,6 +801,14 @@ extern orxDLLAPI orxSTATUS orxFASTCALL      orxObject_AddDelayedFX(orxOBJECT *_p
  * @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
  */
 extern orxDLLAPI orxSTATUS orxFASTCALL      orxObject_AddUniqueDelayedFX(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID, orxFLOAT _fDelay);
+
+/** Adds a unique delayed FX to an object and its children.
+ * @param[in]   _pstObject      Concerned object
+ * @param[in]   _zFXConfigID    Config ID of the FX to add
+ * @param[in]   _fDelay         Delay time
+ * @param[in]   _bPropagate    Should the delay be incremented with each child application?
+ */
+extern orxDLLAPI void orxFASTCALL           orxObject_AddUniqueDelayedFXRecursive(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID, orxFLOAT _fDelay, orxBOOL _bPropagate);
 
 /** Removes an FX using its config ID.
  * @param[in]   _pstObject      Concerned object
@@ -887,6 +915,12 @@ extern orxDLLAPI orxBOOL orxFASTCALL        orxObject_IsShaderEnabled(const orxO
  * @return      orxSTATUS_SUCCESS / orxSTATUS_FAILURE
  */
 extern orxDLLAPI orxSTATUS orxFASTCALL      orxObject_AddTimeLineTrack(orxOBJECT *_pstObject, const orxSTRING _zTrackConfigID);
+
+/** Adds a timeline track to an object and its children.
+ * @param[in]   _pstObject        Concerned object
+ * @param[in]   _zTrackConfigID   Config ID of the timeline track to add
+ */
+extern orxDLLAPI void orxFASTCALL           orxObject_AddTimeLineTrackRecursive(orxOBJECT *_pstObject, const orxSTRING _zTrackConfigID);
 
 /** Removes a timeline track using its config ID
  * @param[in]   _pstObject      Concerned object

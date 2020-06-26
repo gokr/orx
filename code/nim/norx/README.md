@@ -18,3 +18,12 @@ This wrapper was created through the following steps:
 Unfortunately this means that at this moment (due to step 3 above), updates to ORX header files does not mean we can just regenerate this wrapper automagically.
 
 See `samples` directory for some sample code.
+
+# How to maintain
+We track any changes to the `include` directory, for example if `orxObject.h` changes:
+
+1. `cd headers`
+2. `cp ../../../include/object/orxObject.h object/orxObject.h`
+3. Using your IDE, reapply modifications that was overwritten :) - this should be handled better of course.
+4. `c2nim common.c2nim object/orxObject.h` to reproduce `orxObject.nim`
+5. Merge parts into `obj.nim` that should be there using `meld object/orxObject.nim ../src/norx/obj.nim`

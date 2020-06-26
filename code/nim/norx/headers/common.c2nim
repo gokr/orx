@@ -8,7 +8,7 @@
 #prefix "_"
 #suffix "__"
 
-#dynlib "\"liborx.so\""
+#dynlib libORX
 #cdecl
 
 # def orxFASTCALL

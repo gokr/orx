@@ -777,6 +777,13 @@ proc orxObject_GetBoundingBox*(pstObject: ptr orxOBJECT; pstBoundingBox: ptr orx
 
 proc orxObject_AddFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_AddFX", dynlib: libORX.}
+## * Adds an FX to an object and its children.
+##  @param[in]   _pstObject      Concerned object
+##  @param[in]   _zFXConfigID    Config ID of the FX to add
+##
+
+proc orxObject_AddFXRecursive*(pstObject: ptr orxOBJECT; zFXConfigID: cstring) {.
+    cdecl, importc: "orxObject_AddFXRecursive", dynlib: libORX.}
 ## * Adds a unique FX using its config ID. Refer to orxObject_AddUniqueDelayedFX() for details, since this
 ##  function is the same as it with the delay argument set to 0.
 ##  @param[in]   _pstObject      Concerned object
@@ -786,6 +793,14 @@ proc orxObject_AddFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring): orxSTATUS
 
 proc orxObject_AddUniqueFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring): orxSTATUS {.
     cdecl, importc: "orxObject_AddUniqueFX", dynlib: libORX.}
+## * Adds a unique FX to an object and its children.
+##  @param[in]   _pstObject      Concerned object
+##  @param[in]   _zFXConfigID    Config ID of the FX to add
+##
+
+proc orxObject_AddUniqueFXRecursive*(pstObject: ptr orxOBJECT;
+                                    zFXConfigID: cstring) {.cdecl,
+    importc: "orxObject_AddUniqueFXRecursive", dynlib: libORX.}
 ## * Adds a delayed FX using its config ID.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zFXConfigID    Config ID of the FX to add
@@ -796,6 +811,17 @@ proc orxObject_AddUniqueFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring): orx
 proc orxObject_AddDelayedFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring;
                             fDelay: orxFLOAT): orxSTATUS {.cdecl,
     importc: "orxObject_AddDelayedFX", dynlib: libORX.}
+## * Adds a delayed FX to an object and its children.
+##  @param[in]   _pstObject      Concerned object
+##  @param[in]   _zFXConfigID    Config ID of the FX to add
+##  @param[in]   _fDelay         Delay time
+##  @param[in]   _bPropagate    Should the delay be incremented with each child application?
+##
+
+proc orxObject_AddDelayedFXRecursive*(pstObject: ptr orxOBJECT;
+                                     zFXConfigID: cstring; fDelay: orxFLOAT;
+                                     bPropagate: orxBOOL) {.cdecl,
+    importc: "orxObject_AddDelayedFXRecursive", dynlib: libORX.}
 ## * Adds a unique delayed FX using its config ID. The difference between this function and orxObject_AddDelayedFX()
 ##  is that this one does not add the specified FX, if the object already has an FX with the same config ID attached.
 ##  note that the "uniqueness" is determined immediately at the time of this function call, not at the time of the
@@ -809,6 +835,16 @@ proc orxObject_AddDelayedFX*(pstObject: ptr orxOBJECT; zFXConfigID: cstring;
 proc orxObject_AddUniqueDelayedFX*(pstObject: ptr orxOBJECT;
                                   zFXConfigID: cstring; fDelay: orxFLOAT): orxSTATUS {.
     cdecl, importc: "orxObject_AddUniqueDelayedFX", dynlib: libORX.}
+## * Adds a unique delayed FX to an object and its children.
+##  @param[in]   _pstObject      Concerned object
+##  @param[in]   _zFXConfigID    Config ID of the FX to add
+##  @param[in]   _fDelay         Delay time
+##  @param[in]   _bPropagate    Should the delay be incremented with each child application?
+##
+
+proc orxObject_AddUniqueDelayedFXRecursive*(pstObject: ptr orxOBJECT;
+    zFXConfigID: cstring; fDelay: orxFLOAT; bPropagate: orxBOOL) {.cdecl,
+    importc: "orxObject_AddUniqueDelayedFXRecursive", dynlib: libORX.}
 ## * Removes an FX using its config ID.
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zFXConfigID    Config ID of the FX to remove
@@ -926,6 +962,15 @@ proc orxObject_IsShaderEnabled*(pstObject: ptr orxOBJECT): orxBOOL {.cdecl,
 proc orxObject_AddTimeLineTrack*(pstObject: ptr orxOBJECT;
                                 zTrackConfigID: cstring): orxSTATUS {.cdecl,
     importc: "orxObject_AddTimeLineTrack", dynlib: libORX.}
+## * Adds a timeline track to an object and its children.
+##  @param[in]   _pstObject        Concerned object
+##  @param[in]   _zTrackConfigID   Config ID of the timeline track to add
+##
+
+proc orxObject_AddTimeLineTrackRecursive*(pstObject: ptr orxOBJECT;
+    zTrackConfigID: cstring) {.cdecl,
+                                importc: "orxObject_AddTimeLineTrackRecursive",
+                                dynlib: libORX.}
 ## * Removes a timeline track using its config ID
 ##  @param[in]   _pstObject      Concerned object
 ##  @param[in]   _zTrackConfigID Config ID of the timeline track to remove
