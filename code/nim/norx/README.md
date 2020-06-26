@@ -1,13 +1,14 @@
 # Norx - a Nim Wrapper of ORX
-
 This directory contains a Nim wrapper of the ORX library. The wrapper consists of one Nim module per ORX C header, 77 of them.
 
-The only things you need to compile a Nim ORX game are these Nim files and the ORX dynamic library (`liborx.so|dll`).
+The only things you need to compile a Nim ORX game is this Nimble module and the ORX dynamic library (`liborx.so|dll`).
 
 However, for debugging etc it's more practical to also have the full ORX clone with ORX C sources etc.
 
-# How it was made
+# Install
+Just run `nimble install` in this directory. Also **make sure you have `liborx[d|p].so` in a proper place, like /usr/lib/** (working dir doesn't work for me).
 
+# How it was made
 This wrapper was created through the following steps:
 
 1. Run `convert.nim` in this directory that uses `common.c2nim`.
