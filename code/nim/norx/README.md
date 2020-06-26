@@ -8,6 +8,9 @@ However, for debugging etc it's more practical to also have the full ORX clone w
 # Install
 Just run `nimble install` in this directory. Also **make sure you have `liborx[d|p].so` in a proper place, like /usr/lib/** (working dir doesn't work for me).
 
+See `../samples` directory for some sample code using it!
+
+
 # How it was made
 This wrapper was created through the following steps:
 
@@ -16,8 +19,6 @@ This wrapper was created through the following steps:
 3. Eventually "abandon all hope" and start editing the generated Nim files manually.
 
 Unfortunately this means that at this moment (due to step 3 above), updates to ORX header files does not mean we can just regenerate this wrapper automagically.
-
-See `samples` directory for some sample code.
 
 # How to maintain
 We track any changes to the `include` directory, for example if `orxObject.h` changes:
