@@ -14,6 +14,6 @@ tools/orxFontGen/lib/
 tutorial/bin/
 tutorial/build/
 tutorial/lib/
-code/include/convert
+code/nim/headers/convert
 code/nim/samples/norxsample/norxsample
-**/*.log
+code/nim/**/*.log
