@@ -1,6 +1,0 @@
-[11:48:57] [CONFIG] [orxConfig.c:orxConfig_Load(4387)] [norxsample.ini]: Can't load file: invalid / file not found
-[11:48:57] [RENDER] [orxViewport.c:orxViewport_CreateFromConfig(1668)] Config file does not contain viewport section named MainViewport.
-[11:48:57] [OBJECT] [orxObject.c:orxObject_CreateFromConfig(5128)] Failed to find config section named Scene.
-[11:49:51] [CONFIG] [orxConfig.c:orxConfig_Load(4387)] [norxsample.ini]: Can't load file: invalid / file not found
-[11:49:51] [RENDER] [orxViewport.c:orxViewport_CreateFromConfig(1668)] Config file does not contain viewport section named MainViewport.
-[11:49:51] [OBJECT] [orxObject.c:orxObject_CreateFromConfig(5128)] Failed to find config section named Scene.
