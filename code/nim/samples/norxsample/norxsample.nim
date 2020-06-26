@@ -30,9 +30,10 @@ proc Init(): orxSTATUS =
   # Register the Update function to the core clock
   let clock = orxClock_Get(orxCLOCK_KZ_CORE)
   if not clock.isNil:
-      echo "Clock gotten"
+    echo "Clock gotten"
   var status = orxClock_Register(clock, cast[orxCLOCK_FUNCTION](Update), nil, orxMODULE_ID_MAIN, orxCLOCK_PRIORITY_NORMAL)
-  echo "Clock registered " & $status
+  if status == orxSTATUS_SUCCESS:
+    echo "Clock registered"
 
   # Done!
   return orxSTATUS_SUCCESS
@@ -51,25 +52,27 @@ proc Bootstrap(): orxSTATUS =
   # Add a config storage to find the initial config file
   var dir = getCurrentDir()
   var status = orxResource_AddStorage(orxCONFIG_KZ_RESOURCE_GROUP, $dir & "/data/config", orxFALSE)
-  echo "Added storage: " & $status
+  if status == orxSTATUS_SUCCESS:
+    echo "Added storage"
   # Return orxSTATUS_FAILURE to prevent orx from loading the default config file
   return orxSTATUS_SUCCESS
 
 when isMainModule:
   # Set the bootstrap function to provide at least one resource storage before loading any config files
   var status = orxConfig_SetBootstrap(cast[orxCONFIG_BOOTSTRAP_FUNCTION](Bootstrap))
-  echo "Set bootstrap: " & $status
+  if status == orxSTATUS_SUCCESS:
+    echo "Bootstrap was set"
 
   # Hack to produce C style argc/argv to pass on
-  var argc = paramCount()+1
-  var nargv = newSeq[string](paramCount()+1)
+  var argc = paramCount()
+  var nargv = newSeq[string](argc + 1)
+  nargv[0] = getAppFilename()  # Better than paramStr(0)
   var x = 1
-  nargv[0] = getAppFilename()
-  while x < argc:
-    nargv[x] = paramStr(x+1)  # first is program name
-    x += 1
+  while x <= argc:
+    nargv[x] = paramStr(x)
+    inc(x)
   var argv: cstringArray = nargv.allocCStringArray()
-  echo $nargv
+  inc(argc)
 
   # Execute our game
   orx_Execute(argc.orxU32, argv, cast[orxMODULE_INIT_FUNCTION](Init), cast[orxMODULE_RUN_FUNCTION](Run), cast[orxMODULE_EXIT_FUNCTION](Exit))
