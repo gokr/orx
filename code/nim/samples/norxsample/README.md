@@ -2,4 +2,6 @@
 This is just a trivial port of the original ORX sample with a spinning logo.
 
 # Install
-Just run `nimble install` in this directory. Also **make sure you have `liborx[d|p].so` in a proper place, like /usr/lib/** (working dir doesn't work for me). Then run `norxsample`.
+First install Norx by running `nimble install` in `../norx`. Also **make sure you have `liborx[d|p].so` in a proper place, like /usr/lib/** (working dir doesn't work for me).
+
+Then run `nimble install` in this directory. After that you can run `norxsample`.
