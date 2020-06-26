@@ -8020,6 +8020,12 @@ orxSTATUS orxFASTCALL orxObject_AddFX(orxOBJECT *_pstObject, const orxSTRING _zF
   return eResult;
 }
 
+/** Adds an FX to an object and its children.
+ * @param[in]   _pstObject      Concerned object
+ * @param[in]   _zFXConfigID    Config ID of the FX to add
+ */
+orxOBJECT_MAKE_RECURSIVE(AddFX, const orxSTRING);
+
 /** Adds a unique FX using its config ID. Refer to orxObject_AddUniqueDelayedFX() for details, since this
  * function is the same as it with the delay argument set to 0.
  * @param[in]   _pstObject      Concerned object
@@ -8041,6 +8047,12 @@ orxSTATUS orxFASTCALL orxObject_AddUniqueFX(orxOBJECT *_pstObject, const orxSTRI
   /* Done! */
   return eResult;
 }
+
+/** Adds a unique FX to an object and its children.
+ * @param[in]   _pstObject      Concerned object
+ * @param[in]   _zFXConfigID    Config ID of the FX to add
+ */
+orxOBJECT_MAKE_RECURSIVE(AddUniqueFX, const orxSTRING);
 
 /** Adds a delayed FX using its config ID.
  * @param[in]   _pstObject      Concerned object
@@ -8106,6 +8118,47 @@ orxSTATUS orxFASTCALL orxObject_AddDelayedFX(orxOBJECT *_pstObject, const orxSTR
 
   /* Done! */
   return eResult;
+}
+
+/** Adds a delayed FX to an object and its children.
+ * @param[in]   _pstObject      Concerned object
+ * @param[in]   _zFXConfigID    Config ID of the FX to add
+ * @param[in]   _fDelay         Delay time
+ * @param[in]   _bPropagate    Should the delay be incremented with each child application?
+ */
+void orxFASTCALL orxObject_AddDelayedFXRecursive(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID, orxFLOAT _fDelay, orxBOOL _bPropagate)
+{
+  orxFLOAT    fDelay;
+  orxOBJECT  *pstChild;
+
+  /* Checks */
+  orxASSERT(sstObject.u32Flags & orxOBJECT_KU32_STATIC_FLAG_READY);
+  orxSTRUCTURE_ASSERT(_pstObject);
+
+  /* Sets initial delay */
+  fDelay = _fDelay;
+
+  /* Updates object */
+  orxObject_AddDelayedFX(_pstObject, _zFXConfigID, fDelay);
+
+  /* For all its children */
+  for(pstChild = orxObject_GetOwnedChild(_pstObject);
+      pstChild != orxNULL;
+      pstChild = orxObject_GetOwnedSibling(pstChild))
+  {
+    /* Should propagate? */
+    if(_bPropagate != orxFALSE)
+    {
+      /* Updates delay */
+      fDelay += _fDelay;
+    }
+
+    /* Updates it */
+    orxObject_AddDelayedFXRecursive(pstChild, _zFXConfigID, fDelay, _bPropagate);
+  }
+
+  /* Done! */
+  return;
 }
 
 /** Adds a unique delayed FX using its config ID. The difference between this function and orxObject_AddDelayedFX()
@@ -8175,6 +8228,47 @@ orxSTATUS orxFASTCALL orxObject_AddUniqueDelayedFX(orxOBJECT *_pstObject, const 
 
   /* Done! */
   return eResult;
+}
+
+/** Adds a unique delayed FX to an object and its children.
+ * @param[in]   _pstObject      Concerned object
+ * @param[in]   _zFXConfigID    Config ID of the FX to add
+ * @param[in]   _fDelay         Delay time
+ * @param[in]   _bPropagate    Should the delay be incremented with each child application?
+ */
+void orxFASTCALL orxObject_AddUniqueDelayedFXRecursive(orxOBJECT *_pstObject, const orxSTRING _zFXConfigID, orxFLOAT _fDelay, orxBOOL _bPropagate)
+{
+  orxFLOAT    fDelay;
+  orxOBJECT  *pstChild;
+
+  /* Checks */
+  orxASSERT(sstObject.u32Flags & orxOBJECT_KU32_STATIC_FLAG_READY);
+  orxSTRUCTURE_ASSERT(_pstObject);
+
+  /* Sets initial delay */
+  fDelay = _fDelay;
+
+  /* Updates object */
+  orxObject_AddUniqueDelayedFX(_pstObject, _zFXConfigID, fDelay);
+
+  /* For all its children */
+  for(pstChild = orxObject_GetOwnedChild(_pstObject);
+      pstChild != orxNULL;
+      pstChild = orxObject_GetOwnedSibling(pstChild))
+  {
+    /* Should propagate? */
+    if(_bPropagate != orxFALSE)
+    {
+      /* Updates delay */
+      fDelay += _fDelay;
+    }
+
+    /* Updates it */
+    orxObject_AddUniqueDelayedFXRecursive(pstChild, _zFXConfigID, fDelay, _bPropagate);
+  }
+
+  /* Done! */
+  return;
 }
 
 /** Removes an FX using its config ID.
@@ -8695,6 +8789,12 @@ orxSTATUS orxFASTCALL orxObject_AddTimeLineTrack(orxOBJECT *_pstObject, const or
   /* Done! */
   return eResult;
 }
+
+/** Adds a timeline track to an object and its children.
+ * @param[in]   _pstObject        Concerned object
+ * @param[in]   _zTrackConfigID   Config ID of the timeline track to add
+ */
+orxOBJECT_MAKE_RECURSIVE(AddTimeLineTrack, const orxSTRING);
 
 /** Removes a timeline track using its config ID.
  * @param[in]   _pstObject      Concerned object
